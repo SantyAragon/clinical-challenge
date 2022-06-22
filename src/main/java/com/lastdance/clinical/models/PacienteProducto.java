@@ -23,8 +23,7 @@ public class PacienteProducto {
 
     public PacienteProducto() { }
 
-    public PacienteProducto(Long id, String nombre, Double monto, LocalDateTime fecha, Paciente paciente) {
-        this.id = id;
+    public PacienteProducto(String nombre, Double monto, LocalDateTime fecha, Paciente paciente) {
         this.nombre = nombre;
         this.monto = monto;
         this.fecha = fecha;

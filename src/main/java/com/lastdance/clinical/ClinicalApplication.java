@@ -1,15 +1,20 @@
 package com.lastdance.clinical;
 
-import com.lastdance.clinical.models.Paciente;
-import com.lastdance.clinical.models.PacienteServicio;
+import com.lastdance.clinical.models.*;
 import com.lastdance.clinical.repositories.PacienteRepository;
 import com.lastdance.clinical.repositories.PacienteServicioRepository;
+import com.lastdance.clinical.repositories.ProfesionalRepository;
+import com.lastdance.clinical.repositories.ServicioRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import static com.lastdance.clinical.models.TipoEspecialidad.*;
 
 @SpringBootApplication
 public class ClinicalApplication {
@@ -19,7 +24,7 @@ public class ClinicalApplication {
     }
 
     @Bean
-    public CommandLineRunner initData(PacienteRepository pacienteRepository, PacienteServicioRepository pacienteServicioRepository) {
+    public CommandLineRunner initData(PacienteRepository pacienteRepository, PacienteServicioRepository pacienteServicioRepository, ProfesionalRepository profesionalRepository, ServicioRepository servicioRepository) {
         return (args) -> {
 
             Paciente pacientePrueba1 = new Paciente("Santiago", "Aragon", "santy@mindhub.com", "santy123", 87654321L);
@@ -44,9 +49,29 @@ public class ClinicalApplication {
             Paciente pacientePrueba10 = new Paciente("Gabriela", "Medina", "gabimedina@hotmail.com", "medinam123", 17245712L);
             pacienteRepository.save(pacientePrueba10);
 
+            //CREO EL SERVICIO SIN PROFESIONAL
+            Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUGÍA);
 
-            PacienteServicio pacienteServicio = new PacienteServicio(100D, LocalDateTime.now(), pacientePrueba1);
+            Servicio servicio1 = new Servicio(TipoServicio.CIRUGIAS,profesional1);
+//            servicioRepository.save(servicio1);
+            // CREO EL PROFESIONAL CON EL SERVICIO PREVIAMENTE CREADO
+
+            // ASIGNO AL SERVICIO CREADO, EL PROFESIONAL CREADO EN EL PASO ANTERIOR
+
+
+//            Servicio servicioAct1 = servicioRepository.findById(1L).orElse(null);
+
+            servicio1.addProfesional(profesional1);
+            servicioRepository.save(servicio1);
+            profesionalRepository.save(profesional1);
+            //GUARDO LOS DATOS
+//            servicioRepository.save(servicio1);
+//            profesionalRepository.save(profesional1);
+
+            //EL PACIENTE SOLICITA UN SERVICIO CON UN PROFESIONAL
+            PacienteServicio pacienteServicio = new PacienteServicio(100D, LocalDateTime.now(), pacientePrueba1, servicio1);
             pacienteServicioRepository.save(pacienteServicio);
+
         };
     }
 }

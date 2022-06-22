@@ -26,8 +26,6 @@ public class Paciente {
     @OneToMany(mappedBy="paciente", fetch=FetchType.EAGER)
     private Set<PacienteProducto> pacienteProductos = new HashSet<>();
 
-//    private Set<Servicio> servicios = new HashSet<>();
-
     public Paciente() {
     }
 
