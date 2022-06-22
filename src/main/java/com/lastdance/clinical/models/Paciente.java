@@ -2,10 +2,9 @@ package com.lastdance.clinical.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Paciente {
@@ -17,19 +16,22 @@ public class Paciente {
     private String nombre;
     private String apellido;
     private String email;
-    private String password;
+    private String contraseña;
     private Long identificacion;
+
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
+    private Set<PacienteServicio> servicios = new HashSet<>();
 
 //    private Set<Servicio> servicios = new HashSet<>();
 
     public Paciente() {
     }
 
-    public Paciente(String nombre, String apellido, String email, String password, Long identificacion) {
+    public Paciente(String nombre, String apellido, String email, String contraseña, Long identificacion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.password = password;
+        this.contraseña = contraseña;
         this.identificacion = identificacion;
     }
 
@@ -61,12 +63,12 @@ public class Paciente {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public Long getIdentificacion() {
@@ -77,13 +79,14 @@ public class Paciente {
         this.identificacion = identificacion;
     }
 
-//    public Set<Servicio> getServicios() {
-//        return servicios;
-//    }
-//
-//    public void setServicios(Set<Servicio> servicios) {
-//        this.servicios = servicios;
-//    }
+    public Set<PacienteServicio> getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(Set<PacienteServicio> servicios) {
+        this.servicios = servicios;
+    }
+
 
     public String getFullName() {
         return nombre + " " + apellido;

@@ -1,6 +1,10 @@
 package com.lastdance.clinical.DTOS;
 
 import com.lastdance.clinical.models.Paciente;
+import com.lastdance.clinical.models.PacienteServicio;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class PacienteDTO {
 
@@ -9,6 +13,7 @@ public class PacienteDTO {
     private String apellido;
     private String email;
     private Long identificacion;
+    private Set<PacienteServicio> servicios = new HashSet<>();
 
 
     public PacienteDTO() {
@@ -21,6 +26,7 @@ public class PacienteDTO {
         this.apellido = paciente.getApellido();
         this.email = paciente.getEmail();
         this.identificacion = paciente.getIdentificacion();
+        this.servicios=paciente.getServicios();
     }
 
     public Long getId() {
