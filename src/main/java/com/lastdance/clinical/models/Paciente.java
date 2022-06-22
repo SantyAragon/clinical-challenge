@@ -2,10 +2,9 @@ package com.lastdance.clinical.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Paciente {
@@ -19,6 +18,9 @@ public class Paciente {
     private String email;
     private String password;
     private Long identificacion;
+
+    @OneToMany(mappedBy="paciente", fetch=FetchType.EAGER)
+    private Set<PacienteProducto> pacienteProductos = new HashSet<>();
 
 //    private Set<Servicio> servicios = new HashSet<>();
 
@@ -87,5 +89,14 @@ public class Paciente {
 
     public String getFullName() {
         return nombre + " " + apellido;
+    }
+
+    public Set<PacienteProducto> getPacienteProductos() {
+        return pacienteProductos;
+    }
+
+    public void addPacienteProducto(PacienteProducto pacienteProducto) {
+        pacienteProducto.setPaciente(this);
+        pacienteProductos.add(pacienteProducto);
     }
 }
