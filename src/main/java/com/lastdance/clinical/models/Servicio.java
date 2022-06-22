@@ -1,5 +1,4 @@
 package com.lastdance.clinical.models;
-
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -58,6 +57,5 @@ public class Servicio {
         profesionales.add(profesional);
 
     }
-
 
 }
