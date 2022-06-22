@@ -19,8 +19,14 @@ public class Paciente {
     private String contraseña;
     private Long identificacion;
 
+
     @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
     private Set<PacienteServicio> servicios = new HashSet<>();
+
+    @OneToMany(mappedBy="paciente", fetch=FetchType.EAGER)
+    private Set<PacienteProducto> pacienteProductos = new HashSet<>();
+
+//    private Set<Servicio> servicios = new HashSet<>();
 
     public Paciente() {
     }
@@ -88,5 +94,14 @@ public class Paciente {
 
     public String getFullName() {
         return nombre + " " + apellido;
+    }
+
+    public Set<PacienteProducto> getPacienteProductos() {
+        return pacienteProductos;
+    }
+
+    public void addPacienteProducto(PacienteProducto pacienteProducto) {
+        pacienteProducto.setPaciente(this);
+        pacienteProductos.add(pacienteProducto);
     }
 }
