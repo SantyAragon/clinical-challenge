@@ -22,8 +22,7 @@ public class Profesional {
 
     public Profesional() { }
 
-    public Profesional(Long id, String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio) {
-        this.id = id;
+    public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;

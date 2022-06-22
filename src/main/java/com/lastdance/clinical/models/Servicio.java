@@ -1,5 +1,4 @@
 package com.lastdance.clinical.models;
-
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -21,8 +20,7 @@ public class Servicio {
 
     public Servicio() { }
 
-    public Servicio(Long id, TipoServicio tipoServicio, Set<Profesional> profesionales) {
-        this.id = id;
+    public Servicio(TipoServicio tipoServicio, Set<Profesional> profesionales) {
         this.tipoServicio = tipoServicio;
         this.profesionales = profesionales;
     }
