@@ -21,7 +21,7 @@ public class Profesional {
     private Servicio servicio;
 
     public Profesional() { }
-    
+
     public Profesional(String nombre, String apellido, TipoEspecialidad especialidad) {
         this.nombre = nombre;
         this.apellido = apellido;
