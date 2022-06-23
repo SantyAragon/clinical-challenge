@@ -17,8 +17,8 @@ public class PacienteServicio {
     private LocalDateTime fecha;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
+    @JoinColumn(name = "factura_id")
+    private Factura factura;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "servicio_id")
@@ -28,10 +28,10 @@ public class PacienteServicio {
     public PacienteServicio() {
     }
 
-    public PacienteServicio(Double monto, LocalDateTime fecha, Paciente paciente, Servicio servicio) {
+    public PacienteServicio(Double monto, LocalDateTime fecha, Factura factura, Servicio servicio) {
         this.monto = monto;
         this.fecha = fecha;
-        this.paciente = paciente;
+        this.factura = factura;
         this.servicio = servicio;
     }
 
@@ -56,12 +56,12 @@ public class PacienteServicio {
         this.fecha = fecha;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public Factura getFactura() {
+        return factura;
     }
 
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setFactura(Factura factura) {
+        this.factura = factura;
     }
 
     public Servicio getServicio() {
