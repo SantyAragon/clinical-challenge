@@ -47,5 +47,8 @@ public class PacienteController {
 
         return new ResponseEntity<>("Registrado exitosamente", HttpStatus.ACCEPTED);
     }
-
+//    @PatchMapping("/pacientes/{id}")
+//    public ResponseEntity<Object> actualizarPaciente(@PathVariable Long id,){
+//
+//    }
 }
