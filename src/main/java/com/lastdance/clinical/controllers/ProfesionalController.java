@@ -27,4 +27,7 @@ public class ProfesionalController {
     public ProfesionalDTO traerProfesional(@PathVariable Long id) {
         return profesionalService.traerProfesionalDTO(id);
     }
+
+
+
 }

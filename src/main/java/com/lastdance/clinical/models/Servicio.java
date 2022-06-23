@@ -17,7 +17,7 @@ public class Servicio {
     private TipoServicio tipoServicio;
 
     @OneToMany(mappedBy = "servicio", fetch = FetchType.EAGER)
-    private Set<Profesional> profesionals = new HashSet<>();
+    private Set<Profesional> profesionales = new HashSet<>();
 
     public Servicio() {
     }
@@ -28,12 +28,12 @@ public class Servicio {
 
     public Servicio(TipoServicio tipoServicio, Profesional profesional) {
         this.tipoServicio = tipoServicio;
-        this.profesionals.add(profesional);
+        this.profesionales.add(profesional);
     }
 
     public Servicio(TipoServicio tipoServicio, Set<Profesional> profesionales) {
         this.tipoServicio = tipoServicio;
-        this.profesionals = profesionales;
+        this.profesionales = profesionales;
     }
 
     public Long getId() {
@@ -49,16 +49,16 @@ public class Servicio {
     }
 
     public Set<Profesional> getProfesionals() {
-        return profesionals;
+        return profesionales;
     }
 
     public void setProfesionals(Set<Profesional> profesionals) {
-        this.profesionals = profesionals;
+        this.profesionales = profesionals;
     }
 
     public void addProfesional(Profesional profesional) {
         profesional.setServicio(this);
-        profesionals.add(profesional);
+        profesionales.add(profesional);
 
     }
 
