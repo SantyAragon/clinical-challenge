@@ -6,11 +6,7 @@
     outline: none;
     box-sizing: border-box;
 }
-  
 
-body{
-    width: 100vw;
-}
 
 header{
     height: 50px;
@@ -138,8 +134,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    
+    text-align: center; 
 }
 
 .container-head-data{
@@ -193,7 +188,67 @@ p {
 
 /*CONTENIDO*/
 
+.services-container{
+  width: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
 
+.services-container .exagonoArea{
+  display: flex;
+
+}
+.services-container .exagonoArea.ultimo{
+  transform: translateY(-45px);
+}
+
+.services-container .exagonoArea .exagono{
+  position: relative;
+  width: 200px;
+  height: 250px;
+  margin: 0 10px;
+  clip-path: polygon(0 25%, 50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%);
+  background: #77C7C9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.services-container .exagonoArea .exagono img{
+  width: 80px;
+
+}
+
+.services-container .exagonoArea .exagono h3{
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 10px;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+.services-container .exagonoArea .exagono:hover{
+  background: deepskyblue;
+  transform: scale(0.8);
+}
+
+.container-about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; 
+}
+
+
+.circle-medical-bg{
+  width: 600px;
+}
 
 /* ETIQUETAS */
 
