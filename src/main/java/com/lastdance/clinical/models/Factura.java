@@ -18,10 +18,14 @@ public class Factura {
     private double monto;
     private LocalDateTime fecha;
 
-    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "paciente_id")
+    private Paciente paciente;
+
+    @OneToMany(mappedBy = "factura", fetch = FetchType.EAGER)
     private Set<PacienteServicio> servicios = new HashSet<>();
 
-    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "factura", fetch = FetchType.EAGER)
     private Set<PacienteProducto> productos = new HashSet<>();
 
 
@@ -30,16 +34,17 @@ public class Factura {
     public Factura() {
     }
 
-    public Factura(double monto) {
-        this.monto = monto;
+    public Factura(Paciente paciente) {
+        this.paciente = paciente;
         this.fecha = LocalDateTime.now();
     }
 
-    public Factura(double monto, Set<PacienteServicio> servicios, Set<PacienteProducto> productos) {
+    public Factura(double monto, Set<PacienteServicio> servicios, Set<PacienteProducto> productos, Paciente paciente) {
         this.monto = monto;
         this.fecha = LocalDateTime.now();
         this.servicios = servicios;
         this.productos = productos;
+        this.paciente = paciente;
     }
 
     //    ======METODOS ACCESORES======
@@ -78,6 +83,14 @@ public class Factura {
 
     public void setProductos(Set<PacienteProducto> productos) {
         this.productos = productos;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
 

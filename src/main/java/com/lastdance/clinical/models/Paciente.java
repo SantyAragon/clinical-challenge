@@ -19,13 +19,16 @@ public class Paciente {
     private String contraseña;
     private Long identificacion;
 
-
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
     private Set<Factura> facturas = new HashSet<>();
 //    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
 //    private Set<PacienteServicio> servicios = new HashSet<>();
 //
 //    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
 //    private Set<PacienteProducto> productos = new HashSet<>();
+
+
+    //=======METODOS CONSTRUCTORES======
 
     public Paciente() {
     }
@@ -37,6 +40,9 @@ public class Paciente {
         this.contraseña = contraseña;
         this.identificacion = identificacion;
     }
+
+
+    //=======METODOS ACCESORES======
 
     public Long getId() {
         return id;
@@ -90,6 +96,8 @@ public class Paciente {
         this.facturas = facturas;
     }
 
+
+    //=======METODOS======
     public String getFullName() {
         return nombre + " " + apellido;
     }

@@ -26,7 +26,7 @@ public class PacienteProducto {
     public PacienteProducto() {
     }
 
-    public PacienteProducto(int cantidad, LocalDateTime fecha,Producto producto,  Factura factura) {
+    public PacienteProducto(int cantidad, LocalDateTime fecha, Factura factura, Producto producto) {
         this.cantidad = cantidad;
         this.fecha = fecha;
         this.nombre = producto.getNombre();

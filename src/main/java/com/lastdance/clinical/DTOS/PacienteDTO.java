@@ -16,8 +16,8 @@ public class PacienteDTO {
     private String apellido;
     private String email;
     private Long identificacion;
-    private Set<Set<PacienteServicioDTO>> servicios = new HashSet<>();
-    private Set<Set<PacienteProductoDTO>> productos = new HashSet<>();
+    private Set<PacienteServicioDTO> servicios = new HashSet<>();
+    private Set<PacienteProductoDTO> productos = new HashSet<>();
 
     public PacienteDTO() {
     }
@@ -28,8 +28,16 @@ public class PacienteDTO {
         this.apellido = paciente.getApellido();
         this.email = paciente.getEmail();
         this.identificacion = paciente.getIdentificacion();
-        this.servicios = paciente.getFacturas().stream().map(Factura::getServicios).map(set -> set.stream().map(PacienteServicioDTO::new).collect(Collectors.toSet())).collect(Collectors.toSet());
-        this.productos = paciente.getFacturas().stream().map(Factura::getProductos).map(set -> set.stream().map(PacienteProductoDTO::new).collect(Collectors.toSet())).collect(Collectors.toSet());
+
+        Set<PacienteServicio> serviciosTomados = new HashSet<>();
+        paciente.getFacturas().forEach(factura -> serviciosTomados.addAll(factura.getServicios()));
+        this.servicios = serviciosTomados.stream().map(PacienteServicioDTO::new).collect(Collectors.toSet());
+
+
+        Set<PacienteProducto> productosTomados = new HashSet<>();
+        paciente.getFacturas().forEach(factura -> productosTomados.addAll(factura.getProductos()));
+
+        this.productos = productosTomados.stream().map(PacienteProductoDTO::new).collect(Collectors.toSet());
     }
 
     public Long getId() {
@@ -52,11 +60,11 @@ public class PacienteDTO {
         return identificacion;
     }
 
-    public Set<Set<PacienteServicioDTO>> getServicios() {
+    public Set<PacienteServicioDTO> getServicios() {
         return servicios;
     }
 
-    public Set<Set<PacienteProductoDTO>> getProductos() {
+    public Set<PacienteProductoDTO> getProductos() {
         return productos;
     }
 }
