@@ -78,11 +78,13 @@ public class ClinicalApplication {
             Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d);
             Producto producto2 = new Producto("Kit quirurgico", TipoProducto.INSUMOS_QUIRUJICOS, 50, 500d);
             Producto producto3 = new Producto("Test rapido Covid", TipoProducto.TEST_RAPIDOS, 200, 250d);
+            Producto producto4 = new Producto("Paracetamol 1000mg x50u ", TipoProducto.PRODUCTOS, 200, 250d);
 
             //GUARDO LOS DATOS
             productoRepository.save(producto1);
             productoRepository.save(producto2);
             productoRepository.save(producto3);
+            productoRepository.save(producto4);
 
             //CREO COMPRAS A LOS CLIENTES
             PacienteProducto compra1 = new PacienteProducto(25, LocalDateTime.now(), producto1, pacientePrueba1);
