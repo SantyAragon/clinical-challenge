@@ -30,9 +30,9 @@ public class PacienteController {
     }
 
     @PostMapping("/pacientes")
-    public ResponseEntity<Object> registrarPaciente(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String password, @RequestParam Long identificacion) {
+    public ResponseEntity<Object> registrarPaciente(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contraseña, @RequestParam Long identificacion) {
 
-        Paciente paciente = new Paciente(nombre, apellido, email, password, identificacion);
+        Paciente paciente = new Paciente(nombre, apellido, email, contraseña, identificacion);
         pacienteService.guardarPaciente(paciente);
 
         return new ResponseEntity<>("Registrado exitosamente", HttpStatus.ACCEPTED);

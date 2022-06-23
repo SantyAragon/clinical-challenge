@@ -6,60 +6,45 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class PacienteProducto {
+public class PacienteServicio {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-    private String nombre;
-    private int cantidad;
-    private double monto;
+
+    private Double monto;
     private LocalDateTime fecha;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "producto_id")
-    private Producto producto;
+    @JoinColumn(name = "servicio_id")
+    private Servicio servicio;
 
-    public PacienteProducto() {
+
+    public PacienteServicio() {
     }
 
-    public PacienteProducto(int cantidad, LocalDateTime fecha,Producto producto,  Paciente paciente) {
-        this.cantidad = cantidad;
+    public PacienteServicio(Double monto, LocalDateTime fecha, Paciente paciente, Servicio servicio) {
+        this.monto = monto;
         this.fecha = fecha;
-        this.nombre = producto.getNombre();
-        this.monto = cantidad * producto.getPrecio();
-        this.producto = producto;
         this.paciente = paciente;
+        this.servicio = servicio;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getMonto() {
+    public Double getMonto() {
         return monto;
     }
 
-    public void setMonto(double monto) {
+    public void setMonto(Double monto) {
         this.monto = monto;
     }
 
@@ -79,11 +64,11 @@ public class PacienteProducto {
         this.paciente = paciente;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Servicio getServicio() {
+        return servicio;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
     }
 }

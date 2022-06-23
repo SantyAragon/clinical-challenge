@@ -1,4 +1,5 @@
 package com.lastdance.clinical.models;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,14 +16,24 @@ public class Servicio {
 
     private TipoServicio tipoServicio;
 
-    @OneToMany(mappedBy="servicio", fetch=FetchType.EAGER)
-    private Set<Profesional> profesionales = new HashSet<>();
+    @OneToMany(mappedBy = "servicio", fetch = FetchType.EAGER)
+    private Set<Profesional> profesionals = new HashSet<>();
 
-    public Servicio() { }
+    public Servicio() {
+    }
+
+    public Servicio(TipoServicio tipoServicio) {
+        this.tipoServicio = tipoServicio;
+    }
+
+    public Servicio(TipoServicio tipoServicio, Profesional profesional) {
+        this.tipoServicio = tipoServicio;
+        this.profesionals.add(profesional);
+    }
 
     public Servicio(TipoServicio tipoServicio, Set<Profesional> profesionales) {
         this.tipoServicio = tipoServicio;
-        this.profesionales = profesionales;
+        this.profesionals = profesionales;
     }
 
     public Long getId() {
@@ -37,19 +48,18 @@ public class Servicio {
         this.tipoServicio = tipoServicio;
     }
 
-    public Set<Profesional> getProfecionales() {
-        return profesionales;
+    public Set<Profesional> getProfesionals() {
+        return profesionals;
     }
 
-    public void setProfesionales(Set<Profesional> profesionales) {
-        this.profesionales = profesionales;
+    public void setProfesionals(Set<Profesional> profesionals) {
+        this.profesionals = profesionals;
     }
 
     public void addProfesional(Profesional profesional) {
         profesional.setServicio(this);
-        profesionales.add(profesional);
+        profesionals.add(profesional);
 
     }
-
 
 }

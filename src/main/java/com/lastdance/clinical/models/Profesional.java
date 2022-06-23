@@ -22,6 +22,11 @@ public class Profesional {
 
     public Profesional() { }
 
+    public Profesional(String nombre, String apellido, TipoEspecialidad especialidad) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.especialidad = especialidad;
+    }
     public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -63,5 +68,9 @@ public class Profesional {
 
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
+    }
+
+    public String getFullName() {
+        return nombre + " " + apellido;
     }
 }
