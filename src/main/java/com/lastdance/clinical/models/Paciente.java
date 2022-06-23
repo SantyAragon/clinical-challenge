@@ -23,8 +23,8 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
     private Set<PacienteServicio> servicios = new HashSet<>();
 
-    @OneToMany(mappedBy="paciente", fetch=FetchType.EAGER)
-    private Set<PacienteProducto> pacienteProductos = new HashSet<>();
+    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
+    private Set<PacienteProducto> productos = new HashSet<>();
 
     public Paciente() {
     }
@@ -89,17 +89,17 @@ public class Paciente {
         this.servicios = servicios;
     }
 
+    public Set<PacienteProducto> getProductos() {
+        return productos;
+    }
+
+    public void addPacienteProducto(PacienteProducto pacienteProducto) {
+        pacienteProducto.setPaciente(this);
+        productos.add(pacienteProducto);
+    }
 
     public String getFullName() {
         return nombre + " " + apellido;
     }
 
-    public Set<PacienteProducto> getPacienteProductos() {
-        return pacienteProductos;
-    }
-
-    public void addPacienteProducto(PacienteProducto pacienteProducto) {
-        pacienteProducto.setPaciente(this);
-        pacienteProductos.add(pacienteProducto);
-    }
 }

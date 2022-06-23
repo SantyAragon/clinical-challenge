@@ -1,10 +1,7 @@
 package com.lastdance.clinical;
 
 import com.lastdance.clinical.models.*;
-import com.lastdance.clinical.repositories.PacienteRepository;
-import com.lastdance.clinical.repositories.PacienteServicioRepository;
-import com.lastdance.clinical.repositories.ProfesionalRepository;
-import com.lastdance.clinical.repositories.ServicioRepository;
+import com.lastdance.clinical.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +21,7 @@ public class ClinicalApplication {
     }
 
     @Bean
-    public CommandLineRunner initData(PacienteRepository pacienteRepository, PacienteServicioRepository pacienteServicioRepository, ProfesionalRepository profesionalRepository, ServicioRepository servicioRepository) {
+    public CommandLineRunner initData(PacienteRepository pacienteRepository, PacienteServicioRepository pacienteServicioRepository, ProfesionalRepository profesionalRepository, ServicioRepository servicioRepository, ProductoRepository productoRepository, PacienteProductoRepository pacienteProductoRepository) {
         return (args) -> {
 
             Paciente pacientePrueba1 = new Paciente("Santiago", "Aragon", "santy@mindhub.com", "santy123", 87654321L);
@@ -49,29 +46,53 @@ public class ClinicalApplication {
             Paciente pacientePrueba10 = new Paciente("Gabriela", "Medina", "gabimedina@hotmail.com", "medinam123", 17245712L);
             pacienteRepository.save(pacientePrueba10);
 
-            //CREO EL SERVICIO SIN PROFESIONAL
-            Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUGÍA);
+            //CREAR SERVICIO (DUEÑO RELACION)
+            Servicio servicio1 = new Servicio(TipoServicio.CIRUGIAS);
+            Servicio servicio2 = new Servicio(TipoServicio.LABORATORIOS);
+            Servicio servicio3 = new Servicio(TipoServicio.CONSULTA);
+            Servicio servicio4 = new Servicio(TipoServicio.ELECTROCARDIOGRAMA);
 
-            Servicio servicio1 = new Servicio(TipoServicio.CIRUGIAS,profesional1);
-//            servicioRepository.save(servicio1);
-            // CREO EL PROFESIONAL CON EL SERVICIO PREVIAMENTE CREADO
+            //CREO PROFESIONALES QUE VAN A PERTENER A UN SERVICIO
+            Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUGÍA, servicio1);
+            Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGÍA, servicio1);
+            Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGÍA, servicio2);
+            Profesional profesional4 = new Profesional("Guille", "Bergesio", ALERGIA, servicio3);
+            Profesional profesional5 = new Profesional("Facu", "Araujo", CARDIOLOGÍA, servicio4);
 
-            // ASIGNO AL SERVICIO CREADO, EL PROFESIONAL CREADO EN EL PASO ANTERIOR
-
-
-//            Servicio servicioAct1 = servicioRepository.findById(1L).orElse(null);
-
-            servicio1.addProfesional(profesional1);
-            servicioRepository.save(servicio1);
-            profesionalRepository.save(profesional1);
             //GUARDO LOS DATOS
-//            servicioRepository.save(servicio1);
-//            profesionalRepository.save(profesional1);
+            servicioRepository.save(servicio1);
+            servicioRepository.save(servicio2);
+            servicioRepository.save(servicio3);
+            servicioRepository.save(servicio4);
+            profesionalRepository.save(profesional1);
+            profesionalRepository.save(profesional2);
+            profesionalRepository.save(profesional3);
+            profesionalRepository.save(profesional4);
+            profesionalRepository.save(profesional5);
 
             //EL PACIENTE SOLICITA UN SERVICIO CON UN PROFESIONAL
             PacienteServicio pacienteServicio = new PacienteServicio(100D, LocalDateTime.now(), pacientePrueba1, servicio1);
             pacienteServicioRepository.save(pacienteServicio);
 
+            //CREANDO PRODUCTOS
+            Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d);
+            Producto producto2 = new Producto("Kit quirurgico", TipoProducto.INSUMOS_QUIRUJICOS, 50, 500d);
+            Producto producto3 = new Producto("Test rapido Covid", TipoProducto.TEST_RAPIDOS, 200, 250d);
+
+            //GUARDO LOS DATOS
+            productoRepository.save(producto1);
+            productoRepository.save(producto2);
+            productoRepository.save(producto3);
+
+            //CREO COMPRAS A LOS CLIENTES
+            PacienteProducto compra1 = new PacienteProducto(25, LocalDateTime.now(), producto1, pacientePrueba1);
+            PacienteProducto compra2 = new PacienteProducto( 4, LocalDateTime.now(),producto2, pacientePrueba2);
+            PacienteProducto compra3 = new PacienteProducto( 10, LocalDateTime.now(), producto3,pacientePrueba2);
+//
+//            //GUARDO LOS DATOS
+            pacienteProductoRepository.save(compra1);
+            pacienteProductoRepository.save(compra2);
+            pacienteProductoRepository.save(compra3);
         };
     }
 }

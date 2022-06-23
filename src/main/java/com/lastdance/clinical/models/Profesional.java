@@ -69,4 +69,8 @@ public class Profesional {
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
     }
+
+    public String getFullName() {
+        return nombre + " " + apellido;
+    }
 }

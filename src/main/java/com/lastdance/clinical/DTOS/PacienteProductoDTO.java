@@ -8,16 +8,19 @@ public class PacienteProductoDTO {
 
     private Long id;
     private String nombre;
+    private int cantidad;
     private Double monto;
     private LocalDateTime fecha;
 
-    public PacienteProductoDTO() {  }
+    public PacienteProductoDTO() {
+    }
 
     public PacienteProductoDTO(PacienteProducto pacienteProducto) {
         this.id = pacienteProducto.getId();
-        this.nombre = pacienteProducto.getNombre();
+        this.cantidad = pacienteProducto.getCantidad();
         this.monto = pacienteProducto.getMonto();
         this.fecha = pacienteProducto.getFecha();
+        this.nombre = pacienteProducto.getProducto().getNombre();
     }
 
     public Long getId() {
@@ -26,6 +29,10 @@ public class PacienteProductoDTO {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public int getCantidad() {
+        return cantidad;
     }
 
     public Double getMonto() {
