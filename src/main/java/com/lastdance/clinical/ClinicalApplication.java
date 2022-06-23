@@ -21,7 +21,7 @@ public class ClinicalApplication {
     }
 
     @Bean
-    public CommandLineRunner initData(PacienteRepository pacienteRepository, PacienteServicioRepository pacienteServicioRepository, ProfesionalRepository profesionalRepository, ServicioRepository servicioRepository, ProductoRepository productoRepository, PacienteProductoRepository pacienteProductoRepository) {
+    public CommandLineRunner initData(PacienteRepository pacienteRepository, PacienteServicioRepository pacienteServicioRepository, ProfesionalRepository profesionalRepository, ServicioRepository servicioRepository, ProductoRepository productoRepository, PacienteProductoRepository pacienteProductoRepository,FacturaRepository facturaRepository) {
         return (args) -> {
 
             Paciente pacientePrueba1 = new Paciente("Santiago", "Aragon", "santy@mindhub.com", "santy123", 87654321L);
@@ -59,6 +59,7 @@ public class ClinicalApplication {
             Profesional profesional4 = new Profesional("Guille", "Bergesio", ALERGIA, servicio3);
             Profesional profesional5 = new Profesional("Facu", "Araujo", CARDIOLOGÍA, servicio4);
 
+            servicio1.addProfesional(profesional1);
             //GUARDO LOS DATOS
             servicioRepository.save(servicio1);
             servicioRepository.save(servicio2);
@@ -70,29 +71,44 @@ public class ClinicalApplication {
             profesionalRepository.save(profesional4);
             profesionalRepository.save(profesional5);
 
-            //EL PACIENTE SOLICITA UN SERVICIO CON UN PROFESIONAL
-            PacienteServicio pacienteServicio = new PacienteServicio(100D, LocalDateTime.now(), pacientePrueba1, servicio1);
-            pacienteServicioRepository.save(pacienteServicio);
 
             //CREANDO PRODUCTOS
             Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d);
             Producto producto2 = new Producto("Kit quirurgico", TipoProducto.INSUMOS_QUIRUJICOS, 50, 500d);
             Producto producto3 = new Producto("Test rapido Covid", TipoProducto.TEST_RAPIDOS, 200, 250d);
+            Producto producto4 = new Producto("Paracetamol 1000mg x50u ", TipoProducto.PRODUCTOS, 200, 250d);
 
             //GUARDO LOS DATOS
             productoRepository.save(producto1);
             productoRepository.save(producto2);
             productoRepository.save(producto3);
+            productoRepository.save(producto4);
+
+
+            //CREO Y GUARDO LA FACTURA
+            Factura factura1 = new Factura(pacientePrueba1);
+            facturaRepository.save(factura1);
+
+            //EL PACIENTE SOLICITA UN SERVICIO CON UN PROFESIONAL
+            PacienteServicio pacienteServicio1 = new PacienteServicio(100D, LocalDateTime.now(), factura1, servicio1);
+            pacienteServicioRepository.save(pacienteServicio1);
+
+            factura1.addPacienteServicio(pacienteServicio1);
 
             //CREO COMPRAS A LOS CLIENTES
-            PacienteProducto compra1 = new PacienteProducto(25, LocalDateTime.now(), producto1, pacientePrueba1);
-            PacienteProducto compra2 = new PacienteProducto( 4, LocalDateTime.now(),producto2, pacientePrueba2);
-            PacienteProducto compra3 = new PacienteProducto( 10, LocalDateTime.now(), producto3,pacientePrueba2);
-//
-//            //GUARDO LOS DATOS
+            PacienteProducto compra1 = new PacienteProducto(25, LocalDateTime.now(), factura1, producto1);
             pacienteProductoRepository.save(compra1);
+            PacienteProducto compra2 = new PacienteProducto( 4, LocalDateTime.now(), factura1,producto2);
             pacienteProductoRepository.save(compra2);
-            pacienteProductoRepository.save(compra3);
+
+            factura1.addPacienteProducto(compra1);
+            factura1.addPacienteProducto(compra2);
+            factura1.setMonto(pacienteServicio1.getMonto()+ compra1.getMonto()+ compra2.getMonto());
+
+            //GUARDO LA FACTURA CON SUS COMPRAS DE PRODUCTOS Y SERVICIOS
+            facturaRepository.save(factura1);
+
+
         };
     }
 }
