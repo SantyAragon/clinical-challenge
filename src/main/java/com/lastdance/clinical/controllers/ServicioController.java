@@ -35,11 +35,13 @@ public class ServicioController {
     }
 
     @PostMapping("/servicios")
-    public ResponseEntity<Object> nuevoServicio (@RequestParam TipoServicio tipoServicio, @RequestParam List<Profesional> profesionales) {
+    public ResponseEntity<Object> nuevoServicio (@RequestParam TipoServicio tipoServicio, @RequestParam List<Profesional> profesionales,@RequestParam double monto) {
 
-        Set<Profesional> setProfesionales = new HashSet<>(profesionales);
+        Set<Profesional> setProfesionales = new HashSet<>();
+        profesionales.forEach(profesional->setProfesionales.add(profesional));
 
-        Servicio servicio = new Servicio(tipoServicio, setProfesionales);
+        Servicio servicio = new Servicio(tipoServicio,monto);
+        servicio.setProfesionales(setProfesionales);
         servicioService.guardarServicio(servicio);
 
         return new ResponseEntity<>("Servicio creado", HttpStatus.CREATED);
