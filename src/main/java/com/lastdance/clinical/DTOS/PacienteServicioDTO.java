@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class PacienteServicioDTO {
     private Long id;
+    private Long idServicio;
     private Double monto;
     private LocalDateTime fecha;
     private String profesional;
@@ -16,6 +17,7 @@ public class PacienteServicioDTO {
 
     public PacienteServicioDTO(PacienteServicio pacienteServicio) {
         this.id = pacienteServicio.getId();
+        this.idServicio= pacienteServicio.getServicio().getId();
         this.monto = pacienteServicio.getMonto();
         this.fecha = pacienteServicio.getFecha();
         this.profesional = pacienteServicio.getServicio().getProfesionals().stream().map(Profesional::getFullName).findFirst().orElse(null);
@@ -24,6 +26,10 @@ public class PacienteServicioDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public Long getIdServicio() {
+        return idServicio;
     }
 
     public Double getMonto() {
