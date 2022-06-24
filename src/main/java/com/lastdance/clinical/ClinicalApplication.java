@@ -56,10 +56,11 @@ public class ClinicalApplication {
             Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUGÍA, servicio1);
             Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGÍA, servicio1);
             Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGÍA, servicio2);
-            Profesional profesional4 = new Profesional("Guille", "Bergesio", ALERGIA, servicio3);
+            Profesional profesional4 = new Profesional("Guille", "Bergesio", ALERGIA, servicio4);
             Profesional profesional5 = new Profesional("Facu", "Araujo", CARDIOLOGÍA, servicio4);
-
+            Profesional profesional6=new Profesional("Santi", "Aragon",CLÍNICA_MEDICA,servicio3);
             servicio1.addProfesional(profesional1);
+            servicio3.addProfesional(profesional6);
             //GUARDO LOS DATOS
             servicioRepository.save(servicio1);
             servicioRepository.save(servicio2);
@@ -70,7 +71,7 @@ public class ClinicalApplication {
             profesionalRepository.save(profesional3);
             profesionalRepository.save(profesional4);
             profesionalRepository.save(profesional5);
-
+            profesionalRepository.save(profesional6);
 
             //CREANDO PRODUCTOS
             Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d);
@@ -109,6 +110,18 @@ public class ClinicalApplication {
             facturaRepository.save(factura1);
 
 
+            Factura factura2 = new Factura(pacientePrueba8);
+            facturaRepository.save(factura2);
+
+            PacienteServicio pacienteServicio2 = new PacienteServicio(0d, LocalDateTime.now().minusDays(1), factura2, servicio3);
+            PacienteServicio pacienteServicio3= new PacienteServicio(50d, LocalDateTime.now().minusHours(6), factura2, servicio3);
+            pacienteServicioRepository.save(pacienteServicio2);
+            pacienteServicioRepository.save(pacienteServicio3);
+
+            factura1.addPacienteServicio(pacienteServicio2);
+            factura1.addPacienteServicio(pacienteServicio3);
+            factura2.setMonto(pacienteServicio2.getMonto()+ pacienteServicio3.getMonto());
+            facturaRepository.save(factura2);
         };
     }
 }
