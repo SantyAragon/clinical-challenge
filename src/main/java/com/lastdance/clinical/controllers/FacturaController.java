@@ -9,10 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.geom.QuadCurve2D;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,7 +34,6 @@ public class FacturaController {
     public Set<FacturaDTO> traerFacturas() {
         return facturaService.traerFacturasDTO();
     }
-
     @GetMapping("/facturas/{id}")
     public FacturaDTO traerFactura(@PathVariable Long id) {
         return facturaService.traerFacturaDTO(id);
