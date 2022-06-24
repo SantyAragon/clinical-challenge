@@ -20,10 +20,13 @@ public class PacienteController {
     PacienteService pacienteService;
 
     @GetMapping("/pacientes")
-    public Set<PacienteDTO> traerPacientes() {
+    public Set<PacienteDTO> traerPacientesActivos() {
+        return pacienteService.traerPacientes().stream().filter(paciente -> paciente.isActivo()).map(paciente -> new PacienteDTO(paciente)).collect(Collectors.toSet());
+    }
+    @GetMapping("/pacientes/all")
+    public Set<PacienteDTO> traerTodosLosPacientes() {
         return pacienteService.traerPacientes().stream().map(paciente -> new PacienteDTO(paciente)).collect(Collectors.toSet());
     }
-
     @GetMapping("/pacientes/{id}")
     public PacienteDTO traerPaciente(@PathVariable Long id) {
         return pacienteService.traerPacienteDTO(id);
@@ -46,7 +49,7 @@ public class PacienteController {
         }
         Paciente paciente = pacienteService.traerPaciente(id);
         paciente.setNombre(nombre);
-
+        pacienteService.guardarPaciente(paciente);
         return new ResponseEntity<>("Modificacion de nombre exitosa", HttpStatus.ACCEPTED);
     }
 
@@ -56,7 +59,8 @@ public class PacienteController {
             return new ResponseEntity<>("Apellido demasiado corto", HttpStatus.FORBIDDEN);
         }
         Paciente paciente = pacienteService.traerPaciente(id);
-        paciente.setNombre(apellido);
+        paciente.setApellido(apellido);
+        pacienteService.guardarPaciente(paciente);
         return new ResponseEntity<>("Modificacion de apellido exitosa", HttpStatus.ACCEPTED);
     }
 
@@ -70,9 +74,19 @@ public class PacienteController {
 
         Paciente paciente = pacienteService.traerPaciente(id);
         paciente.setEmail(email);
+        pacienteService.guardarPaciente(paciente);
         return new ResponseEntity<>("Modificacion de email exitosa", HttpStatus.ACCEPTED);
     }
 
-
+    @PatchMapping("/pacientes/{id}")
+    public ResponseEntity<Object> desactivarPaciente(@PathVariable Long id) {
+        Paciente paciente = pacienteService.traerPaciente(id);
+        if (!paciente.isActivo()) {
+            return new ResponseEntity<>("Paciente ya deshabiliado", HttpStatus.FORBIDDEN);
+        }
+        paciente.setActivo(false);
+        pacienteService.guardarPaciente(paciente);
+        return new ResponseEntity<>("Modificacion de estado exitosa", HttpStatus.ACCEPTED);
+    }
 }
 

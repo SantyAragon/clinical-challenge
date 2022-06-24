@@ -25,6 +25,7 @@ public class ClinicalApplication {
         return (args) -> {
 
             Paciente pacientePrueba1 = new Paciente("Santiago", "Aragon", "santy@mindhub.com", "santy123", 87654321L);
+            pacientePrueba1.setActivo(false);
             pacienteRepository.save(pacientePrueba1);
             Paciente pacientePrueba2 = new Paciente("Thomas", "Coutoune", "thomy@mindhub.com", "bocayoteamo", 12345678L);
             pacienteRepository.save(pacientePrueba2);

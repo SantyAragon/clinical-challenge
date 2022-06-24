@@ -13,6 +13,7 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
+    private boolean activo;
     private String nombre;
     private String apellido;
     private String email;
@@ -34,6 +35,7 @@ public class Paciente {
     }
 
     public Paciente(String nombre, String apellido, String email, String contraseña, Long identificacion) {
+        this.activo = true;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -46,6 +48,14 @@ public class Paciente {
 
     public Long getId() {
         return id;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public String getNombre() {
