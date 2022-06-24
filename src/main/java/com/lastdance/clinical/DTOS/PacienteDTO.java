@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class PacienteDTO {
 
     private Long id;
+    private boolean activo;
     private String nombre;
     private String apellido;
     private String email;
@@ -23,6 +24,7 @@ public class PacienteDTO {
     }
 
     public PacienteDTO(Paciente paciente) {
+        this.activo= paciente.isActivo();
         this.id = paciente.getId();
         this.nombre = paciente.getNombre();
         this.apellido = paciente.getApellido();
@@ -42,6 +44,10 @@ public class PacienteDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public boolean isActivo() {
+        return activo;
     }
 
     public String getNombre() {
