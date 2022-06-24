@@ -127,7 +127,7 @@ p {
 
 
 .header-container{
-  background: url("../assets/medical-bg.jpg");
+  background-image: url("../assets/medical-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 70vh;
@@ -249,16 +249,121 @@ p {
 
 /* SOBRE NOSOTROS */
 
-.container-about {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center; 
+.circle-medical-bg{
+  width: 600px;
 }
 
 
-.circle-medical-bg{
-  width: 600px;
+.container-full .row {
+  display: flex;
+}
+
+.container-full .row > .info {
+  padding: 80px 0 75px 80px;
+  max-width: 600px;
+}
+
+.chose-us-area.item-half .container-full .row > .info {
+  padding: 120px 0 115px 50px;
+}
+
+.chose-us-area.item-half .info li {
+  float: left;
+  width: 50%;
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+.chose-us-area.item-half .info li:first-child,
+.chose-us-area.item-half .info li:nth-child(2) {
+  margin-top: 0;
+}
+
+.chose-us-area.item-half .info li:nth-child(2n) {
+  padding-left: 15px;
+}
+
+.chose-us-area .info .heading {
+  position: relative;
+  z-index: 1;
+}
+
+.chose-us-area .info li .icon i {
+  display: inline-block;
+  font-size: 50px;
+  color: #0cb8b6;
+}
+
+.chose-us-area .info li .icon {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+}
+
+.chose-us-area .info li {
+  display: block;
+  margin-bottom: 40px;
+}
+
+.chose-us-area .info li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border: none;
+}
+
+.chose-us-area .info li h4 {
+  text-transform: capitalize;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.chose-us-area .info h2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.chose-us-area .info p:last-child {
+  margin-bottom: 0;
+}
+
+.chose-us-area .info ul {
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.chose-us-area .info li p:last-child {
+  margin: 0;
+}
+
+.chose-us-area .info li .title {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid  #e7e7e7;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.chose-us-area .info li .info {
+  position: relative;
+  z-index: 1;
+  padding-left: 35px;
+}
+
+.chose-us-area .info li .info::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  font-weight: 900;
+  font-size: 20px;
+  color: #0cb8b6;
+}
+
+.chose-us-area .appoinment {
+  padding-right: 35px;
 }
 
 
