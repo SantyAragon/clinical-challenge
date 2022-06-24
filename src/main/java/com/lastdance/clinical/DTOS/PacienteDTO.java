@@ -17,6 +17,7 @@ public class PacienteDTO {
     private String apellido;
     private String email;
     private Long identificacion;
+    private Set<FacturaDTO> facturas = new HashSet<>();
     private Set<PacienteServicioDTO> servicios = new HashSet<>();
     private Set<PacienteProductoDTO> productos = new HashSet<>();
 
@@ -24,12 +25,13 @@ public class PacienteDTO {
     }
 
     public PacienteDTO(Paciente paciente) {
-        this.activo= paciente.isActivo();
+        this.activo = paciente.isActivo();
         this.id = paciente.getId();
         this.nombre = paciente.getNombre();
         this.apellido = paciente.getApellido();
         this.email = paciente.getEmail();
         this.identificacion = paciente.getIdentificacion();
+        this.facturas = paciente.getFacturas().stream().map(FacturaDTO::new).collect(Collectors.toSet());
 
         Set<PacienteServicio> serviciosTomados = new HashSet<>();
         paciente.getFacturas().forEach(factura -> serviciosTomados.addAll(factura.getServicios()));
@@ -64,6 +66,10 @@ public class PacienteDTO {
 
     public Long getIdentificacion() {
         return identificacion;
+    }
+
+    public Set<FacturaDTO> getFacturas() {
+        return facturas;
     }
 
     public Set<PacienteServicioDTO> getServicios() {

@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.geom.QuadCurve2D;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -50,27 +52,32 @@ public class FacturaController {
 
         Factura factura = new Factura(paciente);
         facturaService.guardarFactura(factura);
+        Set<Double> subTotalServicios = new HashSet<>();
+        if (servicios.size() > 0) {
+            servicios.forEach(servicioATomar -> {
+                        LocalDateTime fechaServicioATomar = generarFacturaDTO.getServicios().stream().filter(serv1 -> serv1.getIdServicio() == servicioATomar.getId()).findFirst().orElseThrow().getFecha();
 
+                        PacienteServicio pacienteServicio = new PacienteServicio(servicioATomar.getMonto(), fechaServicioATomar, factura, servicioATomar);
+                        subTotalServicios.add(pacienteServicio.getMonto());
+                        pacienteServicioService.guardarPacienteServicio(pacienteServicio);
+                        factura.addPacienteServicio(pacienteServicio);
+                    }
+            );
+        }
+        Set<Double> subTotalProductos = new HashSet<>();
+        if (productos.size() > 0) {
+            productos.forEach(productoAComprar -> {
+                int cantidadAComprar = generarFacturaDTO.getProductos().stream().filter(prod -> prod.getIdProducto() == productoAComprar.getId()).findFirst().orElseThrow().getCantidad();
 
-        servicios.forEach(servicioATomar -> {
-                    LocalDateTime fechaServicioATomar = generarFacturaDTO.getServicios().stream().filter(serv1 -> serv1.getIdServicio() == servicioATomar.getId()).findFirst().orElseThrow().getFecha();
-
-                    PacienteServicio pacienteServicio = new PacienteServicio(servicioATomar.getMonto(), fechaServicioATomar, factura, servicioATomar);
-                    pacienteServicioService.guardarPacienteServicio(pacienteServicio);
-                    factura.addPacienteServicio(pacienteServicio);
-                }
-        );
-
-
-        productos.forEach(productoAComprar -> {
-            int cantidadAComprar = generarFacturaDTO.getProductos().stream().filter(prod -> prod.getIdProducto() == productoAComprar.getId()).findFirst().orElseThrow().getCantidad();
-
-            PacienteProducto pacienteProducto = new PacienteProducto(cantidadAComprar, LocalDateTime.now(), factura, productoAComprar);
-            pacienteProductoService.guardarPacienteProducto(pacienteProducto);
-            factura.addPacienteProducto(pacienteProducto);
-        });
-        
-
+                PacienteProducto pacienteProducto = new PacienteProducto(cantidadAComprar, LocalDateTime.now(), factura, productoAComprar);
+                subTotalProductos.add(pacienteProducto.getMonto());
+                pacienteProductoService.guardarPacienteProducto(pacienteProducto);
+                factura.addPacienteProducto(pacienteProducto);
+            });
+        }
+        Double totalServicios = subTotalServicios.stream().reduce(Double::sum).orElse(0d);
+        Double totalProductos = subTotalProductos.stream().reduce(Double::sum).orElse(0d);
+        factura.setMonto(totalProductos + totalServicios);
         facturaService.guardarFactura(factura);
 
 
