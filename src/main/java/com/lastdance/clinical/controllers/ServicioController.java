@@ -1,7 +1,6 @@
 package com.lastdance.clinical.controllers;
 
 import com.lastdance.clinical.DTOS.ServicioDTO;
-import com.lastdance.clinical.models.PacienteServicio;
 import com.lastdance.clinical.models.Profesional;
 import com.lastdance.clinical.models.Servicio;
 import com.lastdance.clinical.models.TipoServicio;
@@ -52,9 +51,9 @@ public class ServicioController {
         Servicio servicio = servicioService.traerServicio(id);
         Profesional profesional = profesionalService.traerProfesional(profesionalId);
 
-        Set<Profesional> profesionalesAct = servicio.getProfesionals();
+        Set<Profesional> profesionalesAct = servicio.getProfesionales();
         profesionalesAct.remove(profesional);
-        servicio.setProfesionals(profesionalesAct);
+        servicio.setProfesionales(profesionalesAct);
 
         profesional.setServicio(null);
         servicioService.guardarServicio(servicio);
@@ -85,10 +84,10 @@ public class ServicioController {
     public ResponseEntity<Object> eliminarServicio (@PathVariable Long id) {
         Servicio servicio = servicioService.traerServicio(id);
 
-        Set<Profesional> profesionales = servicio.getProfesionals();
+        Set<Profesional> profesionales = servicio.getProfesionales();
         profesionales.forEach(profesional -> profesional.setServicio(null));
 
-        servicio.getProfesionals().removeAll(profesionales);
+        servicio.getProfesionales().removeAll(profesionales);
 
         servicio.setActivo(false);
 

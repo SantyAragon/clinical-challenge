@@ -1,6 +1,5 @@
 package com.lastdance.clinical.DTOS;
 
-import com.lastdance.clinical.models.Profesional;
 import com.lastdance.clinical.models.Servicio;
 import com.lastdance.clinical.models.TipoServicio;
 
@@ -22,7 +21,7 @@ public class ServicioDTO {
     public ServicioDTO(Servicio servicio) {
         this.id = servicio.getId();
         this.tipoServicio = servicio.getTipoServicio();
-        this.profesionales = servicio.getProfesionals().stream().filter(profesional -> profesional.isActivo()).map(ProfesionalDTO::new).collect(Collectors.toSet());
+        this.profesionales = servicio.getProfesionales().stream().filter(profesional -> profesional.isActivo()).map(ProfesionalDTO::new).collect(Collectors.toSet());
         this.activo = servicio.isActivo();
 //        this.profesionales = servicio.getProfesionals().stream().map(Profesional::getFullName).collect(Collectors.toSet());
     }

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public class PacienteProductoDTO {
 
     private Long id;
+    private Long idProducto;
     private String nombre;
     private int cantidad;
     private Double monto;
@@ -17,6 +18,7 @@ public class PacienteProductoDTO {
 
     public PacienteProductoDTO(PacienteProducto pacienteProducto) {
         this.id = pacienteProducto.getId();
+        this.idProducto = pacienteProducto.getProducto().getId();
         this.cantidad = pacienteProducto.getCantidad();
         this.monto = pacienteProducto.getMonto();
         this.fecha = pacienteProducto.getFecha();
@@ -25,6 +27,10 @@ public class PacienteProductoDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public Long getIdProducto() {
+        return idProducto;
     }
 
     public String getNombre() {

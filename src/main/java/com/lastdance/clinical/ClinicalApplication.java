@@ -48,19 +48,21 @@ public class ClinicalApplication {
             pacienteRepository.save(pacientePrueba10);
 
             //CREAR SERVICIO (DUEÑO RELACION)
-            Servicio servicio1 = new Servicio(TipoServicio.CIRUGIAS);
-            Servicio servicio2 = new Servicio(TipoServicio.LABORATORIO);
-            Servicio servicio3 = new Servicio(TipoServicio.PEDIATRIA);
-            Servicio servicio4 = new Servicio(TipoServicio.DENTISTA);
+
+            Servicio servicio1 = new Servicio(TipoServicio.CIRUGIAS,50000d);
+            Servicio servicio2 = new Servicio(TipoServicio.LABORATORIO,6000d);
+            Servicio servicio3 = new Servicio(TipoServicio.OBSTETRICIA,1500d);
+            Servicio servicio4 = new Servicio(TipoServicio.NEUROLOGIA,8000d);
+
 
             //CREO PROFESIONALES QUE VAN A PERTENER A UN SERVICIO
 
-            Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUGÍA, servicio1);
-            Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGÍA, servicio1);
-            Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGÍA, servicio2);
-            Profesional profesional4 = new Profesional("Guille", "Bergesio", ALERGIA, servicio4);
-            Profesional profesional5 = new Profesional("Facu", "Araujo", CARDIOLOGÍA, servicio4);
-            Profesional profesional6 = new Profesional("Santi", "Aragon",CLÍNICA_MEDICA,servicio3);
+            Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUJANO, servicio1);
+            Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGO, servicio1);
+            Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGO, servicio2);
+            Profesional profesional4 = new Profesional("Guille", "Bergesio", NEUROLOGO, servicio4);
+            Profesional profesional5 = new Profesional("Facu", "Araujo", NEUROLOGO, servicio4);
+            Profesional profesional6 = new Profesional("Santi", "Aragon",OBSTETRA,servicio3);
 
             servicio1.addProfesional(profesional1);
             servicio3.addProfesional(profesional6);
@@ -94,7 +96,7 @@ public class ClinicalApplication {
             facturaRepository.save(factura1);
 
             //EL PACIENTE SOLICITA UN SERVICIO CON UN PROFESIONAL
-            PacienteServicio pacienteServicio1 = new PacienteServicio(100D, LocalDateTime.now(), factura1, servicio1);
+            PacienteServicio pacienteServicio1 = new PacienteServicio(servicio1.getMonto(), LocalDateTime.now(), factura1, servicio1);
             pacienteServicioRepository.save(pacienteServicio1);
 
             factura1.addPacienteServicio(pacienteServicio1);
@@ -116,8 +118,8 @@ public class ClinicalApplication {
             Factura factura2 = new Factura(pacientePrueba8);
             facturaRepository.save(factura2);
 
-            PacienteServicio pacienteServicio2 = new PacienteServicio(0d, LocalDateTime.now().minusDays(1), factura2, servicio3);
-            PacienteServicio pacienteServicio3= new PacienteServicio(50d, LocalDateTime.now().minusHours(6), factura2, servicio3);
+            PacienteServicio pacienteServicio2 = new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusDays(1), factura2, servicio3);
+            PacienteServicio pacienteServicio3= new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusHours(6), factura2, servicio3);
             pacienteServicioRepository.save(pacienteServicio2);
             pacienteServicioRepository.save(pacienteServicio3);
 
