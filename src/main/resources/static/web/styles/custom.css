@@ -215,6 +215,7 @@ nav ul li a {
   /* HEADER */
 >>>>>>> f0410366440c6bfc9c5a93a45c1796784dcb88ad
 
+<<<<<<< HEAD
 h1 {
   font-weight: 300;
   letter-spacing: 2px;
@@ -225,6 +226,18 @@ p {
   letter-spacing: 1px;
   font-size: 14px;
   color: #333333;
+=======
+  .container-head h1 {
+    font-weight:300;
+    letter-spacing: 2px;
+    font-size:48px;
+}
+
+.container-head p {
+    letter-spacing: 1px;
+    font-size:14px;
+    color: #333333;
+>>>>>>> 13f7a40e2102a984b0804cd29798ccfd6d269102
 }
 
 
@@ -260,6 +273,7 @@ p {
   margin-top: 5rem;
 }
 
+<<<<<<< HEAD
 .card {
   width: 300px;
   height: 450px;
@@ -267,6 +281,15 @@ p {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+=======
+.container-head .card{
+    width: 300px;
+    height: 450px;
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 50px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+>>>>>>> 13f7a40e2102a984b0804cd29798ccfd6d269102
 }
 
 .one {
@@ -293,6 +316,7 @@ p {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+<<<<<<< HEAD
 .card img {
   width: auto;
   height: 100%;
@@ -302,6 +326,17 @@ p {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+=======
+.container-head .card img {
+    width: auto;
+    height: 100%;
+    object-position:center;
+    object-fit: cover;
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 50px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+>>>>>>> 13f7a40e2102a984b0804cd29798ccfd6d269102
 }
 <<<<<<< HEAD
 
@@ -900,4 +935,71 @@ color: #fff;
 
 }
 
+<<<<<<< HEAD
 >>>>>>> f0410366440c6bfc9c5a93a45c1796784dcb88ad
+=======
+/*// COMENTARIOS //*/
+.opiniones {
+  background-color: #eee;
+  background-size: cover;
+  font-family: 'Cormorant', serif;
+  color: rgb(112, 123, 240);
+  background: linear-gradient(140deg, #fff, 50%, #74a0ff);
+}
+
+.opiniones p {
+  font-size: 17px;
+  margin-bottom: 7px;
+}
+.opiniones .small {
+  letter-spacing: 0.5px !important
+}
+.opiniones .card-header img {
+  border: 5px solid white !important
+}
+.opiniones .outside {
+  position: inherit;
+  top: 50%;
+}
+.opiniones .card {
+  border-radius: 20px !important;
+  box-shadow: 2px 2px 5px 0px rgb(100, 108, 170);
+  transition: 0.8s;
+  min-height: 70vh !important
+}
+.opiniones .card-header {
+  border-radius: 20px !important
+}
+.opiniones .card-footer {
+  border-radius: 20px !important
+}
+.opiniones hr {
+  background-color: rgb(146, 154, 236);
+  border: 1px solid;
+  border-radius: 20px;
+  color: rgb(146, 154, 236);
+  height: 5px;
+  width: 70px !important
+}
+.opiniones .profile-pic {
+  margin-bottom: 2px !important;
+  font-weight: 600;
+}
+.opiniones .fa {
+  color: rgb(174, 178, 219);
+  cursor: pointer
+}
+.opiniones .card-footer .fa { 
+  font-size: 20px !important
+}
+.opiniones .name {
+  margin-top: 10px !important
+}
+.opiniones .container-fluid:hover .card:not(:hover) {
+  transform: scale(0.9)
+}
+@media (max-width: 1000px){
+  .opiniones .container-fluid:hover .card:not(:hover) { transform: scale(1) }
+}
+
+>>>>>>> 13f7a40e2102a984b0804cd29798ccfd6d269102
