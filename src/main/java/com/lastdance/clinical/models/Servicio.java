@@ -18,7 +18,13 @@ public class Servicio {
     private Double monto;
 
     @OneToMany(mappedBy = "servicio", fetch = FetchType.EAGER)
-    private Set<Profesional> profesionals = new HashSet<>();
+    private Set<Profesional> profesionales = new HashSet<>();
+
+    @OneToMany(mappedBy = "servicio", fetch = FetchType.EAGER)
+    private Set<PacienteServicio> pacienteServicios = new HashSet<>();
+
+    private boolean activo;
+
 
     public Servicio() {
     }
@@ -26,18 +32,21 @@ public class Servicio {
     public Servicio(TipoServicio tipoServicio, Double monto) {
         this.tipoServicio = tipoServicio;
         this.monto = monto;
+        this.activo = true;
     }
 
     public Servicio(TipoServicio tipoServicio, Double monto, Profesional profesional) {
         this.tipoServicio = tipoServicio;
         this.monto = monto;
-        this.profesionals.add(profesional);
+        this.profesionales.add(profesional);
+        this.activo = true;
     }
 
     public Servicio(TipoServicio tipoServicio, Double monto, Set<Profesional> profesionales) {
         this.tipoServicio = tipoServicio;
         this.monto = monto;
-        this.profesionals = profesionales;
+        this.profesionales = profesionales;
+        this.activo = true;
     }
 
     public Long getId() {
@@ -60,18 +69,33 @@ public class Servicio {
         this.monto = monto;
     }
 
-    public Set<Profesional> getProfesionals() {
-        return profesionals;
+    public Set<Profesional> getProfesionales() {
+        return profesionales;
     }
 
-    public void setProfesionals(Set<Profesional> profesionals) {
-        this.profesionals = profesionals;
+    public void setProfesionales(Set<Profesional> profesionales) {
+        this.profesionales = profesionales;
     }
 
     public void addProfesional(Profesional profesional) {
         profesional.setServicio(this);
-        profesionals.add(profesional);
+        profesionales.add(profesional);
 
     }
 
+    public Set<PacienteServicio> getPacienteServicios() {
+        return pacienteServicios;
+    }
+
+    public void setPacienteServicios(Set<PacienteServicio> pacienteServicios) {
+        this.pacienteServicios = pacienteServicios;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 }

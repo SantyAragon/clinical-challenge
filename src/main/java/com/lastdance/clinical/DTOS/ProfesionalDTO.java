@@ -10,6 +10,8 @@ public class ProfesionalDTO {
     private String nombre;
     private String apellido;
     private TipoEspecialidad especialidad;
+
+    private boolean activo;
 //    private Servicio servicio;
 
     public ProfesionalDTO() {
@@ -20,6 +22,7 @@ public class ProfesionalDTO {
         this.nombre = profesional.getNombre();
         this.apellido = profesional.getApellido();
         this.especialidad = profesional.getEspecialidad();
+        this.activo = profesional.isActivo();
 //        this.servicio = profesional.getServicio();
     }
 
@@ -39,7 +42,11 @@ public class ProfesionalDTO {
         return especialidad;
     }
 
-//    public Servicio getServicio() {
+    public boolean isActivo() {
+        return activo;
+    }
+
+    //    public Servicio getServicio() {
 //        return servicio;
 //    }
 }

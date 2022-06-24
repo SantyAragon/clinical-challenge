@@ -31,6 +31,16 @@ public class PacienteServiceImplements implements PacienteService {
     }
 
     @Override
+    public Paciente traerPacientePorEmail(String email) {
+        return pacienteRepository.findByEmail(email);
+    }
+
+    @Override
+    public Paciente traerPacientePorIdentificacion(Long identificacion) {
+        return pacienteRepository.findByIdentificacion(identificacion);
+    }
+
+    @Override
     public void guardarPaciente(Paciente paciente) {
         pacienteRepository.save(paciente);
     }

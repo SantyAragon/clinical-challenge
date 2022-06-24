@@ -20,7 +20,7 @@ public class PacienteServicioDTO {
         this.idServicio= pacienteServicio.getServicio().getId();
         this.monto = pacienteServicio.getMonto();
         this.fecha = pacienteServicio.getFecha();
-        this.profesional = pacienteServicio.getServicio().getProfesionals().stream().map(Profesional::getFullName).findFirst().orElse(null);
+        this.profesional = pacienteServicio.getServicio().getProfesionales().stream().map(Profesional::getFullName).findFirst().orElse(null);
 
     }
 

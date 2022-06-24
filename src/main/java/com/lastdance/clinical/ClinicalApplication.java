@@ -48,18 +48,22 @@ public class ClinicalApplication {
             pacienteRepository.save(pacientePrueba10);
 
             //CREAR SERVICIO (DUEÑO RELACION)
+
             Servicio servicio1 = new Servicio(TipoServicio.CIRUGIAS,50000d);
-            Servicio servicio2 = new Servicio(TipoServicio.LABORATORIOS,6000d);
-            Servicio servicio3 = new Servicio(TipoServicio.CONSULTA,1500d);
-            Servicio servicio4 = new Servicio(TipoServicio.ELECTROCARDIOGRAMA,8000d);
+            Servicio servicio2 = new Servicio(TipoServicio.LABORATORIO,6000d);
+            Servicio servicio3 = new Servicio(TipoServicio.OBSTETRICIA,1500d);
+            Servicio servicio4 = new Servicio(TipoServicio.NEUROLOGIA,8000d);
+
 
             //CREO PROFESIONALES QUE VAN A PERTENER A UN SERVICIO
-            Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUGÍA, servicio1);
-            Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGÍA, servicio1);
-            Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGÍA, servicio2);
-            Profesional profesional4 = new Profesional("Guille", "Bergesio", ALERGIA, servicio4);
-            Profesional profesional5 = new Profesional("Facu", "Araujo", CARDIOLOGÍA, servicio4);
-            Profesional profesional6=new Profesional("Santi", "Aragon",CLÍNICA_MEDICA,servicio3);
+
+            Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUJANO, servicio1);
+            Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGO, servicio1);
+            Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGO, servicio2);
+            Profesional profesional4 = new Profesional("Guille", "Bergesio", NEUROLOGO, servicio4);
+            Profesional profesional5 = new Profesional("Facu", "Araujo", NEUROLOGO, servicio4);
+            Profesional profesional6 = new Profesional("Santi", "Aragon",OBSTETRA,servicio3);
+
             servicio1.addProfesional(profesional1);
             servicio3.addProfesional(profesional6);
             //GUARDO LOS DATOS
