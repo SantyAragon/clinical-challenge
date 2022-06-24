@@ -2,10 +2,9 @@ package com.lastdance.clinical.models;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Producto {
@@ -17,6 +16,10 @@ public class Producto {
     private TipoProducto tipo;
     private long stock;
     private Double precio;
+    private boolean activo;
+
+    @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
+    private Set<PacienteProducto> pacienteProductos = new HashSet<>();
 
     public Producto() { }
 
@@ -25,6 +28,7 @@ public class Producto {
         this.tipo = tipo;
         this.stock = stock;
         this.precio = precio;
+        this.activo = true;
     }
 
     public Long getId() {
@@ -61,5 +65,21 @@ public class Producto {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public Set<PacienteProducto> getPacienteProductos() {
+        return pacienteProductos;
+    }
+
+    public void setPacienteProductos(Set<PacienteProducto> pacienteProductos) {
+        this.pacienteProductos = pacienteProductos;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

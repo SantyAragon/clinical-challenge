@@ -1,9 +1,12 @@
 package com.lastdance.clinical.models;
 
 public enum TipoServicio {
-    LABORATORIOS,
-    ECOGRAFIAS,
-    ELECTROCARDIOGRAMA,
+    LABORATORIO,
     CIRUGIAS,
-    CONSULTA
+    OBSTETRICIA,
+    PEDIATRIA,
+    DENTISTA,
+    URGENCIAS,
+    OFTALMOLOGIA,
+    NEUROLOGIA,
 }

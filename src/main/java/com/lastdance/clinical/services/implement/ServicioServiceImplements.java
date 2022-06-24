@@ -2,6 +2,7 @@ package com.lastdance.clinical.services.implement;
 
 import com.lastdance.clinical.DTOS.ServicioDTO;
 import com.lastdance.clinical.models.Servicio;
+import com.lastdance.clinical.models.TipoServicio;
 import com.lastdance.clinical.repositories.ServicioRepository;
 import com.lastdance.clinical.services.ServicioService;
 import org.springframework.beans.factory.annotation.Autowired;
