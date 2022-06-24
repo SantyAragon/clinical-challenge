@@ -7,11 +7,12 @@ import com.lastdance.clinical.models.TipoEspecialidad;
 public class ProfesionalDTO {
 
     private Long id;
+    private boolean activo;
     private String nombre;
     private String apellido;
     private TipoEspecialidad especialidad;
 
-    private boolean activo;
+
 //    private Servicio servicio;
 
     public ProfesionalDTO() {
@@ -19,15 +20,18 @@ public class ProfesionalDTO {
 
     public ProfesionalDTO(Profesional profesional) {
         this.id = profesional.getId();
+        this.activo = profesional.isActivo();
         this.nombre = profesional.getNombre();
         this.apellido = profesional.getApellido();
         this.especialidad = profesional.getEspecialidad();
-        this.activo = profesional.isActivo();
 //        this.servicio = profesional.getServicio();
     }
 
     public Long getId() {
         return id;
+    }
+    public boolean isActivo() {
+        return activo;
     }
 
     public String getNombre() {
@@ -42,11 +46,6 @@ public class ProfesionalDTO {
         return especialidad;
     }
 
-    public boolean isActivo() {
-        return activo;
-    }
 
-    //    public Servicio getServicio() {
-//        return servicio;
-//    }
+
 }
