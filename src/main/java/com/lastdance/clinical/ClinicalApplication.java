@@ -49,17 +49,19 @@ public class ClinicalApplication {
 
             //CREAR SERVICIO (DUEÑO RELACION)
             Servicio servicio1 = new Servicio(TipoServicio.CIRUGIAS);
-            Servicio servicio2 = new Servicio(TipoServicio.LABORATORIOS);
-            Servicio servicio3 = new Servicio(TipoServicio.CONSULTA);
-            Servicio servicio4 = new Servicio(TipoServicio.ELECTROCARDIOGRAMA);
+            Servicio servicio2 = new Servicio(TipoServicio.LABORATORIO);
+            Servicio servicio3 = new Servicio(TipoServicio.PEDIATRIA);
+            Servicio servicio4 = new Servicio(TipoServicio.DENTISTA);
 
             //CREO PROFESIONALES QUE VAN A PERTENER A UN SERVICIO
+
             Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUGÍA, servicio1);
             Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGÍA, servicio1);
             Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGÍA, servicio2);
             Profesional profesional4 = new Profesional("Guille", "Bergesio", ALERGIA, servicio4);
             Profesional profesional5 = new Profesional("Facu", "Araujo", CARDIOLOGÍA, servicio4);
-            Profesional profesional6=new Profesional("Santi", "Aragon",CLÍNICA_MEDICA,servicio3);
+            Profesional profesional6 = new Profesional("Santi", "Aragon",CLÍNICA_MEDICA,servicio3);
+
             servicio1.addProfesional(profesional1);
             servicio3.addProfesional(profesional6);
             //GUARDO LOS DATOS

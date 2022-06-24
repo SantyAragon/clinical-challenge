@@ -35,11 +35,20 @@ public class PacienteController {
     @PostMapping("/pacientes")
     public ResponseEntity<Object> registrarPaciente(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contraseña, @RequestParam Long identificacion) {
 
+        if (nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || contraseña.isEmpty() || identificacion <= 0) {
+            return new ResponseEntity<>("Información incompleta", HttpStatus.FORBIDDEN);
+        }
+        if (pacienteService.traerPacientePorEmail(email) != null) {
+            return new ResponseEntity<>("Usuario ya registrado", HttpStatus.FORBIDDEN);
+        }
+        if (pacienteService.traerPacientePorIdentificacion(identificacion) != null) {
+            return new ResponseEntity<>("El dni ya esta en uso", HttpStatus.FORBIDDEN);
+        }
+
         Paciente paciente = new Paciente(nombre, apellido, email, contraseña, identificacion);
         pacienteService.guardarPaciente(paciente);
 
         return new ResponseEntity<>("Registrado exitosamente", HttpStatus.ACCEPTED);
-
     }
 
     @PatchMapping("/pacientes/{id}/nombre")
