@@ -6,14 +6,20 @@ import com.lastdance.clinical.models.TipoProducto;
 public class ProductoDTO {
 
     private Long id;
+    private boolean activo;
     private String nombre;
     private TipoProducto tipo;
     private long stock;
     private Double precio;
 
-    public ProductoDTO() {  }
+
+
+    public ProductoDTO() {
+    }
+
     public ProductoDTO(Producto producto) {
         this.id = producto.getId();
+        this.activo = producto.isActivo();
         this.nombre = producto.getNombre();
         this.tipo = producto.getTipo();
         this.stock = producto.getStock();
@@ -22,6 +28,10 @@ public class ProductoDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public boolean isActivo() {
+        return activo;
     }
 
     public String getNombre() {
@@ -39,4 +49,5 @@ public class ProductoDTO {
     public Double getPrecio() {
         return precio;
     }
+
 }

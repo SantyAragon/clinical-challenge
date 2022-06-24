@@ -20,18 +20,22 @@ public class Profesional {
     @JoinColumn(name="servicio_id")
     private Servicio servicio;
 
+    private boolean activo;
+
     public Profesional() { }
 
     public Profesional(String nombre, String apellido, TipoEspecialidad especialidad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;
+        this.activo = true;
     }
     public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;
         this.servicio = servicio;
+        this.activo = true;
     }
 
     public Long getId() {
@@ -68,6 +72,14 @@ public class Profesional {
 
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean visible) {
+        this.activo = visible;
     }
 
     public String getFullName() {

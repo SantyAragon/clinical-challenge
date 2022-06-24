@@ -34,4 +34,8 @@ public class ProfesionalServiceImplements implements ProfesionalService {
         profesionalRepository.save(profesional);
 
     }
+    @Override
+    public void borrarProfesional(Profesional profesional) {
+        profesionalRepository.delete(profesional);
+    }
 }

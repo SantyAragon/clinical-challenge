@@ -12,5 +12,9 @@ public interface PacienteService {
 
     Paciente traerPaciente(Long id);
 
+    Paciente traerPacientePorEmail(String email);
+
+    Paciente traerPacientePorIdentificacion(Long identificacion);
+
     void guardarPaciente(Paciente paciente);
 }
