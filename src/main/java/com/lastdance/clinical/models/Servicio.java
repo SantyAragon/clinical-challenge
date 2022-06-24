@@ -17,23 +17,32 @@ public class Servicio {
     private TipoServicio tipoServicio;
 
     @OneToMany(mappedBy = "servicio", fetch = FetchType.EAGER)
-    private Set<Profesional> profesionals = new HashSet<>();
+    private Set<Profesional> profesionales = new HashSet<>();
+
+    @OneToMany(mappedBy = "servicio", fetch = FetchType.EAGER)
+    private Set<PacienteServicio> pacienteServicios = new HashSet<>();
+
+    private boolean activo;
+
 
     public Servicio() {
     }
 
     public Servicio(TipoServicio tipoServicio) {
         this.tipoServicio = tipoServicio;
+        this.activo = true;
     }
 
     public Servicio(TipoServicio tipoServicio, Profesional profesional) {
         this.tipoServicio = tipoServicio;
-        this.profesionals.add(profesional);
+        this.profesionales.add(profesional);
+        this.activo = true;
     }
 
     public Servicio(TipoServicio tipoServicio, Set<Profesional> profesionales) {
         this.tipoServicio = tipoServicio;
-        this.profesionals = profesionales;
+        this.profesionales = profesionales;
+        this.activo = true;
     }
 
     public Long getId() {
@@ -49,17 +58,32 @@ public class Servicio {
     }
 
     public Set<Profesional> getProfesionals() {
-        return profesionals;
+        return profesionales;
     }
 
     public void setProfesionals(Set<Profesional> profesionals) {
-        this.profesionals = profesionals;
+        this.profesionales = profesionals;
     }
 
     public void addProfesional(Profesional profesional) {
         profesional.setServicio(this);
-        profesionals.add(profesional);
+        profesionales.add(profesional);
 
     }
 
+    public Set<PacienteServicio> getPacienteServicios() {
+        return pacienteServicios;
+    }
+
+    public void setPacienteServicios(Set<PacienteServicio> pacienteServicios) {
+        this.pacienteServicios = pacienteServicios;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 }

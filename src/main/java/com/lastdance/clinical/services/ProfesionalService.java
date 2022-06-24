@@ -14,4 +14,6 @@ public interface ProfesionalService {
     Profesional traerProfesional(Long id);
 
     void guardarProfesinal(Profesional profesional);
+
+    void borrarProfesional(Profesional profesional);
 }
