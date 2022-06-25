@@ -61,6 +61,7 @@ public class FacturaController {
                     }
             );
         }
+
         Set<Double> subTotalProductos = new HashSet<>();
         if (productos.size() > 0) {
             productos.forEach(productoAComprar -> {

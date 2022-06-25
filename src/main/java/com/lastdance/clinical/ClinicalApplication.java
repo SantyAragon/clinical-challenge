@@ -79,10 +79,10 @@ public class ClinicalApplication {
             profesionalRepository.save(profesional6);
 
             //CREANDO PRODUCTOS
-            Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d);
-            Producto producto2 = new Producto("Kit quirurgico", TipoProducto.INSUMOS_QUIRUJICOS, 50, 500d);
-            Producto producto3 = new Producto("Test rapido Covid", TipoProducto.TEST_RAPIDOS, 200, 250d);
-            Producto producto4 = new Producto("Paracetamol 1000mg x50u ", TipoProducto.PRODUCTOS, 200, 250d);
+            Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d,"https://propato.com.ar/wp-content/uploads/jeringa-thomey-60cc-neojet-11851-1.jpg");
+            Producto producto2 = new Producto("Kit quirurgico", TipoProducto.INSUMOS_QUIRUJICOS, 50, 500d,"http://www.goatindumentaria.com.ar/wp-content/uploads/2020/08/008_Kit-Descartable_Goat-Indumentaria-1.jpg");
+            Producto producto3 = new Producto("Test rapido Covid", TipoProducto.TEST_RAPIDOS, 200, 250d,"https://1.bp.blogspot.com/-QFng5CA0lJs/YHbmIJIFZKI/AAAAAAACa2g/jqW0x920jTM6j7FDnKCgA0XXOi9lMi_owCLcBGAsYHQ/s1024/product_17845eb508654870b7af8376fcccd9f6_637533208097428237_0_l.jpeg");
+            Producto producto4 = new Producto("Paracetamol 1000mg x50u ", TipoProducto.PRODUCTOS, 200, 250d,"https://farmalife.vteximg.com.br/arquivos/ids/170440-1200-1200/34399822-7e5a-4213-af1e-65a8cb9de0d1.jpg?v=637369026880370000");
 
             //GUARDO LOS DATOS
             productoRepository.save(producto1);
