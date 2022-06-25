@@ -113,7 +113,7 @@ header{
 
   /* HEADER */
 
-  .container-head h1 {
+.container-head h1 {
     font-weight:300;
     letter-spacing: 2px;
     font-size:48px;
@@ -150,7 +150,7 @@ header{
     margin-top: 5rem;
 }
 
-.container-head .card{
+.card{
     width: 300px;
     height: 450px;
     background: rgba( 255, 255, 255, 0.1 );
@@ -183,7 +183,7 @@ header{
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-.container-head .card img {
+.card img {
     width: auto;
     height: 100%;
     object-position:center;
@@ -786,23 +786,17 @@ color: #fff;
 }
 
 /*// COMENTARIOS //*/
-.opiniones {
-  background-color: #eee;
-  background-size: cover;
-  font-family: 'Cormorant', serif;
-  color: rgb(112, 123, 240);
-  background: linear-gradient(140deg, #fff, 50%, #74a0ff);
-}
+
 
 .opiniones p {
   font-size: 17px;
   margin-bottom: 7px;
 }
 .opiniones .small {
-  letter-spacing: 0.5px !important
+  letter-spacing: 0.5px
 }
 .opiniones .card-header img {
-  border: 5px solid white !important
+  border: 5px solid white
 }
 .opiniones .outside {
   position: inherit;
@@ -815,37 +809,165 @@ color: #fff;
   min-height: 70vh !important
 }
 .opiniones .card-header {
-  border-radius: 20px !important
+  border-radius: 20px 
 }
 .opiniones .card-footer {
-  border-radius: 20px !important
+  border-radius: 20px 
 }
-.opiniones hr {
-  background-color: rgb(146, 154, 236);
-  border: 1px solid;
-  border-radius: 20px;
+
+/* .opiniones hr {
   color: rgb(146, 154, 236);
   height: 5px;
+  top: 200px;
   width: 70px !important
-}
+} */
+
 .opiniones .profile-pic {
-  margin-bottom: 2px !important;
+  margin-bottom: 2px;
   font-weight: 600;
 }
+
 .opiniones .fa {
   color: rgb(174, 178, 219);
   cursor: pointer
 }
 .opiniones .card-footer .fa { 
-  font-size: 20px !important
+  font-size: 20px
 }
 .opiniones .name {
-  margin-top: 10px !important
+  margin-top: 10px
 }
-.opiniones .container-fluid:hover .card:not(:hover) {
-  transform: scale(0.9)
-}
-@media (max-width: 1000px){
-  .opiniones .container-fluid:hover .card:not(:hover) { transform: scale(1) }
+.opiniones .container .card:hover {
+  transform: scale(1.1)
 }
 
+@media (max-width: 1000px){
+  .opiniones .container .card:hover { transform: scale(1) }
+}
+
+/* // VALORES // */
+.valores{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+#categories{
+  overflow:hidden;
+  width:70%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.clr:after{
+  content:"";
+  display:block;
+  clear:both;
+}
+#categories li{
+  position:relative;
+  list-style-type:none;
+  width:27.85714285714286%; /* = (100-2.5) / 3.5 */
+  padding-bottom: 32.16760145166612%; /* =  width /0.866 */
+  float:left;
+  overflow:hidden;
+  visibility:hidden;
+  transform: rotate(-60deg) skewY(30deg);
+}
+#categories li:nth-child(3n+2){
+  margin:0 4%;
+}
+
+#categories li *{
+  position:absolute;
+  visibility:visible;
+  margin: 0;
+}
+#categories li > div{
+  width:100%;
+  height:100%;
+  text-align:center;
+  color:#fff;
+  overflow:hidden;
+  transform: skewY(-30deg) rotate(60deg);
+}
+
+/* HEX CONTENT */
+#categories li img{
+  left:-100%; right:-100%;
+  width: auto; height:100%;
+  margin:0 auto;   
+}
+
+#categories div h1, #categories div p{
+  width:100%;
+  padding:0 5%;
+  background-color:#008080; background-color: rgba(0, 128, 128, 0.8);
+  font-family: 'Raleway', sans-serif;
+  transition: top .2s ease-out, bottom .2s ease-out, .2s padding .2s ease-out;
+}
+#categories li h1{
+  bottom:110%;
+  font-style:italic;
+  font-weight:normal;
+  font-size:1.5em;
+  padding-top:100%;
+  padding-bottom:100%;
+}
+#categories li h1:after{
+	content:'';
+  display:block;
+  position:absolute;
+  bottom:-1px; left:45%;
+  width:10%;
+  text-align:center;
+  z-index:1;
+  border-bottom:2px solid #fff;
+}
+#categories li p{
+	padding-top:50%;
+	top:110%;
+	padding-bottom:50%;
+}
+
+
+/* HOVER EFFECT  */
+#categories li div:hover h1 {
+  bottom:65%;
+  padding-bottom:10%;
+}
+
+#categories li div:hover p{
+  top:35%;
+  padding-top:5%;
+}
+#fork{
+  position:fixed;
+  top:0;
+  left:0;
+  color:#000;
+  text-decoration:none;
+  border:1px solid #000;
+  padding:.5em .7em;
+  margin:1%;
+  transition: color .5s;
+  overflow:hidden;
+}
+#fork:before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 130%; height: 100%;
+  background: #000;
+  z-index: -1;
+  transform-origin:0 0 ;
+  transform:translateX(-100%) skewX(-45deg);
+  transition: transform .5s;
+}
+#fork:hover {
+  color: #fff;
+}
+#fork:hover:before {
+  transform: translateX(0) skewX(-45deg);
+}
