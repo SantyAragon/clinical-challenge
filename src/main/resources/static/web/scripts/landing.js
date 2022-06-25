@@ -30,6 +30,14 @@ Vue.createApp({
         perturbance: 0.05,
       });
 
+      // toggle services
+      $('.st-tabs.st-fade-tabs .st-tab-links a').on('click', function (e) {
+        var currentAttrValue = $(this).attr('href');
+        $('.st-tabs ' + currentAttrValue).fadeIn(400).siblings().hide();
+        $(this).parents('li').addClass('active').siblings().removeClass('active');
+        e.preventDefault();
+    });
+
     },
     
     created() {
