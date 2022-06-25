@@ -150,7 +150,7 @@ header{
     margin-top: 5rem;
 }
 
-.card{
+.container-head .card{
     width: 300px;
     height: 450px;
     background: rgba( 255, 255, 255, 0.1 );
@@ -183,7 +183,7 @@ header{
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-.card img {
+.container-head .card img {
     width: auto;
     height: 100%;
     object-position:center;
@@ -247,12 +247,11 @@ header{
   transform: scale(0.8);
 }
 
-/* SOBRE NOSOTROS */
+/* // SOBRE NOSOTROS // */
 
 .circle-medical-bg{
   width: 600px;
 }
-
 
 .container-full .row {
   display: flex;
@@ -321,7 +320,7 @@ header{
   text-transform: uppercase;
   font-weight: 600;
   display: inline-block;
-  margin-bottom: 20px;
+  margin: 15px 0px;
 }
 
 .chose-us-area .info p:last-child {
@@ -329,7 +328,8 @@ header{
 }
 
 .chose-us-area .info ul {
-  margin-top: 30px;
+  /* padding: 0px; */
+  padding: 30px 0px;
   overflow: hidden;
 }
 
@@ -337,7 +337,7 @@ header{
   margin: 0;
 }
 
-.chose-us-area .info li .title {
+/* .chose-us-area .info li .title {
   display: flex;
   margin-bottom: 15px;
   border-bottom: 1px solid  #e7e7e7;
@@ -348,8 +348,8 @@ header{
 .chose-us-area .info li .info {
   position: relative;
   z-index: 1;
-  padding-left: 35px;
-}
+  padding-left: 35px; 
+} 
 
 .chose-us-area .info li .info::after {
   position: absolute;
@@ -364,11 +364,42 @@ header{
 
 .chose-us-area .appoinment {
   padding-right: 35px;
-}
+} */
 
+/* ICON HEXAGON */
+.fa-stack {
+  width: 36px;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+}
+.logo-hex {
+  width: 34px;
+  height: 19px;
+  cursor: pointer;
+  background-color: #dc143c;
+}
+.logo-hex:before {
+  transform: rotate(60deg);
+}
+.logo-hex:after {
+  transform: rotate(-60deg);
+}
+.logo-hex:before, .logo-hex:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background-color: inherit;
+  content: '';
+} 
 
 /* PLANES */
-
 
 .sect--padding-bottom{
   padding-bottom:115px;
@@ -786,11 +817,8 @@ color: #fff;
 }
 
 /*// COMENTARIOS //*/
-
-
 .opiniones p {
-  font-size: 17px;
-  margin-bottom: 7px;
+  font-size: 15px;
 }
 .opiniones .small {
   letter-spacing: 0.5px
@@ -802,11 +830,11 @@ color: #fff;
   position: inherit;
   top: 50%;
 }
-.opiniones .card {
+.opiniones .card-com {
   border-radius: 20px !important;
   box-shadow: 2px 2px 5px 0px rgb(100, 108, 170);
   transition: 0.8s;
-  min-height: 70vh !important
+  min-height: 62vh !important
 }
 .opiniones .card-header {
   border-radius: 20px 
@@ -814,13 +842,6 @@ color: #fff;
 .opiniones .card-footer {
   border-radius: 20px 
 }
-
-/* .opiniones hr {
-  color: rgb(146, 154, 236);
-  height: 5px;
-  top: 200px;
-  width: 70px !important
-} */
 
 .opiniones .profile-pic {
   margin-bottom: 2px;
@@ -835,7 +856,7 @@ color: #fff;
   font-size: 20px
 }
 .opiniones .name {
-  margin-top: 10px
+  margin-top: 6px
 }
 .opiniones .container .card:hover {
   transform: scale(1.1)
