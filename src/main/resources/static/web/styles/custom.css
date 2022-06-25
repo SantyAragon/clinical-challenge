@@ -113,7 +113,7 @@ header{
 
   /* HEADER */
 
-  .container-head h1 {
+.container-head h1 {
     font-weight:300;
     letter-spacing: 2px;
     font-size:48px;
@@ -150,7 +150,7 @@ header{
     margin-top: 5rem;
 }
 
-.container-head .card{
+.card{
     width: 300px;
     height: 450px;
     background: rgba( 255, 255, 255, 0.1 );
@@ -183,7 +183,7 @@ header{
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-.container-head .card img {
+.card img {
     width: auto;
     height: 100%;
     object-position:center;
@@ -786,23 +786,17 @@ color: #fff;
 }
 
 /*// COMENTARIOS //*/
-.opiniones {
-  background-color: #eee;
-  background-size: cover;
-  font-family: 'Cormorant', serif;
-  color: rgb(112, 123, 240);
-  background: linear-gradient(140deg, #fff, 50%, #74a0ff);
-}
+
 
 .opiniones p {
   font-size: 17px;
   margin-bottom: 7px;
 }
 .opiniones .small {
-  letter-spacing: 0.5px !important
+  letter-spacing: 0.5px
 }
 .opiniones .card-header img {
-  border: 5px solid white !important
+  border: 5px solid white
 }
 .opiniones .outside {
   position: inherit;
@@ -815,51 +809,58 @@ color: #fff;
   min-height: 70vh !important
 }
 .opiniones .card-header {
-  border-radius: 20px !important
+  border-radius: 20px 
 }
 .opiniones .card-footer {
-  border-radius: 20px !important
+  border-radius: 20px 
 }
-.opiniones hr {
-  background-color: rgb(146, 154, 236);
-  border: 1px solid;
-  border-radius: 20px;
+
+/* .opiniones hr {
   color: rgb(146, 154, 236);
   height: 5px;
+  top: 200px;
   width: 70px !important
-}
+} */
+
 .opiniones .profile-pic {
-  margin-bottom: 2px !important;
+  margin-bottom: 2px;
   font-weight: 600;
 }
+
 .opiniones .fa {
   color: rgb(174, 178, 219);
   cursor: pointer
 }
 .opiniones .card-footer .fa { 
-  font-size: 20px !important
+  font-size: 20px
 }
 .opiniones .name {
-  margin-top: 10px !important
+  margin-top: 10px
 }
-.opiniones .container-fluid:hover .card:not(:hover) {
-  transform: scale(0.9)
+.opiniones .container .card:hover {
+  transform: scale(1.1)
 }
+
 @media (max-width: 1000px){
-  .opiniones .container-fluid:hover .card:not(:hover) { transform: scale(1) }
+  .opiniones .container .card:hover { transform: scale(1) }
 }
 
 /* // VALORES // */
-.valores {
-  width: 100%;
-  margin: auto;
-  left: 20%;
+
+.valores{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
 }
+
 #categories{
   overflow:hidden;
-  width:85%;
-  padding-right: 8%;
+  width:70%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
+
 .clr:after{
   content:"";
   display:block;
@@ -873,14 +874,12 @@ color: #fff;
   float:left;
   overflow:hidden;
   visibility:hidden;
- 
-  -webkit-transform: rotate(-60deg) skewY(30deg);
-  -ms-transform: rotate(-60deg) skewY(30deg);
   transform: rotate(-60deg) skewY(30deg);
 }
 #categories li:nth-child(3n+2){
   margin:0 4%;
 }
+
 #categories li *{
   position:absolute;
   visibility:visible;
@@ -892,27 +891,24 @@ color: #fff;
   text-align:center;
   color:#fff;
   overflow:hidden;
-  
-  -webkit-transform: skewY(-30deg) rotate(60deg);
-  -ms-transform: skewY(-30deg) rotate(60deg);
   transform: skewY(-30deg) rotate(60deg);
 }
+
 /* HEX CONTENT */
 #categories li img{
   left:-100%; right:-100%;
   width: auto; height:100%;
   margin:0 auto;   
 }
+
 #categories div h1, #categories div p{
   width:100%;
   padding:0 5%;
   background-color:#008080; background-color: rgba(0, 128, 128, 0.8);
   font-family: 'Raleway', sans-serif;
-  
-  -webkit-transition: top .2s ease-out, bottom .2s ease-out, .2s padding .2s ease-out;
-  -ms-transition: top .2s ease-out, bottom .2s ease-out, .2s padding .2s ease-out;
   transition: top .2s ease-out, bottom .2s ease-out, .2s padding .2s ease-out;
 }
+
 #categories li h1{
   bottom:110%;
   font-style:italic;
@@ -931,12 +927,13 @@ color: #fff;
   z-index:1;
   border-bottom:2px solid #fff;
 }
+
 #categories li p{
-	/* padding-top:0%; */
+	padding-top:50%;
 	top:110%;
 	padding-bottom:50%;
-  font-size: 12px;
 }
+
 /* HOVER EFFECT  */
 #categories li div:hover h1 {
   bottom:65%;
