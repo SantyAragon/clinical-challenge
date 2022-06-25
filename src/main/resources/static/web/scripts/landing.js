@@ -24,6 +24,12 @@ Vue.createApp({
       }
       });
 
+      //Ripples effect -> cambiar efecto
+      $('.header-container').ripples({
+        resolution: 400,
+        perturbance: 0.05,
+      });
+
     },
     
     created() {
@@ -33,6 +39,7 @@ Vue.createApp({
         this.client = data.data;
       })
       .catch(error => console.warn(error.message));
+
     },
   
     methods: {
