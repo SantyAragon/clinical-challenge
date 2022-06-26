@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- LINK BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+    <!-- TAILWIND CSS DROPDOWN SHOPPING -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css">
+
+    <!-- LINK FAVICON -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- LINK FONTAWESOME ICONS -->
+    <script src="https://kit.fontawesome.com/a9e21e8a67.js" crossorigin="anonymous"></script>
+
+    <!-- LINK ANIMATE AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- LINK CSS -->
+    <link rel="stylesheet" href="./styles/productos.css">
+
+    <title>Clinica - Productos</title>
+
+</head>
+
+<body>
+    <main id="app">
+        <!-- component/dropdown shopping -->
+        <div class="p-5">
+            <div class="flex h-64 justify-center">
+                <div class="relative ">
+                    <div class="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
+                        <div></div>
+                        <div class="flex flex-row-reverse ml-2 w-full">
+                            <div slot="icon" class="relative">
+                                <div
+                                    class="absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-red-700 text-white">
+                                    3</div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-shopping-cart w-6 h-6 mt-2">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute w-full  rounded-b border-t-0 z-10">
+                        <div class="shadow-xl w-64">
+                            <div class="p-2 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100" v-for="carrito in gCarritoNotif">
+                                <!-- style="" -->
+                                <div class="p-2 w-12"><img
+                                        :src="{{carrito.imagen}}"
+                                        alt="img product"></div>
+                                <div class="flex-auto text-sm w-32">
+                                    <div class="font-bold">{{carrito.nombre}}</div>
+                                    <div class="truncate">{{carrito.descripcionCorta}}</div>
+                                    <div class="text-gray-400">{{carrito.cantidad}}</div><!-- NO EXISTE, A CREARLO  -->
+                                </div>
+                                <div class="flex flex-col w-18 font-medium items-end">
+                                    <div class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-trash-2 ">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path
+                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                            </path>
+                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                        </svg>
+                                    </div>
+                                    {{carrito.precioTotal}} <!-- NO EXISTE, A CREARLO -->
+                                </div>
+                            </div>
+                            <div class="p-4 justify-center flex">
+                                <button class="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
+        hover:bg-teal-700 hover:text-teal-100 
+        bg-teal-100 
+        text-teal-700 
+        border duration-200 ease-in-out 
+        border-teal-600 transition">Checkout $36.66</button> <!-- BOTON PARA IR A PAGAR -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h-32"></div>
+        </div>
+
+        <!-- Modal VISTA RAPIDA -->
+        <div class="infoRapidaModal" v-show="gInfoRapida" @keydown.esc="closeModal($event)">
+            <div class="closeModal" v-on:click="closeModal($event)"></div>
+            <div class="modalContainer">
+                <div class="topContent">
+                    <div class="imagenContainer zoom_section">
+                        <div class="zoom_launcher zoomWatch" v-on:click="preZoom($event)" title="Ampliar imagen">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                <path d="M2.002 40h22v22h-22z"></path>
+                                <path d="M2 28V2h60v60H36"></path>
+                                <path d="M30 34l22-22m-16 0h16v16"></path>
+                            </svg>
+                        </div>
+                        <div class="zoom_imgOrigin wrapperImg">
+                            <div class="zoom_imgSource imagen" v-bind:style="{backgroundImage: `url(${imagen})`}"></div>
+                        </div>
+                    </div>
+                    <div class="texto">
+                        <div class="wrapper">
+                            <p class="nombre">{{nombre}}</p>
+                            <div class="precios">
+                                <p class="precio">${precioOferta || precio}</p>
+                                <p class="precioOferta" v-show="precioOferta">{{precio}}</p>
+                            </div>
+                            <p class="stock bold" :class="{'out' : existencia}" v-if="existencia">Disponible en tienda y listo para enviar</p>
+                            <p class="stock bold" :class="{'out' : existencia}" v-else>Fuera de stock</p>
+                            <p class="codigo"><span class="bold">Código Producto: </span>{{codigoProducto}}</p>
+                            <div class="actions">
+                                <div class="component_toCartCantidad" :class="{'disabled' : !existencia}">
+                                    <div class="toCartBoton menos disabled" v-on:click="sumarORestar($event)"></div>
+                                    <div class="toCartCantidad">1</div>
+                                    <div class="toCartBoton mas" v-on:click="sumarORestar($event)"></div>
+                                </div>
+                                <div class="botonTextoIcono" :class="{'disabled': !existencia}">
+                                    <label class="labelBoton">Agregar al carrito</label>
+                                    <div class="icono">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                            <path d="M2 6h10l10 40h32l8-24H16"></path>
+                                            <circle cx="23" cy="54" r="4"></circle>
+                                            <circle cx="49" cy="54" r="4"></circle>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="aFavs botonIcono">
+                                    <div class="icono">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                            <path
+                                                d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="descripcion">{{descripcionLarga}}</p>
+                            <a class="boton" href="#">Ver detalles completos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARDS -->
+        <section class="cards">
+            <div class="container d-flex">
+                <div class="contenedorCards" v-for="card in datosCards">
+                    <div class="card" :class="{'oferta': !card.precioOferta, 'out': !card.existencia}">
+                        <div class="innerProd">
+                            <div class="imgWrapper">
+                                <div class="detalleRapido" v-on:click="detalleRapido($event)" data-id="{{card.id}}">
+                                    <div class="icono">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                            <path d="M39.049 39.049L56 56"></path>
+                                            <circle cx="27" cy="27" r="17"></circle>
+                                        </svg>
+                                    </div>
+                                    <p>Vista rapida</p>
+                                </div>
+                                <div class="imgProd" v-bind:style="{backgroundImage: `url(${card.imagen})`}"></div>
+                            </div>
+                            <a class="info" href="#">
+                                <p class="prodName">{{card.nombre}}</p>
+                                <p class="prodDesc">{{card.descripcionCorta}}</p>
+                                <div class="precios">
+                                    <p class="precio">{{card.precioOferta || card.precio}}</p>
+                                    <div>
+                                        <p class="precioOriginal" v-if="card.precioOferta">{{card.precio}}</p>
+                                        <p class="stock" :class="{'out': !card.existencia}" v-if="card.existencia">En
+                                            existencia</p>
+                                        <p class="stock" :class="{'out': !card.existencia}" v-else>Fuera de stock</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="actions">
+                                <div class="boton alCarrito" v-on:click="agregarAlCarrito(card)">Agregar al carrito</div>
+                                <div class="row-buttons">
+                                    <div class="checkBox comparar">
+                                        <input type="checkbox">
+                                        <div class="icon"></div>
+                                        <p class="checkBoxLabel">Comparar</p>
+                                    </div>
+                                    <div class="aFavs favoritos" v-on:click="agregarFav($event)">
+                                        <div class="icono">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                                <path
+                                                    d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- VUE -->
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <!-- ARCHIVO JS -->
+    <script src="./scripts/productos.js"></script>
+</body>
+
+</html>
