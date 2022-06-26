@@ -11,7 +11,7 @@ public class ProductoDTO {
     private TipoProducto tipo;
     private long stock;
     private Double precio;
-
+    private String imagen;
 
 
     public ProductoDTO() {
@@ -24,6 +24,7 @@ public class ProductoDTO {
         this.tipo = producto.getTipo();
         this.stock = producto.getStock();
         this.precio = producto.getPrecio();
+        this.imagen= producto.getImagen();
     }
 
     public Long getId() {
@@ -50,4 +51,7 @@ public class ProductoDTO {
         return precio;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
 }
