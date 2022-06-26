@@ -31,11 +31,11 @@ public class ProductoController {
     }
 
     @PostMapping("/productos")
-    public ResponseEntity<Object> nuevoProducto (@RequestParam String nombre, @RequestParam TipoProducto tipo, @RequestParam long stock, @RequestParam Double precio) {
+    public ResponseEntity<Object> nuevoProducto (@RequestParam String nombre, @RequestParam TipoProducto tipo, @RequestParam long stock, @RequestParam Double precio,@RequestParam String imagen) {
         if(nombre.isEmpty() || tipo == null || stock <= 0 || precio <= 0) {
             return new ResponseEntity<>("Faltan datos", HttpStatus.FORBIDDEN);
         }
-        Producto producto = new Producto(nombre, tipo, stock, precio);
+        Producto producto = new Producto(nombre, tipo, stock, precio,imagen);
         productoService.guardarProducto(producto);
         return new ResponseEntity<>("Producto creado", HttpStatus.CREATED);
     }
@@ -72,6 +72,14 @@ public class ProductoController {
         return new ResponseEntity<>("Precio Producto editado", HttpStatus.ACCEPTED);
     }
 
+    @PatchMapping("/productos/{id}/imagen")
+    public ResponseEntity<Object> modificarImagenProducto (@PathVariable Long id, @RequestParam String imagen) {
+        Producto producto = productoService.traerProducto(id);
+        producto.setImagen(imagen);
+        productoService.guardarProducto(producto);
+        return new ResponseEntity<>("Imagen del producto editada", HttpStatus.ACCEPTED);
+    }
+
     @PatchMapping("/productos/{id}")
     public ResponseEntity<Object> eliminarProducto (@PathVariable Long id) {
         Producto producto = productoService.traerProducto(id);
@@ -82,6 +90,5 @@ public class ProductoController {
         productoService.guardarProducto(producto);
         return new ResponseEntity<>("Producto eliminado", HttpStatus.ACCEPTED);
     }
-
 
 }

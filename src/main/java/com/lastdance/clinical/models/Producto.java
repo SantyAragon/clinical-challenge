@@ -12,23 +12,26 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
+    private boolean activo;
     private String nombre;
     private TipoProducto tipo;
     private long stock;
     private Double precio;
-    private boolean activo;
+    private String imagen;
 
     @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
     private Set<PacienteProducto> pacienteProductos = new HashSet<>();
 
-    public Producto() { }
+    public Producto() {
+    }
 
-    public Producto(String nombre, TipoProducto tipo, long stock, Double precio) {
+    public Producto(String nombre, TipoProducto tipo, long stock, Double precio, String imagen) {
+        this.activo = true;
         this.nombre = nombre;
         this.tipo = tipo;
         this.stock = stock;
         this.precio = precio;
-        this.activo = true;
+        this.imagen = imagen;
     }
 
     public Long getId() {
@@ -81,5 +84,13 @@ public class Producto {
 
     public void setActivo(boolean activo) {
         this.activo = activo;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }
