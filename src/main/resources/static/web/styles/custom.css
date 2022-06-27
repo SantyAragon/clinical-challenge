@@ -13,7 +13,7 @@ body {
 }
 
 header {
-  height: 50px;
+  height: 80px;
 }
 
 
@@ -32,7 +32,7 @@ header {
 nav {
   position: fixed;
   width: 100vw;
-  height: 50px;
+  height: 80px;
   z-index: 1000;
 }
 
@@ -126,13 +126,13 @@ nav ul li a {
   background-image: url("../assets/medical-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 70vh;
+  height: 85vh;
 }
 
 #olas-bg {
   position: absolute;
   width: 100%;
-  height: calc(70vh - 50px);
+  height: calc(100% - 80px);
 }
 
 .container-head {
@@ -660,13 +660,15 @@ a {
   align-items: flex-start;
 }
 
-.container-full .row>.info {
+/*CAMBIAR NO TOCAR*/
+
+/* .container-full .row>.info {
 
 }
 
 .chose-us-area.item-half .container-full .row>.info {
   
-}
+} */
 
 .chose-us-area.item-half .info li {
   float: left;
