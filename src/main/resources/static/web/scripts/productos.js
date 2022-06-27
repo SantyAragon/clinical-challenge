@@ -17,6 +17,13 @@ Vue.createApp({
       gCantidadNotif: 0,
 
       gProductosEnStorage: [],
+
+      gProductosFiltrados: [],
+      gProductosPreFiltrados: [],
+
+      ordenSeleccionado: "",
+      nombreDelBuscador: "",
+      rangoDePrecios: [],
     }
   },
 
@@ -41,6 +48,9 @@ Vue.createApp({
 
         this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.cantidad).reduce((a, b) => a + b, 0);
         this.gCantidadNotif = this.gCarritoNotif.length;
+
+        // Productos Filtrados 
+        this.gProductosFiltrados = this.datosCards;
       })
       .catch(error => console.log(error))
   },
@@ -48,14 +58,14 @@ Vue.createApp({
   methods: {
 
     agregarAlCarrito(card) {
-      let conteo = document.getElementById('total'+card.id);
+      let conteo = document.getElementById('total' + card.id);
 
       console.log(conteo.textContent);
       if (this.gCarritoNotif.includes(card)) {
         window.alert("Ya tienes este producto en el carrito")
       }
       else {
-        if(conteo.textContent > 1){
+        if (conteo.textContent > 1) {
           // tiene más de 1 del mismo producto
         }
         else {
@@ -99,29 +109,29 @@ Vue.createApp({
       }
     },
 
-    sumarORestar(card, op){
-      let botonResta = document.getElementById('res'+card.id);
-      let botonSuma = document.getElementById('sum'+card.id);
-      let conteo = document.getElementById('total'+card.id);
+    sumarORestar(card, op) {
+      let botonResta = document.getElementById('res' + card.id);
+      let botonSuma = document.getElementById('sum' + card.id);
+      let conteo = document.getElementById('total' + card.id);
 
       let conteoNumber = parseInt(conteo.textContent);
 
 
-      if(op == 'suma'){
-        if(card.stock > conteoNumber){
+      if (op == 'suma') {
+        if (card.stock > conteoNumber) {
           conteoNumber++
           botonResta.classList.remove('disabled')
-        }else{
+        } else {
           window.alert("Maximo de stock disponible!")
         }
-      }else if(op == 'resta'){
-        if(conteoNumber > 1){
+      } else if (op == 'resta') {
+        if (conteoNumber > 1) {
           conteoNumber--
-        }else {
+        } else {
           botonResta.classList.add('disabled')
           window.alert("Minimo disponible de compra!")
         }
-      }else {
+      } else {
         console.log("nada")
       }
 
@@ -130,7 +140,7 @@ Vue.createApp({
 
 
     preZoom(card) {
-      let areaImagen = document.getElementById('prezoom'+card.id).parentElement;
+      let areaImagen = document.getElementById('prezoom' + card.id).parentElement;
       this.zoomImg(areaImagen);
     },
 
@@ -188,7 +198,49 @@ Vue.createApp({
   },
 
   computed: {
+    ordenarProductos() {
+      if (this.ordenSeleccionado == "ordenDefault") {
+        this.gProductosFiltrados = this.gProductosFiltrados
+      } else if (this.ordenSeleccionado == "alfabeticamenteAZ") {
+        this.gProductosFiltrados = this.gProductosFiltrados.sort(function (a, b) {
+          if (a.nombre < b.nombre) {
+            return -1
+          }
+        })
+      } else if (this.ordenSeleccionado == "alfabeticamenteZA") {
+        this.gProductosFiltrados = this.gProductosFiltrados.sort(function (a, b) {
+          if (a.nombre > b.nombre) {
+            return -1;
+          }
+        })
+      } else if (this.ordenSeleccionado == "menorPrecio") {
+        this.gProductosFiltrados = this.gProductosFiltrados.sort((a, b) => a.precio - b.precio)
+      } else if (this.ordenSeleccionado == "mayorPrecio") {
+        this.gProductosFiltrados = this.gProductosFiltrados.sort((a, b) => b.precio - a.precio)
+      }
+    },
 
+    buscadorProducto() {
+      if (!this.nombreDelBuscador == "") {
+        this.gProductosPreFiltrados = this.datosCards.filter(producto => producto.nombre.toUpperCase().includes(this.nombreDelBuscador.toUpperCase()))
+      } else {
+        this.gProductosPreFiltrados = this.datosCards
+      }
+      this.gProductosFiltrados = []
+      if (this.rangoDePrecios.length == 0) {
+        this.gProductosFiltrados = this.gProductosPreFiltrados
+      } else {
+        this.rangoDePrecios.forEach(rango => {
+          this.gProductosPreFiltrados.forEach(prod => {
+            if (rango == 500 && prod.precio < 500) {
+              this.gProductosFiltrados.push(prod)
+            } else if (rango == 501 && prod.precio >= 500) {
+              this.gProductosFiltrados.push(prod)
+            }
+          })
+        })
+      }
+    },
   }
 
 }).mount('#app')
