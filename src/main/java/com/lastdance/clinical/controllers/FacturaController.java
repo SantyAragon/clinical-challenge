@@ -4,13 +4,19 @@ import com.lastdance.clinical.DTOS.FacturaDTO;
 import com.lastdance.clinical.DTOS.GenerarFacturaDTO;
 import com.lastdance.clinical.models.*;
 import com.lastdance.clinical.services.*;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,6 +38,9 @@ public class FacturaController {
     PacienteServicioService pacienteServicioService;
     @Autowired
     PacienteProductoService pacienteProductoService;
+
+    @Autowired
+    PdfService pdfService;
 
     @GetMapping("/facturas")
     public Set<FacturaDTO> traerFacturas() {
@@ -93,4 +102,19 @@ public class FacturaController {
 
         return new ResponseEntity<>("Factura generada exitosamente", HttpStatus.ACCEPTED);
     }
+
+    @PostMapping("/facturas/descargar")
+    public ResponseEntity<Object> generatePdf(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-mm-dd:hh:mm");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=medihub-factura-" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+        pdfService.export(response);
+
+        return new ResponseEntity<>("PDF enviado.", HttpStatus.ACCEPTED);
+    }
+
 }

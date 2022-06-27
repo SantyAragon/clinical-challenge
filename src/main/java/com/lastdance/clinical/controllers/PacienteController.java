@@ -182,7 +182,6 @@ public class PacienteController {
         String senderName = "Clinica MediHub";
         String subject = "Verificacion de email de registro";
         String content = generarEmailVerificacion();
-
         MimeMessage mensaje = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mensaje);
 
