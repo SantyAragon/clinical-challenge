@@ -8,6 +8,6 @@ import java.time.LocalDateTime;
 
 public interface PdfService {
 //    void export(HttpServletResponse response, Authentication authentication, String numberAccount, LocalDateTime since, LocalDateTime until) throws IOException, DocumentException;
-    void export(HttpServletResponse response) throws IOException, DocumentException;
+    void export(HttpServletResponse response,Long id) throws IOException, DocumentException;
 
 }

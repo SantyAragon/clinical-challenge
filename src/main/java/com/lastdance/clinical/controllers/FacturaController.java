@@ -112,7 +112,7 @@ public class FacturaController {
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=medihub-factura-" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
-        pdfService.export(response);
+        pdfService.export(response, 1L);
 
         return new ResponseEntity<>("PDF enviado.", HttpStatus.ACCEPTED);
     }
