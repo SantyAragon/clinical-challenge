@@ -32,6 +32,7 @@ Vue.createApp({
 
         console.log(this.datosCards);
 
+        // STORAGE
         this.gProductosEnStorage = JSON.parse(localStorage.getItem("carrito"));
 
         if (this.gProductosEnStorage) {
@@ -46,13 +47,45 @@ Vue.createApp({
 
   methods: {
 
+    agregarAlCarrito(card) {
+      let conteo = document.getElementById('total'+card.id);
+
+      console.log(conteo.textContent);
+      if (this.gCarritoNotif.includes(card)) {
+        window.alert("Ya tienes este producto en el carrito")
+      }
+      else {
+        if(conteo.textContent > 1){
+          // tiene más de 1 del mismo producto
+        }
+        else {
+          this.gCarritoNotif.push(card); // agregamos la CARD al carrito
+        }
+        this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio).reduce((a, b) => a + b, 0); // Precio total
+        this.gCantidadNotif = this.gCarritoNotif.length;
+        console.log(this.gCarritoNotif)
+      }
+    },
+
+    removerProducto(card) {
+      this.gCarritoNotif = this.gCarritoNotif.filter(prod => prod.id != card.id)
+      this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio).reduce((a, b) => a + b, 0); // Precio total
+      this.gCantidadNotif = this.gCarritoNotif.length;
+    },
+
+
     detalleRapido(card) {
       let info = this.datosCards.find(prod => prod.id == card.id);
       this.gNumPos = this.datosCards.indexOf(card);
       this.gInfoRapida = true;
 
-      //document.getElementsByClassName("infoRapidaModal").style = "display:flex"
-      //document.querySelector(".infoRapidaModal").fadeIn().css('display', 'flex'); 
+      let conteo = document.querySelector(".toCartCantidad");
+      conteo.textContent = 1;
+    },
+
+    closeModal() {
+
+      this.gInfoRapida = false;
     },
 
     agregarFav(card) {
@@ -66,63 +99,39 @@ Vue.createApp({
       }
     },
 
-    agregarAlCarrito(card) {
-      if (this.gCarritoNotif.includes(card)) {
-        window.alert("Ya tienes este producto en el carrito")
-      }
-      else {
-        this.gCarritoNotif.push(card); // agregamos la CARD al carrito
-        this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio).reduce((a, b) => a + b, 0); // Precio total
-        this.gCantidadNotif = this.gCarritoNotif.length;
-        console.log(this.gCarritoNotif)
-      }
-    },
+    sumarORestar(card, op){
+      let botonResta = document.getElementById('res'+card.id);
+      let botonSuma = document.getElementById('sum'+card.id);
+      let conteo = document.getElementById('total'+card.id);
 
-    removerProducto(card) {
-      this.gCarritoNotif = this.gCarritoNotif.filter(prod => prod.id != card.id)
-      this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio).reduce((a, b) => a + b, 0); // Precio total
-      this.gCantidadNotif = this.gCarritoNotif.length;
-    },
+      let conteoNumber = parseInt(conteo.textContent);
 
-    toCartCantidad(boton, operacion) {
-      const container = boton.parents('.component_toCartCantidad');
-      const numero = container.find('.toCartCantidad');
-      let tipoAnim = 'normal';
-      if (operacion == 'resta') {
-        if (parseInt(numero.text()) == 1) return false;
-        if (parseInt(numero.text() - 1) == 1) {
-          boton.addClass('disabled');
+
+      if(op == 'suma'){
+        if(card.stock > conteoNumber){
+          conteoNumber++
+          botonResta.classList.remove('disabled')
+        }else{
+          window.alert("Maximo de stock disponible!")
         }
-        tipoAnim = 'reverse';
-        numero.text(parseInt(numero.text()) - 1);
-      } else if (operacion == 'suma') {
-        boton.siblings('.toCartBoton.disabled').removeClass('disabled');
-        numero.text(parseInt(numero.text()) + 1);
-      } else {
-        console.log('El tipo de operacion (suma / resta) es obligatorio');
-        return false;
+      }else if(op == 'resta'){
+        if(conteoNumber > 1){
+          conteoNumber--
+        }else {
+          botonResta.classList.add('disabled')
+          window.alert("Minimo disponible de compra!")
+        }
+      }else {
+        console.log("nada")
       }
-      numero.addClass(tipoAnim == 'reverse' ? 'animacion-reverse' : 'animacion');
-      numero.one('animationend', function () {
-        numero.removeClass(tipoAnim == 'reverse' ? 'animacion-reverse' : 'animacion');
-      });
-    },
-    //const { codigoProducto, descripcionLarga, existencia, imagen, nombre, precio, precioOferta } = datos;
-    //document.querySelector('.infoRapidaModal').fadeIn().css('display', 'flex'); 
 
-    closeModal() {
-
-      this.gInfoRapida = false;
+      conteo.innerText = conteoNumber;
     },
 
-    sumarORestar(e) {
-      const boton = e.target;
-      toCartCantidad(boton, boton.hasClass('mas') ? 'suma' : boton.hasClass('menos') ? 'resta' : null);
-    },
 
-    preZoom() {
-      let areaImagen = e.target.parent();
-      zoomImg(areaImagen);
+    preZoom(card) {
+      let areaImagen = document.getElementById('prezoom'+card.id).parentElement;
+      this.zoomImg(areaImagen);
     },
 
     zoomImg(zoomArea, escala = 3) {

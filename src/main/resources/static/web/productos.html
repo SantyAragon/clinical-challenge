@@ -99,12 +99,12 @@
         </div>
 
         <!-- Modal VISTA RAPIDA -->
-        <div class="infoRapidaModal" v-show="gInfoRapida" @keydown.esc="closeModal" >
+        <div class="infoRapidaModal" v-show="gInfoRapida" @keydown.esc="closeModal" v-if="datosCards.length > 0">
             <div class="closeModal" v-on:click="closeModal"></div>
             <div class="modalContainer">
                 <div class="topContent">
                     <div class="imagenContainer zoom_section">
-                        <div class="zoom_launcher zoomWatch" v-on:click="preZoom(datosCards[gNumPos])" title="Ampliar imagen">
+                        <div class="zoom_launcher zoomWatch" v-on:click="preZoom(datosCards[gNumPos])" :id="'prezoom'+datosCards[gNumPos].id" title="Ampliar imagen">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                                 <path d="M2.002 40h22v22h-22z"></path>
                                 <path d="M2 28V2h60v60H36"></path>
@@ -120,18 +120,17 @@
                             <p class="nombre">{{datosCards[gNumPos].nombre}}</p>
                             <div class="precios">
                                 <p class="precio">{{datosCards[gNumPos].precio}}</p>
-                                <p class="precioOferta" v-show="precioOferta">{{datosCards[gNumPos].precio}}</p>
                             </div>
                             <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-if="datosCards[gNumPos].stock > 0">Disponible en tienda y listo para enviar</p>
                             <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-else>Fuera de stock</p>
                             <p class="codigo"><span class="bold">Código Producto: </span>{{datosCards[gNumPos].id}}</p>
                             <div class="actions">
                                 <div class="component_toCartCantidad" :class="{'disabled' : !datosCards[gNumPos].stock}">
-                                    <div class="toCartBoton menos disabled" v-on:click="sumarORestar($event)"></div>
-                                    <div class="toCartCantidad">1</div>
-                                    <div class="toCartBoton mas" v-on:click="sumarORestar($event)"></div>
+                                    <div class="toCartBoton menos disabled" v-on:click="sumarORestar(datosCards[gNumPos], 'resta')" :id="'res'+datosCards[gNumPos].id"></div>
+                                    <div class="toCartCantidad" :id="'total'+datosCards[gNumPos].id">1</div>
+                                    <div class="toCartBoton mas" v-on:click="sumarORestar(datosCards[gNumPos], 'suma')" :id="'sum'+datosCards[gNumPos].id"></div>
                                 </div>
-                                <div class="botonTextoIcono" :class="{'disabled': !datosCards[gNumPos].stock}">
+                                <div class="botonTextoIcono" :class="{'disabled': !datosCards[gNumPos].stock}"  v-on:click="agregarAlCarrito(datosCards[gNumPos])">
                                     <label class="labelBoton">Agregar al carrito</label>
                                     <div class="icono">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -151,7 +150,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="descripcion">{{descripcionLarga}}</p>
+                            <p class="descripcion"></p>
                             <!-- <a class="boton" href="#">Ver detalles completos</a> -->
                         </div>
                     </div>
@@ -163,7 +162,7 @@
         <section class="cards">
             <div class="container d-flex">
                 <div class="contenedorCards" v-for="card in datosCards">
-                    <div class="card" :class="{'oferta': !card.precioOferta, 'out': !card.existencia}">
+                    <div class="card" :class="{ 'out': !card.stock}">
                         <div class="innerProd">
                             <div class="imgWrapper">
                                 <div class="detalleRapido" v-on:click="detalleRapido(card)" data-id="{{card.id}}">
