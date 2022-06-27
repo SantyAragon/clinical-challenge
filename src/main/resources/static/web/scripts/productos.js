@@ -7,19 +7,21 @@ Vue.createApp({
       datosCards: [],
 
       gCarritoNotif: [], // Productos que van a ir al carrito
+      productoCarrito: {},
       gCarritoFavs: [],
 
       // 
       gNumPos: 0,
 
       // Notificaciones
-      gTotalEnCarrito: 0,
-      gCantidadNotif: 0,
+      gTotalEnCarrito: 0, // precio total de todo lo que compra
+      gCantidadNotif: 0, // cantidad de productos en el carrito
 
       gProductosEnStorage: [],
 
       gProductosFiltrados: [],
       gProductosPreFiltrados: [],
+
 
       ordenSeleccionado: "",
       nombreDelBuscador: "",
@@ -46,7 +48,7 @@ Vue.createApp({
           this.gCarritoNotif = this.gProductosEnStorage
         }
 
-        this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.cantidad).reduce((a, b) => a + b, 0);
+        this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0);
         this.gCantidadNotif = this.gCarritoNotif.length;
 
         // Productos Filtrados 
@@ -57,29 +59,90 @@ Vue.createApp({
 
   methods: {
 
-    agregarAlCarrito(card) {
-      let conteo = document.getElementById('total' + card.id);
-
-      console.log(conteo.textContent);
-      if (this.gCarritoNotif.includes(card)) {
-        window.alert("Ya tienes este producto en el carrito")
+    agregarAlCarrito(producto, num) {
+      let conteoNumber = 1;
+      if (num) {
+        let conteo = document.getElementById('total' + producto.id);
+        conteoNumber = parseInt(conteo.textContent);
       }
-      else {
-        if (conteo.textContent > 1) {
-          // tiene más de 1 del mismo producto
+      this.productoCarrito = this.gCarritoNotif.filter(prod => producto.id == prod.id)[0]
+
+      if (producto.stock > 0) {
+
+        if (this.productoCarrito != undefined) {
+          this.productoCarrito.cantidad += conteoNumber;
+          this.productoCarrito.stock = producto.stock -= conteoNumber;
+          Swal.fire({
+            title: 'Productos sumados',
+            icon: 'success'
+          })
+
         }
         else {
-          this.gCarritoNotif.push(card); // agregamos la CARD al carrito
+          this.productoCarrito = {
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            tipo: producto.tipo,
+            imagen: producto.imagen,
+            cantidad: conteoNumber,
+            stock: producto.stock -= conteoNumber
+          };
+
+          this.gCarritoNotif.push(this.productoCarrito); // agregamos la CARD al carrito
+
+
+          // AGREGA EL NUEVO ARRAY PRODUCTOS EN CARRITO AL LOCAL STORAGE
+          localStorage.setItem("carrito", JSON.stringify(this.gCarritoNotif))
+          //NOTIFICACION DE AÑADIDO AL CARRITO
+          Swal.fire({
+            title: 'Añadido al carrito',
+            icon: 'success'
+          })
         }
-        this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio).reduce((a, b) => a + b, 0); // Precio total
+        this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0); // Precio total
         this.gCantidadNotif = this.gCarritoNotif.length;
-        console.log(this.gCarritoNotif)
+      }
+      else {
+        Swal.fire({
+          title: 'Sin stock ',
+          icon: 'error'
+        })
       }
     },
 
-    removerProducto(card) {
-      this.gCarritoNotif = this.gCarritoNotif.filter(prod => prod.id != card.id)
-      this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio).reduce((a, b) => a + b, 0); // Precio total
+    removerProducto(producto) {
+      this.productoCarrito = this.gCarritoNotif.filter(prod => producto.id == prod.id)[0]
+
+      let index = this.gProductosFiltrados.findIndex(prod => prod.id == producto.id);
+      // SI EL OBJETO PRODUCTO TIENE CANTIDAD MAYOR A 1, SE DECREMENTA UNO.
+      if (this.productoCarrito.cantidad > 1) {
+        this.productoCarrito.cantidad--
+        this.productoCarrito.stock++
+        this.gProductosFiltrados[index].stock++
+
+        // this.productosEnCarrito.slice(index,this.productoCarrito)
+      }
+      // SINO, SE ELIMINA ESE OBJETO DEL ARRAY DE PRODUCTOS FILTRANDO LOS DISTINTOS AL SELECCIONADO
+      else {
+        this.gCarritoNotif = this.gCarritoNotif.filter(prod => prod.id != producto.id)
+        this.productoCarrito.stock++
+        Swal.fire({
+          title: 'Eliminado del Carrito',
+          imageUrl: 'https://cdn-icons-png.flaticon.com/512/105/105739.png',
+          imageHeight: 80,
+        })
+      }
+      // ACA SE VUELVE A CALCULAR EL TOTAL DE PRODUCTOS QUE QUEDARON EN EL CARRITO
+      this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0)
+
+
+      // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
+      this.productosEnStorage = this.productosEnCarrito
+      localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
+
+      // this.gCarritoNotif = this.gCarritoNotif.filter(prod => prod.id != card.id)
+      // this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio).reduce((a, b) => a + b, 0); // Precio total
       this.gCantidadNotif = this.gCarritoNotif.length;
     },
 
