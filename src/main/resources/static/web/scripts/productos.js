@@ -1,12 +1,22 @@
 Vue.createApp({
   data() {
     return {
+
       gInfoRapida: false,
+
       datosCards: [],
+
       gCarritoNotif: [], // Productos que van a ir al carrito
-      gInfoObject: [],
+      gCarritoFavs: [],
+
+      // 
+      gNumPos: 0,
+
+      // Notificaciones
       gTotalEnCarrito: 0,
       gCantidadNotif: 0,
+
+      gProductosEnStorage: [],
     }
   },
 
@@ -21,6 +31,15 @@ Vue.createApp({
         this.datosCards = datos.data;
 
         console.log(this.datosCards);
+
+        this.gProductosEnStorage = JSON.parse(localStorage.getItem("carrito"));
+
+        if (this.gProductosEnStorage) {
+          this.gCarritoNotif = this.gProductosEnStorage
+        }
+
+        this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.cantidad).reduce((a, b) => a + b, 0);
+        this.gCantidadNotif = this.gCarritoNotif.length;
       })
       .catch(error => console.log(error))
   },
@@ -29,20 +48,21 @@ Vue.createApp({
 
     detalleRapido(card) {
       let info = this.datosCards.find(prod => prod.id == card.id);
-      gInfoObject = [];
-      gInfoObject.push(card);
-      console.log(gInfoObject);
-      gInfoRapida = true;
+      this.gNumPos = this.datosCards.indexOf(card);
+      this.gInfoRapida = true;
 
+      //document.getElementsByClassName("infoRapidaModal").style = "display:flex"
       //document.querySelector(".infoRapidaModal").fadeIn().css('display', 'flex'); 
     },
 
-    agregarFav(id) {
-      let id_card = document.getElementById('card'+id);
-      if(!id_card.classList.contains('esFav')){
+    agregarFav(card) {
+      let id_card = document.getElementById('card' + card.id);
+      if (!id_card.classList.contains('esFav')) {
         id_card.classList.add('esFav');
-      }else {
+        this.gCarritoFavs.push(card);
+      } else {
         id_card.classList.remove('esFav');
+        this.gCarritoFavs = this.gCarritoFavs.filter(prod => prod.id != card.id);
       }
     },
 
@@ -58,7 +78,7 @@ Vue.createApp({
       }
     },
 
-    removerProducto(card){
+    removerProducto(card) {
       this.gCarritoNotif = this.gCarritoNotif.filter(prod => prod.id != card.id)
       this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio).reduce((a, b) => a + b, 0); // Precio total
       this.gCantidadNotif = this.gCarritoNotif.length;
@@ -90,11 +110,9 @@ Vue.createApp({
     //const { codigoProducto, descripcionLarga, existencia, imagen, nombre, precio, precioOferta } = datos;
     //document.querySelector('.infoRapidaModal').fadeIn().css('display', 'flex'); 
 
-    closeModal(e) {
-      e.target.parent().fadeOut(function () {
-        e.target.remove();
-      })
-      gInfoRapida = false;
+    closeModal() {
+
+      this.gInfoRapida = false;
     },
 
     sumarORestar(e) {
@@ -102,7 +120,7 @@ Vue.createApp({
       toCartCantidad(boton, boton.hasClass('mas') ? 'suma' : boton.hasClass('menos') ? 'resta' : null);
     },
 
-    preZoom(e) {
+    preZoom() {
       let areaImagen = e.target.parent();
       zoomImg(areaImagen);
     },

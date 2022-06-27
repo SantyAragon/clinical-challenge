@@ -440,11 +440,11 @@ body li {
     color: red;
     font-weight: 600;
     text-align: right;
-    text-decoration: line-through;
+    /* text-decoration: line-through; */
 }
 
 .card .innerProd .info .precios .precioOriginal:before {
-    content: var(--currencyPrefix);
+    content: "";
     font-size: 14px;
     text-transform: uppercase;
 }
@@ -613,7 +613,6 @@ body li {
     align-items: center;
     justify-content: center;
     align-content: center;
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
