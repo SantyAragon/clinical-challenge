@@ -16,5 +16,7 @@ public interface PacienteService {
 
     Paciente traerPacientePorIdentificacion(Long identificacion);
 
+    Paciente traerPacientePorToken(String token);
+
     void guardarPaciente(Paciente paciente);
 }
