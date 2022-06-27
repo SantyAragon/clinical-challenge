@@ -41,6 +41,11 @@ public class PacienteServiceImplements implements PacienteService {
     }
 
     @Override
+    public Paciente traerPacientePorToken(String token) {
+        return pacienteRepository.findByToken(token);
+    }
+
+    @Override
     public void guardarPaciente(Paciente paciente) {
         pacienteRepository.save(paciente);
     }
