@@ -24,6 +24,7 @@
 
     <!-- LINK CSS -->
     <link rel="stylesheet" href="./styles/productos.css">
+    <link rel="stylesheet" href="./styles/farmacia.css">
 
     <title>Clinica - Productos</title>
 
@@ -159,6 +160,202 @@
             </div>
         </div>
 
+        <!-- GENERAL -->
+
+        <div class="div-imagen text-left bg-overlay-white-30">
+            <div class="ltn__breadcrumb-inner">
+                <h1 class="page-title">FARMACIA</h1>
+                <div class="ltn__breadcrumb-list">
+                    <ul>
+                        <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
+                        <li>Farmacia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUCT DETAILS AREA START -->
+        <div class="ltn__product-area ltn__product-gutter mb-120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 order-lg-2 mb-120">
+                        <div class="ltn__shop-options">
+                            <ul>
+                                <!-- <li>
+                                    <div class="ltn__grid-list-tab-menu ">
+                                        <div class="nav">
+                                            <a class="active show" data-bs-toggle="tab" href="#liton_product_grid"><i class="fas fa-th-large"></i></a>
+                                            <a data-bs-toggle="tab" href="#liton_product_list"><i class="fas fa-list"></i></a>
+                                        </div>
+                                    </div>
+                                <li> -->
+                                    <div class="short-by text-center">
+                                        <select class="nice-select">
+                                            <option>Filtrar por</option>
+                                            <option>Sort by popularity</option>
+                                            <option>Sort by new arrivals</option>
+                                            <option>Sort by price: low to high</option>
+                                            <option>Sort by price: high to low</option>
+                                        </select>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="liton_product_grid">
+                                <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+                                    <div class="row">
+
+                                        <section class="cards">
+                                            <div class="container d-flex">
+                                                <div class="contenedorCards" v-for="card in datosCards">
+                                                    <div class="card" :class="{'oferta': !card.precioOferta, 'out': !card.existencia}">
+                                                        <div class="innerProd">
+                                                            <div class="imgWrapper">
+                                                                <div class="detalleRapido" v-on:click="detalleRapido(card)" data-id="{{card.id}}">
+                                                                    <div class="icono">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                                                            <path d="M39.049 39.049L56 56"></path>
+                                                                            <circle cx="27" cy="27" r="17"></circle>
+                                                                        </svg>
+                                                                    </div>
+                                                                    <p>Vista rapida</p>
+                                                                </div>
+                                                                <div class="imgProd" v-bind:style="{backgroundImage: `url(${card.imagen})`}"></div>
+                                                            </div>
+                                                            <a class="info" href="#">
+                                                                <p class="prodName">{{card.nombre}}</p>
+                                                                <p class="prodDesc">{{card.tipo}}</p>
+                                                                <div class="precios">
+                                                                    <p class="precio">{{card.precio}}</p>
+                                                                    <div>
+                                                                        <p class="precioOriginal">{{card.stock}} unidades</p>
+                                                                        <p class="stock" :class="{'out': !card.stock}" v-if="card.stock > 0">En
+                                                                            stock</p>
+                                                                        <p class="stock" :class="{'out': !card.stock}" v-else>Fuera de stock</p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <div class="actions">
+                                                                <div class="boton alCarrito" v-on:click="agregarAlCarrito(card)">Agregar al carrito
+                                                                </div>
+                                                                <div class="row-buttons">
+                                                                    <!-- <div class="checkBox comparar">
+                                                                        <input type="checkbox">
+                                                                        <div class="icon"></div>
+                                                                        <p class="checkBoxLabel">Comparar</p>
+                                                                    </div> -->
+                                                                    <div class="aFavs favoritos" v-on:click="agregarFav(card)" :id="'card'+card.id">
+                                                                        <div class="icono">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                                                                <path
+                                                                                    d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <!-- ltn__product-item -->
+                                        <!-- <div class="col-xl-4 col-sm-6 col-6">
+
+                                            <div class="ltn__product-item ltn__product-item-3 text-center">
+
+                                                <div class="product-img">
+                                                    <a href="product-details.html"><img src="img/product/1.png" alt="#"></a>
+                                                    <div class="product-badge">
+                                                        <ul>
+                                                            <li class="sale-badge">New</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product-hover-action">
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
+                                                                    <i class="far fa-eye"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
+                                                                    <i class="fas fa-shopping-cart"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
+                                                                    <i class="far fa-heart"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product-info">
+                                                    <div class="product-ratting">
+                                                        <ul>
+                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                                            <li><a href="#"><i class="far fa-star"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <h2 class="product-title"><a href="product-details.html">Digital Stethoscope</a></h2>
+                                                    <div class="product-price">
+                                                        <span>$149.00</span>
+                                                        <del>$162.00</del>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <!--  -->
+                                    </div>
+                                </div>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="col-lg-4  mb-120">
+                        <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
+                            <!-- Category Widget -->
+                            <div class="widget ltn__menu-widget">
+                                <h4 class="ltn__widget-title ltn__widget-title-border">Productos por categoria</h4>
+                                <ul>
+                                    <li><a href="portfolio-details.html">Hand Sanitizer <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="portfolio-details.html">Lab N95 Face Mask <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="portfolio-details.html">Hand Gloves <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="portfolio-details.html">Medical Equipment <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="portfolio-details.html">New Arrival Product <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="portfolio-details.html">Uncategorized <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="portfolio-details.html">Special Offers <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                </ul>
+                            </div>
+                            <!-- Price Filter Widget -->
+                            <div class="widget ltn__price-filter-widget">
+                                <h4 class="ltn__widget-title ltn__widget-title-border">Filtrar por precio</h4>
+                                <div class="price_filter">
+                                    <div class="price_slider_amount">
+                                        <input type="submit"  value="Rango:"/> 
+                                        <input type="range" class="amount" name="price"  placeholder="Add Your Price" /> 
+                                    </div>
+                                    <div class="slider-range"></div>
+                                </div>
+                            </div>
+                            <!-- Search Widget -->
+                            <div class="widget ltn__search-widget">
+                                <h4 class="ltn__widget-title ltn__widget-title-border">Buscar producto</h4>
+                                <form action="#">
+                                    <input type="text" name="search" placeholder="Producto...">
+                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                </form>
+                            </div>        
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- CARDS -->
         <section class="cards">
             <div class="container d-flex">
@@ -215,6 +412,7 @@
                 </div>
             </div>
         </section>
+
     </main>
 
 
