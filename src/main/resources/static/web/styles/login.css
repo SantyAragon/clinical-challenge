@@ -103,21 +103,13 @@ a {
 }
 
 
-.logo {
-    float: left;
-    margin: 12px 36px;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    font-size: 24px;
-}
-
 nav {
     width: 100vw;
-    height: 60px;
+    height: 75px;
     box-shadow: 0 8px 20px rgba(43, 43, 43, 0.2);
 }
 
-.contenedor-nav{
+nav .contenedor-nav{
     height: 100%;
     display: flex;
     align-items: center;
@@ -126,13 +118,22 @@ nav {
     flex-wrap: wrap;
 }
 
+nav .contenedor-nav .logo {
+}
+
+nav .contenedor-nav .logo img{
+    height: 65px;
+
+    
+}
+
 
 /* LOGIN */
 
 .contenido {
     display: flex;
     position: relative;
-    height: calc(100vh - 60px - 55px);
+    height: calc(100vh - 75px - 55px);
     flex-wrap: wrap;
     align-content: center;
     justify-content: space-evenly;
@@ -151,7 +152,7 @@ nav {
     bottom: 0;
 }
 
-img {
+.particulas-top .particulas-bottom img {
     border: 0;
 }
 
@@ -302,7 +303,7 @@ img {
     }
 
     .login {
-        height: calc(100vh - 60px - 55px);
+        height: calc(100vh - 75px - 55px);
     }
 
     .login__content {
@@ -330,7 +331,7 @@ img {
 @media screen and (max-width:900px) {
 
     .login {
-        height: calc(100vh - 60px - 55px)
+        height: calc(100vh - 75px - 55px)
     }
 
 
@@ -365,7 +366,7 @@ img {
 @media screen and (max-width:300px) {
 
     .login {
-        height: calc(100vh - 60px - 55px)
+        height: calc(100vh - 75px - 55px)
     }
 
     .login__forms {
@@ -388,10 +389,33 @@ img {
 
 
 footer {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
     height: 55px;
     flex-wrap: wrap;
     box-shadow: 0 8px 20px rgba(43, 43, 43, 0.2);
     width: 100vw;
+    background-color: #77C7C9;
+    color: white;
+}
+
+.iconos-redes{
+    margin-right: 25px;
+}
+
+@media screen and (max-width: 450px){
+    footer{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .iconos-redes{
+        margin-right: 10px;
+    }
+
 }
 
 
