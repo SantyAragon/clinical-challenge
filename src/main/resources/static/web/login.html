@@ -108,13 +108,13 @@
                                         :class="passwordType == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
                                         aria-hidden="true" id="eye"></i>
                                 </div>
-                                <a href="#" class="login__forgot">Olvidaste la contraseña? </a>
+                                <a @click="forgotPassword" href="#" class="login__forgot">Olvidaste la contraseña? </a>
 
-                                <button type="submit" class="login__button">Log in</button>
+                                <button type="submit" class="login__button">Acceder</button>
 
                                 <div>
                                     <span class="login__account login__account--account">No tienes una cuenta?</span>
-                                    <span @click.capture="toggleClass" class="login__signin login__signup--signup"
+                                    <span @click="registerForm" class="login__signin login__signup--signup"
                                         id="sign-up"> Registrate ahora!</span>
                                 </div>
                             </form>
@@ -153,16 +153,33 @@
                                         aria-hidden="true" id="eye"></i>
                                 </div>
 
-                                <button type="submit" class="login__button">Sign Up</button>
+                                <button type="submit" class="login__button">Registrarse</button>
 
                                 <div>
-                                    <span class="login__account login__account--account">Already have an Account?</span>
-                                    <span @click.capture="toggleClass" class="login__signup login__signin--signin"
-                                        id="sign-in"> Sign In</span>
+                                    <span class="login__account login__account--account">Ya tienes una cuenta?</span>
+                                    <span @click.capture="loginForm" class="login__signup login__signin--signin"
+                                        id="sign-in"> Acceder</span>
                                 </div>
 
-
                             </form>
+
+                            <form @submit.prevent="resetPassword" class="login__register none" id="reset">
+                                <h1 class="login__title">Recuperar contraseña</h1>
+                                <div class="login__box">
+                                    <i class='bi bi-person-fill login__icon'></i>
+                                    <input type="email" placeholder="Email" class="login__input" v-model="resetEmail">
+                                </div>
+                                
+                                <button type="submit" class="login__button">Confirmar</button>
+
+                                <div>
+                                    <span class="login__account login__account--account">Ya tienes una cuenta?</span>
+                                    <span @click.capture="backToSignIn" class="login__signup login__signin--signin"
+                                        id="sign-in"> Acceder</span>
+                                </div>
+                            </form>
+
+
                         </div>
                     </div>
                 </div>
