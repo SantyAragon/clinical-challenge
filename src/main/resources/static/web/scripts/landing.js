@@ -37,6 +37,12 @@ Vue.createApp({
         $(this).parents('li').addClass('active').siblings().removeClass('active');
         e.preventDefault();
     });
+    const btns = document.querySelectorAll('button');
+    btns.forEach((items)=>{
+        items.addEventListener('click',(evt)=>{
+            evt.target.classList.add('activeLoading');
+        })
+    });
 
     },
     

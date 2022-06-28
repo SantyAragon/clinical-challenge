@@ -1,0 +1,86 @@
+.laboratorio div {
+    margin: 5vh;
+}
+
+.laboratorio div p {
+    text-align: justify;
+}
+
+.laboratorio div ul {
+    /* text-indent: 20px; */
+    padding-left: 80px;
+    text-align: left;
+}
+
+ /* //CARD ANÁLISIS */
+.card-analisis {
+    margin: 0px;
+    background: linear-gradient(rgba(56, 192, 241, 0.461) 10%, rgba(28, 154, 200, 0.658) 50%, rgba(0, 130, 200, 0.816) 100%);
+    /* background-image: url(); */
+    font-family: "Montserrat", Arial;
+    /* position: absolute; */
+    /* background-color: #F8F8F8; */
+    border-radius: 1.5em;
+    /* min-width: 100px; */
+    /* max-width: 1170px; */
+    /* width: 60%; */
+    /* padding: 2em 2.8em; */
+    padding: 10px 5px;
+    cursor: pointer;
+    /* top: 50%; */
+    /* transform: translate(-50%, -50%); */
+    /* left: 40%; */
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1), 
+        0 8px 8px rgba(0, 0, 0, 0.1),
+        0 16px 16px rgba(0, 0, 0, 0.1), 
+        0 32px 32px rgba(0, 0, 0, 0.15),
+        0 64px 64px rgba(0, 0, 0, 0.15);
+}
+
+.card-analisis h2 {
+    padding: 20px;
+    width: -webkit-fill-available;
+    display: flex;
+}
+
+/* Scroller styling */
+.scroller {
+    margin: 0px !important;
+    height: 1.2em;
+    line-height: 1.2em;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+.scroller > span {
+    position: absolute;
+    padding: 0px 10px;
+    top: 0;
+    animation: slide 5s infinite;
+    font-weight: bold;
+}
+@keyframes slide {
+    0% {
+        top: 0;
+    }
+    20% {
+        top: -1.2em;
+    }
+    40% {
+        top: -2.4em;
+    }
+    60% {
+        top: -3.6em;
+    }
+    80% {
+        top: -4.8em;
+    }
+}
+.img-der {
+    border: rgb(37, 85, 244) solid 3px ;
+    border-radius: 30px 5px 15px 5px;
+}
+.img-izq {
+    border: rgb(37, 85, 244) solid 3px ;
+    border-radius: 5px 30px 5px 15px;
+}

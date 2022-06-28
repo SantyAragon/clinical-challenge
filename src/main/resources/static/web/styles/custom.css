@@ -816,6 +816,7 @@ a {
 /* PLANES */
 
 .sect--padding-bottom{
+  margin-top: 50px;
   padding-bottom:115px;
 }
 
@@ -832,7 +833,7 @@ a {
   text-align: center;
   font-size: 26px;
   font-weight: 400;
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 .row__sub {
@@ -1577,4 +1578,109 @@ section .section-title {
   width: 120px;
   height: 120px;
   border-radius: 50%;
+}
+
+.fondo-lab {
+  display: flex;
+  justify-content: center;
+  height: 70vh;
+  width: 100%;
+  margin: 20px 0px;
+  /* padding: 5%; */
+}
+
+.imagen-lab {
+  background-image: url(../assets/laboratory.png);
+  background-size: contain;
+  background-position: center;
+  margin: 5vh;
+  border-radius: 5px 25px 80px;
+  height: 100%;
+  width: 70%;
+  border: rgb(77, 2, 198) solid 3px;
+}
+
+.imagen-lab div {
+  height: inherit;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+ 
+.fondo-lab button {
+    padding: 10px 5px;
+    font-size: 1.5em;
+    width:150px;
+    cursor: pointer;
+    border: 0px;
+    position: relative;
+    margin: 0px 80px 25px 0px;
+    transition: all .25s ease;
+    background: rgba(116, 23, 231, 1);
+    color: #fff;
+    overflow: hidden;
+    border-radius: 10px
+}
+
+.fondo-lab .load {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: inherit
+}
+
+.load::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    animation: loading1 1s ease infinite;
+    z-index: 10
+}
+
+.fondo-lab .load::before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 3px dashed #fff;
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    animation: loading1 2s linear infinite;
+    z-index: 5
+}
+
+@keyframes loading1 {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.fondo-lab button.active {
+    transform: scale(.85)
+}
+
+.fondo-lab button.activeLoading .loading {
+    visibility: visible;
+    opacity: 1
+}
+
+.fondo-lab button .loading {
+    opacity: 0;
+    visibility: hidden
 }
