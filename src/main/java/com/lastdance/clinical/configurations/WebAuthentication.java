@@ -34,7 +34,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
             } else {
 
-                throw new UsernameNotFoundException("Unknown paciente: " + inputName);
+                throw new UsernameNotFoundException("Paciente desconocido: " + inputName);
 
             }
 
