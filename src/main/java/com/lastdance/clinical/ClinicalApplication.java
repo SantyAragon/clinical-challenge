@@ -53,6 +53,10 @@ public class ClinicalApplication {
             Servicio servicio2 = new Servicio(TipoServicio.LABORATORIO,6000d);
             Servicio servicio3 = new Servicio(TipoServicio.OBSTETRICIA,1500d);
             Servicio servicio4 = new Servicio(TipoServicio.NEUROLOGIA,8000d);
+            Servicio servicio5 = new Servicio(TipoServicio.DENTISTA, 7000d);
+            Servicio servicio6 = new Servicio(TipoServicio.OFTALMOLOGIA, 12000d);
+            Servicio servicio7 = new Servicio(TipoServicio.PEDIATRIA, 5000d);
+            Servicio servicio8 = new Servicio(TipoServicio.URGENCIAS, 2000d);
 
 
             //CREO PROFESIONALES QUE VAN A PERTENER A UN SERVICIO
@@ -60,9 +64,15 @@ public class ClinicalApplication {
             Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUJANO, servicio1);
             Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGO, servicio1);
             Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGO, servicio2);
-            Profesional profesional4 = new Profesional("Guille", "Bergesio", NEUROLOGO, servicio4);
+            Profesional profesional4 = new Profesional("Guille", "Bergessio", NEUROLOGO, servicio4);
             Profesional profesional5 = new Profesional("Facu", "Araujo", NEUROLOGO, servicio4);
             Profesional profesional6 = new Profesional("Santi", "Aragon",OBSTETRA,servicio3);
+            Profesional profesional7 = new Profesional("Thomas", "Coutoune", CIRUJANO, servicio1);
+            Profesional profesional8 = new Profesional("Lucio", "Fernandez", PEDIATRA, servicio7);
+            Profesional profesional9 = new Profesional("Facundo", "Lorenzo", DENTISTA, servicio5);
+            Profesional profesional10 = new Profesional("Pablo", "Figueroa", OFTALMOLOGO, servicio6);
+            Profesional profesional11 = new Profesional("Flavio", "Ambroggio", NEUROLOGO, servicio7);
+
 
             servicio1.addProfesional(profesional1);
             servicio3.addProfesional(profesional6);
@@ -71,12 +81,21 @@ public class ClinicalApplication {
             servicioRepository.save(servicio2);
             servicioRepository.save(servicio3);
             servicioRepository.save(servicio4);
+            servicioRepository.save(servicio5);
+            servicioRepository.save(servicio6);
+            servicioRepository.save(servicio7);
+            servicioRepository.save(servicio8);
             profesionalRepository.save(profesional1);
             profesionalRepository.save(profesional2);
             profesionalRepository.save(profesional3);
             profesionalRepository.save(profesional4);
             profesionalRepository.save(profesional5);
             profesionalRepository.save(profesional6);
+            profesionalRepository.save(profesional7);
+            profesionalRepository.save(profesional8);
+            profesionalRepository.save(profesional9);
+            profesionalRepository.save(profesional10);
+            profesionalRepository.save(profesional11);
 
             //CREANDO PRODUCTOS
             Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d,"https://propato.com.ar/wp-content/uploads/jeringa-thomey-60cc-neojet-11851-1.jpg");
@@ -88,6 +107,13 @@ public class ClinicalApplication {
             Producto producto7 = new Producto("Tijera Metzembaum 16cm", TipoProducto.INSUMOS_QUIRURGICOS, 200, 1100d, "https://http2.mlstatic.com/D_NQ_NP_791969-MLA46542345670_062021-V.webp");
             Producto producto8 = new Producto("Insumo Guantes Latex x100", TipoProducto.INSUMOS_QUIRURGICOS, 500, 1600d, "https://http2.mlstatic.com/D_NQ_NP_974905-MLA45283398291_032021-V.webp" );
             Producto producto9 = new Producto("Evatest Easy Plus", TipoProducto.TEST_RAPIDOS, 50, 700d, "https://http2.mlstatic.com/D_NQ_NP_684221-MLA48050711576_102021-V.webp");
+            Producto producto10 = new Producto("Tambor acero inoxidable", TipoProducto.INSUMOS_QUIRURGICOS, 10, 9000d, "https://http2.mlstatic.com/D_NQ_NP_943950-MLA46383742434_062021-V.webp");
+            Producto producto11 = new Producto("Serum La Roche-Posay", TipoProducto.PRODUCTOS, 250, 9500d, "https://http2.mlstatic.com/D_NQ_NP_916302-MLA49424414969_032022-V.webp");
+            Producto producto12 = new Producto("Protectores de oreja", TipoProducto.PRODUCTOS, 500, 250d, "https://http2.mlstatic.com/D_NQ_NP_979647-MLA47738719533_102021-V.webp");
+            Producto producto13 = new Producto("Pinza Lahey Pasahilo", TipoProducto.INSUMOS_QUIRURGICOS, 100, 4800d, "https://http2.mlstatic.com/D_NQ_NP_724614-MLA49878762415_052022-V.webp");
+            Producto producto14 = new Producto("Rama para Laringoscopio", TipoProducto.INSUMOS_QUIRURGICOS, 50, 2800d, "https://http2.mlstatic.com/D_NQ_NP_920226-MLA50247409626_062022-V.webp");
+            Producto producto15 = new Producto("Cepillo Mano (seco esteril)", TipoProducto.PRODUCTOS, 500, 550d, "https://http2.mlstatic.com/D_NQ_NP_749032-MLA48421851901_122021-V.webp");
+
 
             //GUARDO LOS DATOS
             productoRepository.save(producto1);
@@ -99,6 +125,12 @@ public class ClinicalApplication {
             productoRepository.save(producto7);
             productoRepository.save(producto8);
             productoRepository.save(producto9);
+            productoRepository.save(producto10);
+            productoRepository.save(producto11);
+            productoRepository.save(producto12);
+            productoRepository.save(producto13);
+            productoRepository.save(producto14);
+            productoRepository.save(producto15);
 
             //CREO Y GUARDO LA FACTURA
             Factura factura1 = new Factura(pacientePrueba1);
