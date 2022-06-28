@@ -31,7 +31,7 @@
     <!-- LINK CSS -->
     <link rel="stylesheet" href="./styles/login.css">
 
-    <title>MediHub | Login </title>
+    <title>MediHub | Recuperar contraseña </title>
 </head>
 
 <body>
@@ -66,15 +66,9 @@
 
             <nav>
                 <div class="contenedor-nav">
-                <div class="logo">
+                <div class="logo-recuperar-contraseña">
                     <i class="fa-solid fa-staff-aesculapius"></i> MEDIHUB
-                </div>
-                <div class="menu">
-
-                    <li class=""><a href="" class="btn-volver">Volver</a></li>
-
-                </div>
-                </div>
+                </div> 
             </nav>
 
 
@@ -87,7 +81,7 @@
                 </div>
 
                 <div class="bienvenida-texto col col-md-5 col-12">
-                    <h1>Estamos encantados de formar parte de tu vida!</h1>
+                    <h1>Sigue siendo parte de nuestra familia! </h1>
                 </div>
 
                 <div class="login">
@@ -95,74 +89,29 @@
                         <div class="login__forms">
 
                             <form @submit.prevent="signIn" class="login__register" id="login-in">
-                                <h1 class="login__title">Sign In</h1>
-                                <div class="login__box">
-                                    <i class='bi bi-person-fill login__icon'></i>
-                                    <input type="email" placeholder="Email" class="login__input" v-model="loginEmail">
+                                <h1 class="login__title">Nueva Contraseña</h1>
+                                <div class="login__box d-flex">
+                                    <i class='bi bi-key-fill login__icon'></i>
+                                    <input :type="hideNewPass" class="login__input" placeholder="Nueva contraseña"
+                                        v-model="nuevaContraseña">
+                                    <i @click="toggleType"
+                                        :class="hideNewPass == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+                                        aria-hidden="true" id="eye"></i>
                                 </div>
                                 <div class="login__box d-flex">
                                     <i class='bi bi-key-fill login__icon'></i>
-                                    <input :type="passwordType" class="login__input" placeholder="Contraseña"
-                                        v-model="loginContraseña">
-                                    <i @click="toggleType"
-                                        :class="passwordType == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+                                    <input :type="hideConfirmPass" class="login__input" placeholder="Confirmar contraseña"
+                                        v-model="confirmarContraseña">
+                                    <i @click="toggleType2"
+                                        :class="hideConfirmPass == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
                                         aria-hidden="true" id="eye"></i>
                                 </div>
-                                <a href="#" class="login__forgot">Olvidaste la contraseña? </a>
+                                <a href="#" class="login__forgot"></a>
 
-                                <button type="submit" class="login__button">Log in</button>
-
-                                <div>
-                                    <span class="login__account login__account--account">No tienes una cuenta?</span>
-                                    <span @click.capture="toggleClass" class="login__signin login__signup--signup"
-                                        id="sign-up"> Registrate ahora!</span>
-                                </div>
-                            </form>
-
-                            <form @submit.prevent="signUp" class="login__create none" id="login-up">
-                                <h1 class="login__title">Registrarse</h1>
-                                <div class="login__box">
-                                    <i class='bi bi-person-lines-fill login__icon'></i>
-                                    <input type="text" placeholder="Nombre" class="login__input"
-                                        v-model="registroNombre">
-                                </div>
-
-                                <div class="login__box">
-                                    <i class='bi bi-person-lines-fill login__icon'></i>
-                                    <input type="text" placeholder="Apellido" class="login__input"
-                                        v-model="registroApellido">
-                                </div>
-
-                                <div class="login__box">
-                                    <i class='bi bi-envelope-fill login__icon'></i>
-                                    <input type="text" placeholder="DNI" class="login__input" v-model="registroDni">
-                                </div>
-
-                                <div class="login__box">
-                                    <i class='bi bi-envelope-fill login__icon'></i>
-                                    <input type="email" placeholder="Email" class="login__input"
-                                        v-model="registroEmail">
-                                </div>
-
-                                <div class="login__box d-flex">
-                                    <i class='bi bi-key-fill login__icon'></i>
-                                    <input :type="passwordType" class="login__input" placeholder="Contraseña"
-                                        v-model="registroPassword" />
-                                    <i @click="toggleType"
-                                        :class="passwordType == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
-                                        aria-hidden="true" id="eye"></i>
-                                </div>
-
-                                <button type="submit" class="login__button">Sign Up</button>
-
-                                <div>
-                                    <span class="login__account login__account--account">Already have an Account?</span>
-                                    <span @click.capture="toggleClass" class="login__signup login__signin--signin"
-                                        id="sign-in"> Sign In</span>
-                                </div>
-
+                                <button type="submit" class="login__button">Confirmar</button>
 
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -218,7 +167,7 @@
     <!-- VUE -->
     <script src="https://unpkg.com/vue@3"></script>
     <!-- FILE JS -->
-    <script src="./scripts/login.js"></script>
+    <script src="./scripts/recuperar-contraseña.js"></script>
     <!-- ANIMATE AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>

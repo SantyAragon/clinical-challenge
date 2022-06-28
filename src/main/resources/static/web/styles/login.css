@@ -1,8 +1,8 @@
 :root {
-    --color: #4AD395;
+    --color: #AEDCC4;
     --color-dark: #23004d;
-    --color-light: #a49eac;
-    --color-lighten: #f2f2f2;
+    --color-light: #9EE0E3;
+    --color-lighten: #f2f2f296;
     --color-hover: #65bf97;
     --big-font-size: 1.5rem;
     --normal-font-size: 0.938rem;
@@ -20,16 +20,10 @@ body {
     margin: 0;
     padding: 0;
     font-size: var(--normal-font-size);
-    color: var(--color-dark);
-    max-width: 100vw;
-    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
 }
 
-.body {
-    background: url("../assets/loginbackground.png");
-    background-position: center;
-    background-size: cover;
-}
 
 h1 {
     margin: 0;
@@ -101,107 +95,73 @@ a {
 
 /* NAV */
 
-.logo {
-    float: left;
-    margin: 16px 36px;
+.logo-recuperar-contraseña{
+    margin: 12px 36px;
     color: rgb(0, 0, 0);
     font-weight: bold;
     font-size: 24px;
 }
 
 
+.logo {
+    float: left;
+    margin: 12px 36px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 24px;
+}
+
 nav {
     width: 100vw;
-    height: 80px;
+    height: 60px;
     box-shadow: 0 8px 20px rgba(43, 43, 43, 0.2);
 }
 
-nav ul {
+.contenedor-nav{
+    height: 100%;
+    display: flex;
+    align-items: center;
     list-style: none;
-    background: rgba(0, 0, 0, 0);
-    overflow: hidden;
-    color: #fff;
-    padding: 0;
-    text-align: center;
-    margin: 0;
-    transition: 1s;
-}
-
-nav.black ul {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-nav ul li {
-    display: inline-block;
-    padding: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-}
-
-/*MENU ICON*/
-.menu-icon {
-    width: 100%;
-    background: #000;
-    text-align: right;
-    box-sizing: border-box;
-    padding: 15px 24px;
-    cursor: pointer;
-    color: rgb(0, 0, 0);
-    display: none;
-}
-
-/*RESPONSIVE NAV*/
-@media(max-width: 580px) {
-    .logo {
-        position: fixed;
-        top: 0;
-        margin-top: 16px;
-    }
-
-    nav ul {
-        max-height: 0px;
-        background: #000;
-    }
-
-    nav.black ul {
-        background: #000;
-    }
-
-    .showing {
-        max-height: 20em;
-    }
-
-    nav ul li {
-        box-sizing: border-box;
-        width: 100%;
-        padding: 24px 0px;
-        text-align: center;
-    }
-
-    .menu-icon {
-        display: block;
-    }
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 
 /* LOGIN */
 
+.contenido {
+    display: flex;
+    position: relative;
+    height: calc(100vh - 60px - 55px);
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.particulas-top {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.particulas-bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+img {
+    border: 0;
+}
+
 .login {
-    height: calc(100vh - 80px - 238px);
-    display: grid;
-    grid-template-columns: 100%;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    display: flex;
 }
 
 
 .login__content {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
+    display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 10rem;
@@ -225,7 +185,7 @@ nav ul li a {
     border-radius: 1rem;
     text-align: center;
     box-shadow: 0 8px 20px rgba(35, 0, 77, .2);
-    animation-duration: .4s;
+    animation-duration: .5s;
     animation-name: animateLogin;
 }
 
@@ -243,8 +203,7 @@ nav ul li a {
 }
 
 .login__box {
-    display: grid;
-    grid-template-columns: max-content 1fr;
+    display: flex;
     column-gap: .5rem;
     padding: 1.125rem 1rem;
     background-color: #fff;
@@ -306,7 +265,7 @@ nav ul li a {
 
 .login__signin--signin,
 .login__signup--signup {
-    color: var(--color);
+    color: var(--color-light);
     cursor: pointer;
 }
 
@@ -343,11 +302,11 @@ nav ul li a {
     }
 
     .login {
-        height: calc(100vh - 80px - 293px);
+        height: calc(100vh - 60px - 55px);
     }
 
     .login__content {
-        grid-template-columns: repeat(2, max-content);
+        display: flex;
         justify-content: center;
         align-items: center;
         margin-left: 10rem;
@@ -371,14 +330,12 @@ nav ul li a {
 @media screen and (max-width:900px) {
 
     .login {
-        height: calc(100vh - 80px - 293px);
+        height: calc(100vh - 60px - 55px)
     }
 
 
     .login__content {
-        display: grid;
-        grid-template-columns: 100%;
-        height: 100vh;
+        height: 100%;
         margin-left: 1.5rem;
         margin-right: 1.5rem;
         align-content: center;
@@ -397,10 +354,18 @@ nav ul li a {
 
 }
 
+@media screen and (max-width:649px) {
+    .particulas-top{
+        display: none;
+    }
+
+
+}
+
 @media screen and (max-width:300px) {
 
     .login {
-        height: calc(100vh - 80px - 293px);
+        height: calc(100vh - 60px - 55px)
     }
 
     .login__forms {
@@ -413,32 +378,60 @@ nav ul li a {
         padding: 1rem 0.5rem;
     }
 
+    .logo{
+        left: 0;
+        margin: 0;
+        padding: 0;
+    }
+
 }
 
-
-.contenido {
-    position: relative;
-}
-
-.particulas-top {
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-.particulas-bottom {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-
-img {
-    border: 0;
-}
 
 footer {
+    height: 55px;
+    flex-wrap: wrap;
     box-shadow: 0 8px 20px rgba(43, 43, 43, 0.2);
-    position: absolute;
     width: 100vw;
-    bottom: 0;
 }
+
+
+
+ .btn-volver{
+    border-radius: 20px;
+    padding: 10px 25px;
+    background-color: #fff;
+    border: 1px solid #ededed;
+    color: #8198ae;
+  }
+
+    .btn-volver:hover{
+    background-color: #63b2fc;
+    color: #8198ae;
+    }
+    
+
+
+  /* .btn{
+    background-color:#3a9fff;
+    border-radius: 20px;
+    padding: 10px 25px;
+    color: #fff;
+    box-shadow: 0px 18px 13px -6px rgba(0, 0, 0,0.2);
+    transition: all 0.4s;
+  }
+
+  .btn:hover{
+    box-shadow: 0px 25px 18px -6px rgba(0, 0, 0,0.2);
+    background-color: #63b2fc;
+    color: #fff;
+    }
+    
+  .btn--white{
+    background-color: #fff;
+    border: 1px solid #ededed;
+    color: #8198ae;
+  }
+  .btn--white:hover{
+    background-color: #fff;
+    color: #8198ae;
+  } */
