@@ -102,21 +102,23 @@ public class ClinicalApplication {
             profesionalRepository.save(profesional11);
 
             //CREANDO PRODUCTOS
-            Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d, "https://propato.com.ar/wp-content/uploads/jeringa-thomey-60cc-neojet-11851-1.jpg", "La mejor jeringa de todo el mundo");
-            Producto producto2 = new Producto("Kit quirurgico", TipoProducto.INSUMOS_QUIRURGICOS, 50, 500d, "http://www.goatindumentaria.com.ar/wp-content/uploads/2020/08/008_Kit-Descartable_Goat-Indumentaria-1.jpg", "Los mejores productos de la clinica");
-            Producto producto3 = new Producto("Test rapido Covid", TipoProducto.TEST_RAPIDOS, 200, 250d, "https://1.bp.blogspot.com/-QFng5CA0lJs/YHbmIJIFZKI/AAAAAAACa2g/jqW0x920jTM6j7FDnKCgA0XXOi9lMi_owCLcBGAsYHQ/s1024/product_17845eb508654870b7af8376fcccd9f6_637533208097428237_0_l.jpeg", "Los mejores productos de la clinica");
-            Producto producto4 = new Producto("Paracetamol 1000mg x50u ", TipoProducto.PRODUCTOS, 200, 250d, "https://farmalife.vteximg.com.br/arquivos/ids/170440-1200-1200/34399822-7e5a-4213-af1e-65a8cb9de0d1.jpg?v=637369026880370000", "Los mejores productos de la clinica");
-            Producto producto5 = new Producto("Mascarillas Descartables x50u", TipoProducto.PRODUCTOS, 100, 1100d, "https://images-na.ssl-images-amazon.com/images/I/61ihbeIDGVL._AC_SL1001_.jpg", "Los mejores productos de la clinica");
-            Producto producto6 = new Producto("Camisolines Hemorepelentes x10", TipoProducto.PRODUCTOS, 300, 1200d, "https://http2.mlstatic.com/D_NQ_NP_896515-MLA49400238394_032022-V.webp", "Los mejores productos de la clinica");
-            Producto producto7 = new Producto("Tijera Metzembaum 16cm", TipoProducto.INSUMOS_QUIRURGICOS, 200, 1100d, "https://http2.mlstatic.com/D_NQ_NP_791969-MLA46542345670_062021-V.webp", "Los mejores productos de la clinica");
-            Producto producto8 = new Producto("Insumo Guantes Latex x100", TipoProducto.INSUMOS_QUIRURGICOS, 500, 1600d, "https://http2.mlstatic.com/D_NQ_NP_974905-MLA45283398291_032021-V.webp", "Los mejores productos de la clinica");
-            Producto producto9 = new Producto("Evatest Easy Plus", TipoProducto.TEST_RAPIDOS, 50, 700d, "https://http2.mlstatic.com/D_NQ_NP_684221-MLA48050711576_102021-V.webp", "Los mejores productos de la clinica");
-            Producto producto10 = new Producto("Tambor acero inoxidable", TipoProducto.INSUMOS_QUIRURGICOS, 10, 9000d, "https://http2.mlstatic.com/D_NQ_NP_943950-MLA46383742434_062021-V.webp", "Los mejores productos de la clinica");
-            Producto producto11 = new Producto("Serum La Roche-Posay", TipoProducto.PRODUCTOS, 250, 9500d, "https://http2.mlstatic.com/D_NQ_NP_916302-MLA49424414969_032022-V.webp", "Los mejores productos de la clinica");
-            Producto producto12 = new Producto("Protectores de oreja", TipoProducto.PRODUCTOS, 500, 250d, "https://http2.mlstatic.com/D_NQ_NP_979647-MLA47738719533_102021-V.webp", "Los mejores productos de la clinica");
-            Producto producto13 = new Producto("Pinza Lahey Pasahilo", TipoProducto.INSUMOS_QUIRURGICOS, 100, 4800d, "https://http2.mlstatic.com/D_NQ_NP_724614-MLA49878762415_052022-V.webp", "Los mejores productos de la clinica");
-            Producto producto14 = new Producto("Rama para Laringoscopio", TipoProducto.INSUMOS_QUIRURGICOS, 50, 2800d, "https://http2.mlstatic.com/D_NQ_NP_920226-MLA50247409626_062022-V.webp", "Los mejores productos de la clinica");
-            Producto producto15 = new Producto("Cepillo Mano (seco esteril)", TipoProducto.PRODUCTOS, 500, 550d, "https://http2.mlstatic.com/D_NQ_NP_749032-MLA48421851901_122021-V.webp", "Los mejores productos de la clinica");
+
+            Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d,"https://propato.com.ar/wp-content/uploads/jeringa-thomey-60cc-neojet-11851-1.jpg","Jeringa desechable estéril Tuberculina");
+            Producto producto2 = new Producto("Kit quirurgico", TipoProducto.INSUMOS_QUIRURGICOS, 50, 500d,"http://www.goatindumentaria.com.ar/wp-content/uploads/2020/08/008_Kit-Descartable_Goat-Indumentaria-1.jpg","Kit caja + instrumental");
+            Producto producto3 = new Producto("Test rapido Covid", TipoProducto.TEST_RAPIDOS, 200, 250d,"https://1.bp.blogspot.com/-QFng5CA0lJs/YHbmIJIFZKI/AAAAAAACa2g/jqW0x920jTM6j7FDnKCgA0XXOi9lMi_owCLcBGAsYHQ/s1024/product_17845eb508654870b7af8376fcccd9f6_637533208097428237_0_l.jpeg","Test rapido de antigeno, Indica la presencia de una parte constituyente del virus. Esta práctica está recomendada para PERSONAS SINTOMÁTICAS que presentan hasta 7 días de evolución");
+            Producto producto4 = new Producto("Paracetamol 1000mg x50u ", TipoProducto.PRODUCTOS, 200, 250d,"https://farmalife.vteximg.com.br/arquivos/ids/170440-1200-1200/34399822-7e5a-4213-af1e-65a8cb9de0d1.jpg?v=637369026880370000","Se utiliza, tanto para aliviar el dolor debido a su actividad analgésica, como para reducir la fiebre, gracias a su actividad antipirética");
+            Producto producto5 = new Producto("Mascarillas Descartables x50u", TipoProducto.PRODUCTOS, 100, 1100d, "https://images-na.ssl-images-amazon.com/images/I/61ihbeIDGVL._AC_SL1001_.jpg","Barbijo Con Elastico Clip Nasal X100 Termosellado Importado Triple Filtro");
+            Producto producto6 = new Producto("Camisolines Hemorepelentes x10", TipoProducto.PRODUCTOS, 300, 1200d, "https://http2.mlstatic.com/D_NQ_NP_896515-MLA49400238394_032022-V.webp","Camisolines hemorepelentes ropa descartable NO esteril (gramaje 45gr) ¡SON MUY GRUESOS! Autorizados por la ANMAT PM 1057-10 (Administracion Nacional de Medicamentos, Alimentos y Tecnologia Medica)");
+            Producto producto7 = new Producto("Tijera Metzembaum 16cm", TipoProducto.INSUMOS_QUIRURGICOS, 200, 1100d, "https://http2.mlstatic.com/D_NQ_NP_791969-MLA46542345670_062021-V.webp","TIJERA METZENBAUM CURVA 14 CM + TIJERA IRIS 09,0 CM. CURVA");
+            Producto producto8 = new Producto("Insumo Guantes Latex x100", TipoProducto.INSUMOS_QUIRURGICOS, 500, 1600d, "https://http2.mlstatic.com/D_NQ_NP_974905-MLA45283398291_032021-V.webp" ,"Los guantes de látex son cómodos de usar, higiénicos y ofrecen un alto grado de flexibilidad y destreza en el uso. Asimismo, son una barrera de seguridad en relación con ciertos químicos, agentes cáusticos, detergentes o desechos biológicos");
+            Producto producto9 = new Producto("Evatest Easy Plus", TipoProducto.TEST_RAPIDOS, 50, 700d, "https://http2.mlstatic.com/D_NQ_NP_684221-MLA48050711576_102021-V.webp","test de embarazo que puede ser utilizado hasta 6 días antes de la fecha estimada de menstruación, es decir 5 días antes de la fecha en la que debería iniciarse el periodo.");
+            Producto producto10 = new Producto("Tambor acero inoxidable", TipoProducto.INSUMOS_QUIRURGICOS, 10, 9000d, "https://http2.mlstatic.com/D_NQ_NP_943950-MLA46383742434_062021-V.webp","Algodonero Tambor Acero Inoxidable Grande Estética Pedicuria");
+            Producto producto11 = new Producto("Serum La Roche-Posay", TipoProducto.PRODUCTOS, 250, 9500d, "https://http2.mlstatic.com/D_NQ_NP_916302-MLA49424414969_032022-V.webp","Recomendada por dermatólogos, La Roche-Posay es una marca que apuesta a la innovación y la eficacia para ofrecer soluciones a personas con pieles sensibles. A través de sus productos, busca mejorar la vida de quienes los eligen.");
+            Producto producto12 = new Producto("Protectores de oreja", TipoProducto.PRODUCTOS, 500, 250d, "https://http2.mlstatic.com/D_NQ_NP_979647-MLA47738719533_102021-V.webp","Para que los elásticos del barbijo no lastimen las orejas por el uso continuo, Medida del protector: 15 cm");
+            Producto producto13 = new Producto("Pinza Lahey Pasahilo", TipoProducto.INSUMOS_QUIRURGICOS, 100, 4800d, "https://http2.mlstatic.com/D_NQ_NP_724614-MLA49878762415_052022-V.webp","pasahilo 24 cm ,marca Belmed, fabricada con acero inox Aleman");
+            Producto producto14 = new Producto("Rama para Laringoscopio", TipoProducto.INSUMOS_QUIRURGICOS, 50, 2800d, "https://http2.mlstatic.com/D_NQ_NP_920226-MLA50247409626_062022-V.webp","Hechas de acero inoxidable grado quirúrgico");
+            Producto producto15 = new Producto("Cepillo Mano (seco esteril)", TipoProducto.PRODUCTOS, 500, 550d, "https://http2.mlstatic.com/D_NQ_NP_749032-MLA48421851901_122021-V.webp","CEPILLO MANO CIRUJANO SECO ESTERIL PRINTEX");
+
 
 
             //GUARDO LOS DATOS
@@ -172,6 +174,8 @@ public class ClinicalApplication {
             factura1.addPacienteServicio(pacienteServicio3);
             factura2.setMonto(pacienteServicio2.getMonto() + pacienteServicio3.getMonto());
             facturaRepository.save(factura2);
+
+            System.out.println("Clinica Medihub -> TRABAJANDO!");
         };
     }
 }
