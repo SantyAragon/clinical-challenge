@@ -26,6 +26,8 @@ dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.7.0'
 	// https://mvnrepository.com/artifact/com.lowagie/itext PDF
 	implementation group: 'com.lowagie', name: 'itext', version: '2.1.7'
+	// seguridad spring
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
