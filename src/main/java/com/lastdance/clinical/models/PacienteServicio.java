@@ -24,6 +24,10 @@ public class PacienteServicio {
     @JoinColumn(name = "servicio_id")
     private Servicio servicio;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "profesional_id")
+    private Profesional profesional;
+
 
     public PacienteServicio() {
     }
@@ -33,6 +37,14 @@ public class PacienteServicio {
         this.fecha = fecha;
         this.factura = factura;
         this.servicio = servicio;
+    }
+
+    public PacienteServicio(Double monto, LocalDateTime fecha, Factura factura, Servicio servicio, Profesional profesional) {
+        this.monto = monto;
+        this.fecha = fecha;
+        this.factura = factura;
+        this.servicio = servicio;
+        this.profesional = profesional;
     }
 
     public Long getId() {
@@ -70,5 +82,13 @@ public class PacienteServicio {
 
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
+    }
+
+    public Profesional getProfesional() {
+        return profesional;
+    }
+
+    public void setProfesional(Profesional profesional) {
+        this.profesional = profesional;
     }
 }

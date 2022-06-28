@@ -21,6 +21,8 @@
 
     <!-- LINK CSS -->
     <link rel="stylesheet" href="./styles/carrito.css">
+    <link rel="stylesheet" href="./styles/farmacia.css">
+
 
     <title>Clinica - Productos</title>
 
@@ -29,62 +31,53 @@
 <body>
 
     <main id="app">
-        <h1>Shopping Cart</h1>
+
+        <div class="div-imagen text-left bg-overlay-white-30 bg-image ">
+            <div class="ltn__breadcrumb-inner">
+                <h1 class="page-title">CARRITO DE COMPRAS</h1>
+                <div class="ltn__breadcrumb-list">
+                    <ul>
+                        <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span>
+                                Home</a></li>
+                        <li><a href="index.html"><span class="ltn__secondary-color"></i></span> Farmacia</a></li>
+                        <li>Carrito de compras</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <div class="shopping-cart">
 
             <div class="column-labels">
-                <label class="product-image">Image</label>
-                <label class="product-details">Product</label>
-                <label class="product-price">Price</label>
-                <label class="product-quantity">Quantity</label>
-                <label class="product-removal">Remove</label>
+                <label class="product-image">Imagen</label>
+                <label class="product-details">Producto</label>
+                <label class="product-price">Precio</label>
+                <label class="product-quantity">Cantidad</label>
+                <label class="product-removal">Eliminar</label>
                 <label class="product-line-price">Total</label>
             </div>
 
-            <div class="product">
+            <div class="product" v-for="carrito in gCarrito">
                 <div class="product-image">
-                    <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+                    <img :src="carrito.imagen">
                 </div>
                 <div class="product-details">
-                    <div class="product-title">Dingo Dog Bones</div>
-                    <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging
-                        for these things! I got curious once and ate one myself. I'm a fan.</p>
+                    <div class="product-title">{{carrito.nombre}}</div>
+                    <p class="product-description">{{carrito.descripcion}}</p>
                 </div>
-                <div class="product-price">12.99</div>
+                <div class="product-price">{{carrito.precio}}</div>
                 <div class="product-quantity">
-                    <input type="number" value="2" min="1">
+                    <input type="number" :value="carrito.cantidad" min="1">
                 </div>
                 <div class="product-removal">
-                    <button class="remove-product">
+                    <button class="remove-product" v-on:click="removeItem(carrito)">
                         Remove
                     </button>
                 </div>
-                <div class="product-line-price">25.98</div>
+                <div class="product-line-price">{{carrito.precio * carrito.cantidad}}</div>
             </div>
 
-            <div class="product">
-                <div class="product-image">
-                    <img src="https://s.cdpn.io/3/large-NutroNaturalChoiceAdultLambMealandRiceDryDogFood.png">
-                </div>
-                <div class="product-details">
-                    <div class="product-title">Nutro™ Adult Lamb and Rice Dog Food</div>
-                    <p class="product-description">Who doesn't like lamb and rice? We've all hit the halal cart at 3am
-                        while quasi-blackout after a night of binge drinking in Manhattan. Now it's your dog's turn!</p>
-                </div>
-                <div class="product-price">45.99</div>
-                <div class="product-quantity">
-                    <input type="number" value="1" min="1">
-                </div>
-                <div class="product-removal">
-                    <button class="remove-product">
-                        Remove
-                    </button>
-                </div>
-                <div class="product-line-price">45.99</div>
-            </div>
-
-            <div class="totals">
+            <!-- <div class="totals">
                 <div class="totals-item">
                     <label>Subtotal</label>
                     <div class="totals-value" id="cart-subtotal">71.97</div>
@@ -101,9 +94,36 @@
                     <label>Grand Total</label>
                     <div class="totals-value" id="cart-total">90.57</div>
                 </div>
-            </div>
+            </div> -->
 
-            <button class="checkout">Checkout</button>
+            <!-- <button class="checkout">Checkout</button> -->
+
+            <div class="shoping-cart-total mt-50">
+                <h4>Total Compra</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Subtotal</td>
+                            <td>${{gTotalEnCarrito}}</td>
+                        </tr>
+                        <tr>
+                            <td>Descuento obra social</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr>
+                            <td>Cupon descuento</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Orden</strong></td>
+                            <td><strong>${{gTotalEnCarrito}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btn-wrapper text-right">
+                    <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Proceder al checkout</a>
+                </div>
+            </div>
 
         </div>
     </main>
@@ -115,7 +135,7 @@
 
     <!-- JQUERY -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
-    
+
     <!-- AXIOS -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- JQUERY -->
@@ -124,6 +144,8 @@
     <!-- VUE -->
     <script src="https://unpkg.com/vue@3"></script>
 
+    <!-- SWEET ALERT -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- ARCHIVO JS -->
     <script src="./scripts/carrito.js"></script>
 </body>

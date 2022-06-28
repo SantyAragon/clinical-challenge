@@ -174,6 +174,14 @@ public class PacienteController {
         return new ResponseEntity<>("Modificacion de estado exitosa", HttpStatus.ACCEPTED);
     }
 
+//    @GetMapping("/autenticado")
+//    public ResponseEntity<Object> estaAutenticado(Authentication authentication) {
+//        if (authentication != null)
+//            return new ResponseEntity<>("autenticado", HttpStatus.ACCEPTED);
+//
+//        return new ResponseEntity<>("no autenticado", HttpStatus.ACCEPTED);
+//    }
+
     public void enviarMailVerificacion(String email) throws MessagingException, UnsupportedEncodingException {
         Paciente paciente = pacienteService.traerPacientePorEmail(email);
 
@@ -182,7 +190,6 @@ public class PacienteController {
         String senderName = "Clinica MediHub";
         String subject = "Verificacion de email de registro";
         String content = generarEmailVerificacion();
-
         MimeMessage mensaje = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mensaje);
 
