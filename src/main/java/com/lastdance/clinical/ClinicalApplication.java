@@ -80,16 +80,25 @@ public class ClinicalApplication {
 
             //CREANDO PRODUCTOS
             Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d,"https://propato.com.ar/wp-content/uploads/jeringa-thomey-60cc-neojet-11851-1.jpg");
-            Producto producto2 = new Producto("Kit quirurgico", TipoProducto.INSUMOS_QUIRUJICOS, 50, 500d,"http://www.goatindumentaria.com.ar/wp-content/uploads/2020/08/008_Kit-Descartable_Goat-Indumentaria-1.jpg");
+            Producto producto2 = new Producto("Kit quirurgico", TipoProducto.INSUMOS_QUIRURGICOS, 50, 500d,"http://www.goatindumentaria.com.ar/wp-content/uploads/2020/08/008_Kit-Descartable_Goat-Indumentaria-1.jpg");
             Producto producto3 = new Producto("Test rapido Covid", TipoProducto.TEST_RAPIDOS, 200, 250d,"https://1.bp.blogspot.com/-QFng5CA0lJs/YHbmIJIFZKI/AAAAAAACa2g/jqW0x920jTM6j7FDnKCgA0XXOi9lMi_owCLcBGAsYHQ/s1024/product_17845eb508654870b7af8376fcccd9f6_637533208097428237_0_l.jpeg");
             Producto producto4 = new Producto("Paracetamol 1000mg x50u ", TipoProducto.PRODUCTOS, 200, 250d,"https://farmalife.vteximg.com.br/arquivos/ids/170440-1200-1200/34399822-7e5a-4213-af1e-65a8cb9de0d1.jpg?v=637369026880370000");
+            Producto producto5 = new Producto("Mascarillas Descartables x50u", TipoProducto.PRODUCTOS, 100, 1100d, "https://images-na.ssl-images-amazon.com/images/I/61ihbeIDGVL._AC_SL1001_.jpg");
+            Producto producto6 = new Producto("Camisolines Hemorepelentes x10", TipoProducto.PRODUCTOS, 300, 1200d, "https://http2.mlstatic.com/D_NQ_NP_896515-MLA49400238394_032022-V.webp");
+            Producto producto7 = new Producto("Tijera Metzembaum 16cm", TipoProducto.INSUMOS_QUIRURGICOS, 200, 1100d, "https://http2.mlstatic.com/D_NQ_NP_791969-MLA46542345670_062021-V.webp");
+            Producto producto8 = new Producto("Insumo Guantes Latex x100", TipoProducto.INSUMOS_QUIRURGICOS, 500, 1600d, "https://http2.mlstatic.com/D_NQ_NP_974905-MLA45283398291_032021-V.webp" );
+            Producto producto9 = new Producto("Evatest Easy Plus", TipoProducto.TEST_RAPIDOS, 50, 700d, "https://http2.mlstatic.com/D_NQ_NP_684221-MLA48050711576_102021-V.webp");
 
             //GUARDO LOS DATOS
             productoRepository.save(producto1);
             productoRepository.save(producto2);
             productoRepository.save(producto3);
             productoRepository.save(producto4);
-
+            productoRepository.save(producto5);
+            productoRepository.save(producto6);
+            productoRepository.save(producto7);
+            productoRepository.save(producto8);
+            productoRepository.save(producto9);
 
             //CREO Y GUARDO LA FACTURA
             Factura factura1 = new Factura(pacientePrueba1);
