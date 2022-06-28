@@ -114,6 +114,7 @@ public class ClinicalApplication {
             Producto producto14 = new Producto("Rama para Laringoscopio", TipoProducto.INSUMOS_QUIRURGICOS, 50, 2800d, "https://http2.mlstatic.com/D_NQ_NP_920226-MLA50247409626_062022-V.webp");
             Producto producto15 = new Producto("Cepillo Mano (seco esteril)", TipoProducto.PRODUCTOS, 500, 550d, "https://http2.mlstatic.com/D_NQ_NP_749032-MLA48421851901_122021-V.webp");
 
+
             //GUARDO LOS DATOS
             productoRepository.save(producto1);
             productoRepository.save(producto2);
@@ -136,7 +137,7 @@ public class ClinicalApplication {
             facturaRepository.save(factura1);
 
             //EL PACIENTE SOLICITA UN SERVICIO CON UN PROFESIONAL
-            PacienteServicio pacienteServicio1 = new PacienteServicio(servicio1.getMonto(), LocalDateTime.now(), factura1, servicio1);
+            PacienteServicio pacienteServicio1 = new PacienteServicio(servicio1.getMonto(), LocalDateTime.now(), factura1, servicio1,profesional1);
             pacienteServicioRepository.save(pacienteServicio1);
 
             factura1.addPacienteServicio(pacienteServicio1);
@@ -158,8 +159,8 @@ public class ClinicalApplication {
             Factura factura2 = new Factura(pacientePrueba8);
             facturaRepository.save(factura2);
 
-            PacienteServicio pacienteServicio2 = new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusDays(1), factura2, servicio3);
-            PacienteServicio pacienteServicio3= new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusHours(6), factura2, servicio3);
+            PacienteServicio pacienteServicio2 = new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusDays(1), factura2, servicio3,profesional1);
+            PacienteServicio pacienteServicio3= new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusHours(6), factura2, servicio3,profesional3);
             pacienteServicioRepository.save(pacienteServicio2);
             pacienteServicioRepository.save(pacienteServicio3);
 

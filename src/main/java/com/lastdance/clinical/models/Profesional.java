@@ -20,6 +20,10 @@ public class Profesional {
     @JoinColumn(name="servicio_id")
     private Servicio servicio;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="paciente_servicio_id")
+    private PacienteServicio pacienteServicio;
+
     private boolean activo;
 
     public Profesional() { }
@@ -84,5 +88,13 @@ public class Profesional {
 
     public String getFullName() {
         return nombre + " " + apellido;
+    }
+
+    public PacienteServicio getPacienteServicio() {
+        return pacienteServicio;
+    }
+
+    public void setPacienteServicio(PacienteServicio pacienteServicio) {
+        this.pacienteServicio = pacienteServicio;
     }
 }

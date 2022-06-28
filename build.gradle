@@ -22,9 +22,10 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail ENVIO EMAIL
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.7.0'
-
+	// https://mvnrepository.com/artifact/com.lowagie/itext PDF
+	implementation group: 'com.lowagie', name: 'itext', version: '2.1.7'
 }
 
 tasks.named('test') {
