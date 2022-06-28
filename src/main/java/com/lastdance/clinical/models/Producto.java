@@ -18,6 +18,7 @@ public class Producto {
     private long stock;
     private Double precio;
     private String imagen;
+    private String descripcion;
 
     @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
     private Set<PacienteProducto> pacienteProductos = new HashSet<>();
@@ -33,6 +34,17 @@ public class Producto {
         this.precio = precio;
         this.imagen = imagen;
     }
+
+    public Producto(String nombre, TipoProducto tipo, long stock, Double precio, String imagen, String descripcion) {
+        this.activo = true;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.stock = stock;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.descripcion = descripcion;
+    }
+
 
     public Long getId() {
         return id;
@@ -92,5 +104,13 @@ public class Producto {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
