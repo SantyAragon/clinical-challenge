@@ -19,21 +19,17 @@ public class Paciente {
     private String email;
     private String contraseña;
     private Long identificacion;
+    private String token;
 
     @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
     private Set<Factura> facturas = new HashSet<>();
-//    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
-//    private Set<PacienteServicio> servicios = new HashSet<>();
-//
-//    @OneToMany(mappedBy = "paciente", fetch = FetchType.EAGER)
-//    private Set<PacienteProducto> productos = new HashSet<>();
-
 
     //=======METODOS CONSTRUCTORES======
 
     public Paciente() {
     }
 
+    //CONSTRUCTOR PARA DATA DE PRUEBA
     public Paciente(String nombre, String apellido, String email, String contraseña, Long identificacion) {
         this.activo = true;
         this.nombre = nombre;
@@ -41,6 +37,17 @@ public class Paciente {
         this.email = email;
         this.contraseña = contraseña;
         this.identificacion = identificacion;
+    }
+
+    //CONSTRUCTOR PARA CONTROLADOR
+    public Paciente(String nombre, String apellido, String email, String contraseña, Long identificacion, String token) {
+        this.activo = false;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.contraseña = contraseña;
+        this.identificacion = identificacion;
+        this.token = token;
     }
 
 
@@ -106,6 +113,13 @@ public class Paciente {
         this.facturas = facturas;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     //=======METODOS======
     public String getFullName() {
