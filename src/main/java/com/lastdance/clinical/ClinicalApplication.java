@@ -96,7 +96,7 @@ public class ClinicalApplication {
             facturaRepository.save(factura1);
 
             //EL PACIENTE SOLICITA UN SERVICIO CON UN PROFESIONAL
-            PacienteServicio pacienteServicio1 = new PacienteServicio(servicio1.getMonto(), LocalDateTime.now(), factura1, servicio1);
+            PacienteServicio pacienteServicio1 = new PacienteServicio(servicio1.getMonto(), LocalDateTime.now(), factura1, servicio1,profesional1);
             pacienteServicioRepository.save(pacienteServicio1);
 
             factura1.addPacienteServicio(pacienteServicio1);
@@ -118,8 +118,8 @@ public class ClinicalApplication {
             Factura factura2 = new Factura(pacientePrueba8);
             facturaRepository.save(factura2);
 
-            PacienteServicio pacienteServicio2 = new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusDays(1), factura2, servicio3);
-            PacienteServicio pacienteServicio3= new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusHours(6), factura2, servicio3);
+            PacienteServicio pacienteServicio2 = new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusDays(1), factura2, servicio3,profesional1);
+            PacienteServicio pacienteServicio3= new PacienteServicio(servicio3.getMonto(), LocalDateTime.now().minusHours(6), factura2, servicio3,profesional3);
             pacienteServicioRepository.save(pacienteServicio2);
             pacienteServicioRepository.save(pacienteServicio3);
 

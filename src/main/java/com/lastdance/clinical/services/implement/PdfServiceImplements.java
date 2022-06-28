@@ -101,7 +101,7 @@ public class PdfServiceImplements implements PdfService {
             c4.setBorderWidth(0);
             tableServicios.addCell(c4);
 
-            PdfPCell c5 = new PdfPCell(new Phrase(servicio.getServicio().getProfesionales().stream().map(Profesional::getFullName).collect(Collectors.toSet()) + ""));
+            PdfPCell c5 = new PdfPCell(new Phrase(servicio.getProfesional().getFullName() + ""));
             c5.setHorizontalAlignment(Element.ALIGN_CENTER);
             c5.setBorderWidth(0);
             tableServicios.addCell(c5);

@@ -35,6 +35,8 @@ public class FacturaController {
     @Autowired
     ProductoService productoService;
     @Autowired
+    ProfesionalService profesionalService;
+    @Autowired
     PacienteServicioService pacienteServicioService;
     @Autowired
     PacienteProductoService pacienteProductoService;
@@ -57,7 +59,6 @@ public class FacturaController {
     public ResponseEntity<Object> crearFactura(@RequestBody GenerarFacturaDTO generarFacturaDTO) {
         Paciente paciente = pacienteService.traerPaciente(1L);//authentication
 
-
         Set<Servicio> servicios = generarFacturaDTO.getServicios().stream().map(serv -> servicioService.traerServicio(serv.getIdServicio())).collect(Collectors.toSet());
         Set<Producto> productos = generarFacturaDTO.getProductos().stream().map(prod -> productoService.traerProducto(prod.getIdProducto())).collect(Collectors.toSet());
         if (checkearStock(generarFacturaDTO, productos)) {
@@ -70,8 +71,9 @@ public class FacturaController {
         if (servicios.size() > 0) {
             servicios.forEach(servicioATomar -> {
                         LocalDateTime fechaServicioATomar = generarFacturaDTO.getServicios().stream().filter(serv1 -> serv1.getIdServicio() == servicioATomar.getId()).findFirst().orElseThrow().getFecha();
+                        Profesional profesional = profesionalService.traerProfesional(generarFacturaDTO.getServicios().stream().filter(serv1 -> serv1.getIdServicio() == servicioATomar.getId()).findFirst().orElseThrow().getIdProfesional());
 
-                        PacienteServicio pacienteServicio = new PacienteServicio(servicioATomar.getMonto(), fechaServicioATomar, factura, servicioATomar);
+                        PacienteServicio pacienteServicio = new PacienteServicio(servicioATomar.getMonto(), fechaServicioATomar, factura, servicioATomar,profesional);
                         subTotalServicios.add(pacienteServicio.getMonto());
                         pacienteServicioService.guardarPacienteServicio(pacienteServicio);
 
@@ -112,7 +114,22 @@ public class FacturaController {
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=medihub-factura-" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
+
         pdfService.export(response, 1L);
+
+        return new ResponseEntity<>("PDF enviado.", HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/facturas/descargar/{id}")
+    public ResponseEntity<Object> generatePdfPorId(HttpServletResponse response, @PathVariable Long id) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-mm-dd:hh:mm");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=medihub-factura-" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+        pdfService.export(response, id);
 
         return new ResponseEntity<>("PDF enviado.", HttpStatus.ACCEPTED);
     }
