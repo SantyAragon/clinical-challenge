@@ -168,6 +168,8 @@ public class ClinicalApplication {
             factura1.addPacienteServicio(pacienteServicio3);
             factura2.setMonto(pacienteServicio2.getMonto()+ pacienteServicio3.getMonto());
             facturaRepository.save(factura2);
+
+            System.out.println("Clinica Medihub -> TRABAJANDO!");
         };
     }
 }
