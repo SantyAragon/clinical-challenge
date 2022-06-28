@@ -85,21 +85,22 @@ Vue.createApp({
             precio: producto.precio,
             tipo: producto.tipo,
             imagen: producto.imagen,
+            descripcion: producto.descripcion,
             cantidad: conteoNumber,
             stock: producto.stock -= conteoNumber
           };
 
           this.gCarritoNotif.push(this.productoCarrito); // agregamos la CARD al carrito
 
-
-          // AGREGA EL NUEVO ARRAY PRODUCTOS EN CARRITO AL LOCAL STORAGE
-          localStorage.setItem("carrito", JSON.stringify(this.gCarritoNotif))
           //NOTIFICACION DE AÑADIDO AL CARRITO
           Swal.fire({
             title: 'Añadido al carrito',
             icon: 'success'
           })
         }
+        // AGREGA EL NUEVO ARRAY PRODUCTOS EN CARRITO AL LOCAL STORAGE
+        localStorage.setItem("carrito", JSON.stringify(this.gCarritoNotif))
+
         this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0); // Precio total
         this.gCantidadNotif = this.gCarritoNotif.length;
       }
