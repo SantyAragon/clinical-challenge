@@ -47,7 +47,7 @@ public class ServicioController {
         return new ResponseEntity<>("Servicio creado", HttpStatus.CREATED);
     }
 
-    @PatchMapping("servicios/profesional/{id}")
+    @PatchMapping("/servicios/profesional/{id}")
     public ResponseEntity<Object> removerProfesional (@PathVariable Long id, @RequestParam Long profesionalId) {
 
         Servicio servicio = servicioService.traerServicio(id);
@@ -63,7 +63,7 @@ public class ServicioController {
         return new ResponseEntity<>("Profesional removido", HttpStatus.ACCEPTED);
     }
 
-    @PatchMapping("servicios/profesionales/{id}")
+    @PatchMapping("/servicios/profesionales/{id}")
     public ResponseEntity<Object> agregarProfesional (@PathVariable Long id, @RequestParam Long profesionaId) {
 
         Servicio servicio = servicioService.traerServicio(id);
@@ -82,7 +82,7 @@ public class ServicioController {
 
     }
 
-    @PatchMapping("servicios/{id}")
+    @PatchMapping("/servicios/{id}")
     public ResponseEntity<Object> eliminarServicio (@PathVariable Long id) {
         Servicio servicio = servicioService.traerServicio(id);
 
