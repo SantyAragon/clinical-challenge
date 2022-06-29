@@ -1,4 +1,40 @@
-window.addEventListener('DOMContentLoaded', event => {
+Vue.createApp({
+    data() {
+      return {
+        pacientes: [],
+
+      }
+    },
+
+    mounted(){
+        axios.get('/api/pacientes')
+      .then (data =>{
+        this.pacientes = data.data;
+        this.console.log(this.pacientes)
+      })
+      .catch(error => console.warn(error.message));
+    
+
+    },
+    
+    created() {
+  
+      
+
+    },
+  
+    methods: {
+
+    },
+
+    computed: {
+  
+    }
+  
+  }).mount('#app')
+  
+
+  window.addEventListener('DOMContentLoaded', event => {
 
     // Toggle the side navigation
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
@@ -15,5 +51,3 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
-
-

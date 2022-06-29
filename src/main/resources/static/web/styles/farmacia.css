@@ -554,7 +554,8 @@ label.checkbox-inline {
 }
 
 .ltn__shop-options {
-    margin-bottom: 50px;
+    align-self: flex-end;
+    /* margin-bottom: 50px; */
 }
 
 .ltn__shop-options>ul {
