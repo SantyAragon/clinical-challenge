@@ -55,17 +55,17 @@ const app = Vue.createApp({
                 }
 
                 this.gTotalEnCarrito = this.gCarrito.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0);
-                console.log(this.gCarrito);
+                // console.log(this.gCarrito);
             })
             .catch(error => console.log(error))
-        this.generarCompra()
+        // this.generarCompra()
     },
 
     methods: {
-        valorCantidadProducto(producto, e){
+        valorCantidadProducto(producto, e) {
             producto.cantidad = e.target.value;
         },
-        
+
         formatMoney(amount) {
             return new Intl.NumberFormat('en-US', {
                 style: 'currency',
@@ -106,7 +106,33 @@ const app = Vue.createApp({
         },
 
         generarCompra() {
-            console.log(this.gCarrito.forEach(producto => console.log(producto)))
+            // console.log(this.gCarrito.forEach(producto => console.log(producto)))
+
+            let productoss = [];
+            this.gCarrito.forEach(producto => {
+                // console.log(producto)
+                let aux = {
+                    idProducto: parseInt(producto.id),
+                    cantidad: parseInt(producto.cantidad)
+                }
+                productoss.push(aux)
+                console.log(aux)
+            })
+            console.log(productoss)
+
+            let objt = {
+                servicios: [],
+                productos: productoss
+            }
+            console.log(objt)
+            axios.post('/api/facturas/create', objt)
+                .then(response => {
+                    console.log("equisde")
+                })
+                .catch(error => {
+                    console.log(error.response)
+                })
+
             // let serviciosatomar = []
 
             // function click(servic) {
@@ -126,6 +152,18 @@ const app = Vue.createApp({
             // }
 
             // axios.post('/api/factura/create', objt)
+
+            // {
+            //     "servicios":[
+            //         {"idServicio":1,"fecha":"2022-06-27T13:50:33","idProfesional":1},
+            //         {"idServicio":2,"fecha":"2022-06-28T13:50:33","idProfesional":2},
+            //         {"idServicio":3,"fecha":"2022-06-29T13:50:33","idProfesional":3} ]
+            //     ,
+            //     "productos":[
+            //         {"idProducto":5,"cantidad":5},
+            //         {"idProducto":1,"cantidad":1},
+            //         {"idProducto":3,"cantidad":2} ]
+            //     }
         }
 
 
