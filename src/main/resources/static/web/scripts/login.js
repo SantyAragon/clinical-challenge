@@ -159,7 +159,20 @@ const app = Vue.createApp({
           }
         })
         .then(response => {
-          window.location.href = '/web/index.html'
+
+          axios.get('/api/autenticado')
+            .then(response => {
+              console.log(response.data)
+              if (response.data === 'Admin')
+                window.location.href = "/web/admin.html"
+
+              else if (response.data === 'Profesional')
+                window.location.href = "/web/profesional.html"
+
+              else if (response.data === 'Paciente')
+                window.location.href = '/web/pacientes.html'
+
+            })
         })
         .catch(function (error) {
           if (error.response) {

@@ -58,6 +58,18 @@ public class PacienteController {
         return new ResponseEntity<>(new PacienteDTO(paciente), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/autenticado")
+    public ResponseEntity<?> verificarRol(Authentication authentication) {
+        if (authentication == null)
+            return new ResponseEntity<>("No autenticado", HttpStatus.ACCEPTED);
+        else if (authentication.getName().contains("@admin.medihub.com"))
+            return new ResponseEntity<>("Admin", HttpStatus.ACCEPTED);
+        else if (authentication.getName().contains("@Medihub.com"))
+            return new ResponseEntity<>("Profesional", HttpStatus.ACCEPTED);
+
+        return new ResponseEntity<>("Paciente", HttpStatus.ACCEPTED);
+    }
+
     @PostMapping("/pacientes")
     public ResponseEntity<Object> registrarPaciente(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contraseña, @RequestParam Long identificacion) throws MessagingException, UnsupportedEncodingException {
 
