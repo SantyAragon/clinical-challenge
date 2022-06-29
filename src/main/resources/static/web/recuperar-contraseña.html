@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <!-- FONTS -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap"
@@ -31,11 +31,12 @@
     <!-- LINK CSS -->
     <link rel="stylesheet" href="./styles/login.css">
 
-    <title>MediHub | Login </title>
+    <title>MediHub | Recuperar contraseña </title>
 </head>
 
 <body>
 
+    <main>
         <div id="app">
 
             <!-- LOADER -->
@@ -66,15 +67,8 @@
             <nav>
                 <div class="contenedor-nav">
                     <div class="logo">
-                        <!-- <i class="fa-solid fa-staff-aesculapius"></i> MEDIHUB -->
                         <img src="./assets/logo-medihub.png" alt="">
                     </div>
-                    <div class="menu">
-
-                        <li class=""><a href="" class="btn-volver">Inicio</a></li>
-
-                    </div>
-                </div>
             </nav>
 
 
@@ -87,114 +81,37 @@
                 </div>
 
                 <div class="bienvenida-texto col col-md-5 col-12">
-                    <h1>Estamos encantados de formar parte de tu vida!</h1>
+                    <h1>Sigue siendo parte de nuestra familia! </h1>
                 </div>
 
                 <div class="login">
                     <div class="login__content">
                         <div class="login__forms">
-
-                            <div class="formulario-login">
+                            <div class="formulario-reseteo">
                                 <form @submit.prevent="signIn" class="login__register" id="login-in">
-                                    <h2 class="login__title">Sign In</h2>
-                                    <div class="login__box">
-                                        <i class='bi bi-person-fill login__icon'></i>
-                                        <input type="email" placeholder="Email" class="login__input"
-                                            v-model="loginEmail">
+                                    <h2 class="login__title">Nueva Contraseña</h2>
+                                    <div class="login__box d-flex">
+                                        <i class='bi bi-key-fill login__icon'></i>
+                                        <input :type="hideNewPass" class="login__input" placeholder="Nueva contraseña"
+                                            v-model="nuevaContraseña">
+                                        <i @click="toggleType"
+                                            :class="hideNewPass == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+                                            aria-hidden="true" id="eye"></i>
                                     </div>
                                     <div class="login__box d-flex">
                                         <i class='bi bi-key-fill login__icon'></i>
-                                        <input :type="passwordType" class="login__input" placeholder="Contraseña"
-                                            v-model="loginContraseña">
-                                        <i @click="toggleType"
-                                            :class="passwordType == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+                                        <input :type="hideConfirmPass" class="login__input"
+                                            placeholder="Confirmar contraseña" v-model="confirmarContraseña">
+                                        <i @click="toggleType2"
+                                            :class="hideConfirmPass == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
                                             aria-hidden="true" id="eye"></i>
                                     </div>
-                                    <a @click="forgotPassword" href="#" class="login__forgot">Olvidaste la contraseña?
-                                    </a>
-
-                                    <button type="submit" class="login__button">Acceder</button>
-
-                                    <div>
-                                        <span class="login__account login__account--account">No tienes una
-                                            cuenta?</span>
-                                        <span @click="registerForm" class="login__signin login__signup--signup"
-                                            id="sign-up"> Registrate ahora!</span>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="formulario-registro">
-                                <form @submit.prevent="signUp" class="login__create none" id="login-up">
-                                    <h2 class="login__title">Registrarse</h2>
-                                    <div class="sub-form">
-                                        <div class="login__box">
-                                            <i class='bi bi-person-lines-fill login__icon'></i>
-                                            <input type="text" placeholder="Nombre" class="login__input"
-                                                v-model="registroNombre">
-                                        </div>
-
-                                        <div class="login__box">
-                                            <i class='bi bi-person-lines-fill login__icon'></i>
-                                            <input type="text" placeholder="Apellido" class="login__input"
-                                                v-model="registroApellido">
-                                        </div>
-
-                                        <div class="login__box">
-                                            <i class='bi bi-envelope-fill login__icon'></i>
-                                            <input type="text" placeholder="DNI" class="login__input"
-                                                v-model="registroDni">
-                                        </div>
-                                    </div>
-                                    <div class="sub-form">
-                                        <div class="login__box">
-                                            <i class='bi bi-envelope-fill login__icon'></i>
-                                            <input type="email" placeholder="Email" class="login__input"
-                                                v-model="registroEmail">
-                                        </div>
-
-                                        <div class="login__box d-flex">
-                                            <i class='bi bi-key-fill login__icon'></i>
-                                            <input :type="passwordType" class="login__input" placeholder="Contraseña"
-                                                v-model="registroPassword" />
-                                            <i @click="toggleType"
-                                                :class="passwordType == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
-                                                aria-hidden="true" id="eye"></i>
-                                        </div>
-
-                                        <button type="submit" class="login__button">Registrarse</button>
-
-                                        <div>
-                                            <span class="login__account login__account--account">Ya tienes una
-                                                cuenta?</span>
-                                            <span @click="loginForm" class="login__signup login__signin--signin"
-                                                id="sign-in"> Acceder</span>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-
-                            <div class="formulario-reseteo">
-                                <form @submit.prevent="resetPassword" class="login__register none" id="reset">
-                                    <h2 class="login__title">Recuperar contraseña</h2>
-                                    <div class="login__box">
-                                        <i class='bi bi-person-fill login__icon'></i>
-                                        <input type="email" placeholder="Email" class="login__input"
-                                            v-model="resetEmail">
-                                    </div>
+                                    <a href="#" class="login__forgot"></a>
 
                                     <button type="submit" class="login__button">Confirmar</button>
 
-                                    <div>
-                                        <span class="login__account login__account--account">Ya tienes una
-                                            cuenta?</span>
-                                        <span @click="backToSignIn" class="login__signup login__signin--signin"
-                                            id="sign-in"> Acceder</span>
-                                    </div>
                                 </form>
                             </div>
-
 
                         </div>
                     </div>
@@ -238,10 +155,8 @@
 
                 </div>
             </footer>
-
-            <div id="return-to-top"><i class="fa-solid fa-chevron-up"></i></div>
-        
         </div>
+    </main>
 
 
     <!-- BOOTSTRAP -->
@@ -250,12 +165,10 @@
         crossorigin="anonymous"></script>
     <!-- AXIOS -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- SWEET ALERT -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- VUE -->
     <script src="https://unpkg.com/vue@3"></script>
     <!-- FILE JS -->
-    <script src="./scripts/login.js"></script>
+    <script src="./scripts/recuperar-contraseña.js"></script>
     <!-- ANIMATE AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>

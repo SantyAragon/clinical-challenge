@@ -1,4 +1,4 @@
-Vue.createApp({
+const app = Vue.createApp({
   data() {
     return {
 
@@ -31,6 +31,27 @@ Vue.createApp({
 
   mounted() {
 
+    // Loader
+    $(document).ready(function preloaderSetup() {
+      $(".st-perloader").fadeOut();
+      $("st-perloader-in").delay(150).fadeOut("slow");
+    })
+
+    // ===== Scroll to Top ==== 
+    $(window).scroll(function () {
+      if ($(this).scrollTop() >= 1080) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(500);    // Fade in the arrow
+      } else {
+        $('#return-to-top').fadeOut(500);   // Else fade out the arrow
+      }
+    });
+
+    $('#return-to-top').click(function () {      // When arrow is clicked
+      $('body,html').animate({
+        scrollTop: 0                       // Scroll to top of body
+      }, 500);
+    });
+
 
   },
 
@@ -58,6 +79,9 @@ Vue.createApp({
   },
 
   methods: {
+    formatMoney(amount) {
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(amount);
+    },
 
     agregarAlCarrito(producto, num) {
       let conteoNumber = 1;
@@ -85,21 +109,22 @@ Vue.createApp({
             precio: producto.precio,
             tipo: producto.tipo,
             imagen: producto.imagen,
+            descripcion: producto.descripcion,
             cantidad: conteoNumber,
             stock: producto.stock -= conteoNumber
           };
 
           this.gCarritoNotif.push(this.productoCarrito); // agregamos la CARD al carrito
 
-
-          // AGREGA EL NUEVO ARRAY PRODUCTOS EN CARRITO AL LOCAL STORAGE
-          localStorage.setItem("carrito", JSON.stringify(this.gCarritoNotif))
           //NOTIFICACION DE AÑADIDO AL CARRITO
           Swal.fire({
             title: 'Añadido al carrito',
             icon: 'success'
           })
         }
+        // AGREGA EL NUEVO ARRAY PRODUCTOS EN CARRITO AL LOCAL STORAGE
+        localStorage.setItem("carrito", JSON.stringify(this.gCarritoNotif))
+
         this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0); // Precio total
         this.gCantidadNotif = this.gCarritoNotif.length;
       }

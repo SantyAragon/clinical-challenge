@@ -6,6 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+     <!-- FONTS -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap"
+         rel="stylesheet">
+
     <!-- LINK BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
@@ -14,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.4.6/tailwind.min.css">
 
     <!-- LINK FAVICON -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
 
     <!-- LINK FONTAWESOME ICONS -->
     <script src="https://kit.fontawesome.com/a9e21e8a67.js" crossorigin="anonymous"></script>
@@ -31,7 +37,34 @@
 </head>
 
 <body>
-    <main id="app">
+    <div id="app">
+
+        <!-- LOADER -->
+        <div class="st-perloader">
+            <div class="st-perloader-in">
+                <div class="st-wave-first">
+                    <svg enable-background="new 0 0 300.08 300.08" viewBox="0 0 300.08 300.08"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path
+                                d="m293.26 184.14h-82.877l-12.692-76.138c-.546-3.287-3.396-5.701-6.718-5.701-.034 0-.061 0-.089 0-3.369.027-6.199 2.523-6.677 5.845l-12.507 87.602-14.874-148.69c-.355-3.43-3.205-6.056-6.643-6.138-.048 0-.096 0-.143 0-3.39 0-6.274 2.489-6.752 5.852l-19.621 137.368h-9.405l-12.221-42.782c-.866-3.028-3.812-5.149-6.8-4.944-3.13.109-5.777 2.332-6.431 5.395l-8.941 42.332h-73.049c-3.771 0-6.82 3.049-6.82 6.82 0 3.778 3.049 6.82 6.82 6.82h78.566c3.219 0 6.002-2.251 6.67-5.408l4.406-20.856 6.09 21.313c.839 2.939 3.526 4.951 6.568 4.951h20.46c3.396 0 6.274-2.489 6.752-5.845l12.508-87.596 14.874 148.683c.355 3.437 3.205 6.056 6.643 6.138h.143c3.39 0 6.274-2.489 6.752-5.845l14.227-99.599 6.397 38.362c.546 3.287 3.396 5.702 6.725 5.702h88.66c3.771 0 6.82-3.049 6.82-6.82-.001-3.772-3.05-6.821-6.821-6.821z" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="st-wave-second">
+                    <svg enable-background="new 0 0 300.08 300.08" viewBox="0 0 300.08 300.08"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path
+                                d="m293.26 184.14h-82.877l-12.692-76.138c-.546-3.287-3.396-5.701-6.718-5.701-.034 0-.061 0-.089 0-3.369.027-6.199 2.523-6.677 5.845l-12.507 87.602-14.874-148.69c-.355-3.43-3.205-6.056-6.643-6.138-.048 0-.096 0-.143 0-3.39 0-6.274 2.489-6.752 5.852l-19.621 137.368h-9.405l-12.221-42.782c-.866-3.028-3.812-5.149-6.8-4.944-3.13.109-5.777 2.332-6.431 5.395l-8.941 42.332h-73.049c-3.771 0-6.82 3.049-6.82 6.82 0 3.778 3.049 6.82 6.82 6.82h78.566c3.219 0 6.002-2.251 6.67-5.408l4.406-20.856 6.09 21.313c.839 2.939 3.526 4.951 6.568 4.951h20.46c3.396 0 6.274-2.489 6.752-5.845l12.508-87.596 14.874 148.683c.355 3.437 3.205 6.056 6.643 6.138h.143c3.39 0 6.274-2.489 6.752-5.845l14.227-99.599 6.397 38.362c.546 3.287 3.396 5.702 6.725 5.702h88.66c3.771 0 6.82-3.049 6.82-6.82-.001-3.772-3.05-6.821-6.821-6.821z" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- LOADER -->
+
+
         <!-- component/dropdown shopping -->
         <div class="p-5">
             <div class="flex h-64 justify-center">
@@ -80,8 +113,7 @@
                                             <line x1="14" y1="11" x2="14" y2="17"></line>
                                         </svg>
                                     </div>
-                                    {{carrito.precio * carrito.cantidad}}
-                                    <!-- NO EXISTE, A CREARLO -->
+                                    {{formatMoney(carrito.precio * carrito.cantidad)}}
                                 </div>
                             </div>
                             <div class="p-4 justify-center flex">
@@ -90,7 +122,7 @@
         bg-teal-100 
         text-teal-700 
         border duration-200 ease-in-out 
-        border-teal-600 transition">Ir a pagar ${{gTotalEnCarrito}}</button> <!-- BOTON PARA IR A PAGAR -->
+        border-teal-600 transition">Ir a pagar {{formatMoney(gTotalEnCarrito)}}</button> <!-- BOTON PARA IR A PAGAR -->
                             </div>
                         </div>
                     </div>
@@ -120,7 +152,7 @@
                         <div class="wrapper">
                             <p class="nombre">{{datosCards[gNumPos].nombre}}</p>
                             <div class="precios">
-                                <p class="precio">{{datosCards[gNumPos].precio}}</p>
+                                <p class="precio">{{formatMoney(datosCards[gNumPos].precio)}}</p>
                             </div>
                             <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-if="datosCards[gNumPos].stock > 0">Disponible en tienda y listo para enviar</p>
                             <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-else>Fuera de stock</p>
@@ -152,7 +184,6 @@
                                 </div>
                             </div>
                             <p class="descripcion"></p>
-                            <!-- <a class="boton" href="#">Ver detalles completos</a> -->
                         </div>
                     </div>
                 </div>
@@ -180,14 +211,6 @@
                     <div class="col-lg-8 order-lg-2 mb-120">
                         <div class="ltn__shop-options">
                             <ul>
-                                <!-- <li>
-                                    <div class="ltn__grid-list-tab-menu ">
-                                        <div class="nav">
-                                            <a class="active show" data-bs-toggle="tab" href="#liton_product_grid"><i class="fas fa-th-large"></i></a>
-                                            <a data-bs-toggle="tab" href="#liton_product_list"><i class="fas fa-list"></i></a>
-                                        </div>
-                                    </div>
-                                <li> -->
                                     <div class="short-by text-center">
                                         <select class="nice-select" v-model="ordenSeleccionado" name="ordenar" v-on:change="ordenarProductos">
                                             <option value="" disabled selected>Ordenar</option>
@@ -226,7 +249,7 @@
                                                                 <p class="prodName">{{card.nombre}}</p>
                                                                 <p class="prodDesc">{{card.tipo}}</p>
                                                                 <div class="precios">
-                                                                    <p class="precio">{{card.precio}}</p>
+                                                                    <p class="precio">{{formatMoney(card.precio)}}</p>
                                                                     <div>
                                                                         <p class="precioOriginal">{{card.stock}} unidades</p>
                                                                         <p class="stock" :class="{'out': !card.stock}" v-if="card.stock > 0">En
@@ -239,11 +262,6 @@
                                                                 <div class="boton alCarrito" v-on:click="agregarAlCarrito(card, 0)">Agregar al carrito
                                                                 </div>
                                                                 <div class="row-buttons">
-                                                                    <!-- <div class="checkBox comparar">
-                                                                        <input type="checkbox">
-                                                                        <div class="icon"></div>
-                                                                        <p class="checkBoxLabel">Comparar</p>
-                                                                    </div> -->
                                                                     <div class="aFavs favoritos" v-on:click="agregarFav(card)" :id="'card'+card.id">
                                                                         <div class="icono">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -260,56 +278,6 @@
                                                 </div>
                                             </div>
                                         </section>
-                                        <!-- ltn__product-item -->
-                                        <!-- <div class="col-xl-4 col-sm-6 col-6">
-
-                                            <div class="ltn__product-item ltn__product-item-3 text-center">
-
-                                                <div class="product-img">
-                                                    <a href="product-details.html"><img src="img/product/1.png" alt="#"></a>
-                                                    <div class="product-badge">
-                                                        <ul>
-                                                            <li class="sale-badge">New</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-hover-action">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                                    <i class="far fa-eye"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                                    <i class="fas fa-shopping-cart"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                                    <i class="far fa-heart"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="product-info">
-                                                    <div class="product-ratting">
-                                                        <ul>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                            <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <h2 class="product-title"><a href="product-details.html">Digital Stethoscope</a></h2>
-                                                    <div class="product-price">
-                                                        <span>$149.00</span>
-                                                        <del>$162.00</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <!--  -->
                                     </div>
                                 </div>
                             </div>                        
@@ -330,15 +298,10 @@
                                     <li><a href="portfolio-details.html">Special Offers <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
                                 </ul>
                             </div>
-                            <!-- Price Filter Widget -->
+                            <!-- Filtro de precio WIDGET -->
                             <div class="widget ltn__price-filter-widget">
                                 <h4 class="ltn__widget-title ltn__widget-title-border">Filtrar por precio</h4>
                                 <div class="price_filter">
-                                    <!-- <div class="price_slider_amount">
-                                        <input type="submit"  value="Rango:"/> 
-                                        <input type="range" class="amount" name="precio" v-model="rangoDePrecios" min="50" max="5000" placeholder="Agrega tu precio" /> 
-                                        {{rangoDePrecios}}
-                                    </div> -->
                                     <div class="form-check form-switch">
                                         <label for="600" class="form-check-label">Menos de $500</label>
                                         <input type="checkbox" class="form-check-input" v-model="rangoDePrecios" id="500" value="500" role="switch">
@@ -347,7 +310,6 @@
                                         <label for="601" class="form-check-label">Mas de $500</label>
                                         <input type="checkbox" v-model="rangoDePrecios" class="form-check-input" id="501" value="501" role="switch">
                                       </div>
-                                    <!-- <div class="slider-range"></div> -->
                                 </div>
                             </div>
                             <!-- Search Widget -->
@@ -364,64 +326,48 @@
             </div>
         </div>
 
-        <!-- CARDS -->
-        <section class="cards">
-            <div class="container d-flex">
-                <div class="contenedorCards" v-for="card in datosCards">
-                    <div class="card" :class="{ 'out': !card.stock}">
-                        <div class="innerProd">
-                            <div class="imgWrapper">
-                                <div class="detalleRapido" v-on:click="detalleRapido(card)" data-id="{{card.id}}">
-                                    <div class="icono">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                                            <path d="M39.049 39.049L56 56"></path>
-                                            <circle cx="27" cy="27" r="17"></circle>
-                                        </svg>
-                                    </div>
-                                    <p>Vista rapida</p>
-                                </div>
-                                <div class="imgProd" v-bind:style="{backgroundImage: `url(${card.imagen})`}"></div>
-                            </div>
-                            <a class="info" href="#">
-                                <p class="prodName">{{card.nombre}}</p>
-                                <p class="prodDesc">{{card.tipo}}</p>
-                                <div class="precios">
-                                    <p class="precio">{{card.precio}}</p>
-                                    <div>
-                                        <p class="precioOriginal">{{card.stock}} unidades</p>
-                                        <p class="stock" :class="{'out': !card.stock}" v-if="card.stock > 0">En
-                                            stock</p>
-                                        <p class="stock" :class="{'out': !card.stock}" v-else>Fuera de stock</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="actions">
-                                <div class="boton alCarrito" v-on:click="agregarAlCarrito(card)">Agregar al carrito
-                                </div>
-                                <div class="row-buttons">
-                                    <!-- <div class="checkBox comparar">
-                                        <input type="checkbox">
-                                        <div class="icon"></div>
-                                        <p class="checkBoxLabel">Comparar</p>
-                                    </div> -->
-                                    <div class="aFavs favoritos" v-on:click="agregarFav(card)" :id="'card'+card.id">
-                                        <div class="icono">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                                                <path
-                                                    d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-    </main>
+        <footer class="footer-container">
+            <div class="me-3">
+                <span>Siguenos en nuestras redes</span>
+            </div>
+            <div>
+                <a href="" class="text-white iconos-redes">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-facebook" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                    </svg>
+                </a>
+                <a href="" class="text-white iconos-redes">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-twitter" viewBox="0 0 16 16">
+                        <path
+                            d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                    </svg>
+                </a>
+                <a href="" class="text-white iconos-redes">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-google" viewBox="0 0 16 16">
+                        <path
+                            d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+                    </svg>
+                </a>
+                <a href="" class="text-white iconos-redes">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-instagram" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                    </svg>
+                </a>
+
+            </div>
+        </footer>
+
+        <!-- Return to Top -->
+        <div id="return-to-top"><i class="fa-solid fa-chevron-up"></i></div>
+
+    </div>
 
 
     <!-- BOOTSTRAP -->
@@ -438,8 +384,15 @@
 
     <!-- SWEET ALERT -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <!-- ARCHIVO JS -->
     <script src="./scripts/productos.js"></script>
+    
+    <!-- ANIMATE AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@ public enum TipoEspecialidad {
     CIRUJANO,
     OBSTETRA,
     PEDIATRA,
-    DESTISTA,
+    DENTISTA,
     OFTALMOLOGO,
     ANESTESIOLOGO,
     NEUROLOGO,
