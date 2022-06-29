@@ -16,7 +16,19 @@ Vue.createApp({
   },
 
   mounted() {
+    $(window).scroll(function () {
+      if ($(this).scrollTop() >= 1080) { // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(500); // Fade in the arrow
+      } else {
+        $('#return-to-top').fadeOut(500); // Else fade out the arrow
+      }
+    });
 
+    $('#return-to-top').click(function () { // When arrow is clicked
+      $('body,html').animate({
+        scrollTop: 0 // Scroll to top of body
+      }, 500);
+    });
     // Loader
     $(document).ready(function preloaderSetup() {
       $(".st-perloader").fadeOut();
