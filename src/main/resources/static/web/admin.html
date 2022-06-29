@@ -237,6 +237,145 @@
                             </div>
                         </div>
                     </div>
+
+                    <div data-content id="agregar-doc">
+                        <div>
+                        <form class="d-flex flex-column gap-4">
+                            <label for="name"></label>
+                            <input v-model="nombrePro" placeholder="Nombre"/>
+                            <label for="lastname"></label>
+                            <input v-model="apellidoPro" placeholder="Apellido"/>
+                            <fieldset>
+                              <h4 for="especialidad">Especialidad: </h4>
+                              <Select v-model="especialidad" id="especialidad" class="form-select" required>
+                                <option disabled value="">Por favor, seleccionar uno</option>
+                                <option value="ALERGIA">ALERGIA </option>
+                                <option value="BIOQUIMICO">BIOQUIMICO </option>
+                                <option value="CIRUJANO">CIRUJANO </option>
+                                <option value="OBSTETRA">OBSTETRA </option>
+                                <option value="PEDIATRA">PEDIATRA </option>
+                                <option value="DENTISTA">DENTISTA </option>
+                                <option value="OFTALMOLOGO">OFTALMOLOGO </option>
+                                <option value="ANESTESIOLOGO">ANESTESIOLOGO </option>
+                                <option value="NEUROLOGO">NEUROLOGO </option>
+                                <option value="CARDIOLOGO">CARDIOLOGO </option>
+                              </Select>
+                            </fieldset>
+                            <label for="number"></label>
+                            <input type="number" v-model="servicio" placeholder="Identificación"/>
+                            <label for="email"></label>
+                            <input type="email" v-model="emailPro" placeholder="Correo electrónico"/>
+                            <label for="password"></label>
+                            <input type="password" v-model="contraseñaPro" placeholder="Contraseña"/>
+                            <button type="submit" class="btn btn-info display-none mt-2" @click="nuevoProfesional()">Confirmar</button>
+                        </form>
+                        </div>
+                    </div>
+                    
+                    <div data-content id="editar-doc">
+                        <h1>
+                            EDITAR DOCTOR
+                        </h1>
+                    </div>
+                    
+                    <div data-content id="eliminar-doc">
+                        <h1>
+                            ELIMINAR DOCTOR
+                        </h1>
+                    </div>
+
+                    <div data-content id="pacientes">
+                        <h1>
+                            PACIENTES
+                        </h1>
+                        <div class="card mb-4">
+                            <div>
+                                <i class="fas fa-table me-1"></i>
+                                Pacientes
+                            </div>
+                            <div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <!-- <tfoot>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Especialidad</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </tfoot> -->
+                                    <tbody v-for="paciente in pacientes">
+                                        <tr>
+                                            <td>{{paciente.nombre}}</td>
+                                            <td>{{paciente.apellido}}</td>
+                                            <td>{{paciente.email}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div data-content id="agregar-pac">
+                        <div>
+                        <form class="d-flex flex-column gap-4">
+                            <label for="name"></label>
+                            <input v-model="nombrePro" placeholder="Nombre" />
+                            <label for="lastname"></label>
+                            <input v-model="apellidoPro" placeholder="Apellido" />
+                            <fieldset>
+                              <h4 for="especialidadPro">Especialidad: </h4>
+                              <Select v-model="especialidad" id="especialidad" class="form-select" required>
+                                <option disabled value="">Por favor, seleccionar uno</option>
+                                <option value="ALERGIA">ALERGIA </option>
+                                <option value="BIOQUIMICO">BIOQUIMICO </option>
+                                <option value="CIRUJANO">CIRUJANO </option>
+                                <option value="OBSTETRA">OBSTETRA </option>
+                                <option value="PEDIATRA">PEDIATRA </option>
+                                <option value="DENTISTA">DENTISTA </option>
+                                <option value="OFTALMOLOGO">OFTALMOLOGO </option>
+                                <option value="ANESTESIOLOGO">ANESTESIOLOGO </option>
+                                <option value="NEUROLOGO">NEUROLOGO </option>
+                                <option value="CARDIOLOGO">CARDIOLOG </option>
+                              </Select>
+                            </fieldset>
+                            <label for="email"></label>
+                            <input v-model="emailPro" placeholder="Correo electrónico" />
+                            <button type="submit" class="btn btn-info display-none mt-2" @click="nuevoProfesional()">Confirmar</button>
+                        </form>
+                        </div>
+                    </div>
+                    
+                    <div data-content id="editar-pac">
+                        <h1>
+                            EDITAR PACIENTE
+                        </h1>
+                    </div>
+                    
+                    <div data-content id="eliminar-pac">
+                        <h1>
+                            ELIMINAR PACIENTE
+                        </h1>
+                    </div>
+                    
+                    <div data-content id="productos">
+                        <h1>
+                            PRODUCTOS
+                        </h1>
+                    </div>
+                    
+                    <div data-content id="servicios">
+                        <h1>
+                            SERVICIOS
+                        </h1>
+                    </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

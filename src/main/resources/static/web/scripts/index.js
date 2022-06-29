@@ -72,7 +72,7 @@ const app = Vue.createApp({
       $(this).tab('show')
     })
 
-
+      
 
   },
 

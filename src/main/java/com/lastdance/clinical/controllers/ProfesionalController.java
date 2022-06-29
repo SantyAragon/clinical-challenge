@@ -34,11 +34,11 @@ public class ProfesionalController {
 
 
     @PostMapping("/profesional")
-    public ResponseEntity<Object> nuevoProfesional (@RequestParam String nombre, @RequestParam String apellido, @RequestParam TipoEspecialidad especialidad, @RequestParam Long servicioId) {
+    public ResponseEntity<Object> nuevoProfesional (@RequestParam String nombre, @RequestParam String apellido, @RequestParam TipoEspecialidad especialidad, @RequestParam Long servicioId, @RequestParam String email, @RequestParam String contraseña) {
 
         Servicio servicio = servicioService.traerServicio(servicioId);
 
-        Profesional profesional = new Profesional(nombre, apellido, especialidad, servicio);
+        Profesional profesional = new Profesional(nombre, apellido, especialidad, servicio, email, contraseña);
         profesionalService.guardarProfesinal(profesional);
 
         servicio.addProfesional(profesional);
@@ -101,4 +101,18 @@ public class ProfesionalController {
         return new ResponseEntity<>("Profesional borrado", HttpStatus.ACCEPTED);
     }
 
+    @PatchMapping("/profesional/{id}/email")
+    public ResponseEntity<Object> editarEmailProfesional (@PathVariable Long id, @RequestParam String email) {
+        Set<String> emails = profesionalService.traerProfesionales().stream().map(Profesional::getEmail).collect(Collectors.toSet());
+
+        if (emails.contains(email))
+            return new ResponseEntity<>("Email ya en uso", HttpStatus.FORBIDDEN);
+        if (!email.contains("@") || !email.endsWith(".com") || !email.endsWith(".net") || !email.endsWith(".es") || !email.endsWith(".com.ar"))
+            return new ResponseEntity<>("Email ya en uso", HttpStatus.FORBIDDEN);
+
+        Profesional profesional = profesionalService.traerProfesional(id);
+        profesional.setEmail(email);
+        profesionalService.guardarProfesinal(profesional);
+        return new ResponseEntity<>("Email profesional editado", HttpStatus.ACCEPTED);
+    }
 }
