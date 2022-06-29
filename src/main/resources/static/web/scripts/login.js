@@ -10,6 +10,7 @@ Vue.createApp({
         registroDni:"",
         registroEmail: "",
         registroContraseña: "",
+        resetEmail:"",
         }
 
       },
@@ -42,29 +43,50 @@ Vue.createApp({
         this.passwordType = this.passwordType === "password" ? "text" : "password";
       },
     
-      toggleClass(){
-        const signup = document.getElementById("sign-up"),
-        signin = document.getElementById("sign-in"),
-        loginin = document.getElementById("login-in"),
+      registerForm(){
+        let loginin = document.getElementById("login-in"),
         loginup = document.getElementById("login-up")
     
-          signup.addEventListener("click", () => {
           loginin.classList.remove("block")
           loginup.classList.remove("none")
           loginin.classList.add("none")
           loginup.classList.add("block")
-          })
-          signin.addEventListener("click", () => {
+      },
+
+      loginForm(){
+        let loginin = document.getElementById("login-in"),
+        loginup = document.getElementById("login-up")
+
           loginin.classList.remove("none")
           loginup.classList.remove("block")
           loginin.classList.add("block")
           loginup.classList.add("none")
-          })
       },
+
+      forgotPassword(){
+        let loginin = document.getElementById("login-in"),
+        reset = document.getElementById("reset")
+          loginin.classList.remove("block")
+          reset.classList.remove("none")
+          loginin.classList.add("none")
+          reset.classList.add("block")
+        },
+
+        backToSignIn(){
+          let loginin = document.getElementById("login-in"),
+          reset = document.getElementById("reset")
+            loginin.classList.remove("none")
+            reset.classList.remove("block")
+            loginin.classList.add("block")
+            reset.classList.add("none") 
+          },
+
 
       signIn() {},
 
       signUp(){},
+
+      resetPassword(){},
 
     },
 
