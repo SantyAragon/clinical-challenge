@@ -58,14 +58,12 @@ const app = Vue.createApp({
             Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Contraseña re-establecida',
+              title: 'Cuenta verificada exitosamente',
               toast: true,
               showConfirmButton: false,
               timer: 1500
             })
 
-
-            console.log("Token confirmado")
           })
           .catch(error => {
             Swal.fire({
@@ -161,17 +159,53 @@ const app = Vue.createApp({
           }
         })
         .then(response => {
-          window.location.href = '/web/index.html'
+          axios.get('/api/autenticado')
+            .then(response => {
+              if (response.data === 'Admin')
+                window.location.href = "/web/admin.html"
+
+              else if (response.data === 'Profesional')
+                window.location.href = "/web/profesional.html"
+
+              else if (response.data === 'Paciente')
+                window.location.href = '/web/pacientes.html'
+
+            })
         })
-        .catch(function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-          }
-        });
+        .catch(error => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: error.response.data,
+            toast: true,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
     },
 
     resetPassword() {
       axios.patch('/api/pacientes/contraseña', `email=${this.resetEmail}`)
+        .then(response => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Correo de recuperacion enviado',
+            toast: true,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+        .catch(error => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: error.response.data,
+            toast: true,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
 
     },
 
@@ -185,7 +219,6 @@ const app = Vue.createApp({
           console.log('registered');
           this.loginContraseña = this.registroContraseña;
           this.loginEmail = this.registroEmail;
-          this.signIn();
 
 
         })

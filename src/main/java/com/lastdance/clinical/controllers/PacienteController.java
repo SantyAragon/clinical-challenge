@@ -58,6 +58,18 @@ public class PacienteController {
         return new ResponseEntity<>(new PacienteDTO(paciente), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/autenticado")
+    public ResponseEntity<?> verificarRol(Authentication authentication) {
+        if (authentication == null)
+            return new ResponseEntity<>("No autenticado", HttpStatus.ACCEPTED);
+        else if (authentication.getName().contains("@admin.medihub.com"))
+            return new ResponseEntity<>("Admin", HttpStatus.ACCEPTED);
+        else if (authentication.getName().contains("@Medihub.com"))
+            return new ResponseEntity<>("Profesional", HttpStatus.ACCEPTED);
+
+        return new ResponseEntity<>("Paciente", HttpStatus.ACCEPTED);
+    }
+
     @PostMapping("/pacientes")
     public ResponseEntity<Object> registrarPaciente(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contraseña, @RequestParam Long identificacion) throws MessagingException, UnsupportedEncodingException {
 
@@ -120,16 +132,21 @@ public class PacienteController {
     public ResponseEntity<Object> cambiarContraseña(@RequestParam String token, @RequestParam String contraseña) {
         if (contraseña.length() < 6)
             return new ResponseEntity<>("Ingrese una contraseña de al menos 6 caracteres.", HttpStatus.FORBIDDEN);
-        if (pacienteService.traerPacientePorToken(token) == null)
-            return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
+
         Paciente paciente = pacienteService.traerPacientePorToken(token);
+        if (paciente == null)
+            return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
+
+//        Paciente paciente = pacienteService.traerPacientePorToken(token);
+
         if (paciente.getToken().isEmpty() || paciente.getToken().equals(""))
             return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
+
         if (!token.equals(paciente.getToken()))
             return new ResponseEntity<>("Token no valido.", HttpStatus.FORBIDDEN);
 
         paciente.setToken("");
-        paciente.setContraseña(contraseña);
+        paciente.setContraseña(passwordEncoder.encode(contraseña));
 
         pacienteService.guardarPaciente(paciente);
 

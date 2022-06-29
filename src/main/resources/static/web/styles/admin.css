@@ -2119,6 +2119,10 @@ progress {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+  .card-text {
+    display: flex;
+    align-items: center !important;
+  }
 }
 @media (max-width: 767.98px) {
   .table-responsive-md {
@@ -11700,4 +11704,5 @@ body {
 
 .active[data-content] {
   display: block;
+
 }

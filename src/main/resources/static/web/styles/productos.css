@@ -298,7 +298,6 @@ body li {
     width: 100%;
     min-height: 100vh;
     max-width: 1600px;
-    margin: 0 auto;
 }
 
 .cards .container {
@@ -307,7 +306,12 @@ body li {
     padding: 20px 0;
 }
 
-.cards .container .contenedorCards {
+.contenedorCards {
+    /* width: 30%; */
+    margin: 0 10px;
+}
+
+.cards .container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -317,8 +321,9 @@ body li {
 }
 
 .card {
-    width: 25%;
-    min-width: 300px;
+    /* width: 25%; */
+    width: 250px;
+    margin: 10px 0;
 }
 
 .card .innerProd {
@@ -1006,6 +1011,10 @@ footer {
     margin-right: 25px;
 }
 
+.iconos-redes svg {
+    display: inline;
+}
+
 @media screen and (max-width: 450px){
     footer{
         display: flex;
@@ -1019,6 +1028,100 @@ footer {
     }
 
 }
+
+header {
+    height: 80px;
+  }
+
+/* NAV */
+
+.logo {
+    /* position: fixed; */
+    float: left;
+    /* margin: 16px 36px; */
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  
+  nav {
+    /* position: fixed; */
+    width: 100vw;
+    height: 80px;
+    z-index: 1000;
+  }
+  
+  nav ul {
+    list-style: none;
+    background: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    color: #fff;
+    padding: 0;
+    /* text-align: center; */
+    margin: 0;
+    transition: 1s;
+  }
+  
+  nav.black ul {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  nav ul li {
+    display: inline-block;
+    padding: 10px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+  }
+  
+  /*MENU ICON*/
+  .menu-icon {
+    width: 100%;
+    background: #000;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 15px 24px;
+    cursor: pointer;
+    color: #fff;
+    display: none;
+  }
+  
+  /*RESPONSIVE NAV*/
+  @media(max-width: 580px) {
+    .logo {
+      position: fixed;
+      top: 0;
+      margin-top: 16px;
+    }
+  
+    nav ul {
+      max-height: 0px;
+      background: #000;
+    }
+  
+    nav.black ul {
+      background: #000;
+    }
+  
+    .showing {
+      max-height: 20em;
+    }
+  
+    nav ul li {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 24px 0px;
+      text-align: center;
+    }
+  
+    .menu-icon {
+      display: block;
+    }
+  }
 
 /* SCROLL UP */
 
@@ -1072,3 +1175,14 @@ footer {
   body::-webkit-scrollbar-thumb {
     background-image: linear-gradient(0deg, rgba(0, 96, 190, 0.6530987394957983) 0%, rgba(0, 212, 255, 1) 100%);
   }
+
+
+/*----------------------------------*/
+
+.div-imagen {
+    height: 30vh;
+    background-image: url(.assets/farmacia.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
