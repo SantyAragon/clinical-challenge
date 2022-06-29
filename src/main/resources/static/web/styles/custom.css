@@ -2060,3 +2060,35 @@ section .section-title {
   opacity: 0;
   visibility: hidden
 }
+
+
+
+.footer-bajo {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  height: 55px;
+  flex-wrap: wrap;
+  box-shadow: 0 8px 20px rgba(43, 43, 43, 0.2);
+  width: 100vw;
+  background-color: #77C7C9;
+  color: white;
+}
+
+.iconos-redes{
+  margin-right: 25px;
+}
+
+@media screen and (max-width: 450px){
+  .footer-bajo{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .iconos-redes{
+      margin-right: 10px;
+  }
+
+}
