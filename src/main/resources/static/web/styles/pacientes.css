@@ -12,6 +12,18 @@ body {
     padding: 0;
     background-color: #77C7C9;
 }
+
+header {
+    height: 7vh;
+}
+
+.botonesHeader a{
+    text-decoration: none;
+    color: #000000;
+    border: 1px solid black;
+    padding: 1vh 3vh;
+}
+
 /* 
 .profile-card {
     width: 300px;
