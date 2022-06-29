@@ -8,6 +8,7 @@ import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,8 +58,8 @@ public class FacturaController {
 
     @Transactional
     @PostMapping("/facturas/create")
-    public ResponseEntity<Object> crearFactura(@RequestBody GenerarFacturaDTO generarFacturaDTO) {
-        Paciente paciente = pacienteService.traerPaciente(1L);//authentication
+    public ResponseEntity<Object> crearFactura(@RequestBody GenerarFacturaDTO generarFacturaDTO,Authentication authentication) {
+        Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
 
         Set<Servicio> servicios = generarFacturaDTO.getServicios().stream().map(serv -> servicioService.traerServicio(serv.getIdServicio())).collect(Collectors.toSet());
         Set<Producto> productos = generarFacturaDTO.getProductos().stream().map(prod -> productoService.traerProducto(prod.getIdProducto())).collect(Collectors.toSet());
@@ -73,7 +75,7 @@ public class FacturaController {
                         LocalDateTime fechaServicioATomar = generarFacturaDTO.getServicios().stream().filter(serv1 -> serv1.getIdServicio() == servicioATomar.getId()).findFirst().orElseThrow().getFecha();
                         Profesional profesional = profesionalService.traerProfesional(generarFacturaDTO.getServicios().stream().filter(serv1 -> serv1.getIdServicio() == servicioATomar.getId()).findFirst().orElseThrow().getIdProfesional());
 
-                        PacienteServicio pacienteServicio = new PacienteServicio(servicioATomar.getMonto(), fechaServicioATomar, factura, servicioATomar,profesional);
+                        PacienteServicio pacienteServicio = new PacienteServicio(servicioATomar.getMonto(), fechaServicioATomar, factura, servicioATomar, profesional);
                         subTotalServicios.add(pacienteServicio.getMonto());
                         pacienteServicioService.guardarPacienteServicio(pacienteServicio);
 
@@ -106,7 +108,7 @@ public class FacturaController {
     }
 
     @PostMapping("/facturas/descargar")
-    public ResponseEntity<Object> generatePdf(HttpServletResponse response) throws DocumentException, IOException {
+    public ResponseEntity<Object> generatePdf(HttpServletResponse response, Authentication authentication) throws DocumentException, IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-mm-dd:hh:mm");
         String currentDateTime = dateFormatter.format(new Date());
@@ -115,7 +117,9 @@ public class FacturaController {
         String headerValue = "attachment; filename=medihub-factura-" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        pdfService.export(response, 1L);
+        Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
+        Long idFactura = paciente.getFacturas().stream().max(Comparator.comparing(Factura::getId)).orElseThrow().getId();
+        pdfService.export(response, idFactura);
 
         return new ResponseEntity<>("PDF enviado.", HttpStatus.ACCEPTED);
     }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,8 @@ public class PacienteController {
     PacienteService pacienteService;
     @Autowired
     JavaMailSender javaMailSender;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/pacientes")
     public Set<PacienteDTO> traerPacientesActivos() {
@@ -59,7 +62,7 @@ public class PacienteController {
             return new ResponseEntity<>("El dni ya esta en uso", HttpStatus.FORBIDDEN);
         }
 
-        Paciente paciente = new Paciente(nombre, apellido, email, contraseña, identificacion, generarToken());
+        Paciente paciente = new Paciente(nombre, apellido, email, passwordEncoder.encode(contraseña), identificacion, generarToken());
         pacienteService.guardarPaciente(paciente);
 
         enviarMailVerificacion(paciente.getEmail());
