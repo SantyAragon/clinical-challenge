@@ -37,10 +37,10 @@ public class ProductoController {
         return productoService.traerProductoDTO(id);
     }
 
-    @GetMapping("/productos/autenticado")
-    public Set<PacienteProductoDTO> traerProductosComprados(Authentication authentication) {
-        return pacienteService.traerPacientePorEmail(authentication.getName()).getFacturas().stream().map(Factura::getProductos).map(PacienteProductoDTO::new).collect(Collectors.toSet());
-    }
+//    @GetMapping("/productos/autenticado")
+//    public Set<PacienteProductoDTO> traerProductosComprados(Authentication authentication) {
+//        return pacienteService.traerPacientePorEmail(authentication.getName()).getFacturas().stream().map(Factura::getProductos).map(PacienteProductoDTO::new).collect(Collectors.toSet());
+//    }
 
     @PostMapping("/productos")
     public ResponseEntity<Object> nuevoProducto(@RequestParam String nombre, @RequestParam TipoProducto tipo, @RequestParam long stock, @RequestParam Double precio, @RequestParam String imagen) {

@@ -17,7 +17,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
     <!-- LINK FAVICON -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
 
     <!-- LINK FONTAWESOME ICONS -->
     <script src="https://kit.fontawesome.com/a9e21e8a67.js" crossorigin="anonymous"></script>
@@ -66,9 +66,9 @@
 
             <nav>
                 <div class="contenedor-nav">
-                <div class="logo">
-                    <img src="./assets/logo-medihub.png" alt="">
-                </div> 
+                    <div class="logo">
+                        <img src="./assets/logo-medihub.png" alt="">
+                    </div>
             </nav>
 
 
@@ -88,29 +88,29 @@
                     <div class="login__content">
                         <div class="login__forms">
                             <div class="formulario-reseteo">
-                            <form @submit.prevent="signIn" class="login__register" id="login-in">
-                                <h2 class="login__title">Nueva Contraseña</h2>
-                                <div class="login__box d-flex">
-                                    <i class='bi bi-key-fill login__icon'></i>
-                                    <input :type="hideNewPass" class="login__input" placeholder="Nueva contraseña"
-                                        v-model="nuevaContraseña">
-                                    <i @click="toggleType"
-                                        :class="hideNewPass == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
-                                        aria-hidden="true" id="eye"></i>
-                                </div>
-                                <div class="login__box d-flex">
-                                    <i class='bi bi-key-fill login__icon'></i>
-                                    <input :type="hideConfirmPass" class="login__input" placeholder="Confirmar contraseña"
-                                        v-model="confirmarContraseña">
-                                    <i @click="toggleType2"
-                                        :class="hideConfirmPass == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
-                                        aria-hidden="true" id="eye"></i>
-                                </div>
-                                <a href="#" class="login__forgot"></a>
+                                <form @submit.prevent="signIn" class="login__register" id="login-in">
+                                    <h2 class="login__title">Nueva Contraseña</h2>
+                                    <div class="login__box d-flex">
+                                        <i class='bi bi-key-fill login__icon'></i>
+                                        <input :type="hideNewPass" class="login__input" placeholder="Nueva contraseña"
+                                            v-model="nuevaContraseña">
+                                        <i @click="toggleType"
+                                            :class="hideNewPass == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+                                            aria-hidden="true" id="eye"></i>
+                                    </div>
+                                    <div class="login__box d-flex">
+                                        <i class='bi bi-key-fill login__icon'></i>
+                                        <input :type="hideConfirmPass" class="login__input"
+                                            placeholder="Confirmar contraseña" v-model="confirmarContraseña">
+                                        <i @click="toggleType2"
+                                            :class="hideConfirmPass == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+                                            aria-hidden="true" id="eye"></i>
+                                    </div>
+                                    <a href="#" class="login__forgot"></a>
 
-                                <button type="submit" class="login__button">Confirmar</button>
+                                    <button type="submit" class="login__button">Confirmar</button>
 
-                            </form>
+                                </form>
                             </div>
 
                         </div>
@@ -154,7 +154,7 @@
                     </a>
 
                 </div>
-        </footer>
+            </footer>
         </div>
     </main>
 

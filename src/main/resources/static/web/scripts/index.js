@@ -2,7 +2,6 @@ Vue.createApp({
   data() {
     return {
       client: [],
-
     }
   },
 
@@ -70,7 +69,6 @@ Vue.createApp({
       $(this).tab('show')
     })
 
-
   },
 
   created() {
@@ -82,6 +80,7 @@ Vue.createApp({
       .catch(error => console.warn(error.message));
 
   },
+
 
   methods: {
 

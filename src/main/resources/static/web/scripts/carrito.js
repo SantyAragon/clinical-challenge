@@ -41,36 +41,40 @@ Vue.createApp({
     },
 
     methods: {
-        removeItem(producto){
-                this.productoCarrito = this.gCarrito.filter(prod => producto.id == prod.id)[0]
-          
-                let index = this.gCarrito.findIndex(prod => prod.id == producto.id);
-                // SI EL OBJETO PRODUCTO TIENE CANTIDAD MAYOR A 1, SE DECREMENTA UNO.
-                if (this.productoCarrito.cantidad > 1) {
-                  this.productoCarrito.cantidad--
-                  this.productoCarrito.stock++
-                  this.gCarrito[index].stock++
-          
-                  // this.productosEnCarrito.slice(index,this.productoCarrito)
-                }
-                // SINO, SE ELIMINA ESE OBJETO DEL ARRAY DE PRODUCTOS FILTRANDO LOS DISTINTOS AL SELECCIONADO
-                else {
-                  this.gCarrito = this.gCarrito.filter(prod => prod.id != producto.id)
-                  this.productoCarrito.stock++
-                  Swal.fire({
+        formatMoney(amount) {
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(amount);
+        },
+
+        removeItem(producto) {
+            this.productoCarrito = this.gCarrito.filter(prod => producto.id == prod.id)[0]
+
+            let index = this.gCarrito.findIndex(prod => prod.id == producto.id);
+            // SI EL OBJETO PRODUCTO TIENE CANTIDAD MAYOR A 1, SE DECREMENTA UNO.
+            if (this.productoCarrito.cantidad > 1) {
+                this.productoCarrito.cantidad--
+                this.productoCarrito.stock++
+                this.gCarrito[index].stock++
+
+                // this.productosEnCarrito.slice(index,this.productoCarrito)
+            }
+            // SINO, SE ELIMINA ESE OBJETO DEL ARRAY DE PRODUCTOS FILTRANDO LOS DISTINTOS AL SELECCIONADO
+            else {
+                this.gCarrito = this.gCarrito.filter(prod => prod.id != producto.id)
+                this.productoCarrito.stock++
+                Swal.fire({
                     title: 'Eliminado del Carrito',
                     imageUrl: 'https://cdn-icons-png.flaticon.com/512/105/105739.png',
                     imageHeight: 80,
-                  })
-                }
-                // ACA SE VUELVE A CALCULAR EL TOTAL DE PRODUCTOS QUE QUEDARON EN EL CARRITO
-                this.gTotalEnCarrito = this.gCarrito.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0)
-          
-                // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
-                this.productosEnStorage = this.gCarrito
-                localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
-          
-              },
+                })
+            }
+            // ACA SE VUELVE A CALCULAR EL TOTAL DE PRODUCTOS QUE QUEDARON EN EL CARRITO
+            this.gTotalEnCarrito = this.gCarrito.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0)
+
+            // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
+            this.productosEnStorage = this.gCarrito
+            localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
+
+        },
     },
 
     computed: {
