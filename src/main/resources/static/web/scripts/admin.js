@@ -7,8 +7,10 @@ Vue.createApp({
 
         nombrePro: "",
         apellidoPro: "",
-        especialidadPro: "",
+        especialidad: "",
+        // servicio: 0,
         emailPro: "",
+        contraseñaPro: "",
         
       }
     },
@@ -42,8 +44,7 @@ Vue.createApp({
   
     methods: {
       nuevoProfesional() {
-        // console.log(this.amount, this.description, this.origin, this.destination)
-        axios.post("/api/profesional", `nombre=${this.nombrePro}&apellido=${this.apellidoPro}&especialidad=${this.especialidadPro}&email=${this.emailPro}`)
+        axios.post("/api/profesional", `nombre=${this.nombrePro}&apellido=${this.apellidoPro}&especialidad=${this.especialidad}}&email=${this.emailPro}&contraseña=${this.contraseñaPro}`)
             .then(response => {
               window.location.reload()
                 window.alert("Profesional agregado")
@@ -53,6 +54,10 @@ Vue.createApp({
               window.alert("No se pudo agregar")
           });
       },
+
+
+
+      
 
     },
 

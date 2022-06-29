@@ -239,12 +239,12 @@
                         <div>
                         <form class="d-flex flex-column gap-4">
                             <label for="name"></label>
-                            <input v-model="nombrePro" placeholder="Nombre" />
+                            <input v-model="nombrePro" placeholder="Nombre"/>
                             <label for="lastname"></label>
-                            <input v-model="apellidoPro" placeholder="Apellido" />
+                            <input v-model="apellidoPro" placeholder="Apellido"/>
                             <fieldset>
                               <h4 for="especialidad">Especialidad: </h4>
-                              <Select v-model="especialidadPro" id="especialidad" class="form-select" required>
+                              <Select v-model="especialidad" id="especialidad" class="form-select" required>
                                 <option disabled value="">Por favor, seleccionar uno</option>
                                 <option value="ALERGIA">ALERGIA </option>
                                 <option value="BIOQUIMICO">BIOQUIMICO </option>
@@ -255,11 +255,15 @@
                                 <option value="OFTALMOLOGO">OFTALMOLOGO </option>
                                 <option value="ANESTESIOLOGO">ANESTESIOLOGO </option>
                                 <option value="NEUROLOGO">NEUROLOGO </option>
-                                <option value="CARDIOLOGO">CARDIOLOG </option>
+                                <option value="CARDIOLOGO">CARDIOLOGO </option>
                               </Select>
                             </fieldset>
+                            <label for="number"></label>
+                            <input type="number" v-model="servicio" placeholder="Identificación"/>
                             <label for="email"></label>
-                            <input v-model="emailPro" placeholder="Correo electrónico" />
+                            <input type="email" v-model="emailPro" placeholder="Correo electrónico"/>
+                            <label for="password"></label>
+                            <input type="password" v-model="contraseñaPro" placeholder="Contraseña"/>
                             <button type="submit" class="btn btn-info display-none mt-2" @click="nuevoProfesional()">Confirmar</button>
                         </form>
                         </div>
