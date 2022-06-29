@@ -13,7 +13,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Rubik', sans-serif;
 }
 
 body {
@@ -22,6 +21,7 @@ body {
     font-size: var(--normal-font-size);
     width: 100vw;
     height: 100vh;
+    font-family: 'Rubik', sans-serif;
 }
 
 
