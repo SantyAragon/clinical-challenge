@@ -89,16 +89,16 @@
                         <img :src="carrito.imagen">
                     </div>
                     <div class="product-details">
-                        <div class="product-title">{{carrito.nombre}}</div>
+                        <div class="product-title fw-bold">{{carrito.nombre}}</div>
                         <p class="product-description">{{carrito.descripcion}}</p>
                     </div>
                     <div class="product-price">{{formatMoney(carrito.precio)}}</div>
                     <div class="product-quantity">
-                        <input type="number" :value="carrito.cantidad" min="1">
+                        <input type="number" @change="valorCantidadProducto(carrito, $event)" :value="carrito.cantidad" min="1">
                     </div>
                     <div class="product-removal">
                         <button class="remove-product" v-on:click="removeItem(carrito)">
-                            Remove
+                            Eliminar
                         </button>
                     </div>
                     <div class="product-line-price">{{formatMoney(carrito.precio * carrito.cantidad)}}</div>

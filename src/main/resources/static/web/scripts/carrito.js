@@ -62,6 +62,10 @@ const app = Vue.createApp({
     },
 
     methods: {
+        valorCantidadProducto(producto, e){
+            producto.cantidad = e.target.value;
+        },
+        
         formatMoney(amount) {
             return new Intl.NumberFormat('en-US', {
                 style: 'currency',
