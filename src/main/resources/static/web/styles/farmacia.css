@@ -519,10 +519,10 @@ label.checkbox-inline {
 }
 
 .ltn__search-widget button {
-    position: absolute;
+    /* position: absolute; */
     right: 0;
     height: 100%;
-    padding: 0 20px;
+    padding: 10px 20px;
     color: var(--white);
     border: 1px solid;
     background-color: var(--ltn__secondary-color);
@@ -1242,10 +1242,4 @@ label.checkbox-inline {
 
 /* ----------------------------------- */
 
-.div-imagen {
-    height: 30vh;
-    background-image: url(assets/farmacia.jpeg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+
