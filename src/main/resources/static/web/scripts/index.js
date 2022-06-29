@@ -1,7 +1,7 @@
-Vue.createApp({
+const app = Vue.createApp({
   data() {
     return {
-      client: [],
+      paciente: [],
     }
   },
 
@@ -73,9 +73,9 @@ Vue.createApp({
 
   created() {
 
-    axios.get('/api/clients/current')
+    axios.get('/api/pacientes/autenticado')
       .then(data => {
-        this.client = data.data;
+        this.paciente = data.data;
       })
       .catch(error => console.warn(error.message));
 
