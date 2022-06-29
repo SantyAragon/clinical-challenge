@@ -829,6 +829,9 @@ a {
   position: relative;
   z-index: 1;
 }
+.heading{
+  padding-left: 5rem;
+}
 
 .chose-us-area .info li .icon i {
   display: inline-block;
@@ -1722,12 +1725,6 @@ section .section-title {
   height: 120px;
   border-radius: 50%;
 }
-.img-fluid{
-  
-}
-
-
-
 /* TEST */
 
 .about-area .info {
