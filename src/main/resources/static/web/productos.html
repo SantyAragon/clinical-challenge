@@ -83,7 +83,7 @@
                 </ul>
             </div>
             <div class="navCarrito">
-                <div class="p-2 ms-2">
+                <div class="p-2 mt-2 ms-2">
                     <div class="flex h-64 justify-center">
                         <div class="relative ">
                             <div class="flex flex-row truncate p-2 px-4  rounded">
@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span v-show="gAlternarCarrito" v-else>carrito vacio</span>
+                                <!-- <span v-show="gAlternarCarrito" v-else>carrito vacio</span> -->
                             </div>
                         </div>
                     </div>
@@ -162,15 +162,14 @@
         </nav>
 
         <header>
-            <h1 class="text-center mt-5 fs-1">FARMACIA CLINICA</h1>
-
+            <h1 class="text-center mt-3 fs-1">FARMACIA CLINICA</h1>
         </header>
 
         <!-- PRODUCT DETAILS AREA START -->
-        <div class="ltn__product-area ltn__product-gutter mt-1 mb-120">
+        <div class="ltn__product-area ltn__product-gutter p-2">
             <div>
-                <div class="row">
-                    <div class="col-lg-8 order-lg-2 mb-120">
+                <div class="row flex-wrap-reverse">
+                    <div class="col-lg-9 order-lg-2 d-flex flex-column">
                         <div class="ltn__shop-options">
                             <ul>
                                 <div class="short-by text-center">
@@ -186,14 +185,13 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active show" id="liton_product_grid">
-                                <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+                        <div class="tab-content mt-2">
+                            <div class="tab-pane fade active show w-100" id="liton_product_grid">
+                                <div class="ltn__product-tab-content-inner ltn__product-grid-view w-100">
                                     <div class="row">
-
                                         <section class="cards">
-                                            <div class="container d-flex flex-wrap gap-1">
-                                                <div class="contenedorCards" v-for="card in gProductosFiltrados">
+                                            <div class="d-flex flex-wrap justify-content-around">
+                                                <div class="contenedorCards d-flex justify-content-around" v-for="card in gProductosFiltrados">
                                                     <div class="card" :class="{'out': !card.stock}">
                                                         <div class="innerProd">
                                                             <div class="imgWrapper">
@@ -259,7 +257,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 ms-5 mb-120">
+                    <div class="col-lg-3 mb-2">
                         <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
 
                             <!-- Search Widget -->
@@ -269,7 +267,7 @@
                                     <input type="text" name="search" v-model="nombreDelBuscador"
                                         v-on:click="buscadorProducto" placeholder="Que producto buscas?"
                                         class="form-control" id="exampleFormControlInput1">
-                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                    <!-- <button type="submit"><i class="fas fa-search"></i></button> -->
                                 </form>
                             </div>
                             <!-- Filtro de precio WIDGET -->
@@ -377,16 +375,9 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
         <footer class="footer-container">
             <div class="me-3">
-                <span>Siguenos en nuestras redes</span>
+                <span class="ms-2">Siguenos en nuestras redes</span>
             </div>
             <div>
                 <a href="" class="text-white iconos-redes">

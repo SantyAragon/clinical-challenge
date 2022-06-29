@@ -11,6 +11,7 @@ public class ProfesionalDTO {
     private String nombre;
     private String apellido;
     private TipoEspecialidad especialidad;
+    private String email;
 
 
 //    private Servicio servicio;
@@ -24,6 +25,7 @@ public class ProfesionalDTO {
         this.nombre = profesional.getNombre();
         this.apellido = profesional.getApellido();
         this.especialidad = profesional.getEspecialidad();
+        this.email = profesional.getEmail();
 //        this.servicio = profesional.getServicio();
     }
 
@@ -46,6 +48,8 @@ public class ProfesionalDTO {
         return especialidad;
     }
 
-
-
+    public String getEmail() { return email; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

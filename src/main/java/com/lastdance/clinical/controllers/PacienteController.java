@@ -132,16 +132,21 @@ public class PacienteController {
     public ResponseEntity<Object> cambiarContraseña(@RequestParam String token, @RequestParam String contraseña) {
         if (contraseña.length() < 6)
             return new ResponseEntity<>("Ingrese una contraseña de al menos 6 caracteres.", HttpStatus.FORBIDDEN);
-        if (pacienteService.traerPacientePorToken(token) == null)
-            return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
+
         Paciente paciente = pacienteService.traerPacientePorToken(token);
+        if (paciente == null)
+            return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
+
+//        Paciente paciente = pacienteService.traerPacientePorToken(token);
+
         if (paciente.getToken().isEmpty() || paciente.getToken().equals(""))
             return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
+
         if (!token.equals(paciente.getToken()))
             return new ResponseEntity<>("Token no valido.", HttpStatus.FORBIDDEN);
 
         paciente.setToken("");
-        paciente.setContraseña(contraseña);
+        paciente.setContraseña(passwordEncoder.encode(contraseña));
 
         pacienteService.guardarPaciente(paciente);
 
