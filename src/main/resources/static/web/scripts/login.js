@@ -1,4 +1,4 @@
-Vue.createApp({
+const app = Vue.createApp({
   data() {
     return {
       passwordType: "password",
@@ -172,6 +172,7 @@ Vue.createApp({
 
     resetPassword() {
       axios.patch('/api/pacientes/contraseña', `email=${this.resetEmail}`)
+
     },
 
     signUp() {
@@ -186,7 +187,9 @@ Vue.createApp({
           this.loginEmail = this.registroEmail;
           this.signIn();
 
+
         })
+
     },
   },
 
