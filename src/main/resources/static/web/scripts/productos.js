@@ -56,7 +56,7 @@ const app = Vue.createApp({
   },
 
   created() {
-    axios.get("/api/productos/")
+    axios.get("/api/productos")
       .then(datos => {
         this.datosCards = datos.data;
 
