@@ -68,11 +68,11 @@
                 <div class="contenedor-nav">
                 <div class="logo">
                     <!-- <i class="fa-solid fa-staff-aesculapius"></i> MEDIHUB -->
-                    <img src="./assets/testt.png" alt="">
+                    <img src="./assets/logo-medihub.png" alt="">
                 </div>
                 <div class="menu">
 
-                    <li class=""><a href="" class="btn-volver">Volver</a></li>
+                    <li class=""><a href="" class="btn-volver">Inicio</a></li>
 
                 </div>
                 </div>
@@ -95,90 +95,99 @@
                     <div class="login__content">
                         <div class="login__forms">
 
-                            <form @submit.prevent="signIn" class="login__register" id="login-in">
-                                <h1 class="login__title">Sign In</h1>
-                                <div class="login__box">
-                                    <i class='bi bi-person-fill login__icon'></i>
-                                    <input type="email" placeholder="Email" class="login__input" v-model="loginEmail">
-                                </div>
-                                <div class="login__box d-flex">
-                                    <i class='bi bi-key-fill login__icon'></i>
-                                    <input :type="passwordType" class="login__input" placeholder="Contraseña"
-                                        v-model="loginContraseña">
-                                    <i @click="toggleType"
-                                        :class="passwordType == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
-                                        aria-hidden="true" id="eye"></i>
-                                </div>
-                                <a @click="forgotPassword" href="#" class="login__forgot">Olvidaste la contraseña? </a>
+<div class="formulario-login">
+    <form @submit.prevent="signIn" class="login__register" id="login-in">
+        <h2 class="login__title">Sign In</h2>
+        <div class="login__box">
+            <i class='bi bi-person-fill login__icon'></i>
+            <input type="email" placeholder="Email" class="login__input" v-model="loginEmail">
+        </div>
+        <div class="login__box d-flex">
+            <i class='bi bi-key-fill login__icon'></i>
+            <input :type="passwordType" class="login__input" placeholder="Contraseña"
+                v-model="loginContraseña">
+            <i @click="toggleType"
+                :class="passwordType == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+                aria-hidden="true" id="eye"></i>
+        </div>
+        <a @click="forgotPassword" href="#" class="login__forgot">Olvidaste la contraseña? </a>
 
-                                <button type="submit" class="login__button">Acceder</button>
+        <button type="submit" class="login__button">Acceder</button>
 
-                                <div>
-                                    <span class="login__account login__account--account">No tienes una cuenta?</span>
-                                    <span @click="registerForm" class="login__signin login__signup--signup"
-                                        id="sign-up"> Registrate ahora!</span>
-                                </div>
-                            </form>
+        <div>
+            <span class="login__account login__account--account">No tienes una cuenta?</span>
+            <span @click="registerForm" class="login__signin login__signup--signup"
+                id="sign-up"> Registrate ahora!</span>
+        </div>
+    </form>
+</div>
 
-                            <form @submit.prevent="signUp" class="login__create none" id="login-up">
-                                <h1 class="login__title">Registrarse</h1>
-                                <div class="login__box">
-                                    <i class='bi bi-person-lines-fill login__icon'></i>
-                                    <input type="text" placeholder="Nombre" class="login__input"
-                                        v-model="registroNombre">
-                                </div>
+<div class="formulario-registro"> 
+    <form @submit.prevent="signUp" class="login__create none" id="login-up">
+        <h2 class="login__title">Registrarse</h2>
+    <div class="sub-form">
+        <div class="login__box">
+            <i class='bi bi-person-lines-fill login__icon'></i>
+            <input type="text" placeholder="Nombre" class="login__input"
+                v-model="registroNombre">
+        </div>
 
-                                <div class="login__box">
-                                    <i class='bi bi-person-lines-fill login__icon'></i>
-                                    <input type="text" placeholder="Apellido" class="login__input"
-                                        v-model="registroApellido">
-                                </div>
+        <div class="login__box">
+            <i class='bi bi-person-lines-fill login__icon'></i>
+            <input type="text" placeholder="Apellido" class="login__input"
+                v-model="registroApellido">
+        </div>
 
-                                <div class="login__box">
-                                    <i class='bi bi-envelope-fill login__icon'></i>
-                                    <input type="text" placeholder="DNI" class="login__input" v-model="registroDni">
-                                </div>
+        <div class="login__box">
+            <i class='bi bi-envelope-fill login__icon'></i>
+            <input type="text" placeholder="DNI" class="login__input" v-model="registroDni">
+        </div>
+    </div>
+    <div class="sub-form">
+        <div class="login__box">
+            <i class='bi bi-envelope-fill login__icon'></i>
+            <input type="email" placeholder="Email" class="login__input"
+                v-model="registroEmail">
+        </div>
 
-                                <div class="login__box">
-                                    <i class='bi bi-envelope-fill login__icon'></i>
-                                    <input type="email" placeholder="Email" class="login__input"
-                                        v-model="registroEmail">
-                                </div>
+        <div class="login__box d-flex">
+            <i class='bi bi-key-fill login__icon'></i>
+            <input :type="passwordType" class="login__input" placeholder="Contraseña"
+                v-model="registroPassword" />
+            <i @click="toggleType"
+                :class="passwordType == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
+                aria-hidden="true" id="eye"></i>
+        </div>
 
-                                <div class="login__box d-flex">
-                                    <i class='bi bi-key-fill login__icon'></i>
-                                    <input :type="passwordType" class="login__input" placeholder="Contraseña"
-                                        v-model="registroPassword" />
-                                    <i @click="toggleType"
-                                        :class="passwordType == 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'"
-                                        aria-hidden="true" id="eye"></i>
-                                </div>
+        <button type="submit" class="login__button">Registrarse</button>
 
-                                <button type="submit" class="login__button">Registrarse</button>
+        <div>
+            <span class="login__account login__account--account">Ya tienes una cuenta?</span>
+            <span @click="loginForm" class="login__signup login__signin--signin"
+                id="sign-in"> Acceder</span>
+        </div>
+    </div>
 
-                                <div>
-                                    <span class="login__account login__account--account">Ya tienes una cuenta?</span>
-                                    <span @click.capture="loginForm" class="login__signup login__signin--signin"
-                                        id="sign-in"> Acceder</span>
-                                </div>
+    </form>
+</div>
 
-                            </form>
+<div class="formulario-reseteo">
+    <form @submit.prevent="resetPassword" class="login__register none" id="reset">
+        <h2 class="login__title">Recuperar contraseña</h2>
+        <div class="login__box">
+            <i class='bi bi-person-fill login__icon'></i>
+            <input type="email" placeholder="Email" class="login__input" v-model="resetEmail">
+        </div>
+        
+        <button type="submit" class="login__button">Confirmar</button>
 
-                            <form @submit.prevent="resetPassword" class="login__register none" id="reset">
-                                <h1 class="login__title">Recuperar contraseña</h1>
-                                <div class="login__box">
-                                    <i class='bi bi-person-fill login__icon'></i>
-                                    <input type="email" placeholder="Email" class="login__input" v-model="resetEmail">
-                                </div>
-                                
-                                <button type="submit" class="login__button">Confirmar</button>
-
-                                <div>
-                                    <span class="login__account login__account--account">Ya tienes una cuenta?</span>
-                                    <span @click.capture="backToSignIn" class="login__signup login__signin--signin"
-                                        id="sign-in"> Acceder</span>
-                                </div>
-                            </form>
+        <div>
+            <span class="login__account login__account--account">Ya tienes una cuenta?</span>
+            <span @click="backToSignIn" class="login__signup login__signin--signin"
+                id="sign-in"> Acceder</span>
+        </div>
+    </form>
+</div>
 
 
                         </div>

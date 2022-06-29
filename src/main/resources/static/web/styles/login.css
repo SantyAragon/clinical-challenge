@@ -26,7 +26,13 @@ body {
 
 
 h1 {
+    text-align: center;
     margin: 0;
+}
+
+.bienvenida-texto{
+    display: flex;
+    justify-content: center;
 }
 
 a {
@@ -118,13 +124,9 @@ nav .contenedor-nav{
     flex-wrap: wrap;
 }
 
-nav .contenedor-nav .logo {
-}
 
 nav .contenedor-nav .logo img{
     height: 65px;
-
-    
 }
 
 
@@ -142,12 +144,14 @@ nav .contenedor-nav .logo img{
 
 .particulas-top {
     position: absolute;
+    z-index: -1;
     left: 0;
     top: 0;
 }
 
 .particulas-bottom {
     position: absolute;
+    z-index: -1;
     right: 0;
     bottom: 0;
 }
@@ -158,24 +162,22 @@ nav .contenedor-nav .logo img{
 
 .login {
     display: flex;
+    width: auto;
 }
 
 
-.login__content {
+/* .login__content {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 10rem;
-}
+} */
 
 .login__forms {
-    position: relative;
-    height: 368px;
     width: 348px;
-    justify-self: center;
 }
 
-.login__register,
+/* .login__register,
 .login__create {
     position: absolute;
     bottom: 1rem;
@@ -188,15 +190,29 @@ nav .contenedor-nav .logo img{
     box-shadow: 0 8px 20px rgba(35, 0, 77, .2);
     animation-duration: .5s;
     animation-name: animateLogin;
+} */
+
+.login__register,
+.login__create {
+    width: 100%;
+    background-color: var(--color-lighten);
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(35, 0, 77, .2);
+    animation-duration: .5s;
+    animation-name: animateLogin;
 }
 
-.login__register {
+/* .login__register {
     bottom: -2rem;
 }
 
 .login__create {
     bottom: -5.5rem;
-}
+} */
+
+
 
 .login__title {
     font-size: var(--big-font-size);
@@ -296,17 +312,21 @@ nav .contenedor-nav .logo img{
 
 @media screen and (max-width:1300px) {
 
-    .login__forms {
+    /* .login__forms {
         position: relative;
         width: 300px;
         justify-self: center;
+    } */
+
+    /* .login__forms {
+        width: 300px;
     }
 
     .login {
         height: calc(100vh - 75px - 55px);
-    }
+    } */
 
-    .login__content {
+    /* .login__content {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -324,15 +344,17 @@ nav .contenedor-nav .logo img{
 
     .login__create {
         bottom: -5.5rem;
-    }
+    } */
+
 
 }
 
+
 @media screen and (max-width:900px) {
 
-    .login {
+    /* .login {
         height: calc(100vh - 75px - 55px)
-    }
+    } */
 
 
     .login__content {
@@ -344,15 +366,20 @@ nav .contenedor-nav .logo img{
 
     .login__forms {
         width: 300px;
-        top: -4rem;
     }
 
 
-    .login__register,
+    /* .login__register,
     .login__create {
         position: unset;
-    }
+    } */
 
+}
+
+@media screen and (max-width:767px) {
+    h1{
+        margin-bottom: 50px;
+    }
 }
 
 @media screen and (max-width:649px) {
@@ -360,33 +387,30 @@ nav .contenedor-nav .logo img{
         display: none;
     }
 
-
-}
-
-@media screen and (max-width:300px) {
-
-    .login {
-        height: calc(100vh - 75px - 55px)
-    }
-
-    .login__forms {
-        width: 250px;
-        top: -4rem;
-    }
-
-    .login__register,
-    .login__create {
-        padding: 1rem 0.5rem;
-    }
-
-    .logo{
-        left: 0;
-        margin: 0;
-        padding: 0;
+    .contenido{
+        justify-content: center;
     }
 
 }
 
+@media screen and (max-width:375px) {
+
+    h1{
+        display: none;
+    }
+
+    .login__create{
+        padding: 3px 20px;
+    }
+    
+}
+
+/* @media screen and (max-height:600px){
+.sub-form{
+    width: 50%;
+    flex-direction: row;
+}
+} */
 
 footer {
     display: flex;
