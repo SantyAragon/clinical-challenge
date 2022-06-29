@@ -207,6 +207,19 @@ public class PacienteController {
         return new ResponseEntity<>("Modificacion de email exitosa", HttpStatus.ACCEPTED);
     }
 
+    @PatchMapping("/pacientes/autenticado/contraseña")
+    public ResponseEntity<Object> actualizarContraseñaPacienteAutenticado(Authentication authentication, @RequestParam String contraseña) {
+
+        if (contraseña.length() < 6)
+            return new ResponseEntity<>("Ingrese una contraseña de al menos 6 caracteres.", HttpStatus.FORBIDDEN);
+
+
+        Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
+        paciente.setContraseña(contraseña);
+        pacienteService.guardarPaciente(paciente);
+        return new ResponseEntity<>("Modificacion de email exitosa", HttpStatus.ACCEPTED);
+    }
+
     @PatchMapping("/pacientes/{id}")
     public ResponseEntity<Object> desactivarPaciente(@PathVariable Long id) {
         Paciente paciente = pacienteService.traerPaciente(id);
