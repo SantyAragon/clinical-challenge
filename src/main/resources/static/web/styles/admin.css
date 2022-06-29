@@ -2111,7 +2111,7 @@ progress {
 
 .table-responsive, .dataTable-wrapper .dataTable-container {
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch; */
 }
 
 @media (max-width: 575.98px) {
@@ -4546,8 +4546,12 @@ textarea.form-control-lg {
   border-top: 0;
 }
 
-.card-body {
+.card-body-cuadro {
   height: 30vh;
+  flex: 1 1 auto;
+  padding: 1rem 1rem;
+}
+.card-body {
   flex: 1 1 auto;
   padding: 1rem 1rem;
 }
@@ -11688,4 +11692,12 @@ body {
   width: 20px !important;
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
+}
+
+[data-content] {
+  display: none;
+}
+
+.active[data-content] {
+  display: block;
 }

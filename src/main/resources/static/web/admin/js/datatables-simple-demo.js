@@ -5,3 +5,10 @@ window.addEventListener('DOMContentLoaded', event => {
         new simpleDatatables.DataTable(datatablesSimple);
     }
 });
+
+window.addEventListener('DOMContentLoaded', event => {
+    const datatable = document.getElementById('datatable');
+    if (datatable) {
+        new simpleDatatable.DataTable(datatable);
+    }
+});
