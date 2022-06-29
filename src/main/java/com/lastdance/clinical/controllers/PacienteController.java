@@ -197,8 +197,8 @@ public class PacienteController {
 
         if (emails.contains(email))
             return new ResponseEntity<>("Email ya en uso", HttpStatus.FORBIDDEN);
-        if (!email.contains("@") || !email.endsWith(".com") || !email.endsWith(".net") || !email.endsWith(".es") || !email.endsWith(".com.ar"))
-            return new ResponseEntity<>("Email ya en uso", HttpStatus.FORBIDDEN);
+        if (!email.contains("@") && !email.endsWith(".com"))
+            return new ResponseEntity<>("Formato de email no admitido", HttpStatus.FORBIDDEN);
 
 
         Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
