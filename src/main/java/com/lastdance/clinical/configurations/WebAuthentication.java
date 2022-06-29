@@ -44,7 +44,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
                     if (profesional.getEmail().contains("@Medihub.com")) {
 
                         return new User(profesional.getEmail(), profesional.getContraseña(),
-                                AuthorityUtils.createAuthorityList("PROFESIONAL", "PACIENTE"));
+                                AuthorityUtils.createAuthorityList("PROFESIONAL"));
                     }
 
                 }
