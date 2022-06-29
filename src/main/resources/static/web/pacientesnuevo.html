@@ -21,7 +21,30 @@
     <title>Dashboard - SB Admin</title>
   </head>
 
-  <body class="sb-nav-fixed">
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <!-- Vertically centered modal -->
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Editar datos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>E-mail
+          <input type="text" class="ms-3">
+        </label>
+        <label>Password
+          <input type="text" class="ms-3">
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success" @click="modificarDatos">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
     <div id="app2">
       <nav
         class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between"
@@ -90,31 +113,31 @@
             <div class="sb-sidenav-menu">
               <div class="nav">
                 <div class="sb-sidenav-menu-heading">Datos del paciente</div>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link">
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-database"></i>
                   </div>
                   Nombre
                 </a>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link">
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-database"></i>
                   </div>
                   Apellido
                 </a>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link">
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-database"></i>
                   </div>
                   DNI
                 </a>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link">
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-database"></i>
                   </div>
-                  ...
+                  E-mail
                 </a>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link">
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-database"></i>
                   </div>
@@ -127,7 +150,7 @@
                   </div>
                   Inicio
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-address-card mr-3 fa-fw"></i>
                   </div>
