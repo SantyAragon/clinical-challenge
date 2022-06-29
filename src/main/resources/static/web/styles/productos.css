@@ -306,7 +306,12 @@ body li {
     padding: 20px 0;
 }
 
-.cards .container .contenedorCards {
+.contenedorCards {
+    /* width: 30%; */
+    margin: 0 10px;
+}
+
+.cards .container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -316,8 +321,9 @@ body li {
 }
 
 .card {
-    width: 25%;
-    min-width: 300px;
+    /* width: 25%; */
+    width: 250px;
+    margin: 10px 0;
 }
 
 .card .innerProd {
@@ -1003,6 +1009,10 @@ footer {
 
 .iconos-redes{
     margin-right: 25px;
+}
+
+.iconos-redes svg {
+    display: inline;
 }
 
 @media screen and (max-width: 450px){
