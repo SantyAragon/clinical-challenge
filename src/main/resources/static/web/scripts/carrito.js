@@ -128,6 +128,11 @@ const app = Vue.createApp({
             axios.post('/api/facturas/create', objt)
                 .then(response => {
                     console.log("equisde")
+                    this.gCarrito = []
+
+                    // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
+                    this.productosEnStorage = this.gCarrito
+                    localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
                 })
                 .catch(error => {
                     console.log(error.response)
