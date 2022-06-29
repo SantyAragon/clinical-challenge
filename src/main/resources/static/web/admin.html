@@ -65,12 +65,12 @@
                                     <a class="nav-link" href="#">Eliminar</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePacientes" aria-expanded="false" aria-controls="collapsePacientes">
                                 <div class="sb-nav-link-icon"><i class="fas fa-hospital-user"></i></div>
                                 Pacientes
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapsePacientes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="#">Todos</a>
                                     <a class="nav-link" href="#">Agregar</a>
@@ -78,37 +78,6 @@
                                     <a class="nav-link" href="#">Eliminar</a>
                                 </nav>
                             </div>
-                            <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Ventas
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="#">Productos</a>
-                                            <a class="nav-link" href="#"></a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div> -->
                             <div class="sb-sidenav-menu-heading">Ventas</div>
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -128,7 +97,7 @@
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
+                    <div class="container-fluid px-4" style="height: max-content;">
                         <h1 class="mt-4">Inicio</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Datos y reportes</li>
@@ -216,7 +185,7 @@
                                             <th>Email</th>
                                             <th>Descripción</th>
                                             <th>Venta</th>
-                                            <!-- <th>Salary</th> -->
+                                            
                                         </tr>
                                     </tfoot>
                                     <tbody v-for="paciente in pacientes">
@@ -224,8 +193,43 @@
                                             <td>{{paciente.nombre}}</td>
                                             <td>{{paciente.apellido}}</td>
                                             <td>{{paciente.email}}</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
+                                            <!-- <td>61</td>
+                                            <td>2011/04/25</td> -->
+                                            <!-- <td>$320,800</td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <!-- <table> -->
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Email</th>
+                                            <!-- <th>Descripción</th> -->
+                                            <!-- <th>Venta</th> -->
+                                            <!-- <th>Salary</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Email</th>
+                                            <!-- <th>Descripción</th> -->
+                                            <!-- <th>Venta</th> -->
+                                            
+                                        </tr>
+                                    </tfoot>
+                                    <tbody v-for="profesional in profesionales">
+                                        <tr>
+                                            <td>{{profesional.nombre}}</td>
+                                            <td>{{profesional.apellido}}</td>
+                                            <td>{{profesional.email}}</td>
+                                            <!-- <td>61</td>
+                                            <td>2011/04/25</td> -->
                                             <!-- <td>$320,800</td> -->
                                         </tr>
                                     </tbody>
