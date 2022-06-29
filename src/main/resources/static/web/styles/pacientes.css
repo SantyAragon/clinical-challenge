@@ -13,14 +13,14 @@ body {
     background-color: #77C7C9;
 }
 
-header {
+/* header {
     height: 7vh;
-}
+} */
 
 .botonesHeader a{
     text-decoration: none;
-    color: #000000;
-    border: 1px solid black;
+    color: white;
+    border: 1px solid white;
     padding: 1vh 3vh;
 }
 
@@ -106,13 +106,13 @@ header {
     color: #77C7C9;
 }
 
-.vertical-nav {
+/* .vertical-nav {
     min-width: 17rem;
     width: 17rem;
     height: 100vh;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.4s;
-}
+} */
 
 .page-content {
     width: calc(100% - 17rem);
