@@ -27,7 +27,9 @@ public class ClinicalApplication {
     @Bean
     public CommandLineRunner initData(PacienteRepository pacienteRepository, PacienteServicioRepository pacienteServicioRepository, ProfesionalRepository profesionalRepository, ServicioRepository servicioRepository, ProductoRepository productoRepository, PacienteProductoRepository pacienteProductoRepository, FacturaRepository facturaRepository) {
         return (args) -> {
-
+//            Paciente paciente0 = new Paciente("santi", "aragon", "santiago.aragon.99@gmail.com", passwordEncoder.encode("santi"), 123l);
+//            paciente0.setToken("asdasd");
+//            pacienteRepository.save(paciente0);
             Paciente pacientePrueba1 = new Paciente("Santiago", "Aragon", "santi@admin.medihub.com", passwordEncoder.encode("santy123"), 87654321L);
             pacientePrueba1.setActivo(false);
             pacienteRepository.save(pacientePrueba1);
@@ -65,17 +67,17 @@ public class ClinicalApplication {
 
             //CREO PROFESIONALES QUE VAN A PERTENER A UN SERVICIO
 
-            Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUJANO, servicio1,"EmaLeiva@Medihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGO, servicio1,"GuilleBonutto@Medihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGO, servicio2,"GuilleCornetti@Medihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional4 = new Profesional("Guille", "Bergesio", NEUROLOGO, servicio4,"GuilleBergesio@Medihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional5 = new Profesional("Facu", "Araujo", NEUROLOGO, servicio4,"FacuAraujo@Medihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional6 = new Profesional("Santi", "Aragon", OBSTETRA, servicio3,"Santi@AdminMedihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional7 = new Profesional("Thomas", "Coutoune", CIRUJANO, servicio1,"Thomi@Medihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional8 = new Profesional("Lucio", "Fernandez", PEDIATRA, servicio7,"Lucio@Medihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional9 = new Profesional("Facundo", "Lorenzo", DENTISTA, servicio5,"Facundo@Medihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional10 = new Profesional("Pablo", "Figueroa", OFTALMOLOGO, servicio6,"Pablo@Medihub.com",passwordEncoder.encode("medihub123"));
-            Profesional profesional11 = new Profesional("Flavio", "Ambroggio", NEUROLOGO, servicio7,"Flavio@Medihub.com",passwordEncoder.encode("medihub123"));
+            Profesional profesional1 = new Profesional("Ema", "Leiva", CIRUJANO, servicio1, "EmaLeiva@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional2 = new Profesional("Guille", "Bonutto", CARDIOLOGO, servicio1, "GuilleBonutto@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGO, servicio2, "GuilleCornetti@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional4 = new Profesional("Guille", "Bergesio", NEUROLOGO, servicio4, "GuilleBergesio@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional5 = new Profesional("Facu", "Araujo", NEUROLOGO, servicio4, "FacuAraujo@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional6 = new Profesional("Santi", "Aragon", OBSTETRA, servicio3, "Santi@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional7 = new Profesional("Thomas", "Coutoune", CIRUJANO, servicio1, "Thomi@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional8 = new Profesional("Lucio", "Fernandez", PEDIATRA, servicio7, "Lucio@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional9 = new Profesional("Facundo", "Lorenzo", DENTISTA, servicio5, "Facundo@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional10 = new Profesional("Pablo", "Figueroa", OFTALMOLOGO, servicio6, "Pablo@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional11 = new Profesional("Flavio", "Ambroggio", NEUROLOGO, servicio7, "Flavio@Medihub.com", passwordEncoder.encode("medihub123"));
 
 
             servicio1.addProfesional(profesional1);

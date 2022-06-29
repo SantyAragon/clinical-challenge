@@ -185,7 +185,6 @@ const app = Vue.createApp({
     },
 
     resetPassword() {
-      console.log("equisde")
       axios.patch('/api/pacientes/contraseña', `email=${this.resetEmail}`)
         .then(response => {
           Swal.fire({
@@ -220,7 +219,6 @@ const app = Vue.createApp({
           console.log('registered');
           this.loginContraseña = this.registroContraseña;
           this.loginEmail = this.registroEmail;
-          this.signIn();
 
 
         })
