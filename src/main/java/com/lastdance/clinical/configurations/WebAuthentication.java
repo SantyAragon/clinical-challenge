@@ -28,7 +28,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
         auth.userDetailsService(inputName -> {
 
-            Paciente paciente = pacienteRepository.findByEmail(inputName);
+            Paciente paciente = pacienteRepository.findByEmail(inputName).orElse(null);
             Profesional profesional = profesionalRepository.findByEmail(inputName);
 
             if (paciente != null || profesional != null) {

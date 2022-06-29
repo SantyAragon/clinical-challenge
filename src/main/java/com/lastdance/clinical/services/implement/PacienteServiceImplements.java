@@ -32,7 +32,12 @@ public class PacienteServiceImplements implements PacienteService {
 
     @Override
     public Paciente traerPacientePorEmail(String email) {
-        return pacienteRepository.findByEmail(email);
+        return pacienteRepository.findByEmail(email).orElse(null);
+    }
+
+    @Override
+    public PacienteDTO traerPacienteDTOPorEmail(String email) {
+        return pacienteRepository.findByEmail(email).map(paciente -> new PacienteDTO(paciente)).orElse(null);
     }
 
     @Override
