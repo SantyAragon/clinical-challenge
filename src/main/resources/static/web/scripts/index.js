@@ -1,27 +1,19 @@
 Vue.createApp({
     data() {
       return {
-        client: [],
 
       }
     },
 
     mounted(){
 
-      //Menu toggle-button for small screens
-      $(document).ready(function (){
-      $(".menu-icon").on("click", function() {
-      $("nav ul").toggleClass("showing");
-      });
-      });
-
       //Scrolling Effect for nav
       $(window).on("scroll", function() {
-      if($(window).scrollTop()) {
-      $('nav').addClass('black');
-      } else {
-      $('nav').removeClass('black');
-      }
+        if($(window).scrollTop()) {
+        $('nav').addClass('black');
+        } else {
+        $('nav').removeClass('black');
+        }
       });
 
       //Ripples effect -> cambiar efecto
@@ -32,16 +24,17 @@ Vue.createApp({
 
       // ===== Scroll to Top ==== 
       $(window).scroll(function() {
-      if ($(this).scrollTop() >= 1080) {        // If page is scrolled more than 50px
-      $('#return-to-top').fadeIn(500);    // Fade in the arrow
-      } else {
-      $('#return-to-top').fadeOut(500);   // Else fade out the arrow
-      }
+        if ($(this).scrollTop() >= 1080) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(500);    // Fade in the arrow
+        } else {
+        $('#return-to-top').fadeOut(500);   // Else fade out the arrow
+        }
       });
+
       $('#return-to-top').click(function() {      // When arrow is clicked
-      $('body,html').animate({
-      scrollTop : 0                       // Scroll to top of body
-      }, 500);
+        $('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+        }, 500);
       });
 
       // toggle services
@@ -50,13 +43,38 @@ Vue.createApp({
         $('.st-tabs ' + currentAttrValue).fadeIn(400).siblings().hide();
         $(this).parents('li').addClass('active').siblings().removeClass('active');
         e.preventDefault();
-    });
-    const btns = document.querySelectorAll('button');
-    btns.forEach((items)=>{
+      });
+
+      const btns = document.querySelectorAll('button');
+        btns.forEach((items)=>{
         items.addEventListener('click',(evt)=>{
-            evt.target.classList.add('activeLoading');
+        evt.target.classList.add('activeLoading');
         })
-    });
+      });
+
+
+// Smooth Scrolling Using Navigation Menu
+// $(function() {
+//     $('a.page-scroll').bind('click', function(event) {
+//         var $anchor = $(this);
+//         $('html, body').stop().animate({
+//             scrollTop: $($anchor.attr('href')).offset().top
+//         }, 1500, 'easeInOutExpo');
+//         event.preventDefault();
+//     });
+// });
+
+// // Highlight the top nav as scrolling occurs
+// $('body').scrollspy({
+//     target: '.navbar-fixed-top'
+// })
+
+// // Closes the Responsive Menu on Menu Item Click
+// $('.navbar-collapse ul li a').click(function() {
+//     $('.navbar-toggle:visible').click();
+// });
+
+    
 
       // Loader
       $(document).ready(function preloaderSetup() {
@@ -75,12 +93,6 @@ Vue.createApp({
     
     created() {
   
-      axios.get('/api/clients/current')
-      .then (data =>{
-        this.client = data.data;
-      })
-      .catch(error => console.warn(error.message));
-
     },
   
     methods: {
