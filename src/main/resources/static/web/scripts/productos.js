@@ -3,6 +3,7 @@ const app = Vue.createApp({
     return {
 
       gInfoRapida: false,
+      gAlternarCarrito: false,
 
       datosCards: [],
 
@@ -79,6 +80,9 @@ const app = Vue.createApp({
   },
 
   methods: {
+    alternarCarrito(){
+      this.gAlternarCarrito = !this.gAlternarCarrito;
+    },
     formatMoney(amount) {
       return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(amount);
     },
@@ -98,6 +102,8 @@ const app = Vue.createApp({
           this.productoCarrito.stock = producto.stock -= conteoNumber;
           Swal.fire({
             title: 'Productos sumados',
+            toast: true,
+            position: 'top-start',
             icon: 'success'
           })
 

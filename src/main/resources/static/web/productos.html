@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-     <!-- FONTS -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap"
-         rel="stylesheet">
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap"
+        rel="stylesheet">
 
     <!-- LINK BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -64,7 +64,7 @@
         </div>
         <!-- LOADER -->
 
-        <nav class="d-flex gap-2">
+        <nav class="d-flex gap-2 justify-content-center">
             <div class="menu-icon">
                 <i class="fa fa-bars fa-2x"></i>
             </div>
@@ -86,25 +86,29 @@
                 <div class="p-2 ms-2">
                     <div class="flex h-64 justify-center">
                         <div class="relative ">
-                            <div class="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
+                            <div class="flex flex-row truncate p-2 px-4  rounded">
                                 <div></div>
-                                <div class="flex flex-row-reverse ml-2 w-full">
+                                <div class="flex flex-row-reverse cursor-pointer ml-2 w-full"
+                                    v-on:click="alternarCarrito">
                                     <div slot="icon" class="relative">
                                         <div
                                             class="absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-red-700 text-white">
                                             {{gCantidadNotif}}</div>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-shopping-cart w-6 h-6 mt-2">
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-shopping-cart w-6 h-6 mt-2">
                                             <circle cx="9" cy="21" r="1"></circle>
                                             <circle cx="20" cy="21" r="1"></circle>
-                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
+                                            </path>
                                         </svg>
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex">
-                                <div v-if="gCarritoNotif.length > 0" class="absolute w-full  rounded-b border-t-0 z-10">
+                                <div v-if="gCarritoNotif.length > 0" v-show="gAlternarCarrito"
+                                    class="absolute w-full  rounded-b border-t-0 z-10">
                                     <div class="shadow-xl w-64">
                                         <div class="p-2 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100"
                                             v-for="carrito in gCarritoNotif">
@@ -118,11 +122,13 @@
                                                 <div class="text-gray-400">Cant: {{carrito.cantidad}}</div>
                                             </div>
                                             <div class="flex flex-col w-18 font-medium items-end">
-                                                <div class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
-                                                    <svg v-on:click="removerProducto(carrito)" xmlns="http://www.w3.org/2000/svg"
-                                                        width="100%" height="100%" fill="none" viewBox="0 0 24 24"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round" class="feather feather-trash-2 ">
+                                                <div
+                                                    class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
+                                                    <svg v-on:click="removerProducto(carrito)"
+                                                        xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-trash-2 ">
                                                         <polyline points="3 6 5 6 21 6"></polyline>
                                                         <path
                                                             d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
@@ -140,11 +146,12 @@
                     bg-teal-100 
                     text-teal-700 
                     border duration-200 ease-in-out 
-                    border-teal-600 transition">Ir a pagar {{formatMoney(gTotalEnCarrito)}}</button> <!-- BOTON PARA IR A PAGAR -->
+                    border-teal-600 transition">Ir a pagar {{formatMoney(gTotalEnCarrito)}}</button>
+                                            <!-- BOTON PARA IR A PAGAR -->
                                         </div>
                                     </div>
                                 </div>
-                                <span v-else>carrito vacio</span>
+                                <span v-show="gAlternarCarrito" v-else>carrito vacio</span>
                             </div>
                         </div>
                     </div>
@@ -155,7 +162,7 @@
         </nav>
 
         <header>
-            <h1 class="text-center mt-5">FARMACIA</h1>
+            <h1 class="text-center mt-5 fs-1">FARMACIA CLINICA</h1>
 
         </header>
 
@@ -166,15 +173,16 @@
                     <div class="col-lg-8 order-lg-2 mb-120">
                         <div class="ltn__shop-options">
                             <ul>
-                                    <div class="short-by text-center">
-                                        <select class="nice-select" v-model="ordenSeleccionado" name="ordenar" v-on:change="ordenarProductos">
-                                            <option value="" disabled selected>Ordenar</option>
-                                            <option value="alfabeticamenteAZ">Alfabeticamente a-z</option>
-                                            <option value="alfabeticamenteZA">Alfabeticamente z-a</option>
-                                            <option value="menorPrecio">Menor Precio</option>
-                                            <option value="mayorPrecio">Mayor Precio</option>
-                                        </select>
-                                    </div> 
+                                <div class="short-by text-center">
+                                    <select class="nice-select" v-model="ordenSeleccionado" name="ordenar"
+                                        v-on:change="ordenarProductos">
+                                        <option value="" disabled selected>Ordenar</option>
+                                        <option value="alfabeticamenteAZ">Alfabeticamente a-z</option>
+                                        <option value="alfabeticamenteZA">Alfabeticamente z-a</option>
+                                        <option value="menorPrecio">Menor Precio</option>
+                                        <option value="mayorPrecio">Mayor Precio</option>
+                                    </select>
+                                </div>
                                 </li>
                             </ul>
                         </div>
@@ -189,16 +197,21 @@
                                                     <div class="card" :class="{'out': !card.stock}">
                                                         <div class="innerProd">
                                                             <div class="imgWrapper">
-                                                                <div class="detalleRapido" v-on:click="detalleRapido(card)" data-id="{{card.id}}">
+                                                                <div class="detalleRapido"
+                                                                    v-on:click="detalleRapido(card)"
+                                                                    data-id="{{card.id}}">
                                                                     <div class="icono">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 64 64">
                                                                             <path d="M39.049 39.049L56 56"></path>
                                                                             <circle cx="27" cy="27" r="17"></circle>
                                                                         </svg>
                                                                     </div>
                                                                     <p>Vista rapida</p>
                                                                 </div>
-                                                                <div class="imgProd" v-bind:style="{backgroundImage: `url(${card.imagen})`}"></div>
+                                                                <div class="imgProd"
+                                                                    v-bind:style="{backgroundImage: `url(${card.imagen})`}">
+                                                                </div>
                                                             </div>
                                                             <a class="info" href="#">
                                                                 <p class="prodName">{{card.nombre}}</p>
@@ -206,20 +219,28 @@
                                                                 <div class="precios">
                                                                     <p class="precio">{{formatMoney(card.precio)}}</p>
                                                                     <div>
-                                                                        <p class="precioOriginal">{{card.stock}} unidades</p>
-                                                                        <p class="stock" :class="{'out': !card.stock}" v-if="card.stock > 0">En
+                                                                        <p class="precioOriginal">{{card.stock}}
+                                                                            unidades</p>
+                                                                        <p class="stock" :class="{'out': !card.stock}"
+                                                                            v-if="card.stock > 0">En
                                                                             stock</p>
-                                                                        <p class="stock" :class="{'out': !card.stock}" v-else>Fuera de stock</p>
+                                                                        <p class="stock" :class="{'out': !card.stock}"
+                                                                            v-else>Fuera de stock</p>
                                                                     </div>
                                                                 </div>
                                                             </a>
                                                             <div class="actions">
-                                                                <div class="boton alCarrito" v-on:click="agregarAlCarrito(card, 0)">Agregar al carrito
+                                                                <div class="boton alCarrito"
+                                                                    v-on:click="agregarAlCarrito(card, 0)">Agregar al
+                                                                    carrito
                                                                 </div>
                                                                 <div class="row-buttons">
-                                                                    <div class="aFavs favoritos" v-on:click="agregarFav(card)" :id="'card'+card.id">
+                                                                    <div class="aFavs favoritos"
+                                                                        v-on:click="agregarFav(card)"
+                                                                        :id="'card'+card.id">
                                                                         <div class="icono">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                viewBox="0 0 64 64">
                                                                                 <path
                                                                                     d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
                                                                                 </path>
@@ -235,21 +256,21 @@
                                         </section>
                                     </div>
                                 </div>
-                            </div>                        
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3  mb-120">
+                    <div class="col-lg-3 ms-5 mb-120">
                         <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
-                            <!-- Category Widget -->
-                            <div class="widget ltn__menu-widget">
-                                <h4 class="ltn__widget-title ltn__widget-title-border">Productos por categoria</h4>
-                                <ul>
-                                    <li><a href="">Insumos quirurgicos <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    <li><a href="">Test rápidos <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    <li><a href="">Productos varios <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    <li><a href="">Equipo médico <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    
-                                </ul>
+
+                            <!-- Search Widget -->
+                            <div class="widget ltn__search-widget">
+                                <h4 class="ltn__widget-title ltn__widget-title-border">Buscar producto</h4>
+                                <form action="#">
+                                    <input type="text" name="search" v-model="nombreDelBuscador"
+                                        v-on:click="buscadorProducto" placeholder="Que producto buscas?"
+                                        class="form-control" id="exampleFormControlInput1">
+                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                </form>
                             </div>
                             <!-- Filtro de precio WIDGET -->
                             <div class="widget ltn__price-filter-widget">
@@ -257,27 +278,36 @@
                                 <div class="price_filter">
                                     <div class="form-check form-switch">
                                         <label for="600" class="form-check-label">Menos de $500</label>
-                                        <input type="checkbox" class="form-check-input" v-model="rangoDePrecios" id="500" value="500" role="switch">
-                                      </div>
-                                      <div class="form-check form-switch">
+                                        <input type="checkbox" class="form-check-input" v-model="rangoDePrecios"
+                                            id="500" value="500" role="switch">
+                                    </div>
+                                    <div class="form-check form-switch">
                                         <label for="601" class="form-check-label">Mas de $500</label>
-                                        <input type="checkbox" v-model="rangoDePrecios" class="form-check-input" id="501" value="501" role="switch">
-                                      </div>
+                                        <input type="checkbox" v-model="rangoDePrecios" class="form-check-input"
+                                            id="501" value="501" role="switch">
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Search Widget -->
-                            <div class="widget ltn__search-widget">
-                                <h4 class="ltn__widget-title ltn__widget-title-border">Buscar producto</h4>
-                                <form action="#">
-                                    <input type="text" name="search" v-model="nombreDelBuscador" v-on:click="buscadorProducto" placeholder="Que producto buscas?" class="form-control" id="exampleFormControlInput1" >
-                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                </form>
-                            </div>        
+                            <!-- Category Widget -->
+                            <div class="widget ltn__menu-widget">
+                                <h4 class="ltn__widget-title ltn__widget-title-border">Productos por categoria</h4>
+                                <ul>
+                                    <li><a href="">Insumos quirurgicos <span><i
+                                                    class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="">Test rápidos <span><i
+                                                    class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="">Productos varios <span><i
+                                                    class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="">Equipo médico <span><i
+                                                    class="fas fa-long-arrow-alt-right"></i></span></a></li>
+
+                                </ul>
+                            </div>
                         </aside>
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
 
         <!-- Modal VISTA RAPIDA -->
         <div class="infoRapidaModal" v-show="gInfoRapida" @keydown.esc="closeModal" v-if="datosCards.length > 0">
@@ -285,7 +315,8 @@
             <div class="modalContainer">
                 <div class="topContent">
                     <div class="imagenContainer zoom_section">
-                        <div class="zoom_launcher zoomWatch" v-on:click="preZoom(datosCards[gNumPos])" :id="'prezoom'+datosCards[gNumPos].id" title="Ampliar imagen">
+                        <div class="zoom_launcher zoomWatch" v-on:click="preZoom(datosCards[gNumPos])"
+                            :id="'prezoom'+datosCards[gNumPos].id" title="Ampliar imagen">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                                 <path d="M2.002 40h22v22h-22z"></path>
                                 <path d="M2 28V2h60v60H36"></path>
@@ -293,7 +324,8 @@
                             </svg>
                         </div>
                         <div class="zoom_imgOrigin wrapperImg">
-                            <div class="zoom_imgSource imagen" v-bind:style="{backgroundImage: `url(${datosCards[gNumPos].imagen})`}"></div>
+                            <div class="zoom_imgSource imagen"
+                                v-bind:style="{backgroundImage: `url(${datosCards[gNumPos].imagen})`}"></div>
                         </div>
                     </div>
                     <div class="texto">
@@ -302,16 +334,23 @@
                             <div class="precios">
                                 <p class="precio">{{formatMoney(datosCards[gNumPos].precio)}}</p>
                             </div>
-                            <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-if="datosCards[gNumPos].stock > 0">Disponible en tienda y listo para enviar</p>
-                            <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-else>Fuera de stock</p>
-                            <p class="codigo"><span class="bold">Código Producto: </span>{{datosCards[gNumPos].id}}</p>
+                            <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}"
+                                v-if="datosCards[gNumPos].stock > 0">Disponible en tienda y listo para enviar</p>
+                            <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-else>Fuera de stock
+                            </p>
+                            <p class="codigo"><span class="bold">Stock: </span>{{datosCards[gNumPos].stock}} unidades</p>
                             <div class="actions">
-                                <div class="component_toCartCantidad" :class="{'disabled' : !datosCards[gNumPos].stock}">
-                                    <div class="toCartBoton menos disabled" v-on:click="sumarORestar(datosCards[gNumPos], 'resta')" :id="'res'+datosCards[gNumPos].id"></div>
+                                <div class="component_toCartCantidad"
+                                    :class="{'disabled' : !datosCards[gNumPos].stock}">
+                                    <div class="toCartBoton menos disabled"
+                                        v-on:click="sumarORestar(datosCards[gNumPos], 'resta')"
+                                        :id="'res'+datosCards[gNumPos].id"></div>
                                     <div class="toCartCantidad" :id="'total'+datosCards[gNumPos].id">1</div>
-                                    <div class="toCartBoton mas" v-on:click="sumarORestar(datosCards[gNumPos], 'suma')" :id="'sum'+datosCards[gNumPos].id"></div>
+                                    <div class="toCartBoton mas" v-on:click="sumarORestar(datosCards[gNumPos], 'suma')"
+                                        :id="'sum'+datosCards[gNumPos].id"></div>
                                 </div>
-                                <div class="botonTextoIcono" :class="{'disabled': !datosCards[gNumPos].stock}"  v-on:click="agregarAlCarrito(datosCards[gNumPos], 1)">
+                                <div class="botonTextoIcono" :class="{'disabled': !datosCards[gNumPos].stock}"
+                                    v-on:click="agregarAlCarrito(datosCards[gNumPos], 1)">
                                     <label class="labelBoton">Agregar al carrito</label>
                                     <div class="icono">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -402,10 +441,10 @@
 
     <!-- SWEET ALERT -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <!-- ARCHIVO JS -->
     <script src="./scripts/productos.js"></script>
-    
+
     <!-- ANIMATE AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
