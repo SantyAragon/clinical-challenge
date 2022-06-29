@@ -22,11 +22,11 @@ Vue.createApp({
   methods: {
     modificarDatos() {
       if (this.email != "") {
-        axios.patch(`/api/pacientes/autenticado/email?email=${this.email}`).then((data) => {
+        axios.patch(`/api/pacientes/autenticado/email`, `email=${this.email}`).then((data) => {
           Swal.fire("E-mail modificado con éxito!", "success");
         });
       } else if (this.contrasenia != "") {
-        axios.patch(`/api/pacientes/autenticado/contraseña=contraseña=${this.contraseña}`).then((data) => {
+        axios.patch(`/api/pacientes/autenticado/contraseña?contraseña=${this.contraseña}`).then((data) => {
           Swal.fire("Contraseña modificada con éxito!", "success");
         });
       }
