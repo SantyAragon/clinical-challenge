@@ -40,11 +40,12 @@ public class Profesional {
         this.activo = true;
     }
 
-    public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio) {
+    public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;
         this.servicio = servicio;
+        this.email = email;
         this.activo = true;
     }
     public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio, String email, String contraseña) {
