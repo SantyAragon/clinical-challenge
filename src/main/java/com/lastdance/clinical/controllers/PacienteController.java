@@ -174,7 +174,7 @@ public class PacienteController {
     }
 
     @PatchMapping("/pacientes/{id}/email")
-    public ResponseEntity<Object> actualizarEmailPaciente(@PathVariable Long id, @RequestParam String email) {
+    public ResponseEntity<Object> actualizarEmailPacienteAdmin(@PathVariable Long id, @RequestParam String email) {
 
         Set<String> emails = pacienteService.traerPacientes().stream().map(Paciente::getEmail).collect(Collectors.toSet());
 
@@ -185,6 +185,23 @@ public class PacienteController {
 
 
         Paciente paciente = pacienteService.traerPaciente(id);
+        paciente.setEmail(email);
+        pacienteService.guardarPaciente(paciente);
+        return new ResponseEntity<>("Modificacion de email exitosa", HttpStatus.ACCEPTED);
+    }
+
+    @PatchMapping("/pacientes/autenticado/email")
+    public ResponseEntity<Object> actualizarEmailPacienteAutenticado(Authentication authentication, @RequestParam String email) {
+
+        Set<String> emails = pacienteService.traerPacientes().stream().map(Paciente::getEmail).collect(Collectors.toSet());
+
+        if (emails.contains(email))
+            return new ResponseEntity<>("Email ya en uso", HttpStatus.FORBIDDEN);
+        if (!email.contains("@") || !email.endsWith(".com") || !email.endsWith(".net") || !email.endsWith(".es") || !email.endsWith(".com.ar"))
+            return new ResponseEntity<>("Email ya en uso", HttpStatus.FORBIDDEN);
+
+
+        Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
         paciente.setEmail(email);
         pacienteService.guardarPaciente(paciente);
         return new ResponseEntity<>("Modificacion de email exitosa", HttpStatus.ACCEPTED);
