@@ -50,9 +50,12 @@ public class PacienteController {
     }
 
     @GetMapping("/pacientes/autenticado")
-    public Optional<PacienteDTO> traerPaciente(Authentication authentication) {
+    public ResponseEntity<?> traerPaciente(Authentication authentication) {
+        if (authentication == null)
+            return new ResponseEntity<>("No autenticado", HttpStatus.ACCEPTED);
+
         Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
-        return Optional.of(new PacienteDTO(paciente));
+        return new ResponseEntity<>(new PacienteDTO(paciente), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/pacientes")
