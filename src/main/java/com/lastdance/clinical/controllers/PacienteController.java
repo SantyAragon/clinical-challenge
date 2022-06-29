@@ -137,8 +137,6 @@ public class PacienteController {
         if (paciente == null)
             return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
 
-//        Paciente paciente = pacienteService.traerPacientePorToken(token);
-
         if (paciente.getToken().isEmpty() || paciente.getToken().equals(""))
             return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
 
