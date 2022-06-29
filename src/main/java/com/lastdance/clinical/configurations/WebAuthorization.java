@@ -21,22 +21,33 @@ class WebAuthorization extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/web/login.html", "/web/scripts/login.js","/web/styles/login.css", "/web/index.html", "/web/styles/custom.css","/web/assets/**" ,"/web/scripts/index.js").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/login").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/pacientes").permitAll()
-                .antMatchers(HttpMethod.PATCH,"/api/pacientes/verificacion").permitAll()
-                .antMatchers(HttpMethod.PATCH,"/api/pacientes/contraseña").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/pacientes/contraseña").permitAll()
-
                 .antMatchers("/rest/**", "/h2-console/**").hasAuthority("ADMIN")
+                .antMatchers("/web/login.html", "/web/scripts/login.js", "/web/styles/login.css", "/web/index.html", "/web/styles/custom.css", "/web/assets/**", "/web/scripts/index.js").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/login").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/pacientes").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/api/pacientes/verificacion").permitAll()
 
-                .antMatchers("/api/productos/{id}", "/api/productos").permitAll()
-                .antMatchers("/api/productos/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/pacientes/autenticado").hasAnyAuthority("PACIENTE")
+                .antMatchers(HttpMethod.PATCH, "/api/pacientes/contraseña").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/pacientes/contraseña").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/api/pacientes/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/pacientes/{id}", "/api/pacientes").hasAnyAuthority("ADMIN", "PROFESIONAL")
 
-                .antMatchers("/api/servicios/{id}", "/api/servicios").permitAll()
-                .antMatchers("/api/servicios/**").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/productos/{id}", "/api/productos").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/productos").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH, "/api/productos/{id}/**").hasAuthority("ADMIN")
 
-                .antMatchers("/api").hasAuthority("ADMIN");
+                .antMatchers(HttpMethod.GET, "/api/servicios/{id}", "/api/servicios").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/servicios").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH, "/api/servicios/{id}/**").hasAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.GET, "/api/profesional/{id}", "/api/profesional").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/profesional").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.PATCH, "/api/profesional/{id}/**", "/api/profesional/{id}").hasAuthority("ADMIN")
+
+                .antMatchers(HttpMethod.POST, "/api/facturas/create").hasAuthority("PACIENTE")
+                .antMatchers(HttpMethod.POST, "/api/facturas/descargar/{id}").hasAnyAuthority("PACIENTE", "ADMIN")
+                .antMatchers("/api/**").hasAuthority("ADMIN");
 
 
         http.formLogin()

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +48,11 @@ public class PacienteController {
     @GetMapping("/pacientes/{id}")
     public PacienteDTO traerPaciente(@PathVariable Long id) {
         return pacienteService.traerPacienteDTO(id);
+    }
+
+    @GetMapping("/pacientes/autenticado")
+    public PacienteDTO traerPaciente(Authentication authentication){
+        return new PacienteDTO(pacienteService.traerPacientePorEmail(authentication.getName()));
     }
 
     @PostMapping("/pacientes")

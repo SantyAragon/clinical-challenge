@@ -3,6 +3,7 @@ package com.lastdance.clinical.DTOS;
 import com.lastdance.clinical.models.PacienteProducto;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class PacienteProductoDTO {
 
@@ -24,6 +25,7 @@ public class PacienteProductoDTO {
         this.fecha = pacienteProducto.getFecha();
         this.nombre = pacienteProducto.getProducto().getNombre();
     }
+
 
     public Long getId() {
         return id;
