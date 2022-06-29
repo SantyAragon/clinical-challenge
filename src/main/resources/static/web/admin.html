@@ -1,619 +1,271 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- FONTS -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800'
-        rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,300,200,100,900' rel='stylesheet'
-        type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
-
-    <!-- LINK BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-
-    <!-- LINK FAVICON -->
-    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
-
-    <!-- LINK FONTAWESOME ICONS -->
-    <script src="https://kit.fontawesome.com/a9e21e8a67.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-
-    <!-- LINK ANIMATE AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- JQUERY -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <!-- RIPPLES -->
-    <script src="./scripts/ripples.min.js"></script>
-
-    <!-- LINK CSS -->
-    <!-- <link rel="stylesheet" href="./styles/custom.css"> -->
-    <link rel="stylesheet" href="./styles/admin.css">
-    
-    <title>Clinica - Laboratorio</title>
-
-</head>
-
-<body class="animsition">
-    <div class="page-wrapper">
-        <!-- HEADER DESKTOP-->
-        <header class="header-desktop4">
-            <div class="container">
-                <div class="header4-wrap">
-                    <div class="header__logo">
-                        <div class="logo">
-                            <i class="fa-solid fa-staff-aesculapius"></i> MEDIHUB
-                        </div>
-                    </div>
-                    <div class="header__tool">
-                        <div class="header-button-item has-noti js-item-menu">
-                            <i class="zmdi zmdi-notifications"></i>
-                            <div class="notifi-dropdown js-dropdown">
-                                <div class="notifi__title">
-                                    <p>Tienes 3 nuevas notificaciones</p>
-                                </div>
-                                <div class="notifi__item">
-                                    <div class="bg-c1 img-cir img-40">
-                                        <i class="zmdi zmdi-email-open"></i>
-                                    </div>
-                                    <div class="content">
-                                        <p>Has recibido un correo electrónico</p>
-                                        <span class="date">28 de junio, 2022 12:50</span>
-                                    </div>
-                                </div>
-                                <div class="notifi__item">
-                                    <div class="bg-c3 img-cir img-40">
-                                        <i class="zmdi zmdi-file-text"></i>
-                                    </div>
-                                    <div class="content">
-                                        <p>Has recibido un nuevo reporte</p>
-                                        <span class="date">25 de junio, 2022 10:03</span>
-                                    </div>
-                                </div>
-                                <div class="notifi__item">
-                                    <div class="bg-c2 img-cir img-40">
-                                        <i class="zmdi zmdi-account-box"></i>
-                                    </div>
-                                    <div class="content">
-                                        <p>Tu cuenta ha sido habilitada</p>
-                                        <span class="date">20 de junio, 2022 08:50</span>
-                                    </div>
-                                </div>
-                                <!-- <div class="notifi__footer">
-                                    <a href="#">Eliminar notificaciones</a>
-                                </div> -->
-                            </div>
-                        </div>
-                        <div class="header-button-item js-item-menu">
-                            <i class="zmdi zmdi-settings"></i>
-                            <div class="setting-dropdown js-dropdown">
-                                <div class="account-dropdown__body">
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-account"></i>Perfil</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-settings"></i>Configuraciones</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-money-box"></i>Mensajes</a>
-                                    </div>
-                                </div>
-                                <div class="account-dropdown__body">
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-globe"></i>Turnos</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-pin"></i>Contacto</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-email"></i>Email</a>
-                                    </div>
-                                    <div class="account-dropdown__item">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-notifications"></i>Notificaciones</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="account-wrap">
-                            <div class="account-item account-item--style2 clearfix js-item-menu">
-                                <div class="image">
-                                    <img src="admin/avatar-05.jpg" alt="" />
-                                </div>
-                                <div class="content">
-                                    <a class="js-acc-btn" href="#">Facundo Lorenzo</a>
-                                </div>
-                                <div class="account-dropdown js-dropdown">
-                                    <div class="info clearfix">
-                                        <div class="image">
-                                            <a href="#">
-                                                <img src="admin/avatar-05.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="name">
-                                                <a href="#">{{.name}} {{.apellido}}</a>
-                                            </h5>
-                                            <span class="email">{{.email}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="account-dropdown__body">
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-account"></i>Perfil</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-settings"></i>Configuraciones</a>
-                                        </div>
-                                    </div>
-                                    <div class="account-dropdown__footer">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-power"></i>Salir</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="styles/admin.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <title>Dashboard - SB Admin</title>
+    </head>
+    <body class="sb-nav-fixed">
+        <div id="app2">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            
+            <div class="logo">
+                <i class="fa-solid fa-staff-aesculapius"></i><a class="navbar-brand ps-3" href="index.html"> MediHub</a>
             </div>
-        </header>
-        <!-- END HEADER DESKTOP -->
-
-        <!-- WELCOME-->
-        <section class="welcome2 p-t-40 p-b-55">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="au-breadcrumb3">
-                            <div class="au-breadcrumb-left">
-                                <span class="au-breadcrumb-span">Se encuentra en:</span>
-                                <ul class="list-unstyled list-inline au-breadcrumb__list">
-                                    <li class="list-inline-item active">
-                                        <a href="#">Inicio</a>
-                                    </li>
-                                    <li class="list-inline-item seprate">
-                                        <span>></span>
-                                    </li>
-                                    <li class="list-inline-item">Datos y reportes</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Buscar..." aria-label="Buscar..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="welcome2-inner m-t-60">
-                            <div class="welcome2-greeting">
-                                <h1 class="title-6">Hola
-                                    <span>Facundo</span>, ¡Qué gusto verte!</h1>
-                                <!-- <p</p> -->
-                            </div>
-                            <form class="form-header form-header2" action="" method="post">
-                                <input class="au-input au-input--w435" type="text" name="search" placeholder="Buscar datos y reportes...">
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- END WELCOME-->
-
-        <!-- PAGE CONTENT-->
-        <div class="page-container3">
-            <section class="alert-wrap p-t-70 p-b-70">
-                <div class="container">
-                    <!-- ALERT-->
-                    <!-- <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
-                        <i class="zmdi zmdi-check-circle"></i>
-                        <span class="content">Ha leído correctamente este importante mensaje de alerta.</span>
-                        <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">
-                                <i class="zmdi zmdi-close-circle"></i>
-                            </span>
-                        </button>
-                    </div> -->
-                    <!-- END ALERT-->
-                </div>
-            </section>
-            <section>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-3">
-                            <!-- MENU SIDEBAR-->
-                            <aside class="menu-sidebar3 js-spe-sidebar">
-                                <nav class="navbar-sidebar2 navbar-sidebar3">
-                                    <ul class="list-unstyled navbar__list">
-                                        <li class="active has-sub">
-                                            <a class="js-arrow" href="#">
-                                                <i class="fas fa-database"></i>Inicio</a>
-                                        <li>
-                                            <a href="inbox.html">
-                                                <i class="fas fa-chart-bar"></i>Notificaciones</a>
-                                            <span class="inbox-num">3</span>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fas fa-calendar-alt"></i>Calendario</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="fas fa-columns"></i>Tablas</a>
-                                        </li>
-
-
-
-                                        <li class="has-sub">
-                                            <a class="js-arrow" href="#">
-                                                <i class="fas fa-user-doctor"></i>Doctores
-                                                <span class="arrow">
-                                                    <i class="fas fa-angle-down"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                                <li>
-                                                    <a href="#">Todos los Doctores</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Agregar Doctor</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Editar Doctor</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Perfil de Doctor</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-sub">
-                                            <a class="js-arrow" href="#">
-                                                <i class="fas fa-user"></i>Pacientes
-                                                <span class="arrow">
-                                                    <i class="fas fa-angle-down"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                                <li>
-                                                    <a href="#">Agregar Paciente</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Editar Paciente</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Perfil de Paciente</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-sub">
-                                            <a class="js-arrow" href="#">
-                                                <i class="fas fa-hospital-user"></i>Personal Auxiliar
-                                                <span class="arrow">
-                                                    <i class="fas fa-angle-down"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                                <li>
-                                                    <a href="#">Todo el Personal</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Agregar Personal</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Editar Personal</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Perfil de Personal</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
+                        <li><a class="dropdown-item" href="#!">Actividades</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#!">Salir</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Inicio</div>
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>
+                                Resumen
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Personal</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-doctor"></i></div>
+                                Doctores
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">Todos</a>
+                                    <a class="nav-link" href="#">Agregar</a>
+                                    <a class="nav-link" href="#">Editar</a>
+                                    <a class="nav-link" href="#">Eliminar</a>
                                 </nav>
-                            </aside>
-                            <!-- END MENU SIDEBAR-->
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-hospital-user"></i></div>
+                                Pacientes
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="#">Todos</a>
+                                    <a class="nav-link" href="#">Agregar</a>
+                                    <a class="nav-link" href="#">Editar</a>
+                                    <a class="nav-link" href="#">Eliminar</a>
+                                </nav>
+                            </div>
+                            <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Pages
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                        Authentication
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="login.html">Login</a>
+                                            <a class="nav-link" href="register.html">Register</a>
+                                            <a class="nav-link" href="password.html">Forgot Password</a>
+                                        </nav>
+                                    </div>
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                        Ventas
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="#">Productos</a>
+                                            <a class="nav-link" href="#"></a>
+                                            <a class="nav-link" href="500.html">500 Page</a>
+                                        </nav>
+                                    </div>
+                                </nav>
+                            </div> -->
+                            <div class="sb-sidenav-menu-heading">Ventas</div>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Productos
+                            </a>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Servicios
+                            </a>
                         </div>
-                        <div class="col-xl-9">
-                            <!-- PAGE CONTENT-->
-                            <div class="page-content">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <!-- RECENT REPORT-->
-                                        <div class="recent-report3 m-b-40">
-                                            <div class="title-wrap">
-                                                <h3 class="title-3">Reportes recientes</h3>
-                                                <div class="chart-info-wrap">
-                                                    <div class="chart-note">
-                                                        <span class="dot dot--blue"></span>
-                                                        <span>Turnos online</span>
-                                                    </div>
-                                                    <div class="chart-note mr-0">
-                                                        <span class="dot dot--green"></span>
-                                                        <span>Turnos presencial</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="filters m-b-55">
-                                                <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
-                                                    <select class="js-select2" name="property">
-                                                        <option selected="selected">Servicios</option>
-                                                        <!-- <option value=""></option> -->
-                                                        <option value="">Services</option>
-                                                    </select>
-                                                    <div class="dropDownSelect2"></div>
-                                                </div>
-                                                <div class="rs-select2--dark rs-select2--sm rs-select2--border">
-                                                    <select class="js-select2 au-select-dark" name="time">
-                                                        <option selected="selected">Todos</option>
-                                                        <option value="">por Mes</option>
-                                                        <option value="">por Semana</option>
-                                                    </select>
-                                                    <div class="dropDownSelect2"></div>
-                                                </div>
-                                            </div>
-                                            <div class="chart-wrap">
-                                                <canvas id="recent-rep3-chart"></canvas>
-                                            </div>
-                                        </div>
-                                        <!-- END RECENT REPORT-->
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <!-- CHART PERCENT-->
-                                        <div class="chart-percent-3 m-b-40">
-                                            <h3 class="title-3 m-b-25">Ventas %</h3>
-                                            <div class="chart-note m-b-5">
-                                                <span class="dot dot--blue"></span>
-                                                <span>Servicios</span>
-                                            </div>
-                                            <div class="chart-note">
-                                                <span class="dot dot--red"></span>
-                                                <span>Productos</span>
-                                            </div>
-                                            <div class="chart-wrap m-t-60">
-                                                <canvas id="percent-chart2"></canvas>
-                                            </div>
-                                        </div>
-                                        <!-- END CHART PERCENT-->
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <!-- DATA TABLE-->
-                                        <div class="table-responsive m-b-40">
-                                            <table class="table table-borderless table-data3">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Fecha</th>
-                                                        <th>Producto</th>
-                                                        <th>Descripción</th>
-                                                        <th>Estado</th>
-                                                        <th>Precio</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>19:10 28-06-2022</td>
-                                                        <td>Aguja</td>
-                                                        <td>aguja intramuscular 40/8</td>
-                                                        <td class="process">Procesada</td>
-                                                        <td>$9.00</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <div class="table-responsive m-b-40">
-                                            <table class="table table-borderless table-data3">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Fecha</th>
-                                                        <th>Servicio</th>
-                                                        <th>Descripción</th>
-                                                        <th>Estado</th>
-                                                        <th>Precio</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>00:48 28-06-2022</td>
-                                                        <td>Odontología</td>
-                                                        <td>Limpieza bucal</td>
-                                                        <td class="denied">Denegada</td>
-                                                        <td>$699.00</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- END DATA TABLE                  -->
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40 au-card--border">
-                                            <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
-                                                <div class="bg-overlay bg-overlay--blue"></div>
-                                                <h3>
-                                                    <i class="zmdi zmdi-account-calendar"></i>28 Mayo, 2022</h3>
-                                                <button class="au-btn-plus">
-                                                    <i class="zmdi zmdi-plus"></i>
-                                                </button>
-                                            </div>
-                                            <div class="au-task js-list-load au-task--border">
-                                                <div class="au-task__title">
-                                                    <p>Tareas</p>
-                                                </div>
-                                                <div class="au-task-list js-scrollbar3">
-                                                    <div class="au-task__item au-task__item--danger">
-                                                        <div class="au-task__item-inner">
-                                                            <h5 class="task">
-                                                                <a href="#">Meeting about plan for Admin Template 2022</a>
-                                                            </h5>
-                                                            <span class="time">10:00 AM</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-task__item au-task__item--warning">
-                                                        <div class="au-task__item-inner">
-                                                            <h5 class="task">
-                                                                <a href="#">Create new task for Dashboard</a>
-                                                            </h5>
-                                                            <span class="time">11:00 AM</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-task__item au-task__item--primary">
-                                                        <div class="au-task__item-inner">
-                                                            <h5 class="task">
-                                                                <a href="#">Meeting about plan for Admin Template 2018</a>
-                                                            </h5>
-                                                            <span class="time">02:00 PM</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-task__item au-task__item--success">
-                                                        <div class="au-task__item-inner">
-                                                            <h5 class="task">
-                                                                <a href="#">Create new task for Dashboard</a>
-                                                            </h5>
-                                                            <span class="time">03:30 PM</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-task__item au-task__item--danger js-load-item">
-                                                        <div class="au-task__item-inner">
-                                                            <h5 class="task">
-                                                                <a href="#">Meeting about plan for Admin Template 2018</a>
-                                                            </h5>
-                                                            <span class="time">10:00 AM</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-task__item au-task__item--warning js-load-item">
-                                                        <div class="au-task__item-inner">
-                                                            <h5 class="task">
-                                                                <a href="#">Create new task for Dashboard</a>
-                                                            </h5>
-                                                            <span class="time">11:00 AM</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="au-task__footer">
-                                                    <button class="au-btn au-btn-load js-load-btn">load more</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="au-card au-card--no-shadow au-card--no-pad m-b-40 au-card--border">
-                                            <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
-                                                <div class="bg-overlay bg-overlay--blue"></div>
-                                                <h3>
-                                                    <i class="zmdi zmdi-comment-text"></i>Chat</h3>
-                                                <button class="au-btn-plus">
-                                                    <i class="zmdi zmdi-plus"></i>
-                                                </button>
-                                            </div>
-                                            <div class="au-inbox-wrap">
-                                                <div class="au-chat au-chat--border">
-                                                    <div class="au-chat__title">
-                                                        <div class="au-chat-info">
-                                                            <div class="avatar-wrap online">
-                                                                <div class="avatar avatar--small">
-                                                                    <img src="admin/avatar-02.jpg" alt="John Smith">
-                                                                </div>
-                                                            </div>
-                                                            <span class="nick">
-                                                                <a href="#">John Smith</a>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-chat__content au-chat__content2 js-scrollbar5">
-                                                        <div class="recei-mess-wrap">
-                                                            <span class="mess-time">12 Min ago</span>
-                                                            <div class="recei-mess__inner">
-                                                                <div class="avatar avatar--tiny">
-                                                                    <img src="images/icon/avatar-02.jpg" alt="John Smith">
-                                                                </div>
-                                                                <div class="recei-mess-list">
-                                                                    <div class="recei-mess">Lorem ipsum dolor sit amet elit</div>
-                                                                    <div class="recei-mess">Donec tempor viverra</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="send-mess-wrap">
-                                                            <span class="mess-time">30 Sec ago</span>
-                                                            <div class="send-mess__inner">
-                                                                <div class="send-mess-list">
-                                                                    <div class="send-mess">Lorem ipsum dolor sit amet elit</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="au-chat-textfield">
-                                                        <form class="au-form-icon">
-                                                            <input class="au-input au-input--full au-input--h65" type="text" placeholder="Type a message">
-                                                            <button class="au-input-icon">
-                                                                <i class="zmdi zmdi-camera"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="copyright">
-                                            <p>Copyright © 2022 MediHub. All rights reserved.</p>
-                                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Inicio de sesión:</div>
+                        Admin MediHub
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Inicio</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Datos y reportes</li>
+                        </ol>
+                        <!-- <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Primary Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- END PAGE CONTENT-->
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Warning Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Success Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Danger Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Turnos
+                                    </div>
+                                    <div class="card-body"><canvas id="misTurnos" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Ventas
+                                    </div>
+                                    <div class="card-body"><canvas id="misVentas" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Pacientes
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <!-- <table> -->
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Email</th>
+                                            <th>Descripción</th>
+                                            <th>Venta</th>
+                                            <!-- <th>Salary</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Email</th>
+                                            <th>Descripción</th>
+                                            <th>Venta</th>
+                                            <!-- <th>Salary</th> -->
+                                        </tr>
+                                    </tfoot>
+                                    <tbody v-for="paciente in pacientes">
+                                        <tr>
+                                            <td>{{paciente.nombre}}</td>
+                                            <td>{{paciente.apellido}}</td>
+                                            <td>{{paciente.email}}</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <!-- <td>$320,800</td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                            <div>
+                                <a href="#">Políticas de Privacidad</a>
+                                &middot;
+                                <a href="#">Términos &amp; Condiciones</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
-        <!-- END PAGE CONTENT  -->
-
-    </div>
-
-
-    <!-- BOOTSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        </div>
+        <!-- BOOTSTRAP -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <!-- AXIOS -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- VUE -->
-    <script src="https://unpkg.com/vue@3"></script>
-    <!-- FILE JS -->
-    <script src="./scripts/landing.js"></script>
-    <!-- ANIMATE AOS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-
-    <!-- Jquery JS-->
-    <script src="admin/jquery-3.2.1.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="admin/slick/slick.min.js"></script>
-    <script src="admin/animsition/animsition.min.js"></script>
-    <script src="admin/chartjs/Chart.bundle.min.js"></script>
-    <!-- Main JS-->
-    <script src="admin/main.js"></script>
-</body>
-
+        <!-- AXIOS -->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!-- VUE -->
+        <script src="https://unpkg.com/vue@3"></script>
+        <!-- FILE JS -->
+        <script src="scripts/admin.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <!-- <script src="admin/js/scripts.js"></script> -->
+        <script src="admin/assets/demo/chart-turnos.js"></script>
+        <script src="admin/assets/demo/chart-ventas.js"></script>
+        <script src="admin/js/datatables-simple-demo.js"></script>
+        
+    </body>
 </html>
