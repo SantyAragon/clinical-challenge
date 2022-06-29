@@ -33,7 +33,7 @@ public class ProfesionalController {
     }
 
 
-    @PostMapping("profesional")
+    @PostMapping("/profesional")
     public ResponseEntity<Object> nuevoProfesional (@RequestParam String nombre, @RequestParam String apellido, @RequestParam TipoEspecialidad especialidad, @RequestParam Long servicioId) {
 
         Servicio servicio = servicioService.traerServicio(servicioId);
@@ -84,7 +84,7 @@ public class ProfesionalController {
         return new ResponseEntity<>("Servicio profesional editado", HttpStatus.ACCEPTED);
     }
 
-    @PatchMapping("profesional/{id}")
+    @PatchMapping("/profesional/{id}")
     public ResponseEntity<Object> borrarProfesional (@PathVariable Long id) {
 
         Profesional profesional = profesionalService.traerProfesional(id);
