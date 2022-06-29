@@ -39,7 +39,7 @@
                     <ul>
                         <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span>
                                 Home</a></li>
-                        <li><a href="index.html"><span class="ltn__secondary-color"></i></span> Farmacia</a></li>
+                        <li><a href="./productos.html"><span class="ltn__secondary-color"></i></span> Farmacia</a></li>
                         <li>Carrito de compras</li>
                     </ul>
                 </div>
@@ -98,7 +98,159 @@
 
             <!-- <button class="checkout">Checkout</button> -->
 
-            <div class="shoping-cart-total mt-50">
+            <div class="ltn__checkout-area mb-3 mt-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ltn__checkout-inner">
+                                <div class="ltn__checkout-single-content mt-50">
+                                    <h4 class="title-2">Detalles de facturación</h4>
+                                    <div class="ltn__checkout-single-content-info">
+                                        <form action="#" >
+                                            <h6>Información Personal</h6>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-name">
+                                                        <input type="text" name="ltn__name" placeholder="Nombre">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-name">
+                                                        <input type="text" name="ltn__lastname" placeholder="Apellido">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-email">
+                                                        <input type="email" name="ltn__email" placeholder="Correo electrónico">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-phone">
+                                                        <input type="text" name="ltn__phone" placeholder="Número de teléfono">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h6>Dirección de envío</h6>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="input-item">
+                                                            <input type="text" placeholder="Calle">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-item">
+                                                            <input type="text" placeholder="N° de departamento">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <h6>Pueblo / Ciudad</h6>
+                                                    <div class="input-item">
+                                                        <input type="text" placeholder="Pueblo / Ciudad">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4">
+                                                    <h6>Código Postal</h6>
+                                                    <div class="input-item">
+                                                        <input type="text" placeholder="Código Postal">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4">
+                                                    <h6>Provincia </h6>
+                                                    <div class="input-item">
+                                                        <input type="text" placeholder="Provincia">
+                                                    </div>
+                                                </div>
+                                            </div>                                    
+                                            </div>
+                                            <h6>Otras Notas (optional)</h6>
+                                            <div class="input-item input-item-textarea">
+                                                <textarea name="ltn__message" placeholder="Notas sobre su pedido. Notas especiales para la entrega"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="ltn__checkout-payment-method mt-50">
+                                    <h4 class="title-2">Métodos de pago</h4>
+                                    <div id="checkout_accordion_1">                                
+                                        <div class="card">
+                                            <div class="d-flex">
+                                                <input class="form-check-input me-1" type="radio" id="efectivo" value="efectivo" v-model="medioDePago"><h5>Efectivo</h5>
+                                            </div>
+                                            <div v-if="medioDePago=='efectivo'" class="card-body">
+                                                <p>Paga en efectivo en el momento de la entrega</p>
+                                            </div>                                    
+                                        </div>                                
+                                        <div class="card">
+                                            <div class="d-flex">
+                                                <input class="form-check-input me-1" type="radio" id="tarjeta" value="tarjeta" v-model="medioDePago"><h5>Tarjeta de crédito</h5>
+                                            </div>
+                                            <div v-if="medioDePago=='tarjeta'" class="card-body">
+                                                <p>Paga con una tarjeta de crédito VISA o MASTERCARD</p>
+                                            </div>                                    
+                                        </div>
+                                    </div>
+                                    <div class="ltn__payment-note mt-30 mb-30">
+                                    </div>
+                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase mt-2 mb-2" @click="">Realizar Pedido</button>                            
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="shoping-cart-total mt-50">
+                                    <h4>Total Compra</h4>
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Subtotal</td>
+                                                <td>${{gTotalEnCarrito}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Descuento obra social</td>
+                                                <td>$0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cupon descuento</td>
+                                                <td>$0</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Total Orden</strong></td>
+                                                <td><strong>${{gTotalEnCarrito}}</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- <div class="btn-wrapper text-right">
+                                        <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Proceder al checkout</a>
+                                    </div> -->
+                                </div>
+                                <!-- <div class="shoping-cart-total mt-50">
+                                    <h4 class="title-2">Total de carrito</h4>
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>-nombre prducto- <strong>cantidad</strong></td>
+                                                <td>precio</td>
+                                            </tr>                                                                        
+                                            <tr>
+                                                <td><strong>Orden Total</strong></td>
+                                                <td><strong>$633.00</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="shoping-cart-total mt-50">
                 <h4>Total Compra</h4>
                 <table class="table">
                     <tbody>
@@ -123,7 +275,7 @@
                 <div class="btn-wrapper text-right">
                     <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Proceder al checkout</a>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </main>
