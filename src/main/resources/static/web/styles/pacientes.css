@@ -6,17 +6,27 @@
 }
 
 body {
+    margin: 0;
     display: flex;
     height: 100vh;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 10px;
+    padding: 0;
     background-color: #77C7C9;
 }
 
+header {
+    height: 7vh;
+}
+
+.botonesHeader a{
+    text-decoration: none;
+    color: #000000;
+    border: 1px solid black;
+    padding: 1vh 3vh;
+}
+
+/* 
 .profile-card {
     width: 300px;
-    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,7 +34,7 @@ body {
     background-color: white;
     border-radius: 1rem;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6);
-}
+} */
 
 .profile-image {
     position: relative;
@@ -100,9 +110,6 @@ body {
     min-width: 17rem;
     width: 17rem;
     height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.4s;
 }
@@ -167,23 +174,3 @@ body {
     color: #aaa;
 }
 
-hr.hr-text {
-    position: relative;
-    border: none;
-    height: 1px;
-    background: #999;
-}
-hr.hr-text::before {
-    content: attr(data-content);
-    display: inline-block;
-    background: #fff;
-    font-weight: bold;
-    font-size: 0.85rem;
-    color: #999;
-    border-radius: 30rem;
-    padding: 0.2rem 2rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}

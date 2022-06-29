@@ -2,11 +2,19 @@ const app = Vue.createApp({
   data() {
     return {
 
+      paciente: [],
     }
   },
 
   mounted() {
 
+    //Menu toggle-button for small screens
+    $(document).ready(function () {
+      $(".menu-icon").on("click", function () {
+        $("nav ul").toggleClass("showing");
+      });
+    });
+    
     //Scrolling Effect for nav
     $(window).on("scroll", function () {
       if ($(window).scrollTop()) {
@@ -52,30 +60,6 @@ const app = Vue.createApp({
       })
     });
 
-
-    // Smooth Scrolling Using Navigation Menu
-    // $(function() {
-    //     $('a.page-scroll').bind('click', function(event) {
-    //         var $anchor = $(this);
-    //         $('html, body').stop().animate({
-    //             scrollTop: $($anchor.attr('href')).offset().top
-    //         }, 1500, 'easeInOutExpo');
-    //         event.preventDefault();
-    //     });
-    // });
-
-    // // Highlight the top nav as scrolling occurs
-    // $('body').scrollspy({
-    //     target: '.navbar-fixed-top'
-    // })
-
-    // // Closes the Responsive Menu on Menu Item Click
-    // $('.navbar-collapse ul li a').click(function() {
-    //     $('.navbar-toggle:visible').click();
-    // });
-
-
-
     // Loader
     $(document).ready(function preloaderSetup() {
       $(".st-perloader").fadeOut();
@@ -89,11 +73,20 @@ const app = Vue.createApp({
     })
 
 
+
   },
+
 
   created() {
 
+    axios.get('/api/pacientes/autenticado')
+      .then(data => {
+        this.paciente = data.data;
+      })
+      .catch(error => console.warn(error.message));
+
   },
+
 
   methods: {
 
@@ -104,4 +97,3 @@ const app = Vue.createApp({
   }
 
 }).mount('#app')
-

@@ -7,4 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RepositoryRestResource
 public interface ProfesionalRepository extends JpaRepository<Profesional, Long> {
+    Profesional findByEmail(String email);
 }
