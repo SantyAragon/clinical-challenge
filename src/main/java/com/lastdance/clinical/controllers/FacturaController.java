@@ -58,7 +58,7 @@ public class FacturaController {
 
     @Transactional
     @PostMapping("/facturas/create")
-    public ResponseEntity<Object> crearFactura(@RequestBody GenerarFacturaDTO generarFacturaDTO,Authentication authentication) {
+    public ResponseEntity<Object> crearFactura(@RequestBody GenerarFacturaDTO generarFacturaDTO, Authentication authentication) {
         Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
 
         Set<Servicio> servicios = generarFacturaDTO.getServicios().stream().map(serv -> servicioService.traerServicio(serv.getIdServicio())).collect(Collectors.toSet());
@@ -118,6 +118,12 @@ public class FacturaController {
         response.setHeader(headerKey, headerValue);
 
         Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
+        Factura factura = paciente.getFacturas().stream().max(Comparator.comparing(Factura::getId)).orElse(null);
+
+        assert factura != null;
+        if (factura.getProductos().size() == 0 && factura.getServicios().size() == 0)
+            return new ResponseEntity<>("Factura vacia, No se realizó ninguna compra", HttpStatus.FORBIDDEN);
+
         Long idFactura = paciente.getFacturas().stream().max(Comparator.comparing(Factura::getId)).orElseThrow().getId();
         pdfService.export(response, idFactura);
 

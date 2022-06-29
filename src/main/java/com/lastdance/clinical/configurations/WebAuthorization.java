@@ -27,7 +27,7 @@ class WebAuthorization extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/api/pacientes").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/api/pacientes/verificacion").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/api/pacientes/autenticado").hasAnyAuthority("PACIENTE")
+                .antMatchers(HttpMethod.GET, "/api/pacientes/autenticado").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/api/pacientes/contraseña").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/pacientes/contraseña").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/api/pacientes/{id}").hasAuthority("ADMIN")
