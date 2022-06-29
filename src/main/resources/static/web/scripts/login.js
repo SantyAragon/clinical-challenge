@@ -58,14 +58,12 @@ const app = Vue.createApp({
             Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Contraseña re-establecida',
+              title: 'Cuenta verificada exitosamente',
               toast: true,
               showConfirmButton: false,
               timer: 1500
             })
 
-
-            console.log("Token confirmado")
           })
           .catch(error => {
             Swal.fire({
@@ -171,6 +169,7 @@ const app = Vue.createApp({
     },
 
     resetPassword() {
+      console.log("equisde")
       axios.patch('/api/pacientes/contraseña', `email=${this.resetEmail}`)
 
     },
