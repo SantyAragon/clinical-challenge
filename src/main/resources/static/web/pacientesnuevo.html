@@ -215,97 +215,77 @@
       </div>
     </div>
     <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <!-- Vertically centered modal -->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Editar datos</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <label>E-mail
-          <input type="text" class="ms-3">
-        </label>
-        <label>Password
-          <input type="text" class="ms-3">
-        </label>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success" @click="modificarDatos">Aceptar</button>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- Vertically centered modal -->
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Editar datos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label>E-mail
+            <input type="text" class="ms-3" v-model="email">
+          </label>
+          <label>Password
+            <input type="text" class="ms-3" v-model="contraseña">
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" @click="modificarDatos">Aceptar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-    <div id="app2">
-      <nav
-        class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between"
-      >
-        <!-- Navbar Brand-->
-
-        <div class="logo">
-          <i class="fa-solid fa-staff-aesculapius"></i
-          ><a class="navbar-brand ps-3" href="index.html"> MediHub</a>
-          <!-- Sidebar Toggle-->
-          <button
-            class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-            id="sidebarToggle"
-            href="#!"
-          >
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-        <div class="d-flex align-items-center">
-          <a class="text-light">Portal pacientes</a>
-          <!-- Navbar-->
-          <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                ><i class="fas fa-user fa-fw ms-3"></i
-              ></a>
-              <ul
-                class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="navbarDropdown"
-              >
-                <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
-                <li><a class="dropdown-item" href="#!">Actividades</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="#!">Salir</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-          <nav
-            class="sb-sidenav accordion sb-sidenav-dark"
-            id="sidenavAccordion"
-          >
-            <div class="py-4 px-3 mb-4 bg-dark">
-              <div class="media d-flex align-items-center">
-                <img
-                  src="https://yt3.ggpht.com/ytc/AKedOLSB-oR-xmvVSZXJ3gbK12uvv0AJUvajwxMie_R_uw=s900-c-k-c0x00ffffff-no-rj"
-                  alt="..."
-                  width="65"
-                  class="mr-3 rounded-circle img-thumbnail shadow-sm"
-                />
-                <div class="media-body ps-3">
-                  <h4 class="m-0">Dev Ed</h4>
-                  <p class="font-weight-light text-muted mb-0">Profesor</p>
-                </div>
+  <div id="app2">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark d-flex justify-content-between">
+      <!-- Navbar Brand-->
+      <div class="logo">
+        <i class="fa-solid fa-staff-aesculapius"></i>
+        <a class="navbar-brand ps-3" href="index.html"> MediHub</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <div class="d-flex align-items-center">
+        <a class="text-light">Portal pacientes</a>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown"href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user fa-fw ms-3"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdown"
+            >
+              <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
+              <li><a class="dropdown-item" href="#!">Actividades</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#!">Salir</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <nav
+          class="sb-sidenav accordion sb-sidenav-dark"
+          id="sidenavAccordion">
+          <div class="py-4 px-3 mb-4 bg-dark">
+            <div class="media d-flex align-items-center">
+              <img src="https://yt3.ggpht.com/ytc/AKedOLSB-oR-xmvVSZXJ3gbK12uvv0AJUvajwxMie_R_uw=s900-c-k-c0x00ffffff-no-rj" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm"/>
+              <div class="media-body ps-3">
+                <h4 class="m-0">Dev Ed</h4>
+                <p class="font-weight-light text-muted mb-0">Profesor</p>
               </div>
             </div>
-            <div class="sb-sidenav-menu">
-              <div class="nav">
-                <div class="sb-sidenav-menu-heading">Datos del paciente</div>
+          </div>
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+              <div class="sb-sidenav-menu-heading">Datos del paciente</div>
                 <a class="nav-link">
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-database"></i>
@@ -361,20 +341,26 @@
                   </div>
                   Servicios tomados
                 </a>
-                <!-- <div class="sb-sidenav-menu-heading">Ventas</div>
-                <a class="nav-link" href="#">
-                  <div class="sb-nav-link-icon">
-                    <i class="fas fa-chart-area"></i>
-                  </div>
-                  Productos
-                </a>
-                <a class="nav-link" href="#">
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+              <!-- <div class="sb-sidenav-menu-heading">Ventas</div>
+              <a class="nav-link" href="#">
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-chart-area"></i>
+                </div>
+                Productos
+              </a>
+              <a class="nav-link" href="#">
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-table"></i>
                   </div>
                   Servicios
                 </a> -->
-  </div>
 
           <!-- BOOTSTRAP -->
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
