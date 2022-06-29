@@ -1005,6 +1005,10 @@ footer {
     margin-right: 25px;
 }
 
+.iconos-redes svg {
+    display: inline
+}
+
 @media screen and (max-width: 450px){
     footer{
         display: flex;
