@@ -159,10 +159,8 @@ const app = Vue.createApp({
           }
         })
         .then(response => {
-
           axios.get('/api/autenticado')
             .then(response => {
-              console.log(response.data)
               if (response.data === 'Admin')
                 window.location.href = "/web/admin.html"
 
@@ -174,16 +172,41 @@ const app = Vue.createApp({
 
             })
         })
-        .catch(function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-          }
-        });
+        .catch(error => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: error.response.data,
+            toast: true,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
     },
 
     resetPassword() {
       console.log("equisde")
       axios.patch('/api/pacientes/contraseña', `email=${this.resetEmail}`)
+        .then(response => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Correo de recuperacion enviado',
+            toast: true,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
+        .catch(error => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: error.response.data,
+            toast: true,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
 
     },
 
