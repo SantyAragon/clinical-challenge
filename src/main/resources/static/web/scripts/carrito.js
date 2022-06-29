@@ -16,16 +16,16 @@ const app = Vue.createApp({
     mounted() {
         // ===== Scroll to Top ==== 
         $(window).scroll(function () {
-            if ($(this).scrollTop() >= 1080) {        // If page is scrolled more than 50px
-                $('#return-to-top').fadeIn(500);    // Fade in the arrow
+            if ($(this).scrollTop() >= 1080) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(500); // Fade in the arrow
             } else {
-                $('#return-to-top').fadeOut(500);   // Else fade out the arrow
+                $('#return-to-top').fadeOut(500); // Else fade out the arrow
             }
         });
 
-        $('#return-to-top').click(function () {      // When arrow is clicked
+        $('#return-to-top').click(function () { // When arrow is clicked
             $('body,html').animate({
-                scrollTop: 0                       // Scroll to top of body
+                scrollTop: 0 // Scroll to top of body
             }, 500);
         });
 
@@ -49,7 +49,7 @@ const app = Vue.createApp({
                 // STORAGE
                 this.gProductosEnStorage = JSON.parse(localStorage.getItem("carrito"));
 
-                console.log(this.gProductosEnStorage)
+                // console.log(this.gProductosEnStorage)
                 if (this.gProductosEnStorage) {
                     this.gCarrito = this.gProductosEnStorage
                 }
@@ -58,11 +58,16 @@ const app = Vue.createApp({
                 console.log(this.gCarrito);
             })
             .catch(error => console.log(error))
+        this.generarCompra()
     },
 
     methods: {
         formatMoney(amount) {
-            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(amount);
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            }).format(amount);
         },
 
         removeItem(producto) {
@@ -95,6 +100,33 @@ const app = Vue.createApp({
             localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
 
         },
+
+        generarCompra() {
+            console.log(this.gCarrito.forEach(producto => console.log(producto)))
+            // let serviciosatomar = []
+
+            // function click(servic) {
+            //     let sv = {
+            //         idServicio: servic.id,
+            //         fecha: servic.fecha
+            //     }
+            //     this.serviciosatomar.push(sv)
+            // }
+
+            // this.serviciosatomar.forEach(serv => servicios.push(serv))
+            // let servicios = []
+
+            // let objt = {
+            //     servicios: [],
+            //     productos: []
+            // }
+
+            // axios.post('/api/factura/create', objt)
+        }
+
+
+
+
     },
 
     computed: {
