@@ -63,6 +63,7 @@ const app = Vue.createApp({
     methods: {
         valorCantidadProducto(producto, e){
             producto.cantidad = e.target.value;
+            producto.stock -= e.target.value;
         },
         
         formatMoney(amount) {
