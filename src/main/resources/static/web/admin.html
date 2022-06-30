@@ -328,28 +328,16 @@
                         <div>
                         <form class="d-flex flex-column gap-4">
                             <label for="name"></label>
-                            <input v-model="nombrePro" placeholder="Nombre" />
+                            <input v-model="nombrePac" placeholder="Nombre"/>
                             <label for="lastname"></label>
-                            <input v-model="apellidoPro" placeholder="Apellido" />
-                            <fieldset>
-                              <h4 for="especialidadPro">Especialidad: </h4>
-                              <Select v-model="especialidad" id="especialidad" class="form-select" required>
-                                <option disabled value="">Por favor, seleccionar uno</option>
-                                <option value="ALERGIA">ALERGIA </option>
-                                <option value="BIOQUIMICO">BIOQUIMICO </option>
-                                <option value="CIRUJANO">CIRUJANO </option>
-                                <option value="OBSTETRA">OBSTETRA </option>
-                                <option value="PEDIATRA">PEDIATRA </option>
-                                <option value="DENTISTA">DENTISTA </option>
-                                <option value="OFTALMOLOGO">OFTALMOLOGO </option>
-                                <option value="ANESTESIOLOGO">ANESTESIOLOGO </option>
-                                <option value="NEUROLOGO">NEUROLOGO </option>
-                                <option value="CARDIOLOGO">CARDIOLOG </option>
-                              </Select>
-                            </fieldset>
+                            <input v-model="apellidoPac" placeholder="Apellido"/>
                             <label for="email"></label>
-                            <input v-model="emailPro" placeholder="Correo electrónico" />
-                            <button type="submit" class="btn btn-info display-none mt-2" @click="nuevoProfesional()">Confirmar</button>
+                            <input type="email" v-model="emailPac" placeholder="Correo electrónico"/>
+                            <label for="password"></label>
+                            <input type="password" v-model="contraseñaPac" placeholder="Contraseña"/>
+                            <label for="number"></label>
+                            <input type="number" v-model="identificacion" placeholder="Identificación"/>
+                            <button type="submit" class="btn btn-info display-none mt-2" @click="registrarPaciente()">Confirmar</button>
                         </form>
                         </div>
                     </div>
