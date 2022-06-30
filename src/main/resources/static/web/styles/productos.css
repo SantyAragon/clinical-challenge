@@ -309,6 +309,7 @@ body li {
 #div-card {
     height: 100vh;
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 .contenedorCards {
@@ -1047,6 +1048,7 @@ header {
 .carritoChiquito {
     height: 50vh;
     overflow: scroll;
+    overflow-x: hidden;
 
 }
 
