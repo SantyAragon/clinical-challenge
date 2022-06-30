@@ -329,19 +329,23 @@ label {
 /****************/
 footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-content: center;
     height: 55px;
     flex-wrap: wrap;
     box-shadow: 0 8px 20px rgba(43, 43, 43, 0.2);
-    max-width: 100vw;
+    width: 100vw;
     background-color: #77C7C9;
     color: white;
 }
 
-.iconos-redes {
+.iconos-redes{
     margin-right: 25px;
-}
+  }
+  
+  .iconos-redes svg {
+    display: inline;
+  }
 
 @media screen and (max-width: 450px) {
     footer {

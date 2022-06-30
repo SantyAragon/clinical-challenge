@@ -24,6 +24,7 @@ $(window).on("scroll", function() {
   }
 });
 
+//smooth scrolling
 $('.smoothscroll').on('click',function (e) {
   e.preventDefault();
 
@@ -39,7 +40,7 @@ $('.smoothscroll').on('click',function (e) {
 
     //Ripples effect -> cambiar efecto
     $('.header-container').ripples({
-      resolution: 400,
+      resolution: 800,
       perturbance: 0.05,
     });
 
