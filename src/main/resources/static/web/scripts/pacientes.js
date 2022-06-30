@@ -42,9 +42,9 @@ Vue.createApp({
     },
     
     pedirTurno(){
-        let div_sinTurnos = document.getElementById("div_sinTurnos"),
-         div_conTurnos = document.getElementById("div_conTurnos"),
-         contenedorParaTurnos = document.getElementById("contenedorParaTurnos")
+        let div_sinTurnos = document.getElementById("div_sinTurnos");
+        let div_conTurnos = document.getElementById("div_conTurnos");
+        let contenedorParaTurnos = document.getElementById("contenedorParaTurnos");
 
         div_sinTurnos.classList.remove("block")
         div_sinTurnos.classList.add("none")
