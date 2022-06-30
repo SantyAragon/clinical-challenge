@@ -61,12 +61,11 @@ const app = Vue.createApp({
 
         })
 
-        this.myDatePicker.onClose(() => 
-        {
+        this.myDatePicker.onClose(() => {
           let dia = this.myDatePicker.getDate();
           let mes = this.myDatePicker.getMonth() + 1;
           let año = this.myDatePicker.getYear();
-           
+
           this.fechaSeleccionada = año + "-" + mes + "-" + dia;
 
           this.gVistaWeb = 3;
@@ -86,7 +85,7 @@ const app = Vue.createApp({
   },
 
   methods: {
-    confirmarTurno(){
+    confirmarTurno() {
       // SEGUIR ACA
     },
     openCalendar(profesional) {
@@ -135,7 +134,7 @@ const app = Vue.createApp({
       let diff_in_millisenconds = fechaFin - fechaInicio;;
       let diff_in_days = diff_in_millisenconds / day_as_milliseconds;
 
-      if (diff_in_days < 0) {
+      if (diff_in_days < -0.5) {
         return false;
       } else {
         return true;
@@ -161,9 +160,7 @@ const app = Vue.createApp({
     },
 
     pedirTurno() {
-
       this.gVistaWeb = 1;
-      console.log(this.gVistaWeb);
     },
 
     pedirTurnoConProfesional(servicio) {
@@ -172,7 +169,6 @@ const app = Vue.createApp({
       this.servicioElegido = servicio;
       console.log(this.servicioElegido);
       this.gVistaWeb = 2;
-      console.log(this.gVistaWeb);
     },
 
 

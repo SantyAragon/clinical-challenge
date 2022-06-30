@@ -20,13 +20,13 @@
   <!-- LINK FAVICON -->
   <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon" />
 
-  
+
   <!-- LINK ANIMATE AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  
+
   <!-- JQUERY -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  
+
   <!-- CSS -->
   <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
   <link rel="stylesheet" href="./styles/admin.css">
@@ -126,7 +126,7 @@
           <div class="form-check form-switch d-flex justify-content-center align-items-start">
             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
               v-model="switchNoche" @change="modoNoche" />
-            <label class="form-check-label" for="flexSwitchCheckDefault">Modo Noche</label>
+            <label class="form-check-label" for="flexSwitchCheckDefault">Modo Nocturno</label>
           </div>
           <div class="bg-danger sb-sidenav-footer">
             <div class="text-white d-flex justify-content-center cerrarSesion small" @click="logOut">Cerrar sesión</div>
@@ -163,22 +163,24 @@
 
               <div class="div_listado_fichas container mt-5">
 
-                <div class="row row_turno mb-5" v-for="turno in turnos" v-show="getProximoTurno(turno.fecha)">
+                <div class="row row_turno mb-5 w-75" v-for="turno in turnos" v-show="getProximoTurno(turno.fecha)">
                   <!-- v-for turno in turnos -->
                   <div class="col-lg-9">
                     <div class="row" data-alt="">
                       <div class="col col-lg-12 mb-2">
-                        <span class="ribbon">Turno en {{getLessDay(turno.fecha)}} dias</span>
+                        <span class="ribbon">Proximo turno en {{getLessDay(turno.fecha)}} dias</span>
+                      </div>
+                      <div class="col col-lg-12 mb-2">
                         <i class="fa-solid fa-calendar-check"></i>
-                        <span>{{formatearFecha(turno.fecha)}}</span>
+                        <span class="fs-5">{{formatearFecha(turno.fecha)}}</span>
                       </div>
                       <div class="col col-lg-12 mb-2">
                         <i class="fa-solid fa-circle-user"></i>
-                        <span>{{turno.profesional}}</span>
+                        <span class="fs-5">{{turno.profesional}}</span>
                       </div>
                       <div class="col col-lg-12 text-sm-right mb-2">
                         <i class="fa-solid fa-stethoscope"></i>
-                        <span>{{turno.servicio}}</span>
+                        <span class="fs-5">{{turno.servicio}}</span>
                       </div>
                       <div class="col col-lg-12 text-sm-right mb-2">
                         <i class="fa-solid fa-map-location-dot"></i>
@@ -190,12 +192,12 @@
                     <div class="row">
                       <div class="col text-center col-sm-12 mb-3">
                         <button class="btn btn-primary btn-boxed btn_reminder" type="button">
-                          <i class="fa-solid fa-file-circle-question"></i> Recordatorio (imprimir pdf del turno)
+                          <i class="fa-solid fa-file-circle-question"></i> Recordatorio
                         </button>
                       </div>
                       <div class="col text-center col-sm-12">
                         <button class="btn btn-danger btn-boxed btn_cancel" type="button">
-                          <i class="fa-solid fa-circle-xmark"></i> Cancelar turno (cancelar turno)
+                          <i class="fa-solid fa-circle-xmark"></i> Cancelar turno
                         </button>
                       </div>
                     </div>
@@ -253,8 +255,8 @@
                   <td data-label="Id">{{profesional.id}}</td>
                   <td data-label="Profesional">{{profesional.nombre}} {{profesional.apellido}}</td>
                   <td data-label="Especialidad">{{profesional.especialidad}}</td>
-                  <td data-label="Solicitar Turno"><button class="btn btn-success datepicker" id="selectCalendar" @click="openCalendar(profesional)" type="button"
-                      >
+                  <td data-label="Solicitar Turno"><button class="btn btn-success datepicker" id="selectCalendar"
+                      @click="openCalendar(profesional)" type="button">
                       <i class="fa-solid fa-calendar-days"></i> Solicitar
                     </button></td>
                 </tr>
@@ -301,8 +303,8 @@
                       <option value="18">18:00hs</option>
                     </select>
                   </td>
-                  <td data-label="Solicitar Turno"><button class="btn btn-success" @click="confirmarTurno" type="button"
-                      >
+                  <td data-label="Solicitar Turno"><button class="btn btn-success" @click="confirmarTurno"
+                      type="button">
                       <i class="fa-solid fa-calendar-days"></i> Confirmar Turno
                     </button></td>
                 </tr>
@@ -379,10 +381,10 @@
   <!-- FILE JS -->
   <script src="./scripts/pacientes.js"></script>
 
-  
+
   <!-- SWEET ALERT -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+
   <!-- ANIMATE AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
