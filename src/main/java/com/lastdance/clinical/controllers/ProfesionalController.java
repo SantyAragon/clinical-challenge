@@ -23,8 +23,13 @@ public class ProfesionalController {
     ServicioService servicioService;
 
     @GetMapping("/profesionales")
-    public Set<ProfesionalDTO> traerProfesionales() {
+    public Set<ProfesionalDTO> traerProfesionalesActivos() {
         return profesionalService.traerProfesionales().stream().filter(profesional -> profesional.isActivo()).map(profesional -> new ProfesionalDTO(profesional)).collect(Collectors.toSet());
+    }
+
+    @GetMapping("/profesionales/todos")
+    public Set<ProfesionalDTO> traerProfesionalesActivosYDesactivos() {
+        return profesionalService.traerProfesionales().stream().map(profesional -> new ProfesionalDTO(profesional)).collect(Collectors.toSet());
     }
 
     @GetMapping("/profesionales/{id}")
