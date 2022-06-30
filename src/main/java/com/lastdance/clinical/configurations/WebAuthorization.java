@@ -26,6 +26,8 @@ class WebAuthorization extends WebSecurityConfigurerAdapter {
                         "/web/styles/custom.css", "/web/assets/**", "/web/scripts/index.js", "/web/productos.html", "/web/scripts/productos.js", "/web/styles/productos.css",
                         "/web/styles/farmacia.css", "/web/styles/carrito.css", "/web/scripts/carrito.js", "/web/carrito.html").permitAll()
 
+                .antMatchers("/web/profesional.html", "/web/profesional.js", "web/profesional.css").hasAuthority("PROFESIONAL")
+
                 .antMatchers(HttpMethod.GET, "/api/autenticado").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/pacientes").permitAll()

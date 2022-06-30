@@ -1,3 +1,5 @@
+let principal = document.getElementsByClassName("nochee")
+
 Vue.createApp({
   data() {
     return {
@@ -6,11 +8,13 @@ Vue.createApp({
       email: "",
       contraseña: "",
 
+      switchNoche: 0,
 
       turnos: [],
       servicios: [],
       servicioElegido: {},
       gVistaWeb: 0,
+
     };
   },
 
@@ -127,6 +131,17 @@ Vue.createApp({
         .then(response => {
           window.location.href = '/web/index.html'
         })
+
+    },
+    modoNoche() {
+      if (this.switchNoche) {
+        principal[0].style.color = "#DBDBDB";
+        principal[0].style.backgroundColor = "#414141";
+      }
+      else {
+        principal[0].style.color = "black";
+        principal[0].style.backgroundColor = "white";
+      }
     }
   },
 
