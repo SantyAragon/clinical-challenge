@@ -187,7 +187,7 @@ const app = Vue.createApp({
     },
     modoNoche() {
       if (this.switchNoche) {
-        Array.from(this.principal).forEach(element => element.style.color = "#DBDBDB");
+        Array.from(this.principal).forEach(element => element.style.color = "black");
         Array.from(this.principal).forEach(element => element.style.backgroundColor = "#414141");
       } else {
         Array.from(this.principal).forEach(element => element.style.color = "black");
