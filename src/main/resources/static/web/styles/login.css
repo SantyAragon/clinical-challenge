@@ -132,14 +132,14 @@ nav .contenedor-nav .logo img {
 .btn-volver{
     border-radius: 20px;
     padding: 10px 25px;
-    background-color: #3ABEE7;
-    border: 2px solid black;
+    background-color: hsla(194, 78%, 57%, 0.686);
+    border: 1px solid rgba(0, 0, 0, 0.445);
     color: #fff;
 }
 
     .btn-volver:hover{
-    background-color: #77C7C9;
-    color: black;
+    background-color: hsl(194, 78%, 57%);
+    color: rgb(255, 255, 255);
 }
 
 
@@ -240,16 +240,17 @@ nav .contenedor-nav .logo img {
     width: 100%;
     padding: 1rem;
     margin: 1rem 0;
-    background-color: #77C7C9;
-    color: black;
+    background-color: #24cdb18e;
+    color: rgb(255, 255, 255);
     font-weight: 600;
     text-align: center;
+    border: 1px;
     border-radius: .5rem;
     transition: .3s;
 }
 
 .login__button:hover {
-    background-color: #3ABEE7;
+    background-color: #24cdb1;
     color: #fff;
 }
 
@@ -266,7 +267,7 @@ nav .contenedor-nav .logo img {
 
 .login__signin--signin,
 .login__signup--signup {
-    color: #3ABEE7;
+    color: #24cdb1;
     cursor: pointer;
 }
 
@@ -344,7 +345,7 @@ nav .contenedor-nav .logo img {
 
 footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-content: center;
     height: 55px;
     flex-wrap: wrap;
