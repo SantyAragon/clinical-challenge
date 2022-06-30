@@ -8,6 +8,8 @@ Vue.createApp({
 
 
       turnos: [],
+      servicios: [],
+      servicioElegido: {},
       gVistaWeb: 0,
     };
   },
@@ -27,9 +29,25 @@ Vue.createApp({
         this.intials = firstNameLetter + secondNameLetter
       })
       .catch((error) => console.warn(error.message));
+
+    axios.get("/api/servicios")
+      .then((datos) => {
+        this.servicios = datos.data.sort((a, b) => a.id - b.id);
+
+        console.log(this.servicios);
+      })
+      .catch((error) => console.warn(error.message));
   },
 
   methods: {
+    formatMoney(amount) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+      }).format(amount);
+    },
+
     getLessDay(fecha) {
       let fechaInicio = new Date().getTime();
       let fechaFin = new Date(fecha).getTime();
@@ -47,6 +65,9 @@ Vue.createApp({
       return result;
     },
 
+    getFilterTurnos() {
+      return this.turnos.filter(turno => this.getProximoTurno(turno.fecha));
+    },
     getProximoTurno(fecha) {
       let fechaInicio = new Date().getTime();
       let fechaFin = new Date(fecha).getTime();
@@ -81,18 +102,18 @@ Vue.createApp({
     },
 
     pedirTurno() {
-      let div_sinTurnos = document.getElementById("div_sinTurnos"),
-        div_conTurnos = document.getElementById("div_conTurnos"),
-        contenedorParaTurnos = document.getElementById("contenedorParaTurnos")
-
-      div_sinTurnos.classList.remove("block")
-      div_sinTurnos.classList.add("none")
-      div_conTurnos.classList.remove("block")
-      div_conTurnos.classList.add("none")
-      contenedorParaTurnos.classList.add("block")
-      contenedorParaTurnos.classList.remove("none")
 
       this.gVistaWeb = 1;
+      console.log(this.gVistaWeb);
+    },
+
+    pedirTurnoConProfesional(servicio){
+
+      this.servicioElegido = {};
+      this.servicioElegido = servicio;
+      console.log(this.servicioElegido);
+      this.gVistaWeb = 2;
+      console.log(this.gVistaWeb);
     },
 
     volverAtras() {
@@ -101,11 +122,11 @@ Vue.createApp({
       }
     },
 
-    logOut(){
+    logOut() {
       axios.post('/api/logout')
-      .then(response => {
-        window.location.href = '/web/index.html'
-      })
+        .then(response => {
+          window.location.href = '/web/index.html'
+        })
     }
   },
 

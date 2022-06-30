@@ -101,17 +101,11 @@
                 </div>
                 DNI: {{paciente.identificacion}}
               </a>
-              <a class="nav-link">
+              <a class="nav-link mb-5">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-database"></i>
                 </div>
                 E-mail: {{paciente.email}}
-              </a>
-              <a class="nav-link">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-database"></i>
-                </div>
-                ...
               </a>
               <div class="sb-sidenav-menu-heading">MAIN</div>
               <a class="nav-link" href="index.html">
@@ -151,7 +145,7 @@
       <div id="layoutSidenav_content">
         <main>
 
-          <div v-if="paciente.servicios.length == 0" v-show="gVistaWeb == 0" id="div_sinTurnos" class="container mt-5">
+          <div v-if="getFilterTurnos().length == 0" v-show="gVistaWeb == 0" id="div_sinTurnos" class="container mt-5">
 
             <h1>Bienvenido {{paciente.nombre}} {{paciente.apellido}}</h1>
 
@@ -217,9 +211,9 @@
             </div>
           </div>
 
-          <div id="contenedorParaTurnos" v-show="gVistaWeb == 1" class="container mt-5 none">
+          <div id="contenedorParaTurnos" v-show="gVistaWeb == 1" class="container mt-5">
             <h3>Servicios disponibles</h3>
-            <button @click="volverAtras" class="btn btn-primary btn-lg-derecha btn-nuevo_turno" type="button">
+            <button @click="volverAtras" class="btn btn-primary btn-lg-derecha btn-nuevo_turno mb-5" type="button">
               <i class="fa-solid fa-calendar-days"></i> Volver atras
             </button>
             <table>
@@ -232,12 +226,12 @@
                 </tr>
               </thead>
               <tbody>
-                <!--  <-v-for servicio in servicios -->
-                <tr>
-                  <td data-label="Id">get id servicio</td>
-                  <td data-label="Servicio">get servicio</td>
-                  <td data-label="Monto">get monto servicio</td>
-                  <td data-label="Solicitar Turno"><button class="btn btn-primary" type="button">
+                <tr v-for="servicio in servicios">
+                  <td data-label="Id">{{servicio.id}}</td>
+                  <td data-label="Servicio">{{servicio.tipoServicio}}</td>
+                  <td data-label="Monto">{{formatMoney(servicio.monto)}}</td>
+                  <td data-label="Solicitar Turno"><button class="btn btn-primary" type="button"
+                      @click="pedirTurnoConProfesional(servicio)">
                       <i class="fa-solid fa-calendar-days"></i> Solicitar
                     </button></td>
                 </tr>
@@ -246,9 +240,41 @@
             </table>
           </div>
 
+          <div v-show="gVistaWeb == 2" class="container mt-5">
+            <h3>Profesionales disponibles</h3>
+            <button @click="volverAtras" class="btn btn-primary btn-lg-derecha btn-nuevo_turno mb-5" type="button">
+              <i class="fa-solid fa-calendar-days"></i> Volver atras
+            </button>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Profesionales</th>
+                  <th scope="col">Especialidad</th>
+                  <th scope="col">Solicitar Turno</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="profesional in servicioElegido.profesionales">
+                  <td data-label="Id">{{profesional.id}}</td>
+                  <td data-label="Profesional">{{profesional.nombre}} {{profesional.apellido}}</td>
+                  <td data-label="Especialidad">{{profesional.especialidad}}</td>
+                  <td data-label="Solicitar Turno"><button class="btn btn-primary" type="button"
+                    @click="pedirTurnoConProfesional(servicio)">
+                    <i class="fa-solid fa-calendar-days"></i> Solicitar
+                  </button></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+
         </main>
       </div>
     </div>
+
+
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -293,9 +319,6 @@
 
   <!-- SWEET ALERT -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-  <!-- DIFF TIME  -->
-  <script src="./scripts/moment.js"></script>
 
   <!-- ANIMATE AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
