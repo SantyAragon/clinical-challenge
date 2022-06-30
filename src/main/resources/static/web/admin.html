@@ -201,16 +201,16 @@
                         <div class="card mb-4">
                             <div>
                                 <i class="fas fa-table me-1"></i>
-                                Pacientes
+                                Profesionales
                             </div>
-                            <div>
-                                <table>
+                            <div>                                
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Especialidad</th>
-                                            <th>Email</th>
+                                            <th><p>Nombre</p><input v-model="nombrePro" type="text"></th>
+                                            <th><p>Apellido</p><input v-model="apellidoPro" type="text"></th>
+                                            <th><p>Especialidad</p><input v-model="especialidadPro" type="text"></th>
+                                            <th><p>Email</p><input v-model="emailPro" type="text"></th>                                            
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -221,12 +221,12 @@
                                             <th>Email</th>
                                         </tr>
                                     </tfoot> -->
-                                    <tbody v-for="profesional in profesionales">
+                                    <tbody v-for="profesional in profesionales">                                        
                                         <tr>
-                                            <td>{{profesional.nombre}}</td>
-                                            <td>{{profesional.apellido}}</td>
-                                            <td>{{profesional.especialidad}}</td>
-                                            <td>{{profesional.email}}</td>
+                                            <td class="d-flex justify-content-center"><span class="me-1"><button @click="eliminarProfesional(profesional.id)">Eliminar</button></span>{{profesional.apellido}}<button @click="editarApellido(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
+                                            <td class="d-flex justify-content-center">{{profesional.nombre}}<button @click="editarNombre(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
+                                            <td class="d-flex justify-content-center">{{profesional.especialidad}}<button @click="editarEspecialidad(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
+                                            <td class="d-flex justify-content-center">{{profesional.email}}<button @click="editarEmail(profesional.id)" class="btn btn-danger ms-1">edit</button></td>                                            
                                         </tr>
                                     </tbody>
                                 </table>
@@ -237,14 +237,14 @@
 
                     <div data-content id="agregar-doc">
                         <div>
-                        <form class="d-flex flex-column gap-4">
+                        <form v-on:submit.prevent="nuevoProfesional" class="d-flex flex-column gap-4">
                             <label for="name"></label>
                             <input v-model="nombrePro" placeholder="Nombre"/>
                             <label for="lastname"></label>
                             <input v-model="apellidoPro" placeholder="Apellido"/>
                             <fieldset>
                               <h4 for="especialidad">Especialidad: </h4>
-                              <Select v-model="especialidad" id="especialidad" class="form-select" required>
+                              <Select v-model="especialidadPro" class="form-select" required>
                                 <option disabled value="">Por favor, seleccionar uno</option>
                                 <option value="ALERGIA">ALERGIA </option>
                                 <option value="BIOQUIMICO">BIOQUIMICO </option>
@@ -258,13 +258,14 @@
                                 <option value="CARDIOLOGO">CARDIOLOGO </option>
                               </Select>
                             </fieldset>
-                            <label for="number"></label>
-                            <input type="number" v-model="servicio" placeholder="Identificación"/>
+                            <select v-model="servicioPro">
+                                <option :value="servicio.id" v-for="servicio in servicios">{{servicio.tipoServicio}}</option>
+                            </select>                            
                             <label for="email"></label>
                             <input type="email" v-model="emailPro" placeholder="Correo electrónico"/>
                             <label for="password"></label>
                             <input type="password" v-model="contraseñaPro" placeholder="Contraseña"/>
-                            <button type="submit" class="btn btn-info display-none mt-2" @click="nuevoProfesional()">Confirmar</button>
+                            <button type="submit" class="btn btn-info display-none mt-2">Confirmar</button>
                         </form>
                         </div>
                     </div>

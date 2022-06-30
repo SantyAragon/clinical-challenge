@@ -4,11 +4,12 @@ Vue.createApp({
         pacients: [],
         pacientes: [],
         profesionales: [],
+        servicios: [],
 
         nombrePro: "",
         apellidoPro: "",
-        especialidad: "",
-        // servicio: 0,
+        especialidadPro: "",
+        servicioPro: 0,
         emailPro: "",
         contraseñaPro: "",
         
@@ -33,6 +34,11 @@ Vue.createApp({
         })
         .catch(error => console.warn(error.message));
 
+        axios.get('/api/servicios')
+          .then(data => {
+            this.servicios = data.data
+          })
+
       
     },
     
@@ -43,11 +49,11 @@ Vue.createApp({
     },
   
     methods: {
-      nuevoProfesional() {
-        axios.post("/api/profesional", `nombre=${this.nombrePro}&apellido=${this.apellidoPro}&especialidad=${this.especialidad}}&email=${this.emailPro}&contraseña=${this.contraseñaPro}`)
-            .then(response => {
-              window.location.reload()
-                window.alert("Profesional agregado")
+      nuevoProfesional() {        
+        axios.post("/api/profesional", `nombre=${this.nombrePro}&apellido=${this.apellidoPro}&especialidad=${this.especialidadPro}&servicioId=${this.servicioPro}&email=${this.emailPro}&contraseña=${this.contraseñaPro}`)
+            .then(response => { 
+              location.reload()             
+              window.alert("Profesional agregado")
           })
           .catch(error => {
               console.log(error)
@@ -55,8 +61,45 @@ Vue.createApp({
           });
       },
 
+      editarNombre(id) {
+        axios.patch(`/api/profesional/${id}/nombre`, `nombre=${this.nombrePro}`)
+          .then(response => {
+            window.location.reload()
+              window.alert("nombre editado")
+          })
+      },
 
+      editarApellido(id) {
+        axios.patch(`/api/profesional/${id}/apellido`, `apellido=${this.apellidoPro}`)
+          .then(response => {
+            window.location.reload()
+              window.alert("apellido editado")
+          })
+      },
 
+      editarEspecialidad(id) {
+        axios.patch(`/api/profesional/${id}/especialidad`, `especialidad=${this.especialidadPro}`)
+          .then(response => {
+            window.location.reload()
+              window.alert("especialidad editado")
+          })
+      },
+
+      editarEmail(id) {
+        axios.patch(`/api/profesional/${id}/email`, `email=${this.emailPro}`)
+          .then(response => {
+            window.location.reload()
+              window.alert("email editado")
+          })
+      },
+
+      eliminarProfesional(id) {
+        axios.patch(`/api/profesional/${id}`)
+          .then(response => {
+            window.location.reload()
+            window.alert("profesional eliminado")
+        })
+      }
       
 
     },
