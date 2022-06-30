@@ -211,7 +211,7 @@ public final class Pacienteutils {
                 "                            <tr>\n" +
                 "                                <td>\n" +
                 "                                    <div class=\"text\" style=\"padding: 0 2.5em; text-align: center;\">\n" +
-                "                                        <h2>Porfavor verifica tu email</h2>\n" +
+                "                                        <h2>Por favor verifica tu email</h2>\n" +
                 "                                        <h3>\n" +
                 "                                            Estimado/a [paciente]:\n" +
                 "                                            <p>\n" +

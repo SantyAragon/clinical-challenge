@@ -168,7 +168,7 @@ const app = Vue.createApp({
                 window.location.href = "/web/profesional.html"
 
               else if (response.data === 'Paciente')
-                window.location.href = '/web/pacientes.html'
+                window.location.href = '/web/pacientesnuevo.html'
 
             })
         })
@@ -176,7 +176,7 @@ const app = Vue.createApp({
           Swal.fire({
             position: 'top-end',
             icon: 'error',
-            title: error.response.data,
+            title: error.response.data.message,
             toast: true,
             showConfirmButton: false,
             timer: 1500

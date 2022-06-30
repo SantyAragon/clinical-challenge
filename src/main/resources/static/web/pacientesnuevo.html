@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,31 +7,32 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-      <!-- FONTS -->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap"
-          rel="stylesheet">
-  
-      <!-- LINK BOOTSTRAP -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-  
-      <!-- LINK FAVICON -->
-      <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
-  
-      <!-- LINK FONTAWESOME ICONS -->
-      <script src="https://kit.fontawesome.com/a9e21e8a67.js" crossorigin="anonymous"></script>
-  
-      <!-- LINK ANIMATE AOS -->
-      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
-      <!-- JQUERY -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap"
+    rel="stylesheet" />
 
-      <!-- CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-      <link href="styles/admin.css" rel="stylesheet" />
+  <!-- LINK BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon" />
+
+  <!-- LINK FONTAWESOME ICONS -->
+  <script src="https://kit.fontawesome.com/a9e21e8a67.js" crossorigin="anonymous"></script>
+
+  <!-- LINK ANIMATE AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/admin.css">
+  <link rel="stylesheet" href="./styles/pacientes.css">
 
   <title>MediHub | Portal Pacientes</title>
 </head>
@@ -43,19 +43,22 @@
       <!-- Navbar Brand-->
 
       <div class="logo">
-        <i class="fa-solid fa-staff-aesculapius"></i><a class="navbar-brand ps-3" href="index.html"> MediHub</a>
+        <i class="fa-solid fa-staff-aesculapius"></i><a class="navbar-brand ps-3" href="#"> Portal Paciente </a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
           <i class="fas fa-bars"></i>
         </button>
       </div>
       <div class="d-flex align-items-center">
-        <a class="text-light">Portal pacientes</a>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+          <div class="header_img rounded-circle">
+            <span class="header_intials">{{intials}}</span>
+          </div>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false"><i class="fas fa-user fa-fw ms-3"></i></a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown" role="button"
+              aria-haspopup="true" aria-expanded="false">
+            </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
               <li><a class="dropdown-item" href="#!">Actividades</a></li>
@@ -71,174 +74,231 @@
     <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-          <div class="py-4 px-3 mb-4 bg-dark">
+          <div class="py-2 px-3  bg-dark">
             <div class="media d-flex align-items-center">
-              <img
-                src="https://yt3.ggpht.com/ytc/AKedOLSB-oR-xmvVSZXJ3gbK12uvv0AJUvajwxMie_R_uw=s900-c-k-c0x00ffffff-no-rj"
-                alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm" />
-              <div class="media-body ps-3">
-                <h4 class="m-0">Dev Ed</h4>
-                <p class="font-weight-light text-muted mb-0">Profesor</p>
-              </div>
+              <img src="./assets/logo-medihub.png" style="width:150px ;">
             </div>
           </div>
           <div class="sb-sidenav-menu">
             <div class="nav">
               <div class="sb-sidenav-menu-heading">Datos del paciente</div>
-              <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-database"></i>
-                </div>
-                Nombre
-              </a>
-              <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-database"></i>
-                </div>
-                Apellido
-              </a>
-              <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-database"></i>
-                </div>
-                DNI
-              </a>
-              <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-database"></i>
-                </div>
-                ...
-              </a>
-              <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-database"></i>
-                </div>
-                ...
-              </a>
-              <div class="sb-sidenav-menu-heading">MAIN</div>
-              <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-th-large mr-3 fa-fw"></i>
-                </div>
-                Inicio
-              </a>
-              <a class="nav-link" href="#">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-address-card mr-3 fa-fw"></i>
-                </div>
-                Mi cuenta
-              </a>
-              <a class="nav-link" href="#">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-cubes mr-3 fa-fw"></i>
-                </div>
-                Productos comprados
-              </a>
-              <a class="nav-link" href="#">
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-picture-o mr-3 fa-fw"></i>
-                </div>
-                Servicios tomados
-              </a>
-            </div>
+                <a class="nav-link">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-database"></i>
+                  </div>
+                  Nombre: {{paciente.nombre}}
+                </a>
+                <a class="nav-link">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-database"></i>
+                  </div>
+                  Apellido: {{paciente.apellido}}
+                </a>
+                <a class="nav-link">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-database"></i>
+                  </div>
+                  DNI: {{paciente.identificacion}}
+                </a>
+                <a class="nav-link">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-database"></i>
+                  </div>
+                  E-mail: {{paciente.email}}
+                </a>
+                <a class="nav-link">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-database"></i>
+                  </div>
+                  ...
+                </a>
+                <div class="sb-sidenav-menu-heading">MAIN</div>
+                <a class="nav-link" href="index.html">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-th-large mr-3 fa-fw"></i>
+                  </div>
+                  Inicio
+                </a>
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-address-card mr-3 fa-fw"></i>
+                  </div>
+                  Mi cuenta
+                </a>
+                <a class="nav-link" href="#">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-cubes mr-3 fa-fw"></i>
+                  </div>
+                  Productos comprados
+                </a>
+                <a class="nav-link" href="#">
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-picture-o mr-3 fa-fw"></i>
+                  </div>
+                  Servicios tomados
+                </a>
+              </div>
           </div>
           <div class="sb-sidenav-footer">
-            <div class="small">Inicio de sesión:</div>
-            {{firstName}} MediHub
+            <div class="small">Cerrar sesión</div>
+            Boton para cerrar sesion aca
           </div>
         </nav>
       </div>
+
+      <!-- CONTENIDO PRINCIPAL -->
+
       <div id="layoutSidenav_content">
         <main>
-          <hr data-content="" class="hr-text" />
-          <div class="container mt-5">
-            <div class="row g-2">
-              <div class="col-md-4">
-                <div class="card p-3">
-                  <div class="card-text mt-3 d-flex flex-column align-items-sm-center align-items-md-start">
-                    <img src="https://cdn-icons-png.flaticon.com/512/387/387561.png" width="30" />
-                    <h3 class="mt-3 text-truncate">Profesional</h3>
 
-                    <div class="d-block mt-3">
-                      <button class="btn btn-danger btn-sm btn-block">
-                        Pedir
-                      </button>
+          <div id="div_sinTurnos" class="container mt-5"> <!-- <- v-if turnosSolicitados.lenght == 0 -->
+            
+            <h1>Bienvenido -> aca va el nombre{{fullName}}</h1>
+
+            <h3 class="mt-5">Actualmente usted no posee turnos solicitados</h3>
+
+            <button @click="pedirTurno" class="btn btn-primary btn-lg-derecha btn-nuevo_turno" type="button">
+              <i class="fa-solid fa-calendar-days"></i> Solicitar nuevo turno
+            </button>
+            <div class="d-flex justify-content-center mt-5">
+              <img class="img-fluid" src="./assets/Calendario.png" alt="" />
+            </div>
+          </div>
+
+          <div>
+            <!-- <- v-else -->
+
+            <div id="div_conTurnos" class="div_listado container mt-5">
+              <button @click="pedirTurno" class="btn btn-primary btn-lg-derecha btn-nuevo_turno" type="button">
+                <i class="fa-solid fa-calendar-days"></i> Solicitar nuevo turno
+              </button>
+              <h3>Mis turnos</h3>
+
+              <div class="div_listado_fichas container mt-5">
+                
+                <div class="row row_turno mb-5"> <!-- v-for turno in turnos -->
+                  <div class="col-lg-9">
+                    <div class="row" data-alt="">
+                      <div class="col col-lg-12 mb-2">
+                        <span class="ribbon">get fecha less fecha today (dias faltante para el turno)</span>
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>get fecha y hora del turno</span>
+                      </div>
+                      <div class="col col-lg-12 mb-2">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span>get nombre del medico/a</span>
+                      </div>
+                      <div class="col col-lg-12 text-sm-right mb-2">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        <span>get servicio</span>
+                      </div>
+                      <div class="col col-lg-12 text-sm-right mb-2">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Locación</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card p-3">
-                  <div class="card-text mt-3 d-flex flex-column align-items-sm-center align-items-md-start">
-                    <img
-                      src="https://cdn-icons.flaticon.com/png/512/4441/premium/4441162.png?token=exp=1656509428~hmac=86eb6e6c1bdd0a2522ec338c103a9256"
-                      width="30" />
-                    <h3 class="mt-3 text-truncate">Servicio</h3>
-
-                    <div class="d-block mt-3">
-                      <button class="btn btn-primary btn-sm btn-block">
-                        Pedir
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="card p-3">
-                  <div class="card-text mt-3 d-flex flex-column align-items-sm-center align-items-md-start">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4807/4807695.png" width="30" />
-                    <h3 class="mt-3 text-truncate">Servicio / Profesional</h3>
-
-                    <div class="d-block mt-3">
-                      <button class="btn btn-warning btn-sm btn-block">
-                        Pedir
-                      </button>
+                  <div class="col-lg-3">
+                    <div class="row">
+                      <div class="col text-center col-sm-12 mb-3">
+                        <button class="btn btn-primary btn-boxed btn_reminder" type="button">
+                          <i class="fa-solid fa-file-circle-question"></i> Recordatorio (imprimir pdf del turno)
+                        </button>
+                      </div>
+                      <div class="col text-center col-sm-12">
+                        <button class="btn btn-danger btn-boxed btn_cancel" type="button">
+                          <i class="fa-solid fa-circle-xmark"></i> Cancelar turno (cancelar turno)
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+<div id="contenedorParaTurnos" class="container mt-5 none">
+  <h3>Servicios disponibles</h3>
+  <button @click="volverAtras" class="btn btn-primary btn-lg-derecha btn-nuevo_turno" type="button">
+    <i class="fa-solid fa-calendar-days"></i> Volver atras
+  </button>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Servicio</th>
+                  <th scope="col">Monto</th>
+                  <th scope="col">Solicitar Turno</th>
+                </tr>
+              </thead>
+              <tbody> <!--  <-v-for servicio in servicios -->
+                <tr>
+                  <td data-label="Id">get id servicio</td>
+                  <td data-label="Servicio">get servicio</td>
+                  <td data-label="Monto">get monto servicio</td>
+                  <td data-label="Solicitar Turno"><button class="btn btn-primary" type="button">
+                    <i class="fa-solid fa-calendar-days"></i> Solicitar
+                  </button></td>
+                </tr>
+                
+              </tbody>
+            </table>
+        </div>
+
         </main>
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div class="d-flex align-items-center justify-content-between small">
-              <div class="text-muted">Copyright &copy; Your Website 2022</div>
-              <div>
-                <a href="#">Políticas de Privacidad</a>
-                &middot;
-                <a href="#">Términos &amp; Condiciones</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+      </div>
+    </div>
+    <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- Vertically centered modal -->
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Editar datos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label>E-mail
+            <input type="text" class="ms-3" v-model="email">
+          </label>
+          <label>Password
+            <input type="text" class="ms-3" v-model="contraseña">
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" @click="modificarDatos">Aceptar</button>
+        </div>
       </div>
     </div>
   </div>
 
-          <!-- BOOTSTRAP -->
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-          crossorigin="anonymous"></script>
-      <!-- AXIOS -->
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-      <!-- VUE -->
-      <script src="https://unpkg.com/vue@3"></script>
-      <!-- FILE JS -->
-      <script src="./scripts/pacientes.js"></script>
-      
-      <!-- SWEET ALERT -->
-      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      
-      <!-- ANIMATE AOS -->
-      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-      <script>
-          AOS.init();
-      </script>
+    
+    
+
+  </div>
+
+  <!-- BOOTSTRAP -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <!-- AXIOS -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- VUE -->
+  <script src="https://unpkg.com/vue@3"></script>
+  <!-- FILE JS -->
+  <script src="./scripts/pacientes.js"></script>
+
+  <!-- SWEET ALERT -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- ANIMATE AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-
 </body>
 
 </html>

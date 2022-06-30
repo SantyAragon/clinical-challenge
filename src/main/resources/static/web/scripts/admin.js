@@ -37,7 +37,7 @@ Vue.createApp({
           });
           console.log(this.profesionales)
         })
-        .catch(error => console.warn(error.message));
+        .catch(error => console.warn(error.response.data.message));
 
       
     },
