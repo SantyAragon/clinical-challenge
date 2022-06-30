@@ -1003,7 +1003,7 @@ body li {
 
 footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-content: center;
     height: 55px;
     flex-wrap: wrap;
@@ -1015,21 +1015,21 @@ footer {
 
 .iconos-redes{
     margin-right: 25px;
-}
-
-.iconos-redes svg {
+  }
+  
+  .iconos-redes svg {
     display: inline;
-}
+  }
 
-@media screen and (max-width: 450px){
-    footer{
+@media screen and (max-width: 450px) {
+    footer {
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
     }
 
-    .iconos-redes{
+    .iconos-redes {
         margin-right: 10px;
     }
 

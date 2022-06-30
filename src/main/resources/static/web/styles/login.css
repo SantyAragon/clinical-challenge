@@ -132,13 +132,13 @@ nav .contenedor-nav .logo img {
 .btn-volver{
     border-radius: 20px;
     padding: 10px 25px;
-    background-color: hsla(194, 78%, 57%, 0.686);
+    background-color: #77c8c9af;
     border: 1px solid rgba(0, 0, 0, 0.445);
     color: #fff;
 }
 
     .btn-volver:hover{
-    background-color: hsl(194, 78%, 57%);
+    background-color: #77C7C9;
     color: rgb(255, 255, 255);
 }
 
@@ -262,7 +262,7 @@ nav .contenedor-nav .logo img {
 }
 
 .login__account--account {
-    color: #3ABEE7;
+    color: #696969;
 }
 
 .login__signin--signin,
@@ -351,13 +351,17 @@ footer {
     flex-wrap: wrap;
     box-shadow: 0 8px 20px rgba(43, 43, 43, 0.2);
     width: 100vw;
-    background-color: #3ABEE7;
+    background-color: #77C7C9;
     color: white;
 }
 
-.iconos-redes {
+.iconos-redes{
     margin-right: 25px;
-}
+  }
+  
+  .iconos-redes svg {
+    display: inline;
+  }
 
 @media screen and (max-width: 450px) {
     footer {
