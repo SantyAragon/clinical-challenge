@@ -9,7 +9,8 @@
   <meta name="author" content="" />
   <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
   <link href="./styles/admin.css" rel="stylesheet" />
-  <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+  <!-- <link href="./styles/pacientes.css" rel="stylesheet" /> -->
+  <script src="https://kit.fontawesome.com/a9e21e8a67.js" crossorigin="anonymous"></script>
   <title>Medihub | Portal administrador</title>
   <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
 </head>
@@ -18,7 +19,6 @@
   <div id="app2">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar Brand-->
-
       <div class="logo">
         <a class="navbar-brand ps-4" href="index.html"> MediHub</a>
       </div>
@@ -37,25 +37,16 @@
         </div>
       </form>
       <!-- Navbar-->
-      <div class="form-check form-switch">
+      <!-- <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" v-model="switchNoche"
           @change="modoNoche" />
         <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+      </div> -->
+      <div class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <div class="header_img rounded-circle">
+          <span class="header_intials">{{iniciales}}</span>
+        </div>
       </div>
-      <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#!">Configuraciones</a></li>
-            <li><a class="dropdown-item" href="#!">Actividades</a></li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li><a class="dropdown-item" href="#!">Salir</a></li>
-          </ul>
-        </li>
-      </ul>
     </nav>
     <div id="layoutSidenav">
       <div id="layoutSidenav_nav">
@@ -63,7 +54,7 @@
           <div class="sb-sidenav-menu">
             <div class="nav">
               <div class="sb-sidenav-menu-heading">Inicio</div>
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" data-target="#inicio">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-database"></i>
                 </div>
@@ -83,10 +74,10 @@
               <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                 data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="#">Todos</a>
-                  <a class="nav-link" href="#">Agregar</a>
-                  <a class="nav-link" href="#">Editar</a>
-                  <a class="nav-link" href="#">Eliminar</a>
+                  <a class="nav-link" data-target="#doctores">Todos</a>
+                  <a class="nav-link" data-target="#agregar-doc">Agregar</a>
+                  <a class="nav-link" data-target="#editar-doc">Editar</a>
+                  <a class="nav-link" data-target="#eliminar-doc">Eliminar</a>
                 </nav>
               </div>
               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePacientes"
@@ -102,20 +93,18 @@
               <div class="collapse" id="collapsePacientes" aria-labelledby="headingOne"
                 data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="#">Todos</a>
-                  <a class="nav-link" href="#">Agregar</a>
-                  <a class="nav-link" href="#">Editar</a>
-                  <a class="nav-link" href="#">Eliminar</a>
+                  <a class="nav-link" data-target="#pacientes">Todos</a>
+                  <a class="nav-link" data-target="#eliminar-pac">Eliminar</a>
                 </nav>
               </div>
               <div class="sb-sidenav-menu-heading">Ventas</div>
-              <a class="nav-link" href="#">
+              <a class="nav-link" data-target="#productos">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-chart-area"></i>
                 </div>
                 Productos
               </a>
-              <a class="nav-link" href="#">
+              <a class="nav-link" data-target="#servicios">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-table"></i>
                 </div>
@@ -125,495 +114,391 @@
           </div>
           <div class="sb-sidenav-footer">
             <div class="small">Inicio de sesión:</div>
+            <!-- <div class="small text-center">Admin MediHub</div> -->
             Admin MediHub
+            <a type="button" data-bs-toggle="modal" data-bs-target="#myModal">
+              <i title="Salir" class='bx bx-log-out icon' ></i>
+              <div>Cerrar sesión</div>
+            </a>
           </div>
         </nav>
       </div>
       <div id="layoutSidenav_content">
-        <main>
-          <div class="container-fluid px-4" style="height: max-content">
-            <h1 class="mt-4">Inicio</h1>
-            <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item active">Datos y reportes</li>
-            </ol>
-            <!-- <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-            <div class="row">
-              <div class="col-xl-6">
-                <div class="card mb-4">
-                  <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    Turnos
+        <main class="content">
+          <div data-content id="inicio" class="active">
+            <div class="container-fluid px-4" style="height: max-content">
+              <h1 class="mt-4">Inicio</h1>
+              <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Datos y reportes</li>
+              </ol>
+              <!-- <div class="row">
+                              <div class="col-xl-3 col-md-6">
+                                  <div class="card bg-primary text-white mb-4">
+                                      <div class="card-body">Primary Card</div>
+                                      <div class="card-footer d-flex align-items-center justify-content-between">
+                                          <a class="small text-white stretched-link" href="#">View Details</a>
+                                          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-xl-3 col-md-6">
+                                  <div class="card bg-warning text-white mb-4">
+                                      <div class="card-body">Warning Card</div>
+                                      <div class="card-footer d-flex align-items-center justify-content-between">
+                                          <a class="small text-white stretched-link" href="#">View Details</a>
+                                          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-xl-3 col-md-6">
+                                  <div class="card bg-success text-white mb-4">
+                                      <div class="card-body">Success Card</div>
+                                      <div class="card-footer d-flex align-items-center justify-content-between">
+                                          <a class="small text-white stretched-link" href="#">View Details</a>
+                                          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-xl-3 col-md-6">
+                                  <div class="card bg-danger text-white mb-4">
+                                      <div class="card-body">Danger Card</div>
+                                      <div class="card-footer d-flex align-items-center justify-content-between">
+                                          <a class="small text-white stretched-link" href="#">View Details</a>
+                                          <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div> -->
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="card mb-4">
+                    <div class="card-header">
+                      <i class="fa-solid fa-folder-plus"></i>
+                      Turnos
+                    </div>
+                    <div class="card-body-cuadro"><canvas id="misTurnos" width="100%" height="40"></canvas></div>
                   </div>
-                  <div class="card-body"><canvas id="misTurnos" width="100%" height="40"></canvas></div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="card mb-4">
+                    <div class="card-header">
+                      <i class="fa-solid fa-chart-line"></i>
+                      Ventas
+                    </div>
+                    <div class="card-body-cuadro"><canvas id="misVentas" width="100%" height="40"></canvas></div>
+                  </div>
                 </div>
               </div>
-              <div class="col-xl-6">
-                <div class="card mb-4">
-                  <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    Ventas
-                  </div>
-                  <div class="card-body"><canvas id="misVentas" width="100%" height="40"></canvas></div>
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="fa-solid fa-address-book"></i>
+                  Pacientes
+                </div>
+                <div class="card-body">
+                  <table id="datatablesSimple">
+                    <thead>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>                        
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                      </tr>
+                    </tfoot>
+                    <tbody v-for="paciente in pacientes">
+                      <tr>
+                        <td>{{paciente.nombre}}</td>
+                        <td>{{paciente.apellido}}</td>
+                        <td>{{paciente.email}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div data-content id="doctores">
             <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-table me-1"></i>
-                Pacientes
+              <div>
+                <i class="fas fa-user-doctor"></i>
+                Profesionales
               </div>
-              <div class="card-body">
-                <table id="datatablesSimple">
-                  <!-- <table> -->
+              <div>
+                <table class="table">
                   <thead>
                     <tr>
                       <th>Nombre</th>
                       <th>Apellido</th>
+                      <th>Especialidad</th>
                       <th>Email</th>
-                      <th>Descripción</th>
-                      <th>Venta</th>
-                      <!-- <th>Salary</th> -->
-                    </tr>
                   </thead>
-                  <tfoot>
+                  <tbody v-for="profesional in profesionales">
                     <tr>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>Email</th>
-                      <th>Descripción</th>
-                      <th>Venta</th>
-
-                    </tr>
-                  </tfoot>
-                  <tbody v-for="paciente in pacientes">
-                    <tr>
-                      <td>{{paciente.nombre}}</td>
-                      <td>{{paciente.apellido}}</td>
-                      <td>{{paciente.email}}</td>
-                      <!-- <td>61</td>
-                                            <td>2011/04/25</td> -->
-                      <!-- <td>$320,800</td> -->
+                      <td class="d-flex justify-content-center">{{profesional.nombre}}</td>
+                      <td class="d-flex justify-content-center">{{profesional.apellido}}</td>
+                      <td class="d-flex justify-content-center">{{profesional.especialidad}}</td>
+                      <td class="d-flex justify-content-center">{{profesional.email}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-        </main>
-      </div>
 
-      <div data-content id="doctores">
-        <div class="card mb-4">
-          <div>
-            <i class="fas fa-table me-1"></i>
-            Profesionales
+          <div data-content id="agregar-doc">
+            <div>
+            <h3>Agregar profesional</h3>
+              <div class="col col-5">
+                <form v-on:submit.prevent="nuevoProfesional" class="d-flex flex-column gap-4">
+                  <label for="name"></label>
+                  <input v-model="nombrePro" placeholder="Nombre" />
+                  <label for="lastname"></label>
+                  <input v-model="apellidoPro" placeholder="Apellido" />
+                  <fieldset>
+                    <h4 for="especialidad">Especialidad: </h4>
+                    <Select v-model="especialidadPro" class="form-select" required>
+                      <option disabled value="">Por favor, seleccionar uno</option>
+                      <option value="ALERGIA">ALERGIA </option>
+                      <option value="BIOQUIMICO">BIOQUIMICO </option>
+                      <option value="CIRUJANO">CIRUJANO </option>
+                      <option value="OBSTETRA">OBSTETRA </option>
+                      <option value="PEDIATRA">PEDIATRA </option>
+                      <option value="DENTISTA">DENTISTA </option>
+                      <option value="OFTALMOLOGO">OFTALMOLOGO </option>
+                      <option value="ANESTESIOLOGO">ANESTESIOLOGO </option>
+                      <option value="NEUROLOGO">NEUROLOGO </option>
+                      <option value="CARDIOLOGO">CARDIOLOGO </option>
+                    </Select>
+                  </fieldset>
+                  <select v-model="servicioPro">
+                    <option :value="servicio.id" v-for="servicio in servicios">{{servicio.tipoServicio}}</option>
+                  </select>
+                  <label for="email"></label>
+                  <input type="email" v-model="emailPro" placeholder="Correo electrónico" />
+                  <label for="password"></label>
+                  <input type="password" v-model="contraseñaPro" placeholder="Contraseña" />
+                  <button type="submit" class="btn btn-info display-none mt-2">Confirmar</button>
+                </form>
+              </div>
+            </div>
           </div>
-          <div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>
-                    <p>Nombre</p><input v-model="nombrePro" type="text">
-                  </th>
-                  <th>
-                    <p>Apellido</p><input v-model="apellidoPro" type="text">
-                  </th>
-                  <th>
-                    <p>Especialidad</p><input v-model="especialidadPro" type="text">
-                  </th>
-                  <th>
-                    <p>Email</p><input v-model="emailPro" type="text">
-                  </th>
 
-                </tr>
-              </thead>
-              <!-- <tfoot>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Email</th>
-                                            <th>Descripción</th> -->
-              <!-- <th>Venta</th> -->
-              </tr>
-              </tfoot> -->
-              <tbody v-for="profesional in profesionales">
-                <tr>
-                  <td class="d-flex justify-content-center"><span class="me-1"><button
-                        @click="eliminarProfesional(profesional.id)">Eliminar</button></span>{{profesional.apellido}}<button
-                      @click="editarApellido(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
-                  <td class="d-flex justify-content-center">{{profesional.nombre}}<button
-                      @click="editarNombre(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
-                  <td class="d-flex justify-content-center">{{profesional.especialidad}}<button
-                      @click="editarEspecialidad(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
-                  <td class="d-flex justify-content-center">{{profesional.email}}<button
-                      @click="editarEmail(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
-                </tr>
-              </tbody>
-            </table>
+          <div data-content id="editar-doc">
+            <div>
+              <h3>Editar doctores</h3>
+              <div class="tablas-adm">
+                <table class="tabla-admin">
+                  <thead>
+                    <tr>
+                      <th>
+                        <p>Nombre</p><input v-model="nombrePro" type="text">
+                      </th>
+                      <th>
+                        <p>Apellido</p><input v-model="apellidoPro" type="text">
+                      </th>
+                      <th>
+                        <p>Especialidad</p><select v-model="servicioPro">
+                          <option :value="servicio.id" v-for="servicio in servicios">{{servicio.tipoServicio}}</option>
+                        </select>
+                      </th>
+                      <th>
+                        <p>Email</p><input v-model="emailDoc" type="email" placeholder="editar@mail.com">
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="profesional in profesionales">
+                      <td>{{profesional.nombre}}<button @click="editarNombre(profesional.id)" class="btn btn-danger">edit</button></td>
+                      <td>{{profesional.apellido}}<button @click="editarApellido(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
+                      <td>{{profesional.especialidad}}<button @click="editarEspecialidad(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
+                      <td>{{profesional.email}}<button @click="editarEmail(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div data-content id="eliminar-doc">
+            <div>
+              <h3>Eliminar profesional</h3>
+              <div class="tablas-adm">
+                <table class="tabla-admin">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Email</th>
+                      <th>Eliminar</th>
+                  </thead>
+                  <tbody>
+                    <tr v-for="profesional in profesionales">
+                      <td>{{profesional.nombre}}</td>
+                      <td>{{profesional.apellido}}</td>
+                      <td>{{profesional.email}}</td>
+                      <td> <span class="me-1"><button @click="eliminarProfesional(profesional.id)">Eliminar</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div data-content id="pacientes">
+            <!-- <h3>Pacientes</h3> -->
+            <div class="card mb-4">
+              <div>
+                <i class="fas fa-hospital-user"></i>
+                Pacientes
+              </div>
+              <div class="tablas-adm">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody v-for="paciente in pacientes">
+                    <tr>
+                      <td>{{paciente.nombre}}</td>
+                      <td>{{paciente.apellido}}</td>
+                      <td>{{paciente.email}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div data-content id="eliminar-pac">
+            <div>
+              <h3>Dar de baja paciente</h3>
+              <div class="tablas-adm">
+                <table class="tabla-admin">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Email</th>
+                      <th>Eliminar</th>
+                  </thead>
+                  <tbody>
+                    <tr v-for="paciente in pacientes">
+                      <td>{{paciente.nombre}}</td>
+                      <td>{{paciente.apellido}}</td>
+                      <td>{{paciente.email}}</td>
+                      <td> <span class="me-1"><button @click="desactivarPaciente(paciente.id)">Dar de baja</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div data-content id="productos">
+            <div>
+            <h3>Productos disponibles</h3>
+              <div class="tablas-adm">
+                <table class="tabla-admin">
+                  <thead>
+                    <tr>
+                      <th scope="col">Id</th>
+                      <th scope="col">Producto</th>
+                      <th scope="col">Stock</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Editar</th>
+                      <th scope="col">Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="producto in productos">                    
+                      <td>{{producto.id}}</td>
+                      <td>{{producto.nombre}}</td>
+                      <td>{{producto.stock}}</td>
+                      <td>$ {{producto.precio}}</td>
+                      <td style="text-align: center;"><i class="fa-solid fa-user-pen" title="Editar producto"></i></td>
+                    <td style="text-align: center;"><i class="fa-solid fa-trash" title="Anular producto"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div data-content id="servicios">
+            <div>
+            <h3>Servicios disponibles</h3>
+              <div class="tablas-adm">
+              <table class="tabla-admin">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Servicio</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="servicio in servicios">                    
+                    <td>{{servicio.id}}</td>
+                    <td>{{servicio.tipoServicio}}</td>
+                    <td>$ {{formatoPrecio(servicio.monto)}}</td>
+                    <td style="text-align: center;"><i class="fa-solid fa-user-pen" title="Editar servicio"></i></td>
+                    <td style="text-align: center;"><i class="fa-solid fa-trash" title="Anular servicio"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Cerrar sesión</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                ¿Está seguro que desea salir?
+              </div>
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <!-- <a type="button" class="deletebtn" href="#" @click="logout">Salir</a> -->
+                <button class="btn btn-success" @click="logout()"> Salir</button>
+              </div>
+            </div>
           </div>
         </div>
 
-      </div>
-
-      <div data-content id="agregar-doc">
-        <div>
-          <form v-on:submit.prevent="nuevoProfesional" class="d-flex flex-column gap-4">
-            <label for="name"></label>
-            <input v-model="nombrePro" placeholder="Nombre" />
-            <label for="lastname"></label>
-            <input v-model="apellidoPro" placeholder="Apellido" />
-            <fieldset>
-              <h4 for="especialidad">Especialidad: </h4>
-              <Select v-model="especialidadPro" class="form-select" required>
-                <option disabled value="">Por favor, seleccionar uno</option>
-                <option value="ALERGIA">ALERGIA </option>
-                <option value="BIOQUIMICO">BIOQUIMICO </option>
-                <option value="CIRUJANO">CIRUJANO </option>
-                <option value="OBSTETRA">OBSTETRA </option>
-                <option value="PEDIATRA">PEDIATRA </option>
-                <option value="DENTISTA">DENTISTA </option>
-                <option value="OFTALMOLOGO">OFTALMOLOGO </option>
-                <option value="ANESTESIOLOGO">ANESTESIOLOGO </option>
-                <option value="NEUROLOGO">NEUROLOGO </option>
-                <option value="CARDIOLOGO">CARDIOLOGO </option>
-              </Select>
-            </fieldset>
-            <select v-model="servicioPro">
-              <option :value="servicio.id" v-for="servicio in servicios">{{servicio.tipoServicio}}</option>
-            </select>
-            <label for="email"></label>
-            <input type="email" v-model="emailPro" placeholder="Correo electrónico" />
-            <label for="password"></label>
-            <input type="password" v-model="contraseñaPro" placeholder="Contraseña" />
-            <button type="submit" class="btn btn-info display-none mt-2">Confirmar</button>
-          </form>
+      </main>
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+            <div>
+              <a href="#">Políticas de Privacidad</a>
+              &middot;
+              <a href="#">Términos &amp; Condiciones</a>
+            </div>
+          </div>
         </div>
+      </footer>
       </div>
     </div>
-  </div>
-  <div class="col-xl-6">
-    <div class="card mb-4">
-      <div class="card-header">
-        <i class="fas fa-chart-bar me-1"></i>
-        Ventas
-      </div>
-      <div class="card-body">
-        <canvas id="misVentas" width="100%" height="40"></canvas>
-      </div>
-    </div>
-  </div>
-  </div>
-  <div class="card mb-4">
-    <div class="card-header">
-      <i class="fas fa-table me-1"></i>
-      Pacientes
-    </div>
-    <div class="card-body">
-      <table id="datatablesSimple">
-        <!-- <table> -->
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
-            <th>Descripción</th>
-            <th>Venta</th>
-            <!-- <th>Salary</th> -->
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
-            <th>Descripción</th>
-            <th>Venta</th>
-          </tr>
-        </tfoot>
-        <tbody v-for="paciente in pacientes">
-          <tr>
-            <td>{{paciente.nombre}}</td>
-            <td>{{paciente.apellido}}</td>
-            <td>{{paciente.email}}</td>
-            <!-- <td>61</td>
-                                            <td>2011/04/25</td> -->
-            <!-- <td>$320,800</td> -->
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card-body">
-      <table id="datatablesSimple">
-        <!-- <table> -->
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
-            <!-- <th>Descripción</th> -->
-            <!-- <th>Venta</th> -->
-            <!-- <th>Salary</th> -->
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
-            <!-- <th>Descripción</th> -->
-            <!-- <th>Venta</th> -->
-          </tr>
-        </tfoot>
-        <tbody v-for="profesional in profesionales">
-          <tr>
-            <td>{{profesional.nombre}}</td>
-            <td>{{profesional.apellido}}</td>
-            <td>{{profesional.email}}</td>
-            <!-- <td>61</td>
-                                            <td>2011/04/25</td> -->
-            <!-- <td>$320,800</td> -->
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  </div>
-
-  <div data-content id="agregar-doc">
-    <div>
-      <form class="d-flex flex-column gap-4">
-        <label for="name"></label>
-        <input v-model="nombrePro" placeholder="Nombre" />
-        <label for="lastname"></label>
-        <input v-model="apellidoPro" placeholder="Apellido" />
-        <fieldset>
-          <h4 for="especialidad">Especialidad:</h4>
-          <select v-model="especialidad" id="especialidad" class="form-select" required>
-            <option disabled value="">
-              Por favor, seleccionar uno
-            </option>
-            <option value="ALERGIA">ALERGIA</option>
-            <option value="BIOQUIMICO">BIOQUIMICO</option>
-            <option value="CIRUJANO">CIRUJANO</option>
-            <option value="OBSTETRA">OBSTETRA</option>
-            <option value="PEDIATRA">PEDIATRA</option>
-            <option value="DENTISTA">DENTISTA</option>
-            <option value="OFTALMOLOGO">OFTALMOLOGO</option>
-            <option value="ANESTESIOLOGO">ANESTESIOLOGO</option>
-            <option value="NEUROLOGO">NEUROLOGO</option>
-            <option value="CARDIOLOGO">CARDIOLOGO</option>
-          </select>
-        </fieldset>
-        <label for="number"></label>
-        <input type="number" v-model="servicio" placeholder="Identificación" />
-        <label for="email"></label>
-        <input type="email" v-model="emailPro" placeholder="Correo electrónico" />
-        <label for="password"></label>
-        <input type="password" v-model="contraseñaPro" placeholder="Contraseña" />
-        <button type="submit" class="btn btn-info display-none mt-2" @click="nuevoProfesional()">
-          Confirmar
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <div data-content id="editar-doc">
-    <h1>EDITAR DOCTOR</h1>
-  </div>
-
-  <div data-content id="eliminar-doc">
-    <h1>ELIMINAR DOCTOR</h1>
-  </div>
-
-  <div data-content id="pacientes">
-    <h1>PACIENTES</h1>
-    <div class="card mb-4">
-      <div>
-        <i class="fas fa-table me-1"></i>
-        Pacientes
-      </div>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <!-- <tfoot>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Especialidad</th>
-                                            <th>Email</th>
-                                        </tr>
-                                    </tfoot> -->
-          <tbody v-for="paciente in pacientes">
-            <tr>
-              <td>{{paciente.nombre}}</td>
-              <td>{{paciente.apellido}}</td>
-              <td>{{paciente.email}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div data-content id="agregar-pac">
-    <div>
-      <form class="d-flex flex-column gap-4">
-        <label for="name"></label>
-        <input v-model="nombrePro" placeholder="Nombre" />
-        <label for="lastname"></label>
-        <input v-model="apellidoPro" placeholder="Apellido" />
-        <fieldset>
-          <h4 for="especialidadPro">Especialidad:</h4>
-          <select v-model="especialidad" id="especialidad" class="form-select" required>
-            <option disabled value="">
-              Por favor, seleccionar uno
-            </option>
-            <option value="ALERGIA">ALERGIA</option>
-            <option value="BIOQUIMICO">BIOQUIMICO</option>
-            <option value="CIRUJANO">CIRUJANO</option>
-            <option value="OBSTETRA">OBSTETRA</option>
-            <option value="PEDIATRA">PEDIATRA</option>
-            <option value="DENTISTA">DENTISTA</option>
-            <option value="OFTALMOLOGO">OFTALMOLOGO</option>
-            <option value="ANESTESIOLOGO">ANESTESIOLOGO</option>
-            <option value="NEUROLOGO">NEUROLOGO</option>
-            <option value="CARDIOLOGO">CARDIOLOG</option>
-          </select>
-        </fieldset>
-        <label for="email"></label>
-        <input v-model="emailPro" placeholder="Correo electrónico" />
-        <button type="submit" class="btn btn-info display-none mt-2" @click="nuevoProfesional()">
-          Confirmar
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <div data-content id="agregar-pac">
-    <div>
-      <form class="d-flex flex-column gap-4">
-        <label for="name"></label>
-        <input v-model="nombrePac" placeholder="Nombre" />
-        <label for="lastname"></label>
-        <input v-model="apellidoPac" placeholder="Apellido" />
-        <label for="email"></label>
-        <input type="email" v-model="emailPac" placeholder="Correo electrónico" />
-        <label for="password"></label>
-        <input type="password" v-model="contraseñaPac" placeholder="Contraseña" />
-        <label for="number"></label>
-        <input type="number" v-model="identificacion" placeholder="Identificación" />
-        <button type="submit" class="btn btn-info display-none mt-2" @click="registrarPaciente()">Confirmar</button>
-      </form>
-    </div>
-  </div>
-
-  <div data-content id="editar-pac">
-    <h1>
-      EDITAR PACIENTE
-    </h1>
-  </div>
-
-  <div data-content id="eliminar-pac">
-    <h1>
-      ELIMINAR PACIENTE
-    </h1>
-  </div>
-
-  <div data-content id="productos">
-    <h1>
-      PRODUCTOS
-    </h1>
-  </div>
-
-  <div data-content id="servicios">
-    <h1>
-      SERVICIOS
-    </h1>
-  </div>
-  </main>
-  <footer class="py-4 bg-light mt-auto">
-    <div class="container-fluid px-4">
-      <div class="d-flex align-items-center justify-content-between small">
-        <div class="text-muted">Copyright &copy; Your Website 2022</div>
-        <div>
-          <a href="#">Políticas de Privacidad</a>
-          &middot;
-          <a href="#">Términos &amp; Condiciones</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-  </div>
-
-  <div data-content id="eliminar-pac">
-    <h1>ELIMINAR PACIENTE</h1>
-  </div>
-
-  <div data-content id="productos">
-    <h1>PRODUCTOS</h1>
-  </div>
-
-  <div data-content id="servicios">
-    <h1>SERVICIOS</h1>
-  </div>
-  </main>
-  <footer class="py-4 bg-light mt-auto">
-    <div class="container-fluid px-4">
-      <div class="d-flex align-items-center justify-content-between small">
-        <div class="text-muted">Copyright &copy; Your Website 2022</div>
-        <div>
-          <a href="#">Políticas de Privacidad</a>
-          &middot;
-          <a href="#">Términos &amp; Condiciones</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-  </div>
-  </div>
   </div>
   <!-- BOOTSTRAP -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
