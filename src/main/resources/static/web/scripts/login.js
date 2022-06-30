@@ -11,6 +11,8 @@ const app = Vue.createApp({
       registroContraseña: "",
       resetEmail: "",
       pacientes: [],
+      carrito: "",
+      carritParam: "",
 
     }
   },
@@ -47,7 +49,7 @@ const app = Vue.createApp({
 
     const urlParams = new URLSearchParams(window.location.search);
     const tokenID = urlParams.get('token');
-
+    this.carritParam = urlParams.get('carrito')
     if (tokenID != null) {
 
       if (tokenID.length > 0) {
@@ -61,7 +63,7 @@ const app = Vue.createApp({
               title: 'Cuenta verificada exitosamente',
               toast: true,
               showConfirmButton: false,
-              timer: 1500
+              timer: 3500
             })
 
           })
@@ -72,13 +74,18 @@ const app = Vue.createApp({
               title: error.response.data,
               toast: true,
               showConfirmButton: false,
-              timer: 2500
+              timer: 3500
             })
 
             console.log(error.response.data)
 
           })
 
+      }
+    }
+    if (this.carritParam != null) {
+      if (this.carritParam == 'true') {
+        this.carrito = "Para continuar la compra, debe iniciar sesion o registrarse."
       }
     }
 
@@ -153,35 +160,49 @@ const app = Vue.createApp({
     },
 
     signIn() {
-      axios.post('/api/login', `email=${this.loginEmail}&password=${this.loginContraseña}`, {
-          headers: {
-            'content-type': 'application/x-www-form-urlencoded'
-          }
-        })
-        .then(response => {
-          axios.get('/api/autenticado')
-            .then(response => {
-              if (response.data === 'Admin')
-                window.location.href = "/web/admin.html"
-
-              else if (response.data === 'Profesional')
-                window.location.href = "/web/profesional.html"
-
-              else if (response.data === 'Paciente')
-                window.location.href = '/web/pacientesnuevo.html'
-
-            })
-        })
-        .catch(error => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: error.response.data.message,
-            toast: true,
-            showConfirmButton: false,
-            timer: 1500
+      if (this.loginEmail != "" && this.loginContraseña != "") {
+        axios.post('/api/login', `email=${this.loginEmail}&password=${this.loginContraseña}`, {
+            headers: {
+              'content-type': 'application/x-www-form-urlencoded'
+            }
           })
+          .then(response => {
+            axios.get('/api/autenticado')
+              .then(response => {
+
+                if (this.carritParam == 'true') {
+                  window.location.href = "./carrito.html"
+                } else if (response.data === 'Admin')
+                  window.location.href = "./admin.html"
+
+                else if (response.data === 'Profesional')
+                  window.location.href = "./profesional.html"
+
+                else if (response.data === 'Paciente')
+                  window.location.href = './pacientes.html'
+
+              })
+          })
+          .catch(error => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: error.response.data.message,
+              toast: true,
+              showConfirmButton: false,
+              timer: 1500
+            })
+          })
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: "Por favor complete todos los datos",
+          toast: true,
+          showConfirmButton: false,
+          timer: 1500
         })
+      }
     },
 
     resetPassword() {

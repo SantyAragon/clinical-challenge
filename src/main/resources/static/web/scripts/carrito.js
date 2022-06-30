@@ -9,7 +9,8 @@ const app = Vue.createApp({
 
             productoCarrito: [],
 
-            gTotalEnCarrito: 0, // Precio total de la compra (sub-total)
+            gTotalEnCarrito: 0,
+            medioDePago: "", // Precio total de la compra (sub-total)
         }
     },
 
@@ -97,12 +98,13 @@ const app = Vue.createApp({
                     imageHeight: 80,
                 })
             }
+            // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
+            this.productosEnStorage = this.gCarrito
             // ACA SE VUELVE A CALCULAR EL TOTAL DE PRODUCTOS QUE QUEDARON EN EL CARRITO
             this.gTotalEnCarrito = this.gCarrito.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0)
 
-            // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
-            this.productosEnStorage = this.gCarrito
-            localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
+
+            localStorage.setItem("carrito", JSON.stringify(this.productosEnStorage))
 
         },
 

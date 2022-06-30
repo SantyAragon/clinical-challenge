@@ -425,3 +425,224 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
     background-image: linear-gradient(0deg, rgba(0, 96, 190, 0.6530987394957983) 0%, rgba(0, 212, 255, 1) 100%);
 }
+
+header {
+    height: 80px;
+}
+
+/* NAV */
+
+.logo {
+    /* position: fixed; */
+    float: left;
+    /* margin: 16px 36px; */
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+
+nav {
+    position: relative;
+    width: 100vw;
+    height: 80px;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    background: rgba(0, 0, 0, 0);
+    overflow: hidden;
+    color: #fff;
+    padding: 0;
+    /* text-align: center; */
+    margin: 0;
+    transition: 1s;
+}
+
+nav.black ul {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+/*MENU ICON*/
+.menu-icon {
+    width: 100%;
+    background: #000;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 15px 24px;
+    cursor: pointer;
+    color: #fff;
+    display: none;
+}
+
+/*RESPONSIVE NAV*/
+@media(max-width: 580px) {
+    .logo {
+        position: fixed;
+        top: 0;
+        margin-top: 16px;
+    }
+
+    nav ul {
+        max-height: 0px;
+        background: #000;
+    }
+
+    nav.black ul {
+        background: #000;
+    }
+
+    .showing {
+        max-height: 20em;
+    }
+
+    nav ul li {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 24px 0px;
+        text-align: center;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+}
+
+/* SCROLL UP */
+
+#return-to-top {
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    border-radius: 35px;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+#return-to-top i {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    transition: all 0.3s ease;
+}
+
+#return-to-top:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+#return-to-top:hover i {
+    color: #fff;
+    top: 5px;
+}
+
+/* SCROLLBAR */
+
+body::-webkit-scrollbar {
+    width: 8px;
+    background-color: #cbe4f0;
+}
+
+body::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(0deg, rgba(0, 96, 190, 0.6530987394957983) 0%, rgba(0, 212, 255, 1) 100%);
+}
+
+
+/*----------------------------------*/
+
+.div-imagen {
+    height: 30vh;
+    background-image: url(.assets/farmacia.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* From uiverse.io */
+.product-removal button {
+    width: 160px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    background: #e62222;
+}
+
+.product-removal button,
+.product-removal button span {
+    transition: 200ms;
+}
+
+.product-removal button .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+}
+
+.product-removal button .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-removal button svg {
+    width: 15px;
+    fill: #eee;
+}
+
+.product-removal button:hover {
+    background: #ff3636;
+}
+
+.product-removal button:hover .text {
+    color: transparent;
+}
+
+.product-removal button:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+}
+
+.product-removal button:focus {
+    outline: none;
+}
+
+.product-removal button:active .icon svg {
+    transform: scale(0.8);
+}
