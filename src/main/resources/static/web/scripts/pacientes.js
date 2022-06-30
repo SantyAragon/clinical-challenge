@@ -36,6 +36,12 @@ Vue.createApp({
           });
       }
     },
+    logout() {
+      axios
+        .post(
+          `/api/login`)
+        window.location.href = "/web/login.html"
+    }
   },
 
   computed: {},
