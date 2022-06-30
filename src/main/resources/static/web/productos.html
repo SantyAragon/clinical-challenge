@@ -69,7 +69,7 @@
                 <i class="fa fa-bars fa-2x"></i>
             </div>
             <div class="logo">
-                <img src="./assets/logo-medihub.png" alt="">
+                <img id="imgLogo" class="align-self-center" src="./assets/logo-medihub.png" alt="">
             </div>
             <div class="menu">
                 <ul>
@@ -109,7 +109,7 @@
                             <div class="d-flex">
                                 <div v-if="gCarritoNotif.length > 0" v-show="gAlternarCarrito"
                                     class="absolute w-full  rounded-b border-t-0 z-10">
-                                    <div class="shadow-xl w-64">
+                                    <div class="carritoChiquito shadow-xl w-64">
                                         <div class="p-2 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100"
                                             v-for="carrito in gCarritoNotif">
                                             <!-- style="" -->
@@ -140,7 +140,7 @@
                                                 {{formatMoney(carrito.precio * carrito.cantidad)}}
                                             </div>
                                         </div>
-                                        <div class="p-4 justify-center flex">
+                                        <div class="p-4 justify-center bg-white flex">
                                             <a
                                                 :href="paciente=='No autenticado' ? './login.html?carrito=true' : './carrito.html'">
                                                 <button class="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
@@ -164,13 +164,13 @@
             </div>
         </nav>
 
-        <header>
-            <h1 class="text-center mt-3 fs-1">FARMACIA CLINICA</h1>
+        <header class="shadow mb-3">
+            <h1 class="text-center fw-semibold text-success fs-1">FARMACIA CLINICA</h1>
         </header>
 
         <!-- PRODUCT DETAILS AREA START -->
         <div class="ltn__product-area ltn__product-gutter p-2">
-            <div>
+            <div class="container">
                 <div class="row flex-wrap-reverse">
                     <div class="col-lg-9 order-lg-2 d-flex flex-column">
                         <div class="ltn__shop-options">
@@ -193,7 +193,7 @@
                                 <div class="ltn__product-tab-content-inner ltn__product-grid-view w-100">
                                     <div class="row">
                                         <section class="cards">
-                                            <div class="d-flex flex-wrap justify-content-around">
+                                            <div id="div-card" class="d-flex flex-wrap justify-content-around">
                                                 <div class="contenedorCards d-flex justify-content-around"
                                                     v-for="card in gProductosFiltrados">
                                                     <div class="card" :class="{'out': !card.stock}">
