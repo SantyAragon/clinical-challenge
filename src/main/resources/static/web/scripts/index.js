@@ -9,20 +9,22 @@ const app = Vue.createApp({
   mounted() {
 
     //Menu toggle-button for small screens
-    $(document).ready(function () {
-      $(".menu-icon").on("click", function () {
-        $("nav ul").toggleClass("showing");
-      });
-    });
+$(document).ready(function (){
+  $(".menu-icon").on("click", function() {
+    $("nav ul").toggleClass("showing");
+  });
+});
+
+//Scrolling Effect for nav
+$(window).on("scroll", function() {
+  if($(window).scrollTop()) {
+    $('nav').addClass('black');
+  } else {
+    $('nav').removeClass('black');
+  }
+});
+
     
-    //Scrolling Effect for nav
-    $(window).on("scroll", function () {
-      if ($(window).scrollTop()) {
-        $('nav').addClass('black');
-      } else {
-        $('nav').removeClass('black');
-      }
-    });
 
     //Ripples effect -> cambiar efecto
     $('.header-container').ripples({
@@ -53,6 +55,8 @@ const app = Vue.createApp({
       e.preventDefault();
     });
 
+
+    // loading botton
     const btns = document.querySelectorAll('button');
     btns.forEach((items) => {
       items.addEventListener('click', (evt) => {
