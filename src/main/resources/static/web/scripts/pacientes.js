@@ -1,4 +1,4 @@
-Vue.createApp({
+const app = Vue.createApp({
   data() {
     return {
       paciente: [],
