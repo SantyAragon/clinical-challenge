@@ -14,6 +14,8 @@ public interface PacienteService {
 
     Paciente traerPacientePorEmail(String email);
 
+    PacienteDTO traerPacienteDTOPorEmail(String email);
+
     Paciente traerPacientePorIdentificacion(Long identificacion);
 
     Paciente traerPacientePorToken(String token);

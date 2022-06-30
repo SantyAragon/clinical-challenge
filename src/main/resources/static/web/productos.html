@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-     <!-- FONTS -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap"
-         rel="stylesheet">
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@300&display=swap"
+        rel="stylesheet">
 
     <!-- LINK BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -64,72 +64,248 @@
         </div>
         <!-- LOADER -->
 
+        <nav class="d-flex gap-2 justify-content-center">
+            <div class="menu-icon">
+                <i class="fa fa-bars fa-2x"></i>
+            </div>
+            <div class="logo">
+                <img src="./assets/logo-medihub.png" alt="">
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">Especialistas</a></li>
+                    <li><a href="#">Planes</a></li>
+                    <li><a href="#">Testimonios</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="navCarrito">
+                <div class="p-2 mt-2 ms-2">
+                    <div class="flex h-64 justify-center">
+                        <div class="relative ">
+                            <div class="flex flex-row truncate p-2 px-4  rounded">
+                                <div></div>
+                                <div class="flex flex-row-reverse cursor-pointer ml-2 w-full"
+                                    v-on:click="alternarCarrito">
+                                    <div slot="icon" class="relative">
+                                        <div
+                                            class="absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-red-700 text-white">
+                                            {{gCantidadNotif}}</div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-shopping-cart w-6 h-6 mt-2">
+                                            <circle cx="9" cy="21" r="1"></circle>
+                                            <circle cx="20" cy="21" r="1"></circle>
+                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div v-if="gCarritoNotif.length > 0" v-show="gAlternarCarrito"
+                                    class="absolute w-full  rounded-b border-t-0 z-10">
+                                    <div class="shadow-xl w-64">
+                                        <div class="p-2 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100"
+                                            v-for="carrito in gCarritoNotif">
+                                            <!-- style="" -->
+                                            <div class="p-2 w-12">
+                                                <img :src="carrito.imagen" alt="img product">
+                                            </div>
+                                            <div class="flex-auto text-sm w-32">
+                                                <div class="font-bold">{{carrito.nombre}}</div>
+                                                <div class="truncate">{{carrito.tipo}}</div>
+                                                <div class="text-gray-400">Cant: {{carrito.cantidad}}</div>
+                                            </div>
+                                            <div class="flex flex-col w-18 font-medium items-end">
+                                                <div
+                                                    class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
+                                                    <svg v-on:click="removerProducto(carrito)"
+                                                        xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-trash-2 ">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path
+                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                        </path>
+                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                    </svg>
+                                                </div>
+                                                {{formatMoney(carrito.precio * carrito.cantidad)}}
+                                            </div>
+                                        </div>
+                                        <div class="p-4 justify-center flex">
+                                       <a href="./carrito.html">     <button class="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
+                    hover:bg-teal-700 hover:text-teal-100 
+                    bg-teal-100 
+                    text-teal-700 
+                    border duration-200 ease-in-out 
+                    border-teal-600 transition">Ir a pagar {{formatMoney(gTotalEnCarrito)}}</button></a>
+                                            <!-- BOTON PARA IR A PAGAR -->
+                                        </div>
 
-        <!-- component/dropdown shopping -->
-        <div class="p-5">
-            <div class="flex h-64 justify-center">
-                <div class="relative ">
-                    <div class="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
-                        <div></div>
-                        <div class="flex flex-row-reverse ml-2 w-full">
-                            <div slot="icon" class="relative">
-                                <div
-                                    class="absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-red-700 text-white">
-                                    {{gCantidadNotif}}</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-shopping-cart w-6 h-6 mt-2">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                </svg>
+                                    </div>
+                                </div>
+                                <!-- <span v-show="gAlternarCarrito" v-else>carrito vacio</span> -->
                             </div>
                         </div>
                     </div>
-                    <div class="absolute w-full  rounded-b border-t-0 z-10">
-                        <div class="shadow-xl w-64">
-                            <div class="p-2 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100"
-                                v-for="carrito in gCarritoNotif">
-                                <!-- style="" -->
-                                <div class="p-2 w-12">
-                                    <img :src="carrito.imagen" alt="img product">
+                    <div class="h-32"></div>
+                </div>
+
+            </div>
+        </nav>
+
+        <header>
+            <h1 class="text-center mt-3 fs-1">FARMACIA CLINICA</h1>
+        </header>
+
+        <!-- PRODUCT DETAILS AREA START -->
+        <div class="ltn__product-area ltn__product-gutter p-2">
+            <div>
+                <div class="row flex-wrap-reverse">
+                    <div class="col-lg-9 order-lg-2 d-flex flex-column">
+                        <div class="ltn__shop-options">
+                            <ul>
+                                <div class="short-by text-center">
+                                    <select class="nice-select" v-model="ordenSeleccionado" name="ordenar"
+                                        v-on:change="ordenarProductos">
+                                        <option value="" disabled selected>Ordenar</option>
+                                        <option value="alfabeticamenteAZ">Alfabeticamente a-z</option>
+                                        <option value="alfabeticamenteZA">Alfabeticamente z-a</option>
+                                        <option value="menorPrecio">Menor Precio</option>
+                                        <option value="mayorPrecio">Mayor Precio</option>
+                                    </select>
                                 </div>
-                                <div class="flex-auto text-sm w-32">
-                                    <div class="font-bold">{{carrito.nombre}}</div>
-                                    <div class="truncate">{{carrito.tipo}}</div>
-                                    <div class="text-gray-400">Cant: {{carrito.cantidad}}</div>
-                                </div>
-                                <div class="flex flex-col w-18 font-medium items-end">
-                                    <div class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
-                                        <svg v-on:click="removerProducto(carrito)" xmlns="http://www.w3.org/2000/svg"
-                                            width="100%" height="100%" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-trash-2 ">
-                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                            <path
-                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                            </path>
-                                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                                        </svg>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content mt-2">
+                            <div class="tab-pane fade active show w-100" id="liton_product_grid">
+                                <div class="ltn__product-tab-content-inner ltn__product-grid-view w-100">
+                                    <div class="row">
+                                        <section class="cards">
+                                            <div class="d-flex flex-wrap justify-content-around">
+                                                <div class="contenedorCards d-flex justify-content-around" v-for="card in gProductosFiltrados">
+                                                    <div class="card" :class="{'out': !card.stock}">
+                                                        <div class="innerProd">
+                                                            <div class="imgWrapper">
+                                                                <div class="detalleRapido"
+                                                                    v-on:click="detalleRapido(card)"
+                                                                    data-id="{{card.id}}">
+                                                                    <div class="icono">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 64 64">
+                                                                            <path d="M39.049 39.049L56 56"></path>
+                                                                            <circle cx="27" cy="27" r="17"></circle>
+                                                                        </svg>
+                                                                    </div>
+                                                                    <p>Vista rapida</p>
+                                                                </div>
+                                                                <div class="imgProd"
+                                                                    v-bind:style="{backgroundImage: `url(${card.imagen})`}">
+                                                                </div>
+                                                            </div>
+                                                            <a class="info" href="#">
+                                                                <p class="prodName">{{card.nombre}}</p>
+                                                                <p class="prodDesc">{{card.tipo}}</p>
+                                                                <div class="precios">
+                                                                    <p class="precio">{{formatMoney(card.precio)}}</p>
+                                                                    <div>
+                                                                        <p class="precioOriginal">{{card.stock}}
+                                                                            unidades</p>
+                                                                        <p class="stock" :class="{'out': !card.stock}"
+                                                                            v-if="card.stock > 0">En
+                                                                            stock</p>
+                                                                        <p class="stock" :class="{'out': !card.stock}"
+                                                                            v-else>Fuera de stock</p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <div class="actions">
+                                                                <div class="boton alCarrito"
+                                                                    v-on:click="agregarAlCarrito(card, 0)">Agregar al
+                                                                    carrito
+                                                                </div>
+                                                                <div class="row-buttons">
+                                                                    <div class="aFavs favoritos"
+                                                                        v-on:click="agregarFav(card)"
+                                                                        :id="'card'+card.id">
+                                                                        <div class="icono">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                viewBox="0 0 64 64">
+                                                                                <path
+                                                                                    d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
+                                                                                </path>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
                                     </div>
-                                    {{carrito.precio * carrito.cantidad}}
-                                    <!-- NO EXISTE, A CREARLO -->
                                 </div>
-                            </div>
-                            <div class="p-4 justify-center flex">
-                                <a href="./carrito.html"><button class="text-base  undefined  hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
-        hover:bg-teal-700 hover:text-teal-100 
-        bg-teal-100 
-        text-teal-700 
-        border duration-200 ease-in-out 
-        border-teal-600 transition">Ir a pagar ${{gTotalEnCarrito}}</button></a> <!-- BOTON PARA IR A PAGAR -->
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-3 mb-2">
+                        <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
+
+                            <!-- Search Widget -->
+                            <div class="widget ltn__search-widget">
+                                <h4 class="ltn__widget-title ltn__widget-title-border">Buscar producto</h4>
+                                <form action="#">
+                                    <input type="text" name="search" v-model="nombreDelBuscador"
+                                        v-on:click="buscadorProducto" placeholder="Que producto buscas?"
+                                        class="form-control" id="exampleFormControlInput1">
+                                    <!-- <button type="submit"><i class="fas fa-search"></i></button> -->
+                                </form>
+                            </div>
+                            <!-- Filtro de precio WIDGET -->
+                            <div class="widget ltn__price-filter-widget">
+                                <h4 class="ltn__widget-title ltn__widget-title-border">Filtrar por precio</h4>
+                                <div class="price_filter">
+                                    <div class="form-check form-switch">
+                                        <label for="600" class="form-check-label">Menos de $500</label>
+                                        <input type="checkbox" class="form-check-input" v-model="rangoDePrecios"
+                                            id="500" value="500" role="switch">
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <label for="601" class="form-check-label">Mas de $500</label>
+                                        <input type="checkbox" v-model="rangoDePrecios" class="form-check-input"
+                                            id="501" value="501" role="switch">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Category Widget -->
+                            <div class="widget ltn__menu-widget">
+                                <h4 class="ltn__widget-title ltn__widget-title-border">Productos por categoria</h4>
+                                <ul>
+                                    <li><a href="">Insumos quirurgicos <span><i
+                                                    class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="">Test rápidos <span><i
+                                                    class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="">Productos varios <span><i
+                                                    class="fas fa-long-arrow-alt-right"></i></span></a></li>
+                                    <li><a href="">Equipo médico <span><i
+                                                    class="fas fa-long-arrow-alt-right"></i></span></a></li>
+
+                                </ul>
+                            </div>
+                        </aside>
                     </div>
                 </div>
             </div>
-            <div class="h-32"></div>
         </div>
 
         <!-- Modal VISTA RAPIDA -->
@@ -138,7 +314,8 @@
             <div class="modalContainer">
                 <div class="topContent">
                     <div class="imagenContainer zoom_section">
-                        <div class="zoom_launcher zoomWatch" v-on:click="preZoom(datosCards[gNumPos])" :id="'prezoom'+datosCards[gNumPos].id" title="Ampliar imagen">
+                        <div class="zoom_launcher zoomWatch" v-on:click="preZoom(datosCards[gNumPos])"
+                            :id="'prezoom'+datosCards[gNumPos].id" title="Ampliar imagen">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                                 <path d="M2.002 40h22v22h-22z"></path>
                                 <path d="M2 28V2h60v60H36"></path>
@@ -146,25 +323,33 @@
                             </svg>
                         </div>
                         <div class="zoom_imgOrigin wrapperImg">
-                            <div class="zoom_imgSource imagen" v-bind:style="{backgroundImage: `url(${datosCards[gNumPos].imagen})`}"></div>
+                            <div class="zoom_imgSource imagen"
+                                v-bind:style="{backgroundImage: `url(${datosCards[gNumPos].imagen})`}"></div>
                         </div>
                     </div>
                     <div class="texto">
                         <div class="wrapper">
                             <p class="nombre">{{datosCards[gNumPos].nombre}}</p>
                             <div class="precios">
-                                <p class="precio">{{datosCards[gNumPos].precio}}</p>
+                                <p class="precio">{{formatMoney(datosCards[gNumPos].precio)}}</p>
                             </div>
-                            <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-if="datosCards[gNumPos].stock > 0">Disponible en tienda y listo para enviar</p>
-                            <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-else>Fuera de stock</p>
-                            <p class="codigo"><span class="bold">Código Producto: </span>{{datosCards[gNumPos].id}}</p>
+                            <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}"
+                                v-if="datosCards[gNumPos].stock > 0">Disponible en tienda y listo para enviar</p>
+                            <p class="stock bold" :class="{'out' : !datosCards[gNumPos].stock}" v-else>Fuera de stock
+                            </p>
+                            <p class="codigo"><span class="bold">Stock: </span>{{datosCards[gNumPos].stock}} unidades</p>
                             <div class="actions">
-                                <div class="component_toCartCantidad" :class="{'disabled' : !datosCards[gNumPos].stock}">
-                                    <div class="toCartBoton menos disabled" v-on:click="sumarORestar(datosCards[gNumPos], 'resta')" :id="'res'+datosCards[gNumPos].id"></div>
+                                <div class="component_toCartCantidad"
+                                    :class="{'disabled' : !datosCards[gNumPos].stock}">
+                                    <div class="toCartBoton menos disabled"
+                                        v-on:click="sumarORestar(datosCards[gNumPos], 'resta')"
+                                        :id="'res'+datosCards[gNumPos].id"></div>
                                     <div class="toCartCantidad" :id="'total'+datosCards[gNumPos].id">1</div>
-                                    <div class="toCartBoton mas" v-on:click="sumarORestar(datosCards[gNumPos], 'suma')" :id="'sum'+datosCards[gNumPos].id"></div>
+                                    <div class="toCartBoton mas" v-on:click="sumarORestar(datosCards[gNumPos], 'suma')"
+                                        :id="'sum'+datosCards[gNumPos].id"></div>
                                 </div>
-                                <div class="botonTextoIcono" :class="{'disabled': !datosCards[gNumPos].stock}"  v-on:click="agregarAlCarrito(datosCards[gNumPos], 1)">
+                                <div class="botonTextoIcono" :class="{'disabled': !datosCards[gNumPos].stock}"
+                                    v-on:click="agregarAlCarrito(datosCards[gNumPos], 1)">
                                     <label class="labelBoton">Agregar al carrito</label>
                                     <div class="icono">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -185,278 +370,15 @@
                                 </div>
                             </div>
                             <p class="descripcion"></p>
-                            <!-- <a class="boton" href="#">Ver detalles completos</a> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- GENERAL -->
-
-        <div class="div-imagen text-left bg-overlay-white-30">
-            <div class="ltn__breadcrumb-inner">
-                <h1 class="page-title">FARMACIA</h1>
-                <div class="ltn__breadcrumb-list">
-                    <ul>
-                        <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
-                        <li>Farmacia</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- PRODUCT DETAILS AREA START -->
-        <div class="ltn__product-area ltn__product-gutter mb-120">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 order-lg-2 mb-120">
-                        <div class="ltn__shop-options">
-                            <ul>
-                                <!-- <li>
-                                    <div class="ltn__grid-list-tab-menu ">
-                                        <div class="nav">
-                                            <a class="active show" data-bs-toggle="tab" href="#liton_product_grid"><i class="fas fa-th-large"></i></a>
-                                            <a data-bs-toggle="tab" href="#liton_product_list"><i class="fas fa-list"></i></a>
-                                        </div>
-                                    </div>
-                                <li> -->
-                                    <div class="short-by text-center">
-                                        <select class="nice-select" v-model="ordenSeleccionado" name="ordenar" v-on:change="ordenarProductos">
-                                            <option value="" disabled selected>Ordenar</option>
-                                            <option value="alfabeticamenteAZ">Alfabeticamente a-z</option>
-                                            <option value="alfabeticamenteZA">Alfabeticamente z-a</option>
-                                            <option value="menorPrecio">Menor Precio</option>
-                                            <option value="mayorPrecio">Mayor Precio</option>
-                                        </select>
-                                    </div> 
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active show" id="liton_product_grid">
-                                <div class="ltn__product-tab-content-inner ltn__product-grid-view">
-                                    <div class="row">
-
-                                        <section class="cards">
-                                            <div class="container d-flex">
-                                                <div class="contenedorCards" v-for="card in gProductosFiltrados">
-                                                    <div class="card" :class="{'out': !card.stock}">
-                                                        <div class="innerProd">
-                                                            <div class="imgWrapper">
-                                                                <div class="detalleRapido" v-on:click="detalleRapido(card)" data-id="{{card.id}}">
-                                                                    <div class="icono">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                                                                            <path d="M39.049 39.049L56 56"></path>
-                                                                            <circle cx="27" cy="27" r="17"></circle>
-                                                                        </svg>
-                                                                    </div>
-                                                                    <p>Vista rapida</p>
-                                                                </div>
-                                                                <div class="imgProd" v-bind:style="{backgroundImage: `url(${card.imagen})`}"></div>
-                                                            </div>
-                                                            <a class="info" href="#">
-                                                                <p class="prodName">{{card.nombre}}</p>
-                                                                <p class="prodDesc">{{card.tipo}}</p>
-                                                                <div class="precios">
-                                                                    <p class="precio">{{card.precio}}</p>
-                                                                    <div>
-                                                                        <p class="precioOriginal">{{card.stock}} unidades</p>
-                                                                        <p class="stock" :class="{'out': !card.stock}" v-if="card.stock > 0">En
-                                                                            stock</p>
-                                                                        <p class="stock" :class="{'out': !card.stock}" v-else>Fuera de stock</p>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                            <div class="actions">
-                                                                <div class="boton alCarrito" v-on:click="agregarAlCarrito(card, 0)">Agregar al carrito
-                                                                </div>
-                                                                <div class="row-buttons">
-                                                                    <!-- <div class="checkBox comparar">
-                                                                        <input type="checkbox">
-                                                                        <div class="icon"></div>
-                                                                        <p class="checkBoxLabel">Comparar</p>
-                                                                    </div> -->
-                                                                    <div class="aFavs favoritos" v-on:click="agregarFav(card)" :id="'card'+card.id">
-                                                                        <div class="icono">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                                                                                <path
-                                                                                    d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
-                                                                                </path>
-                                                                            </svg>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>
-                                        <!-- ltn__product-item -->
-                                        <!-- <div class="col-xl-4 col-sm-6 col-6">
-
-                                            <div class="ltn__product-item ltn__product-item-3 text-center">
-
-                                                <div class="product-img">
-                                                    <a href="product-details.html"><img src="img/product/1.png" alt="#"></a>
-                                                    <div class="product-badge">
-                                                        <ul>
-                                                            <li class="sale-badge">New</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="product-hover-action">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                                    <i class="far fa-eye"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="Add to Cart" data-bs-toggle="modal" data-bs-target="#add_to_cart_modal">
-                                                                    <i class="fas fa-shopping-cart"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                                    <i class="far fa-heart"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="product-info">
-                                                    <div class="product-ratting">
-                                                        <ul>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                            <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <h2 class="product-title"><a href="product-details.html">Digital Stethoscope</a></h2>
-                                                    <div class="product-price">
-                                                        <span>$149.00</span>
-                                                        <del>$162.00</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <!--  -->
-                                    </div>
-                                </div>
-                            </div>                        
-                        </div>
-                    </div>
-                    <div class="col-lg-4  mb-120">
-                        <aside class="sidebar ltn__shop-sidebar ltn__right-sidebar">
-                            <!-- Category Widget -->
-                            <div class="widget ltn__menu-widget">
-                                <h4 class="ltn__widget-title ltn__widget-title-border">Productos por categoria</h4>
-                                <ul>
-                                    <li><a href="portfolio-details.html">Hand Sanitizer <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    <li><a href="portfolio-details.html">Lab N95 Face Mask <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    <li><a href="portfolio-details.html">Hand Gloves <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    <li><a href="portfolio-details.html">Medical Equipment <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    <li><a href="portfolio-details.html">New Arrival Product <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    <li><a href="portfolio-details.html">Uncategorized <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                    <li><a href="portfolio-details.html">Special Offers <span><i class="fas fa-long-arrow-alt-right"></i></span></a></li>
-                                </ul>
-                            </div>
-                            <!-- Price Filter Widget -->
-                            <div class="widget ltn__price-filter-widget">
-                                <h4 class="ltn__widget-title ltn__widget-title-border">Filtrar por precio</h4>
-                                <div class="price_filter">
-                                    <!-- <div class="price_slider_amount">
-                                        <input type="submit"  value="Rango:"/> 
-                                        <input type="range" class="amount" name="precio" v-model="rangoDePrecios" min="50" max="5000" placeholder="Agrega tu precio" /> 
-                                        {{rangoDePrecios}}
-                                    </div> -->
-                                    <div class="form-check form-switch">
-                                        <label for="600" class="form-check-label">Menos de $500</label>
-                                        <input type="checkbox" class="form-check-input" v-model="rangoDePrecios" id="500" value="500" role="switch">
-                                      </div>
-                                      <div class="form-check form-switch">
-                                        <label for="601" class="form-check-label">Mas de $500</label>
-                                        <input type="checkbox" v-model="rangoDePrecios" class="form-check-input" id="501" value="501" role="switch">
-                                      </div>
-                                    <!-- <div class="slider-range"></div> -->
-                                </div>
-                            </div>
-                            <!-- Search Widget -->
-                            <div class="widget ltn__search-widget">
-                                <h4 class="ltn__widget-title ltn__widget-title-border">Buscar producto</h4>
-                                <form action="#">
-                                    <input type="text" v-model="nombreDelBuscador" v-on:click="buscadorProducto" placeholder="Que producto buscas?" class="form-control" id="exampleFormControlInput1" >
-                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                </form>
-                            </div>        
-                        </aside>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CARDS -->
-        <section class="cards">
-            <div class="container d-flex">
-                <div class="contenedorCards" v-for="card in datosCards">
-                    <div class="card" :class="{ 'out': !card.stock}">
-                        <div class="innerProd">
-                            <div class="imgWrapper">
-                                <div class="detalleRapido" v-on:click="detalleRapido(card)" data-id="{{card.id}}">
-                                    <div class="icono">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                                            <path d="M39.049 39.049L56 56"></path>
-                                            <circle cx="27" cy="27" r="17"></circle>
-                                        </svg>
-                                    </div>
-                                    <p>Vista rapida</p>
-                                </div>
-                                <div class="imgProd" v-bind:style="{backgroundImage: `url(${card.imagen})`}"></div>
-                            </div>
-                            <a class="info" href="#">
-                                <p class="prodName">{{card.nombre}}</p>
-                                <p class="prodDesc">{{card.tipo}}</p>
-                                <div class="precios">
-                                    <p class="precio">{{card.precio}}</p>
-                                    <div>
-                                        <p class="precioOriginal">{{card.stock}} unidades</p>
-                                        <p class="stock" :class="{'out': !card.stock}" v-if="card.stock > 0">En
-                                            stock</p>
-                                        <p class="stock" :class="{'out': !card.stock}" v-else>Fuera de stock</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="actions">
-                                <div class="boton alCarrito" v-on:click="agregarAlCarrito(card)">Agregar al carrito
-                                </div>
-                                <div class="row-buttons">
-                                    <!-- <div class="checkBox comparar">
-                                        <input type="checkbox">
-                                        <div class="icon"></div>
-                                        <p class="checkBoxLabel">Comparar</p>
-                                    </div> -->
-                                    <div class="aFavs favoritos" v-on:click="agregarFav(card)" :id="'card'+card.id">
-                                        <div class="icono">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                                                <path
-                                                    d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <footer class="footer-container">
             <div class="me-3">
-                <span>Siguenos en nuestras redes</span>
+                <span class="ms-2">Siguenos en nuestras redes</span>
             </div>
             <div>
                 <a href="" class="text-white iconos-redes">
@@ -511,10 +433,10 @@
 
     <!-- SWEET ALERT -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <!-- ARCHIVO JS -->
     <script src="./scripts/productos.js"></script>
-    
+
     <!-- ANIMATE AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
