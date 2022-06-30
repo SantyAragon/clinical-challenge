@@ -132,14 +132,14 @@ nav .contenedor-nav .logo img {
 .btn-volver{
     border-radius: 20px;
     padding: 10px 25px;
-    background-color: #fff;
-    border: 1px solid #ededed;
-    color: #8198ae;
-  }
+    background-color: #3ABEE7;
+    border: 2px solid black;
+    color: #fff;
+}
 
     .btn-volver:hover{
-    background-color: #63b2fc;
-    color: #8198ae;
+    background-color: #77C7C9;
+    color: black;
 }
 
 
@@ -232,7 +232,7 @@ nav .contenedor-nav .logo img {
     margin-top: .5rem;
     font-size: var(--small-font-size);
     font-weight: 600;
-    color: var(--color-light);
+    color: gray;
 }
 
 .login__button {
@@ -240,8 +240,8 @@ nav .contenedor-nav .logo img {
     width: 100%;
     padding: 1rem;
     margin: 1rem 0;
-    background-color: var(--color);
-    color: #fff;
+    background-color: #77C7C9;
+    color: black;
     font-weight: 600;
     text-align: center;
     border-radius: .5rem;
@@ -249,7 +249,8 @@ nav .contenedor-nav .logo img {
 }
 
 .login__button:hover {
-    background-color: var(--color-hover);
+    background-color: #3ABEE7;
+    color: #fff;
 }
 
 .login__account,
@@ -260,12 +261,12 @@ nav .contenedor-nav .logo img {
 }
 
 .login__account--account {
-    color: var(--color-dark);
+    color: #3ABEE7;
 }
 
 .login__signin--signin,
 .login__signup--signup {
-    color: var(--color-light);
+    color: #3ABEE7;
     cursor: pointer;
 }
 
@@ -349,7 +350,7 @@ footer {
     flex-wrap: wrap;
     box-shadow: 0 8px 20px rgba(43, 43, 43, 0.2);
     width: 100vw;
-    background-color: #62a3a5;
+    background-color: #3ABEE7;
     color: white;
 }
 
