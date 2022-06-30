@@ -18,7 +18,7 @@ const app = Vue.createApp({
       servicioElegido: {},
       profesionalElegido: {},
       gVistaWeb: 0,
-
+      error: '',
     };
   },
 
@@ -85,9 +85,6 @@ const app = Vue.createApp({
   },
 
   methods: {
-    confirmarTurno() {
-      // SEGUIR ACA
-    },
     openCalendar(profesional) {
 
       this.profesionalElegido = {};
@@ -171,6 +168,88 @@ const app = Vue.createApp({
       this.gVistaWeb = 2;
     },
 
+    generarTurno() {
+      console.log(this.servicioElegido, this.profesionalElegido, this.fechaSeleccionada, this.horarioElegido)
+
+      if (this.servicioElegido != {} && this.profesionalElegido != {} && this.fechaSeleccionada != '' && this.horarioElegido != '') {
+        let servicioss = [];
+        let fecha = new Date(this.fechaSeleccionada).toISOString().slice(0, 10)
+        let aux = {
+          idServicio: this.servicioElegido.id,
+          fecha: `${fecha}T${this.horarioElegido}:00:00`,
+          idProfesional: this.profesionalElegido.id,
+        }
+
+        //si hubiese más servicios, repetimos un foreach y agregamos muchos aux
+        servicioss.push(aux)
+
+        let objt = {
+          servicios: servicioss,
+          productos: []
+        }
+
+        axios.post('/api/facturas/create', objt)
+          .then(response => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: "Turno solicitado exitosamente",
+              toast: true,
+              showConfirmButton: true,
+              timer: 5500
+            }).then((result) => {
+              setTimeout(window.location.reload(), 5500)
+              console.log(result);
+              if (result.isConfirm)
+                window.location.reload()
+            })
+          })
+          .catch(error => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: "Hubo un error, vuelva a intentarlo nuevamente",
+              toast: true,
+              showConfirmButton: false,
+              timer: 1500
+            })
+          })
+      } else {
+        this.error = "Faltan datos para solicitar su turno"
+      }
+      // let productoss = [];
+      // this.gCarrito.forEach(producto => {
+      //   // console.log(producto)
+      //   let aux = {
+      //     idProducto: parseInt(producto.id),
+      //     cantidad: parseInt(producto.cantidad)
+      //   }
+      //   productoss.push(aux)
+      //   console.log(aux)
+      // })
+      // console.log(productoss)
+
+      // let objt = {
+      //   servicios: [],
+      //   productos: productoss
+      // }
+      // console.log(objt)
+
+
+      // axios.post('/api/facturas/create', objt)
+      //   .then(response => {
+      //     console.log("equisde")
+      //     this.gCarrito = []
+
+      //     // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
+      //     this.productosEnStorage = this.gCarrito
+      //     localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
+      //   })
+      //   .catch(error => {
+      //     console.log(error.response)
+      //   })
+
+    },
 
     volverAtras() {
       if (this.gVistaWeb != 0) {
@@ -196,8 +275,7 @@ const app = Vue.createApp({
     }
   },
 
-  computed: {
-  },
+  computed: {},
 
 }).mount("#app");
 

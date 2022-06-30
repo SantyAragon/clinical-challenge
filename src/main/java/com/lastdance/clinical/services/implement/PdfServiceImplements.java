@@ -43,7 +43,7 @@ public class PdfServiceImplements implements PdfService {
         Font fontFactura = FontFactory.getFont(FontFactory.COURIER_BOLD);
         fontFactura.setSize(20);
 
-        Paragraph textoFactura = new Paragraph("FACTURA", fontFactura);
+        Paragraph textoFactura = new Paragraph("COMPROBANTE", fontFactura);
         textoFactura.setAlignment(Element.ALIGN_TOP);
         textoFactura.setAlignment(Element.ALIGN_RIGHT);
         textoFactura.setSpacingAfter(5);
@@ -51,7 +51,7 @@ public class PdfServiceImplements implements PdfService {
         Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA);
         fontTitle.setSize(14);
 
-        Paragraph title = new Paragraph("Factura n°" + factura.getId(), fontTitle);
+        Paragraph title = new Paragraph("Comprobante n°" + factura.getId(), fontTitle);
         title.setAlignment(Paragraph.ALIGN_MIDDLE);
         title.setSpacingAfter(5);
 
