@@ -1,5 +1,3 @@
-let principal = document.getElementsByClassName("nochee")
-
 Vue.createApp({
   data() {
     return {
@@ -18,7 +16,9 @@ Vue.createApp({
     };
   },
 
-  mounted() { },
+  mounted() {
+    this.principal = document.getElementsByClassName("nochee")
+  },
 
   created() {
     axios.get("/api/pacientes/autenticado")
@@ -111,7 +111,7 @@ Vue.createApp({
       console.log(this.gVistaWeb);
     },
 
-    pedirTurnoConProfesional(servicio){
+    pedirTurnoConProfesional(servicio) {
 
       this.servicioElegido = {};
       this.servicioElegido = servicio;
@@ -135,12 +135,11 @@ Vue.createApp({
     },
     modoNoche() {
       if (this.switchNoche) {
-        principal[0].style.color = "#DBDBDB";
-        principal[0].style.backgroundColor = "#414141";
-      }
-      else {
-        principal[0].style.color = "black";
-        principal[0].style.backgroundColor = "white";
+        Array.from(this.principal).forEach(element => element.style.color = "#DBDBDB");
+        Array.from(this.principal).forEach(element => element.style.backgroundColor = "#414141");
+      } else {
+        Array.from(this.principal).forEach(element => element.style.color = "black");
+        Array.from(this.principal).forEach(element => element.style.backgroundColor = "white");
       }
     }
   },
