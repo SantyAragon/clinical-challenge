@@ -8,9 +8,15 @@ Vue.createApp({
         nombrePro: "",
         apellidoPro: "",
         especialidad: "",
-        // servicio: 0,
+        servicio: 0,
         emailPro: "",
         contraseñaPro: "",
+
+        nombrePac: "",
+        apellidoPac: "",
+        emailPac: "",
+        contraseñaPac: "",
+        identificacion: 0,
         
       }
     },
@@ -44,7 +50,7 @@ Vue.createApp({
   
     methods: {
       nuevoProfesional() {
-        axios.post("/api/profesional", `nombre=${this.nombrePro}&apellido=${this.apellidoPro}&especialidad=${this.especialidad}}&email=${this.emailPro}&contraseña=${this.contraseñaPro}`)
+        axios.post("/api/profesional", `nombre=${this.nombrePro}&apellido=${this.apellidoPro}&especialidad=${this.especialidad}&servicioId=${this.servicio}&email=${this.emailPro}&contraseña=${this.contraseñaPro}`)
             .then(response => {
               window.location.reload()
                 window.alert("Profesional agregado")
@@ -54,7 +60,17 @@ Vue.createApp({
               window.alert("No se pudo agregar")
           });
       },
-
+      registrarPaciente() {
+        axios.post("/api/pacientes", `nombre=${this.nombrePac}&apellido=${this.apellidoPac}&email=${this.emailPac}&contraseña=${this.contraseñaPac}&identificacion=${this.identificacion}`)
+            .then(response => {
+              window.location.reload()
+                window.alert("Paciente agregado")
+          })
+          .catch(error => {
+              console.log(error)
+              window.alert("No se pudo agregar el paciente")
+          });
+      },
 
 
       
