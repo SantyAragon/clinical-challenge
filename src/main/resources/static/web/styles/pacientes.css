@@ -1,3 +1,7 @@
+* {
+  font-family: 'Gentium Book Plus', serif;
+}
+
 .header_img {
   width: 50px;
   height: 50px;
@@ -163,4 +167,8 @@ table th {
 
 .cerrarSesion {
   cursor: pointer;
+}
+
+.sb-sidenav-color {
+  background-color: #27debf;
 }

@@ -8,9 +8,15 @@ const app = Vue.createApp({
 
       switchNoche: 0,
 
+      myDatePicker: "",
+      fechaSeleccionada: "",
+      horaSeleccionada: "",
+      horarioElegido: "",
+
       turnos: [],
       servicios: [],
       servicioElegido: {},
+      profesionalElegido: {},
       gVistaWeb: 0,
 
     };
@@ -31,6 +37,42 @@ const app = Vue.createApp({
         let firstNameLetter = this.paciente.nombre.charAt(0).toUpperCase()
         let secondNameLetter = this.paciente.apellido.charAt(0).toUpperCase()
         this.intials = firstNameLetter + secondNameLetter
+
+        this.myDatePicker = MCDatepicker.create({
+          el: '#selectCalendar',
+          bodyType: 'modal',
+          disableWeekends: true,
+          selectedDate: new Date(2022, 06, 30), // today
+          // customWeekDays: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+          // customMonths: [
+          //   'Enero',
+          //   'Febrero',
+          //   'Marzo',
+          //   'Abril',
+          //   'Mayo',
+          //   'Junio',
+          //   'Julio',
+          //   'Agosto',
+          //   'Septiembre',
+          //   'Octubre',
+          //   'Noviembre',
+          //   'Diciembre'
+          // ]
+
+        })
+
+        this.myDatePicker.onClose(() => 
+        {
+          let dia = this.myDatePicker.getDate();
+          let mes = this.myDatePicker.getMonth() + 1;
+          let año = this.myDatePicker.getYear();
+           
+          this.fechaSeleccionada = año + "-" + mes + "-" + dia;
+
+          this.gVistaWeb = 3;
+          console.log(this.fechaSeleccionada);
+        });
+
       })
       .catch((error) => console.warn(error.message));
 
@@ -44,6 +86,19 @@ const app = Vue.createApp({
   },
 
   methods: {
+    confirmarTurno(){
+      // SEGUIR ACA
+    },
+    openCalendar(profesional) {
+
+      this.profesionalElegido = {};
+      this.profesionalElegido = profesional;
+      console.log(this.profesionalElegido);
+      // open
+      this.myDatePicker.open('#selectCalendar');
+    },
+
+
     formatMoney(amount) {
       return new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -120,6 +175,7 @@ const app = Vue.createApp({
       console.log(this.gVistaWeb);
     },
 
+
     volverAtras() {
       if (this.gVistaWeb != 0) {
         this.gVistaWeb -= 1;
@@ -144,7 +200,8 @@ const app = Vue.createApp({
     }
   },
 
-  computed: {},
+  computed: {
+  },
 
 }).mount("#app");
 
