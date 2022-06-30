@@ -1046,9 +1046,13 @@ header {
 }
 
 .carritoChiquito {
-    height: 50vh;
+    min-height: 25vh;
+    max-height: 50vh;
     overflow: scroll;
     overflow-x: hidden;
+    border-bottom: solid gray 1px;
+    border-left: solid gray 1px;
+    border-right: solid gray 1px;
 
 }
 
