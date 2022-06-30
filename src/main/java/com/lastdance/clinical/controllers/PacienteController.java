@@ -204,7 +204,7 @@ public class PacienteController {
         Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
         paciente.setEmail(email);
         pacienteService.guardarPaciente(paciente);
-        return new ResponseEntity<>("Modificacion de email exitosa", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Modificacion de email exitoso", HttpStatus.ACCEPTED);
     }
 
     @PatchMapping("/pacientes/autenticado/contraseña")
@@ -217,7 +217,7 @@ public class PacienteController {
         Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
         paciente.setContraseña(contraseña);
         pacienteService.guardarPaciente(paciente);
-        return new ResponseEntity<>("Modificacion de email exitosa", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Modificacion de contraseña exitosa", HttpStatus.ACCEPTED);
     }
 
     @PatchMapping("/pacientes/{id}")
