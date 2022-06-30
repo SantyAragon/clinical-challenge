@@ -22,10 +22,49 @@ a {
   text-decoration: none;
 }
 
+section {
+  padding: 10px 0;
+}
+
 .sub-titulos{
   margin-bottom: 5rem;
   margin-top: 5rem;
 }
+
+#sobre-nosotros{
+  height: 90vh;
+}
+
+#servicios{
+  height: 90vh;
+}
+
+#productos{
+  height: 90vh;
+}
+
+
+#contacto{
+  height: 90vh;
+}
+
+.boton-login{
+  display: flex;
+  justify-content: center;
+  float: right;
+  padding: 5px;
+  font-size: 1.5em;
+  margin-right: 35px;
+  width: 80px;
+  cursor: pointer;
+  border: 0px;
+  transition: all .25s ease;
+  background: #24cdb1;
+  color: #fff;
+  border-radius: 10px;
+  margin-top:12px;
+}
+
 
 
 /* LOADER */
@@ -102,7 +141,7 @@ nav {
   position: fixed;
   width: 100%;
   height: 80px;
-  z-index: 1000;
+  z-index: 1000;;
 }
 
 nav ul {
@@ -363,7 +402,7 @@ body::-webkit-scrollbar-thumb {
   background-image: url("../assets/medical-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 85vh;
+  height: 90vh;
 }
 
 #olas-bg {
@@ -1752,9 +1791,6 @@ body::-webkit-scrollbar-thumb {
   border-color: #007b5e;
 }
 
-section {
-  padding: 60px 0;
-}
 
 section .section-title {
   text-align: center;
@@ -2166,6 +2202,7 @@ section .section-title {
 
 
 footer{
+  border-top: solid 1px rgba(0, 0, 0, 0.171);
   max-width: 100vw;
 }
 
