@@ -128,6 +128,8 @@ const app = Vue.createApp({
                 productos: productoss
             }
             console.log(objt)
+
+
             axios.post('/api/facturas/create', objt)
                 .then(response => {
                     console.log("equisde")
