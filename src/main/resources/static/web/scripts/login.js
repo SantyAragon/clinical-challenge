@@ -176,7 +176,7 @@ const app = Vue.createApp({
           Swal.fire({
             position: 'top-end',
             icon: 'error',
-            title: error.response.data,
+            title: error.response.data.message,
             toast: true,
             showConfirmButton: false,
             timer: 1500

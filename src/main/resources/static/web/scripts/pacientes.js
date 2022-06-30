@@ -1,34 +1,39 @@
 Vue.createApp({
   data() {
     return {
-      pacientes: [],
+      paciente: [],
       email: "",
       contraseña: "",
     };
   },
 
-  mounted() {
+  mounted() {},
+
+  created() {
     axios
-      .get("/api/pacientes")
+      .get("/api/pacientes/autenticado")
       .then((data) => {
-        this.pacientes = data.data;
-        this.console.log(this.pacientes);
+        this.paciente = data.data;
       })
       .catch((error) => console.warn(error.message));
   },
 
-  created() {},
-
   methods: {
     modificarDatos() {
+      if (this.contrasenia != "") {
+        axios
+          .patch(
+            `/api/pacientes/autenticado/contraseña`, `contraseña=${this.contraseña}`)
+          .then((data) => {
+            Swal.fire("Contraseña modificada con éxito!", "success");
+          });
+      }
       if (this.email != "") {
-        axios.patch(`/api/pacientes/autenticado/email`, `email=${this.email}`).then((data) => {
-          Swal.fire("E-mail modificado con éxito!", "success");
-        });
-      } else if (this.contrasenia != "") {
-        axios.patch(`/api/pacientes/autenticado/contraseña?contraseña=${this.contraseña}`).then((data) => {
-          Swal.fire("Contraseña modificada con éxito!", "success");
-        });
+        axios
+          .patch(`/api/pacientes/autenticado/email`, `email=${this.email}`)
+          .then((data) => {
+            Swal.fire("E-mail modificado con éxito!", "success");
+          });
       }
     },
   },
