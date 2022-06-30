@@ -179,7 +179,7 @@ const app = Vue.createApp({
                   window.location.href = "./profesional.html"
 
                 else if (response.data === 'Paciente')
-                  window.location.href = './pacientesnuevo.html'
+                  window.location.href = './pacientes.html'
 
               })
           })
