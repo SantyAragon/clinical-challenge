@@ -20,8 +20,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- LINK CSS -->
-    <link rel="stylesheet" href="./styles/carrito.css">
     <link rel="stylesheet" href="./styles/farmacia.css">
+    <link rel="stylesheet" href="./styles/carrito.css">
 
 
     <title>Clinica - Productos</title>
@@ -55,11 +55,30 @@
             </div>
         </div>
         <!-- LOADER -->
-
+        <nav class="d-flex gap-2 justify-content-center">
+            <div class="menu-icon">
+                <i class="fa fa-bars fa-2x"></i>
+            </div>
+            <div class="logo">
+                <img src="./assets/logo-medihub.png" alt="">
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">Especialistas</a></li>
+                    <li><a href="#">Planes</a></li>
+                    <li><a href="#">Testimonios</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
         <div class="container">
+
             <div class="div-imagen text-left bg-overlay-white-30 bg-image ">
                 <div class="ltn__breadcrumb-inner">
-                    <h1 class="page-title">CARRITO DE COMPRAS</h1>
+                    <h2 class="mt-3 page-title">CARRITO DE COMPRAS</h2>
                     <div class="ltn__breadcrumb-list">
                         <ul>
                             <li><a href="index.html"><span class="ltn__secondary-color"><i
@@ -84,7 +103,7 @@
                     <label class="product-line-price">Total</label>
                 </div>
 
-                <div class="product" v-for="carrito in gCarrito">
+                <div class="product d-flex align-items-center" v-for="carrito in gCarrito">
                     <div class="product-image">
                         <img :src="carrito.imagen">
                     </div>
@@ -94,11 +113,18 @@
                     </div>
                     <div class="product-price">{{formatMoney(carrito.precio)}}</div>
                     <div class="product-quantity">
-                        <input type="number" @change="valorCantidadProducto(carrito, $event)" :value="carrito.cantidad" min="1">
+                        <input type="number" @change="valorCantidadProducto(carrito, $event)" :value="carrito.cantidad"
+                            min="1">
                     </div>
                     <div class="product-removal">
-                        <button class="remove-product" v-on:click="removeItem(carrito)">
-                            Eliminar
+                        <button class="noselect" @click="removeItem(carrito)">
+                            <span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24">
+                                    <path
+                                        d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                                    </path>
+                                </svg>
+                            </span>
                         </button>
                     </div>
                     <div class="product-line-price">{{formatMoney(carrito.precio * carrito.cantidad)}}</div>
@@ -196,7 +222,7 @@
                                                     </div>
                                                 </div>
                                         </div>
-                                        <h6>Otras Notas (optional)</h6>
+                                        <h6 class="mt-3">Otras Notas (optional)</h6>
                                         <div class="input-item input-item-textarea">
                                             <textarea name="ltn__message"
                                                 placeholder="Notas sobre su pedido. Notas especiales para la entrega"></textarea>
@@ -212,20 +238,24 @@
                                     <h4 class="title-2">Métodos de pago</h4>
                                     <div id="checkout_accordion_1">
                                         <div class="card">
-                                            <div class="d-flex">
+                                            <div class="d-flex gap-2">
                                                 <input class="form-check-input me-1" type="radio" id="efectivo"
-                                                    value="efectivo" v-model="medioDePago">
-                                                <h5>Efectivo</h5>
+                                                    name="payment" value="efectivo" v-model="medioDePago">
+                                                <label for="efectivo">
+                                                    <h5> Efectivo</h5>
+                                                </label>
                                             </div>
                                             <div v-if="medioDePago=='efectivo'" class="card-body">
                                                 <p>Paga en efectivo en el momento de la entrega</p>
                                             </div>
                                         </div>
                                         <div class="card">
-                                            <div class="d-flex">
+                                            <div class="d-flex gap-2">
                                                 <input class="form-check-input me-1" type="radio" id="tarjeta"
-                                                    value="tarjeta" v-model="medioDePago">
-                                                <h5>Tarjeta de crédito</h5>
+                                                    name="payment" value="tarjeta" v-model="medioDePago">
+                                                <label for="tarjeta">
+                                                    <h5>Tarjeta de crédito</h5>
+                                                </label>
                                             </div>
                                             <div v-if="medioDePago=='tarjeta'" class="card-body">
                                                 <p>Paga con una tarjeta de crédito VISA o MASTERCARD</p>
@@ -357,8 +387,8 @@
 
     <!-- BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 
     <!-- JQUERY -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
