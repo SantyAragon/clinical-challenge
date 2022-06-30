@@ -58,7 +58,7 @@ Vue.createApp({
       },
       modoNoche() {
         if (this.switchNoche) {
-          principal[0].style.color = "#818181";
+          principal[0].style.color = "#DBDBDB";
           principal[0].style.backgroundColor = "#414141";
         }
         else {

@@ -230,15 +230,144 @@
                                 </div>
                             </div>
                         </div> -->
-              <div class="row">
-                <div class="col-xl-6">
-                  <div class="card mb-4">
-                    <div class="card-header">
-                      <i class="fas fa-chart-area me-1"></i>
-                      Turnos
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Turnos
+                                    </div>
+                                    <div class="card-body"><canvas id="misTurnos" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Ventas
+                                    </div>
+                                    <div class="card-body"><canvas id="misVentas" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Pacientes
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <!-- <table> -->
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Email</th>
+                                            <th>Descripción</th>
+                                            <th>Venta</th>
+                                            <!-- <th>Salary</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Email</th>
+                                            <th>Descripción</th>
+                                            <th>Venta</th>
+                                            
+                                        </tr>
+                                    </tfoot>
+                                    <tbody v-for="paciente in pacientes">
+                                        <tr>
+                                            <td>{{paciente.nombre}}</td>
+                                            <td>{{paciente.apellido}}</td>
+                                            <td>{{paciente.email}}</td>
+                                            <!-- <td>61</td>
+                                            <td>2011/04/25</td> -->
+                                            <!-- <td>$320,800</td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                      <canvas id="misTurnos" width="100%" height="40"></canvas>
+                    
+                    </div>
+
+                    <div data-content id="doctores">
+                        <div class="card mb-4">
+                            <div>
+                                <i class="fas fa-table me-1"></i>
+                                Profesionales
+                            </div>
+                            <div>                                
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th><p>Nombre</p><input v-model="nombrePro" type="text"></th>
+                                            <th><p>Apellido</p><input v-model="apellidoPro" type="text"></th>
+                                            <th><p>Especialidad</p><input v-model="especialidadPro" type="text"></th>
+                                            <th><p>Email</p><input v-model="emailPro" type="text"></th>                                            
+
+                                        </tr>
+                                    </thead>
+                              <!-- <tfoot>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido</th>
+                                            <th>Email</th>
+                                            <th>Descripción</th> -->
+                                            <!-- <th>Venta</th> -->
+                                        </tr>
+                                    </tfoot> -->
+                                    <tbody v-for="profesional in profesionales">                                        
+                                        <tr>
+                                            <td class="d-flex justify-content-center"><span class="me-1"><button @click="eliminarProfesional(profesional.id)">Eliminar</button></span>{{profesional.apellido}}<button @click="editarApellido(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
+                                            <td class="d-flex justify-content-center">{{profesional.nombre}}<button @click="editarNombre(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
+                                            <td class="d-flex justify-content-center">{{profesional.especialidad}}<button @click="editarEspecialidad(profesional.id)" class="btn btn-danger ms-1">edit</button></td>
+                                            <td class="d-flex justify-content-center">{{profesional.email}}<button @click="editarEmail(profesional.id)" class="btn btn-danger ms-1">edit</button></td>                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                    <div data-content id="agregar-doc">
+                        <div>
+                        <form v-on:submit.prevent="nuevoProfesional" class="d-flex flex-column gap-4">
+                            <label for="name"></label>
+                            <input v-model="nombrePro" placeholder="Nombre"/>
+                            <label for="lastname"></label>
+                            <input v-model="apellidoPro" placeholder="Apellido"/>
+                            <fieldset>
+                              <h4 for="especialidad">Especialidad: </h4>
+                              <Select v-model="especialidadPro" class="form-select" required>
+                                <option disabled value="">Por favor, seleccionar uno</option>
+                                <option value="ALERGIA">ALERGIA </option>
+                                <option value="BIOQUIMICO">BIOQUIMICO </option>
+                                <option value="CIRUJANO">CIRUJANO </option>
+                                <option value="OBSTETRA">OBSTETRA </option>
+                                <option value="PEDIATRA">PEDIATRA </option>
+                                <option value="DENTISTA">DENTISTA </option>
+                                <option value="OFTALMOLOGO">OFTALMOLOGO </option>
+                                <option value="ANESTESIOLOGO">ANESTESIOLOGO </option>
+                                <option value="NEUROLOGO">NEUROLOGO </option>
+                                <option value="CARDIOLOGO">CARDIOLOGO </option>
+                              </Select>
+                            </fieldset>
+                            <select v-model="servicioPro">
+                                <option :value="servicio.id" v-for="servicio in servicios">{{servicio.tipoServicio}}</option>
+                            </select>                            
+                            <label for="email"></label>
+                            <input type="email" v-model="emailPro" placeholder="Correo electrónico"/>
+                            <label for="password"></label>
+                            <input type="password" v-model="contraseñaPro" placeholder="Contraseña"/>
+                            <button type="submit" class="btn btn-info display-none mt-2">Confirmar</button>
+                        </form>
+                        </div>
                     </div>
                   </div>
                 </div>
@@ -476,8 +605,60 @@
               </div>
             </div>
 
-            <div data-content id="editar-pac">
-              <h1>EDITAR PACIENTE</h1>
+                    <div data-content id="agregar-pac">
+                        <div>
+                        <form class="d-flex flex-column gap-4">
+                            <label for="name"></label>
+                            <input v-model="nombrePac" placeholder="Nombre"/>
+                            <label for="lastname"></label>
+                            <input v-model="apellidoPac" placeholder="Apellido"/>
+                            <label for="email"></label>
+                            <input type="email" v-model="emailPac" placeholder="Correo electrónico"/>
+                            <label for="password"></label>
+                            <input type="password" v-model="contraseñaPac" placeholder="Contraseña"/>
+                            <label for="number"></label>
+                            <input type="number" v-model="identificacion" placeholder="Identificación"/>
+                            <button type="submit" class="btn btn-info display-none mt-2" @click="registrarPaciente()">Confirmar</button>
+                        </form>
+                        </div>
+                    </div>
+                    
+                    <div data-content id="editar-pac">
+                        <h1>
+                            EDITAR PACIENTE
+                        </h1>
+                    </div>
+                    
+                    <div data-content id="eliminar-pac">
+                        <h1>
+                            ELIMINAR PACIENTE
+                        </h1>
+                    </div>
+                    
+                    <div data-content id="productos">
+                        <h1>
+                            PRODUCTOS
+                        </h1>
+                    </div>
+                    
+                    <div data-content id="servicios">
+                        <h1>
+                            SERVICIOS
+                        </h1>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                            <div>
+                                <a href="#">Políticas de Privacidad</a>
+                                &middot;
+                                <a href="#">Términos &amp; Condiciones</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
 
             <div data-content id="eliminar-pac">
