@@ -42,7 +42,8 @@ const app = Vue.createApp({
           el: '#selectCalendar',
           bodyType: 'modal',
           disableWeekends: true,
-          selectedDate: new Date(2022, 06, 30), // today
+          minDate: new Date(2022, 5, 30),
+          selectedDate: new Date(2022, 5, 30), // today
           // customWeekDays: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
           // customMonths: [
           //   'Enero',
@@ -134,7 +135,7 @@ const app = Vue.createApp({
       let diff_in_millisenconds = fechaFin - fechaInicio;;
       let diff_in_days = diff_in_millisenconds / day_as_milliseconds;
 
-      if (diff_in_days < -0.5) {
+      if (diff_in_days < 0) {
         return false;
       } else {
         return true;
@@ -187,7 +188,7 @@ const app = Vue.createApp({
     },
     modoNoche() {
       if (this.switchNoche) {
-        Array.from(this.principal).forEach(element => element.style.color = "#DBDBDB");
+        Array.from(this.principal).forEach(element => element.style.color = "black");
         Array.from(this.principal).forEach(element => element.style.backgroundColor = "#414141");
       } else {
         Array.from(this.principal).forEach(element => element.style.color = "black");
