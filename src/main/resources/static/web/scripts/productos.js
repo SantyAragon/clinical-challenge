@@ -40,16 +40,16 @@ const app = Vue.createApp({
 
     // ===== Scroll to Top ==== 
     $(window).scroll(function () {
-      if ($(this).scrollTop() >= 1080) {        // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(500);    // Fade in the arrow
+      if ($(this).scrollTop() >= 1080) { // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(500); // Fade in the arrow
       } else {
-        $('#return-to-top').fadeOut(500);   // Else fade out the arrow
+        $('#return-to-top').fadeOut(500); // Else fade out the arrow
       }
     });
 
-    $('#return-to-top').click(function () {      // When arrow is clicked
+    $('#return-to-top').click(function () { // When arrow is clicked
       $('body,html').animate({
-        scrollTop: 0                       // Scroll to top of body
+        scrollTop: 0 // Scroll to top of body
       }, 500);
     });
 
@@ -77,14 +77,24 @@ const app = Vue.createApp({
         this.gProductosFiltrados = this.datosCards;
       })
       .catch(error => console.log(error))
+
+    axios.get('/api/pacientes/autenticado')
+      .then(data => {
+        this.paciente = data.data;
+      })
+      .catch(error => console.warn(error.message));
   },
 
   methods: {
-    alternarCarrito(){
+    alternarCarrito() {
       this.gAlternarCarrito = !this.gAlternarCarrito;
     },
     formatMoney(amount) {
-      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(amount);
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+      }).format(amount);
     },
 
     agregarAlCarrito(producto, num) {
@@ -107,8 +117,7 @@ const app = Vue.createApp({
             icon: 'success'
           })
 
-        }
-        else {
+        } else {
           this.productoCarrito = {
             id: producto.id,
             nombre: producto.nombre,
@@ -133,8 +142,7 @@ const app = Vue.createApp({
 
         this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0); // Precio total
         this.gCantidadNotif = this.gCarritoNotif.length;
-      }
-      else {
+      } else {
         Swal.fire({
           title: 'Sin stock ',
           icon: 'error'
@@ -244,8 +252,14 @@ const app = Vue.createApp({
         const imagen = zoomArea.find('.zoom_imgOrigin');
         const urlImagen = zoomArea.find('.zoom_imgSource')[0].style.backgroundImage;
         const dimensiones = {
-          imagen: { width: imagen.outerWidth(), height: imagen.outerHeight() },
-          lupa: { width: imagen.outerWidth() / escala, height: imagen.outerHeight() / escala }
+          imagen: {
+            width: imagen.outerWidth(),
+            height: imagen.outerHeight()
+          },
+          lupa: {
+            width: imagen.outerWidth() / escala,
+            height: imagen.outerHeight() / escala
+          }
         };
         const estiloInicial = {
           backgroundImage: urlImagen,
@@ -261,7 +275,10 @@ const app = Vue.createApp({
         zoom.css(estiloInicial);
         lupa.css(dimensiones.lupa);
         imagen.mousemove(function (e) {
-          let movimientoLupa = { x: e.pageX, y: e.pageY };
+          let movimientoLupa = {
+            x: e.pageX,
+            y: e.pageY
+          };
           let centroImagen = {
             x: (imagen.offset().left + (dimensiones.imagen.width / 2)),
             y: (imagen.offset().top + (dimensiones.imagen.height / 2))
@@ -338,6 +355,3 @@ const app = Vue.createApp({
   }
 
 }).mount('#app')
-
-
-
