@@ -88,9 +88,9 @@ public class ProfesionalController {
     public ResponseEntity<Object> borrarProfesional (@PathVariable Long id) {
 
         Profesional profesional = profesionalService.traerProfesional(id);
-        Set<PacienteServicio> turnos = profesional.getServicio().getPacienteServicios();
+        PacienteServicio turnos = profesional.getPacienteServicio();
 
-        if(turnos.size() > 0){
+        if(turnos != null){
             return new ResponseEntity<>("El profesional tiene turnos dados", HttpStatus.FORBIDDEN);
         }
 
@@ -107,8 +107,8 @@ public class ProfesionalController {
 
         if (emails.contains(email))
             return new ResponseEntity<>("Email ya en uso", HttpStatus.FORBIDDEN);
-        if (!email.contains("@") || !email.endsWith(".com") || !email.endsWith(".net") || !email.endsWith(".es") || !email.endsWith(".com.ar"))
-            return new ResponseEntity<>("Email ya en uso", HttpStatus.FORBIDDEN);
+        if (!email.contains("@"))
+            return new ResponseEntity<>("Formato incorrecto", HttpStatus.FORBIDDEN);
 
         Profesional profesional = profesionalService.traerProfesional(id);
         profesional.setEmail(email);

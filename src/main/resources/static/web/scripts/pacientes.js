@@ -1,28 +1,92 @@
 Vue.createApp({
   data() {
     return {
-        paciente: [],
-        intials:"",
-        email: "",
+      paciente: [],
+      intials: "",
+      email: "",
       contraseña: "",
+
+      switchNoche: 0,
+
+      turnos: [],
+      servicios: [],
+      servicioElegido: {},
+      gVistaWeb: 0,
+
     };
   },
 
-  mounted() {},
+  mounted() {
+    this.principal = document.getElementsByClassName("nochee")
+  },
 
   created() {
-    axios
-      .get("/api/pacientes/autenticado")
-      .then((data) => {
-        this.paciente = data.data;
-        let firstNameLetter = this.paciente.firstName.charAt(0).toUpperCase()
-        let secondNameLetter = this.paciente.lastName.charAt(0).toUpperCase()
-        this.intials =  firstNameLetter + secondNameLetter
+    axios.get("/api/pacientes/autenticado")
+      .then((datos) => {
+        this.paciente = datos.data;
+        this.turnos = datos.data.servicios;
+
+        console.log(this.paciente);
+        console.log(this.turnos);
+        let firstNameLetter = this.paciente.nombre.charAt(0).toUpperCase()
+        let secondNameLetter = this.paciente.apellido.charAt(0).toUpperCase()
+        this.intials = firstNameLetter + secondNameLetter
+      })
+      .catch((error) => console.warn(error.message));
+
+    axios.get("/api/servicios")
+      .then((datos) => {
+        this.servicios = datos.data.sort((a, b) => a.id - b.id);
+
+        console.log(this.servicios);
       })
       .catch((error) => console.warn(error.message));
   },
 
   methods: {
+    formatMoney(amount) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+      }).format(amount);
+    },
+
+    getLessDay(fecha) {
+      let fechaInicio = new Date().getTime();
+      let fechaFin = new Date(fecha).getTime();
+
+      let day_as_milliseconds = 86400000;
+      let diff_in_millisenconds = fechaFin - fechaInicio;;
+      let diff_in_days = diff_in_millisenconds / day_as_milliseconds;
+
+      let total = Math.round(diff_in_days);
+      return total;
+    },
+    formatearFecha(fecha) {
+      let date = new Date(fecha);
+      result = date.toLocaleString();;
+      return result;
+    },
+
+    getFilterTurnos() {
+      return this.turnos.filter(turno => this.getProximoTurno(turno.fecha));
+    },
+    getProximoTurno(fecha) {
+      let fechaInicio = new Date().getTime();
+      let fechaFin = new Date(fecha).getTime();
+
+      let day_as_milliseconds = 86400000;
+      let diff_in_millisenconds = fechaFin - fechaInicio;;
+      let diff_in_days = diff_in_millisenconds / day_as_milliseconds;
+
+      if (diff_in_days < 0) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+
     modificarDatos() {
       if (this.contrasenia != "") {
         axios
@@ -40,18 +104,43 @@ Vue.createApp({
           });
       }
     },
-    
-    pedirTurno(){
-        let div_sinTurnos = document.getElementById("div_sinTurnos");
-        let div_conTurnos = document.getElementById("div_conTurnos");
-        let contenedorParaTurnos = document.getElementById("contenedorParaTurnos");
 
-        div_sinTurnos.classList.remove("block")
-        div_sinTurnos.classList.add("none")
-        div_conTurnos.classList.remove("block")
-        div_conTurnos.classList.add("none")
-        contenedorParaTurnos.classList.add("block")
-        contenedorParaTurnos.classList.remove("none")
+    pedirTurno() {
+
+      this.gVistaWeb = 1;
+      console.log(this.gVistaWeb);
+    },
+
+    pedirTurnoConProfesional(servicio) {
+
+      this.servicioElegido = {};
+      this.servicioElegido = servicio;
+      console.log(this.servicioElegido);
+      this.gVistaWeb = 2;
+      console.log(this.gVistaWeb);
+    },
+
+    volverAtras() {
+      if (this.gVistaWeb != 0) {
+        this.gVistaWeb -= 1;
+      }
+    },
+
+    logOut() {
+      axios.post('/api/logout')
+        .then(response => {
+          window.location.href = '/web/index.html'
+        })
+
+    },
+    modoNoche() {
+      if (this.switchNoche) {
+        Array.from(this.principal).forEach(element => element.style.color = "#DBDBDB");
+        Array.from(this.principal).forEach(element => element.style.backgroundColor = "#414141");
+      } else {
+        Array.from(this.principal).forEach(element => element.style.color = "black");
+        Array.from(this.principal).forEach(element => element.style.backgroundColor = "white");
+      }
     }
   },
 
@@ -64,15 +153,15 @@ window.addEventListener('DOMContentLoaded', event => {
   // Toggle the side navigation
   const sidebarToggle = document.body.querySelector('#sidebarToggle');
   if (sidebarToggle) {
-      // Uncomment Below to persist sidebar toggle between refreshes
-      // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-      //     document.body.classList.toggle('sb-sidenav-toggled');
-      // }
-      sidebarToggle.addEventListener('click', event => {
-          event.preventDefault();
-          document.body.classList.toggle('sb-sidenav-toggled');
-          localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
-      });
+    // Uncomment Below to persist sidebar toggle between refreshes
+    // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+    //     document.body.classList.toggle('sb-sidenav-toggled');
+    // }
+    sidebarToggle.addEventListener('click', event => {
+      event.preventDefault();
+      document.body.classList.toggle('sb-sidenav-toggled');
+      localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+    });
   }
 
 });
