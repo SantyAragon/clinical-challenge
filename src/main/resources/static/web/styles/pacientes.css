@@ -1,169 +1,166 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+.header_img {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(170, 247, 221);
 }
 
-body {
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 10px;
-    background-color: #77C7C9;
+.header_intials {
+  font-weight: bolder;
 }
 
-.profile-card {
-    width: 300px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    background-color: white;
-    border-radius: 1rem;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6);
+.ribbon {
+  position: relative;
+  padding: 0 0.5em;
+  font-size: 2.000em;
+  margin: 0 0 0 -0.625em;
+  line-height: 1.875em;
+  color: #e6e2c8;
+  border-radius: 0 0.156em 0.156em 0;
+  background: rgb(123, 159, 199);
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
-.profile-image {
-    position: relative;
-    top: -60px;
-    border-radius: 1rem;
-    background-image: url(https://yt3.ggpht.com/ytc/AKedOLSB-oR-xmvVSZXJ3gbK12uvv0AJUvajwxMie_R_uw=s900-c-k-c0x00ffffff-no-rj);
-    width: 11rem;
-    height: 11rem;
-    background-position: center;
-    background-size: cover;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.4);
+.ribbon:before,
+.ribbon:after {
+  position: absolute;
+  content: '';
+  display: block;
 }
 
-.profile-info {
-    text-align: center;
-    margin-top: -3rem;
-    margin-bottom: 1rem;
+.ribbon:before {
+  width: 0.469em;
+  height: 100%;
+  padding: 0 0 0.438em;
+  top: 0;
+  left: -0.469em;
+  background: inherit;
+  border-radius: 0.313em 0 0 0.313em;
 }
 
-.profile-info>.profile-name {
-    color: #212121;
+.ribbon:after {
+  width: 0.313em;
+  height: 0.313em;
+  background: rgba(0, 0, 0, 0.35);
+  bottom: -0.313em;
+  left: -0.313em;
+  border-radius: 0.313em 0 0 0.313em;
+  box-shadow: inset -1px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-.profile-info>.profile-desc {
-    color: #666666;
-    font-size: 0.9rem;
+@media (max-width: 600px) {
+
+
+  .ribbon {
+    line-height: 1.143em;
+    padding: 0.5em;
+  }
+
+  .ribbon:before,
+  .ribbon:after {
+    font-size: 0.714em;
+  }
+
 }
 
-.status {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    line-height: 1rem;
-    margin-bottom: 1.3rem;
+.row_turno {
+  display: flex;
+  align-items: center;
+  background: #50f1bc;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 16px 25px -10px rgba(83, 92, 181, 0.25);
 }
 
-.status-value {
-    color: #212121;
-    font-weight: 700;
+.btn-nuevo_turno {
+  float: right;
+  margin-right: 2rem;
 }
 
-.status-text {
-    font-size: 0.8rem;
-    color: #7c7c7d;
+.block {
+  display: block;
 }
 
-.action {
-    display: flex;
-    justify-content: space-between;
+.none {
+  display: none;
 }
 
-.btn {
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+
+  table thead {
     border: none;
-    padding: 0.8em 1.9em;
-    border-radius: 0.35rem;
-    cursor: pointer;
-    font-weight: 600;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+
+  table td::before {
+    /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
 }
 
-.btn-pink {
-    background: #77C7C9;
-    color: white;
+.cerrarSesion {
+  cursor: pointer;
 }
-
-.btn-gray-outline {
-    border: 1px solid;
-    background: transparent;
-    color: #77C7C9;
-}
-
-.vertical-nav {
-    min-width: 17rem;
-    width: 17rem;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s;
-}
-
-.page-content {
-    width: calc(100% - 17rem);
-    margin-left: 17rem;
-    transition: all 0.4s;
-}
-
-/* for toggle behavior */
-
-#sidebar.active {
-    margin-left: -17rem;
-}
-
-#content.active {
-    width: 100%;
-    margin: 0;
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -17rem;
-    }
-
-    #sidebar.active {
-        margin-left: 0;
-    }
-
-    #content {
-        width: 100%;
-        margin: 0;
-    }
-
-    #content.active {
-        margin-left: 17rem;
-        width: calc(100% - 17rem);
-    }
-}
-
-/*
-  *
-  * ==========================================
-  * FOR DEMO PURPOSE
-  * ==========================================
-  *
-  */
-
-
-
-.separator {
-    margin: 3rem 0;
-    border-bottom: 1px dashed #fff;
-}
-
-.text-uppercase {
-    letter-spacing: 0.1em;
-}
-
-.text-gray {
-    color: #aaa;
-}
-

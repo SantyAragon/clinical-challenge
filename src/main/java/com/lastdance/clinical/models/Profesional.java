@@ -13,32 +13,48 @@ public class Profesional {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
+    private boolean activo;
     private String nombre;
     private String apellido;
+    private String email;
+    private String contraseña;
     private TipoEspecialidad especialidad;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="servicio_id")
+    @JoinColumn(name = "servicio_id")
     private Servicio servicio;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="paciente_servicio_id")
+    @JoinColumn(name = "paciente_servicio_id")
     private PacienteServicio pacienteServicio;
 
-    private boolean activo;
 
-    public Profesional() { }
+    public Profesional() {
+    }
 
-    public Profesional(String nombre, String apellido, TipoEspecialidad especialidad) {
+    public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, String email, String contraseña) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;
+        this.email = email;
+        this.contraseña = contraseña;
         this.activo = true;
     }
-    public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio) {
+
+    public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;
         this.servicio = servicio;
+        this.email = email;
+        this.activo = true;
+    }
+    public Profesional(String nombre, String apellido, TipoEspecialidad especialidad, Servicio servicio, String email, String contraseña) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.especialidad = especialidad;
+        this.servicio = servicio;
+        this.email = email;
+        this.contraseña = contraseña;
         this.activo = true;
     }
 
@@ -96,5 +112,21 @@ public class Profesional {
 
     public void setPacienteServicio(PacienteServicio pacienteServicio) {
         this.pacienteServicio = pacienteServicio;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 }

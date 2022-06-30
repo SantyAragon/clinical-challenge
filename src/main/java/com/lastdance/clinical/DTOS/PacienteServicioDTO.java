@@ -1,4 +1,5 @@
 package com.lastdance.clinical.DTOS;
+
 import com.lastdance.clinical.models.PacienteServicio;
 import com.lastdance.clinical.models.Profesional;
 
@@ -10,6 +11,7 @@ public class PacienteServicioDTO {
     private Double monto;
     private LocalDateTime fecha;
     private String profesional;
+    private String servicio;
 
 
     public PacienteServicioDTO() {
@@ -17,11 +19,11 @@ public class PacienteServicioDTO {
 
     public PacienteServicioDTO(PacienteServicio pacienteServicio) {
         this.id = pacienteServicio.getId();
-        this.idServicio= pacienteServicio.getServicio().getId();
+        this.idServicio = pacienteServicio.getServicio().getId();
         this.monto = pacienteServicio.getMonto();
         this.fecha = pacienteServicio.getFecha();
         this.profesional = pacienteServicio.getServicio().getProfesionales().stream().map(Profesional::getFullName).findFirst().orElse(null);
-
+        this.servicio = pacienteServicio.getServicio().getTipoServicio().toString();
     }
 
     public Long getId() {
@@ -38,6 +40,10 @@ public class PacienteServicioDTO {
 
     public LocalDateTime getFecha() {
         return fecha;
+    }
+
+    public String getServicio() {
+        return servicio;
     }
 
     public String getProfesional() {

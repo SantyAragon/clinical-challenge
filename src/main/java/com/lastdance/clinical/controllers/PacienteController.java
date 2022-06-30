@@ -6,17 +6,18 @@ import com.lastdance.clinical.services.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.swing.text.html.Option;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
-import java.util.Objects;
+
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,6 +31,8 @@ public class PacienteController {
     PacienteService pacienteService;
     @Autowired
     JavaMailSender javaMailSender;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/pacientes")
     public Set<PacienteDTO> traerPacientesActivos() {
@@ -46,6 +49,27 @@ public class PacienteController {
         return pacienteService.traerPacienteDTO(id);
     }
 
+    @GetMapping("/pacientes/autenticado")
+    public ResponseEntity<?> traerPaciente(Authentication authentication) {
+        if (authentication == null)
+            return new ResponseEntity<>("No autenticado", HttpStatus.ACCEPTED);
+
+        Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
+        return new ResponseEntity<>(new PacienteDTO(paciente), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/autenticado")
+    public ResponseEntity<?> verificarRol(Authentication authentication) {
+        if (authentication == null)
+            return new ResponseEntity<>("No autenticado", HttpStatus.ACCEPTED);
+        else if (authentication.getName().contains("@admin.medihub.com"))
+            return new ResponseEntity<>("Admin", HttpStatus.ACCEPTED);
+        else if (authentication.getName().contains("@Medihub.com"))
+            return new ResponseEntity<>("Profesional", HttpStatus.ACCEPTED);
+
+        return new ResponseEntity<>("Paciente", HttpStatus.ACCEPTED);
+    }
+
     @PostMapping("/pacientes")
     public ResponseEntity<Object> registrarPaciente(@RequestParam String nombre, @RequestParam String apellido, @RequestParam String email, @RequestParam String contraseña, @RequestParam Long identificacion) throws MessagingException, UnsupportedEncodingException {
 
@@ -59,7 +83,7 @@ public class PacienteController {
             return new ResponseEntity<>("El dni ya esta en uso", HttpStatus.FORBIDDEN);
         }
 
-        Paciente paciente = new Paciente(nombre, apellido, email, contraseña, identificacion, generarToken());
+        Paciente paciente = new Paciente(nombre, apellido, email, passwordEncoder.encode(contraseña), identificacion, generarToken());
         pacienteService.guardarPaciente(paciente);
 
         enviarMailVerificacion(paciente.getEmail());
@@ -70,14 +94,14 @@ public class PacienteController {
     @Transactional
     @PatchMapping("/pacientes/verificacion")
     public ResponseEntity<Object> verificarEmail(@RequestParam String token) {
-        if(pacienteService.traerPacientePorToken(token)==null)
+        if (pacienteService.traerPacientePorToken(token) == null)
             return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
 
         Paciente paciente = pacienteService.traerPacientePorToken(token);
-        if(paciente.getToken().isEmpty() || paciente.getToken().equals(""))
+        if (paciente.getToken().isEmpty() || paciente.getToken().equals(""))
             return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
 
-        if(!token.equals(paciente.getToken()))
+        if (!token.equals(paciente.getToken()))
             return new ResponseEntity<>("Token no valido.", HttpStatus.FORBIDDEN);
 
         paciente.setActivo(true);
@@ -108,22 +132,25 @@ public class PacienteController {
     public ResponseEntity<Object> cambiarContraseña(@RequestParam String token, @RequestParam String contraseña) {
         if (contraseña.length() < 6)
             return new ResponseEntity<>("Ingrese una contraseña de al menos 6 caracteres.", HttpStatus.FORBIDDEN);
-        if(pacienteService.traerPacientePorToken(token)==null)
-            return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
+
         Paciente paciente = pacienteService.traerPacientePorToken(token);
-        if(paciente.getToken().isEmpty()|| paciente.getToken().equals(""))
+        if (paciente == null)
             return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
-        if(!token.equals(paciente.getToken()))
+
+        if (paciente.getToken().isEmpty() || paciente.getToken().equals(""))
+            return new ResponseEntity<>("Token expirado.", HttpStatus.FORBIDDEN);
+
+        if (!token.equals(paciente.getToken()))
             return new ResponseEntity<>("Token no valido.", HttpStatus.FORBIDDEN);
 
         paciente.setToken("");
-        paciente.setContraseña(contraseña);
+        paciente.setContraseña(passwordEncoder.encode(contraseña));
 
         pacienteService.guardarPaciente(paciente);
 
         return new ResponseEntity<>("Cambio de contraseña exitoso", HttpStatus.ACCEPTED);
     }
-    
+
     @PatchMapping("/pacientes/{id}/nombre")
     public ResponseEntity<Object> actualizarNombrePaciente(@PathVariable Long id, @RequestParam String nombre) {
         if (nombre.length() < 4) {
@@ -147,7 +174,7 @@ public class PacienteController {
     }
 
     @PatchMapping("/pacientes/{id}/email")
-    public ResponseEntity<Object> actualizarEmailPaciente(@PathVariable Long id, @RequestParam String email) {
+    public ResponseEntity<Object> actualizarEmailPacienteAdmin(@PathVariable Long id, @RequestParam String email) {
 
         Set<String> emails = pacienteService.traerPacientes().stream().map(Paciente::getEmail).collect(Collectors.toSet());
 
@@ -161,6 +188,36 @@ public class PacienteController {
         paciente.setEmail(email);
         pacienteService.guardarPaciente(paciente);
         return new ResponseEntity<>("Modificacion de email exitosa", HttpStatus.ACCEPTED);
+    }
+
+    @PatchMapping("/pacientes/autenticado/email")
+    public ResponseEntity<Object> actualizarEmailPacienteAutenticado(Authentication authentication, @RequestParam String email) {
+
+        Set<String> emails = pacienteService.traerPacientes().stream().map(Paciente::getEmail).collect(Collectors.toSet());
+
+        if (emails.contains(email))
+            return new ResponseEntity<>("Email ya en uso", HttpStatus.FORBIDDEN);
+        if (!email.contains("@") && !email.endsWith(".com"))
+            return new ResponseEntity<>("Formato de email no admitido", HttpStatus.FORBIDDEN);
+
+
+        Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
+        paciente.setEmail(email);
+        pacienteService.guardarPaciente(paciente);
+        return new ResponseEntity<>("Modificacion de email exitoso", HttpStatus.ACCEPTED);
+    }
+
+    @PatchMapping("/pacientes/autenticado/contraseña")
+    public ResponseEntity<Object> actualizarContraseñaPacienteAutenticado(Authentication authentication, @RequestParam String contraseña) {
+
+        if (contraseña.length() < 6)
+            return new ResponseEntity<>("Ingrese una contraseña de al menos 6 caracteres.", HttpStatus.FORBIDDEN);
+
+
+        Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
+        paciente.setContraseña(contraseña);
+        pacienteService.guardarPaciente(paciente);
+        return new ResponseEntity<>("Modificacion de contraseña exitosa", HttpStatus.ACCEPTED);
     }
 
     @PatchMapping("/pacientes/{id}")
