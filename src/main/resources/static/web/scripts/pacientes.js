@@ -2,6 +2,7 @@ Vue.createApp({
     data() {
       return {
         pacientes: [],
+        intials:"",
 
       }
     },
@@ -10,6 +11,9 @@ Vue.createApp({
         axios.get('/api/pacientes')
       .then (data =>{
         this.pacientes = data.data;
+        let firstNameLetter = this.paciente.firstName.charAt(0).toUpperCase()
+        let secondNameLetter = this.paciente.lastName.charAt(0).toUpperCase()
+        this.intials =  firstNameLetter + secondNameLetter
         this.console.log(this.pacientes)
       })
       .catch(error => console.warn(error.message));
@@ -24,6 +28,19 @@ Vue.createApp({
     },
   
     methods: {
+
+        pedirTurno(){
+            let div_sinTurnos = document.getElementById("div_sinTurnos"),
+             div_conTurnos = document.getElementById("div_conTurnos"),
+             contenedorParaTurnos = document.getElementById("contenedorParaTurnos")
+
+            div_sinTurnos.classList.remove("block")
+            div_sinTurnos.classList.add("none")
+            div_conTurnos.classList.remove("block")
+            div_conTurnos.classList.add("none")
+            contenedorParaTurnos.classList.add("block")
+            contenedorParaTurnos.classList.remove("none")
+        }
 
     },
 
