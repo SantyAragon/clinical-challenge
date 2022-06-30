@@ -16,16 +16,16 @@ const app = Vue.createApp({
     mounted() {
         // ===== Scroll to Top ==== 
         $(window).scroll(function () {
-            if ($(this).scrollTop() >= 1080) {        // If page is scrolled more than 50px
-                $('#return-to-top').fadeIn(500);    // Fade in the arrow
+            if ($(this).scrollTop() >= 1080) { // If page is scrolled more than 50px
+                $('#return-to-top').fadeIn(500); // Fade in the arrow
             } else {
-                $('#return-to-top').fadeOut(500);   // Else fade out the arrow
+                $('#return-to-top').fadeOut(500); // Else fade out the arrow
             }
         });
 
-        $('#return-to-top').click(function () {      // When arrow is clicked
+        $('#return-to-top').click(function () { // When arrow is clicked
             $('body,html').animate({
-                scrollTop: 0                       // Scroll to top of body
+                scrollTop: 0 // Scroll to top of body
             }, 500);
         });
 
@@ -49,24 +49,30 @@ const app = Vue.createApp({
                 // STORAGE
                 this.gProductosEnStorage = JSON.parse(localStorage.getItem("carrito"));
 
-                console.log(this.gProductosEnStorage)
+                // console.log(this.gProductosEnStorage)
                 if (this.gProductosEnStorage) {
                     this.gCarrito = this.gProductosEnStorage
                 }
 
                 this.gTotalEnCarrito = this.gCarrito.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0);
-                console.log(this.gCarrito);
+                // console.log(this.gCarrito);
             })
             .catch(error => console.log(error))
+        // this.generarCompra()
     },
 
     methods: {
-        valorCantidadProducto(producto, e){
+        valorCantidadProducto(producto, e) {
             producto.cantidad = e.target.value;
+            producto.stock -= e.target.value;
         },
-        
+
         formatMoney(amount) {
-            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(amount);
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            }).format(amount);
         },
 
         removeItem(producto) {
@@ -99,6 +105,76 @@ const app = Vue.createApp({
             localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
 
         },
+
+        generarCompra() {
+            // console.log(this.gCarrito.forEach(producto => console.log(producto)))
+
+            let productoss = [];
+            this.gCarrito.forEach(producto => {
+                // console.log(producto)
+                let aux = {
+                    idProducto: parseInt(producto.id),
+                    cantidad: parseInt(producto.cantidad)
+                }
+                productoss.push(aux)
+                console.log(aux)
+            })
+            console.log(productoss)
+
+            let objt = {
+                servicios: [],
+                productos: productoss
+            }
+            console.log(objt)
+            axios.post('/api/facturas/create', objt)
+                .then(response => {
+                    console.log("equisde")
+                    this.gCarrito = []
+
+                    // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
+                    this.productosEnStorage = this.gCarrito
+                    localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
+                })
+                .catch(error => {
+                    console.log(error.response)
+                })
+
+            // let serviciosatomar = []
+
+            // function click(servic) {
+            //     let sv = {
+            //         idServicio: servic.id,
+            //         fecha: servic.fecha
+            //     }
+            //     this.serviciosatomar.push(sv)
+            // }
+
+            // this.serviciosatomar.forEach(serv => servicios.push(serv))
+            // let servicios = []
+
+            // let objt = {
+            //     servicios: [],
+            //     productos: []
+            // }
+
+            // axios.post('/api/factura/create', objt)
+
+            // {
+            //     "servicios":[
+            //         {"idServicio":1,"fecha":"2022-06-27T13:50:33","idProfesional":1},
+            //         {"idServicio":2,"fecha":"2022-06-28T13:50:33","idProfesional":2},
+            //         {"idServicio":3,"fecha":"2022-06-29T13:50:33","idProfesional":3} ]
+            //     ,
+            //     "productos":[
+            //         {"idProducto":5,"cantidad":5},
+            //         {"idProducto":1,"cantidad":1},
+            //         {"idProducto":3,"cantidad":2} ]
+            //     }
+        }
+
+
+
+
     },
 
     computed: {
