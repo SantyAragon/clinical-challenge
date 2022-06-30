@@ -673,6 +673,14 @@ body::-webkit-scrollbar-thumb {
 
 /*----------------------------------*/
 
+.div-imagen {
+    height: 30vh;
+    background-image: url(./assets/farmacia.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 .tarjetitas{
     color: #000;
     margin: 0 5px;
