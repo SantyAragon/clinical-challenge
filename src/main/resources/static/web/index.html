@@ -65,7 +65,27 @@
             </div>
         </div>
         <!-- LOADER -->
+
         <nav>
+            <div class="menu-icon">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="logo">
+              LOGO
+            </div>
+            <div class="menu">
+              <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Sobre Nosotros</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Especialistas</a></li>
+                <li><a href="#">Contacto</a></li>
+              </ul>
+            </div>
+          </nav>
+
+        <!-- <nav>
             <div class="menu-icon">
                 <i class="fa fa-bars fa-2x"></i>
             </div>
@@ -83,7 +103,7 @@
                     <li><a href="#">Contacto</a></li>
                 </ul>
             </div>
-        </nav>
+        </nav> -->
 
         <div class="header-container st-ripple-version">
             <header>
@@ -128,23 +148,27 @@
 
         <!--COMIENZA EL CONTENIDO PRINCIPAL-->
 
-        <div class="chose-us-area item-half">
+        <div class="chose-us-area item-half" id="sobre_nosotros">
+            
+            <div class="sub-titulos">
+            <div class="row">
+                <h2 class="row__title"><i class="fa-solid fa-heart-pulse"></i>
+                    Sobre Nosotros <i class="fa-solid fa-heart-pulse"></i></h2>
+                <h3 class="row__sub">Medihub Group es uno de los principales grupos empresarios de Argentina que se
+                    dedica a la proteccion
+                    de personas y es lider en el mercado de la salud.</h3>
+            </div>
+            </div>
+
             <div class="container-fluid">
                 <div class="container-full">
                     <div class="row">
                         <div class="col col-lg-5 col-12 circle-bg">
                             <img class="circle-medical-bg" src="./assets/circle-medical-bg.png" alt="">
                         </div>
-                        <div class="col col-md-5 col-12 info">
-                            <div class="heading">
-                                <h2>Sobre nosotros</h2>
-                                <p>
-                                    Medihub Group es uno de los principales grupos empresarios de Argentina que se
-                                    dedica a la proteccion
-                                    de personas y es lider en el mercado de la salud.
 
-                                </p>
-                            </div>
+                        <div class="col col-md-5 col-12 info">
+
                             <ul>
                                 <li>
                                     <div class="info row col">
@@ -224,9 +248,9 @@
         </div>
 
         <!-- // VALORES // -->
-        <div class="valores">
+        <div class="valores mt-5">
 
-            <ul id="categories" class="clr">
+            <ul id="categories" class="clr mt-5">
                 <li>
                     <div>
                         <img src="./assets/clinica2.jpg" alt="">
@@ -266,7 +290,14 @@
         </div>
 
         <!-- // SERVICIOS // -->
-        <div id="department">
+        <div id="servicios">
+            <div class="sub-titulos">
+            <div class="row">
+                <h2 class="row__title"><i class="fa-solid fa-heart-pulse"></i>
+                    Nuestros Servicios <i class="fa-solid fa-heart-pulse"></i></h2>
+                <h3 class="row__sub">Nuestro objetivo principal es cuidarte, por eso contamos con una basta cantidad de servicios de los cuales puedes disponer</h3>
+            </div>
+        </div>
             <div class="st-height-b120 st-height-lg-b80"></div>
             <div class="container">
                 <div class="st-tabs st-fade-tabs st-style1">
@@ -555,18 +586,19 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                         </div>
                                         <div class="st-height-b0 st-height-lg-b30"></div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 contenedor-info-servicios">
                                         <div class="st-vertical-middle">
                                             <div class="st-vertical-middle-in">
                                                 <div class="st-imagebox-info">
-                                                    <h2 class="st-imagebox-title">Cirugias
+                                                    <h2 class="st-imagebox-title mb-3">Cirugias
                                                     </h2>
-                                                    <h4 class="st-imagebox-subtitle">Profesional: Thomas Coutoune</h4>
+                                                    <h4 class="st-imagebox-subtitle mb-2">Profesional: Thomas Coutoune</h4>
                                                     <div class="st-imagebox-text">Criterio artistico en mano de los
                                                         mejores cirujanos del pais
                                                         Realizamos cirugias plasticas y esteticas, las cuales aseguran
                                                         un 99,9% de mejora en tu autoestima y un deseo más amplio en tu
                                                         pareja o relaciones.</div>
+                                                        <div class="mt-4"><button @click="pedirTurno" class="pedir-turno-servicio"> Pedir turno</button></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -582,18 +614,19 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                         </div>
                                         <div class="st-height-b0 st-height-lg-b30"></div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 contenedor-info-servicios">
                                         <div class="st-vertical-middle">
                                             <div class="st-vertical-middle-in">
                                                 <div class="st-imagebox-info">
-                                                    <h2 class="st-imagebox-title">Obstetricia
+                                                    <h2 class="st-imagebox-title mb-3">Obstetricia
                                                     </h2>
-                                                    <h4 class="st-imagebox-subtitle">Profesional: Santiago Aragon </h4>
+                                                    <h4 class="st-imagebox-subtitle mb-2">Profesional: Santiago Aragon </h4>
                                                     <div class="st-imagebox-text">Cuidamos la salud de los organos
                                                         reproductores femeninos y el manejo de las complicaciones
                                                         obstetricas, incluso a través de intervenciones quirurgicas
                                                         manejamos los mejores especialistas con +35 años de experiencia
                                                         en el cuidado neo-natal</div>
+                                                        <div class="mt-4"><button @click="pedirTurno" class="pedir-turno-servicio"> Pedir turno</button></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -609,18 +642,19 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                         </div>
                                         <div class="st-height-b0 st-height-lg-b30"></div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 contenedor-info-servicios">
                                         <div class="st-vertical-middle">
                                             <div class="st-vertical-middle-in">
                                                 <div class="st-imagebox-info">
-                                                    <h2 class="st-imagebox-title">Pediatria
+                                                    <h2 class="st-imagebox-title mb-3">Pediatria
                                                     </h2>
-                                                    <h4 class="st-imagebox-subtitle">Profesional: Lucio Fernandez</h4>
+                                                    <h4 class="st-imagebox-subtitle mb-2">Profesional: Lucio Fernandez</h4>
                                                     <div class="st-imagebox-text">Cuidado en la etapa del crecimiento
                                                         infantil, dando un cuidado 24/7 y completo analisis junto a
                                                         nuestros profesionales en el area
                                                         Nuestros pediatras cuentan con certificado ISO-RAM 9001 en la
                                                         calidad del cuidado</div>
+                                                        <div class="mt-4"><button @click="pedirTurno" class="pedir-turno-servicio"> Pedir turno</button></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -636,18 +670,19 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                         </div>
                                         <div class="st-height-b0 st-height-lg-b30"></div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 contenedor-info-servicios">
                                         <div class="st-vertical-middle">
                                             <div class="st-vertical-middle-in">
                                                 <div class="st-imagebox-info">
-                                                    <h2 class="st-imagebox-title">Dentista
+                                                    <h2 class="st-imagebox-title mb-3">Dentista
                                                     </h2>
-                                                    <h4 class="st-imagebox-subtitle">Profesional: Facundo Lorenzo</h4>
+                                                    <h4 class="st-imagebox-subtitle mb-2">Profesional: Facundo Lorenzo</h4>
                                                     <div class="st-imagebox-text">Somos especialistas en salud y
                                                         estética bucal, incluyendo ortodoncia invisible
                                                         Queremos que tengas una sonrisa única y saludable. Es por esto
                                                         qué contamos con profesionales especialistas capacitados que te
                                                         permitirán alcanzar tus objetivos.</div>
+                                                        <div class="mt-4"><button @click="pedirTurno" class="pedir-turno-servicio"> Pedir turno</button></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -663,18 +698,19 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                         </div>
                                         <div class="st-height-b0 st-height-lg-b30"></div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 contenedor-info-servicios">
                                         <div class="st-vertical-middle">
                                             <div class="st-vertical-middle-in">
                                                 <div class="st-imagebox-info">
-                                                    <h2 class="st-imagebox-title">Oftalmologia
+                                                    <h2 class="st-imagebox-title mb-3">Oftalmologia
                                                     </h2>
-                                                    <h4 class="st-imagebox-subtitle">Profesional: Pablo Figueroa </h4>
+                                                    <h4 class="st-imagebox-subtitle mb-2">Profesional: Pablo Figueroa </h4>
                                                     <div class="st-imagebox-text">
                                                         Especialidad que se ocupa de la prevención y diagnóstico de las
                                                         enfermedades que afectan a los ojos; y del tratamiento, a través
                                                         de medios farmacológicos, ópticos y quirúrgicos.
                                                     </div>
+                                                    <div class="mt-4"><button @click="pedirTurno" class="pedir-turno-servicio"> Pedir turno</button></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -690,19 +726,20 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                         </div>
                                         <div class="st-height-b0 st-height-lg-b30"></div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 contenedor-info-servicios">
                                         <div class="st-vertical-middle">
                                             <div class="st-vertical-middle-in">
                                                 <div class="st-imagebox-info">
-                                                    <h2 class="st-imagebox-title">Neurologia
+                                                    <h2 class="st-imagebox-title mb-3">Neurologia
                                                     </h2>
-                                                    <h4 class="st-imagebox-subtitle">Profesional: Flavio Ambroggio </h4>
+                                                    <h4 class="st-imagebox-subtitle mb-2">Profesional: Flavio Ambroggio </h4>
                                                     <div class="st-imagebox-text">Nuestro principal objetivo es
                                                         brindarle al paciente una cobertura integral de las patologías
                                                         neurológicas y psiquiátricas dándole un abordaje humano y
                                                         comprensivo
                                                         Siempre acompañando y apoyando al paciente</div>
-                                                </div>
+                                                        <div class="mt-4"><button @click="pedirTurno" class="pedir-turno-servicio"> Pedir turno</button></div>
+                                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -716,26 +753,28 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
 
 
         <!-- PRODUCTOS-->
-        <div class="products-container">
-
-            <div class="testeo">
-                <div class="testeo2"></div>
-                <!-- <img src="./assets/fondo-gris-productos.svg" alt=""> -->
-                <div class="container">
+        <div class="products-container" id="productos">
+            <div class="seccion-productos">
+                <div class="sub-titulos">
                     <div class="row">
+                        <h2 class="row__title"><i class="fa-solid fa-heart-pulse"></i>
+                            Nuestros Productos <i class="fa-solid fa-heart-pulse"></i></h2>
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="row d-flex justify-content-around align-items-center">
                         <div class="col col-lg-5 col-12 products-circle-bg">
                             <img src="./assets/lista-productos.png" alt="lista-productos">
                         </div>
                         <div class="col col-md-5 col-12 info">
                             <div class="heading">
-                                <h2>Productos</h2>
                                 <p>
-                                    Las Cosas van Mejor con productos MediHub!,
-                                    Confía en nuestros productos para obtener una mejor recuperacion y con el mejor plan
-                                    a la vez.
-
+                                    Te facilitamos el acceso a productos de primera linea para tu cuidado.
                                 </p>
-                                <a href="./productos.html"><button class="btn btn-primary">Comprar Productos<span
+                                <p>No te pierdas la oportunidad de comprar al mejor precio disponible</p>
+                                <p>Accede ahora mismo a nuestra tienda y consigue todo sin moverte de tu casa</p>
+                                <a href="./productos.html"><button class="btn btn-primary">Ir a la tienda<span
                                             class="load loading"></span></button></a>
 
                             </div>
@@ -743,7 +782,6 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                         </div>
                     </div>
                 </div>
-                <div class="testeo2"></div>
             </div>
         </div>
 
@@ -793,25 +831,22 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
 
 
         <!-- // LABORATORIO // -->
-        <div class="fondo-lab">
+        <!-- <div class="fondo-lab">
             <div class="imagen-lab">
-                <!-- <img src="./assets/laboratory.png" alt=""> -->
+
                 <div>
                     <a href="laboratorio.html">
-                        <!-- <button> Más Info</button> -->
+                        
                         <button title="Información sobre Análisis">Más info <span class="load loading"></span>
                         </button>
                     </a>
                 </div>
 
             </div>
-            <!-- <div>
-                    <h2>Laboratorio</h2>
-
-                </div> -->
 
 
-        </div>
+
+        </div> -->
 
 
 
@@ -927,7 +962,14 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
             </div> -->
 
         <!-- // COMENTARIOS // -->
-        <div class="opiniones">
+        <div class="opiniones" id="testimonios">
+            <div class="sub-titulos">
+                <div class="row">
+                    <h2 class="row__title"><i class="fa-solid fa-heart-pulse"></i>
+                        Testimonios <i class="fa-solid fa-heart-pulse"></i></h2>
+                    <h3 class="row__sub">Cada paciente importa, por eso nos interesan sus opiniones</h3>
+                </div>
+            </div>
             <div class="container my-2 justify-content-center">
                 <div class=" row justify-content-center ">
                     <div class="col-lg-3 col-12 m-2">
@@ -1041,12 +1083,14 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
             </div>
         </div>
 
-        <div class="sect sect--padding-bottom">
+        <div class="sect sect--padding-bottom" id="contacto">
             <div class="container">
+                <div class="sub-titulos">
                 <div class="row">
-                    <h1 class="row__title">
-                        Contactanos </h1>
-                    <h2 class="row__sub">Sientete libre de hacernos cualquier consulta!</h2>
+                    <h2 class="row__title"><i class="fa-solid fa-heart-pulse"></i>
+                        Contactanos <i class="fa-solid fa-heart-pulse"></i></h2>
+                    <h3 class="row__sub">Sientete libre de hacernos cualquier consulta!</h3>
+                </div>
                 </div>
                 <div class="row row--margin">
                     <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000">
@@ -1208,7 +1252,13 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
         </div>
         <section id="team" class="pb-5">
             <div class="container">
-                <h5 class="section-title h1">Nuestro equipo!</h5>
+                <div class="sub-titulos">
+                <div class="row">
+                    <h2 class="row__title"><i class="fa-solid fa-heart-pulse"></i>
+                        Nuestro equipo! <i class="fa-solid fa-heart-pulse"></i></h2>
+                    <h3 class="row__sub">Contamos con los mejores especialistas en cada área</h3>
+                </div>
+                </div>
                 <div class="row">
                     <!-- Team member -->
                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -1227,8 +1277,8 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                 </div>
                                 <div class="backside">
                                     <div class="cardteam">
-                                        <div class="card-body text-center mt-4">
-                                            <h4 class="card-title">Profesional: Thomas Coutoune</h4>
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title mb-3">CIRUGIAS</h4>
                                             <p class="card-text">Criterio artistico en mano de los mejores cirujanos
                                                 del
                                                 pais
@@ -1262,8 +1312,8 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                 </div>
                                 <div class="backside">
                                     <div class="cardteam">
-                                        <div class="card-body text-center mt-4">
-                                            <h4 class="card-title">Profesional: Santiago Aragon</h4>
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title mb-3">OBSTETRICIA</h4>
                                             <p class="card-text">Cuidamos la salud de los organos reproductores
                                                 femeninos y
                                                 el manejo de las complicaciones obstetricas, incluso a través de
@@ -1296,8 +1346,8 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                 </div>
                                 <div class="backside">
                                     <div class="cardteam">
-                                        <div class="card-body text-center mt-4">
-                                            <h4 class="card-title">PEDIATRIA</h4>
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title mb-3">PEDIATRIA</h4>
                                             <p class="card-text">Cuidado en la etapa del crecimiento infantil, dando
                                                 un
                                                 cuidado 24/7 y completo analisis junto a nuestros profesionales en
@@ -1324,15 +1374,15 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                         <div class="card-body text-center">
                                             <p><img class=" img-fluid" src="./assets/Facu.png" alt="card image"></p>
                                             <h4 class="card-title">Profesional: Facundo Lorenzo</h4>
-                                            <p class="card-text">DENTISTA.</p>
+                                            <p class="card-text">DENTISTA</p>
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="backside">
                                     <div class="cardteam">
-                                        <div class="card-body text-center mt-4">
-                                            <h4 class="card-title">Profesional: Facundo Lorenzo</h4>
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title mb-3">DENTISTA</h4>
                                             <p class="card-text">Somos especialistas en salud y estética bucal,
                                                 incluyendo
                                                 ortodoncia invisible
@@ -1366,8 +1416,8 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                 </div>
                                 <div class="backside">
                                     <div class="cardteam">
-                                        <div class="card-body text-center mt-4">
-                                            <h4 class="card-title">Profesional: Pablo Figueroa</h4>
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title mb-3">OFTALMOLOGIA</h4>
                                             <p class="card-text">Especialidad que se ocupa de la prevención y
                                                 diagnóstico de
                                                 las enfermedades que afectan a los ojos; y del tratamiento, a través
@@ -1397,8 +1447,8 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                                 </div>
                                 <div class="backside">
                                     <div class="cardteam">
-                                        <div class="card-body text-center mt-4">
-                                            <h4 class="card-title">Profesional: Flavio Ambroggio</h4>
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title mb-3">NEUROLOGIA</h4>
                                             <p class="card-text">Nuestro principal objetivo es brindarle al paciente
                                                 una
                                                 cobertura integral de las patologías neurológicas y psiquiátricas
@@ -1423,9 +1473,9 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
         <!--TERMINA EL CONTENIDO PRINCIPAL-->
 
 
-        <footer class="footer-container ps-2">
+        <footer>
 
-
+    <div class="footer-container">
             <div class="container text-center text-md-start mt-5">
 
                 <div class="row mt-3">
@@ -1488,6 +1538,8 @@ c5.474,0,9.911-4.477,9.911-10S116.475,180.001,111.001,180.001z" />
                 </div>
 
             </div>
+
+        </div>
 
             <div class="footer-bajo">
 
