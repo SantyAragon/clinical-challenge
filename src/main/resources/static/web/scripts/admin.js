@@ -1,3 +1,5 @@
+let principal = document.getElementById("layoutSidenav_content")
+
 Vue.createApp({
     data() {
       return {
@@ -11,7 +13,7 @@ Vue.createApp({
         // servicio: 0,
         emailPro: "",
         contraseñaPro: "",
-        
+        switchNoche: 0,
       }
     },
 
@@ -54,11 +56,16 @@ Vue.createApp({
               window.alert("No se pudo agregar")
           });
       },
-
-
-
-      
-
+      modoNoche() {
+        if (this.switchNoche) {
+          principal[0].style.color = "#818181";
+          principal[0].style.backgroundColor = "#414141";
+        }
+        else {
+          principal[0].style.color = "black";
+          principal[0].style.backgroundColor = "white";
+        }
+      }
     },
 
     computed: {
