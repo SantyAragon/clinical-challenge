@@ -1,8 +1,9 @@
 package com.lastdance.clinical.models;
 
 public enum TipoEspecialidad {
-    ALERGIA,
+    ALERGISTA,
     BIOQUIMICO,
+    CLINICO,
     CIRUJANO,
     OBSTETRA,
     PEDIATRA,
