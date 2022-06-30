@@ -27,15 +27,11 @@ public class ClinicalApplication {
     @Bean
     public CommandLineRunner initData(PacienteRepository pacienteRepository, PacienteServicioRepository pacienteServicioRepository, ProfesionalRepository profesionalRepository, ServicioRepository servicioRepository, ProductoRepository productoRepository, PacienteProductoRepository pacienteProductoRepository, FacturaRepository facturaRepository) {
         return (args) -> {
-//            Paciente paciente0 = new Paciente("santi", "aragon", "santiago.aragon.99@gmail.com", passwordEncoder.encode("santi"), 123l);
-//            paciente0.setToken("asdasd");
-//            pacienteRepository.save(paciente0);
             Paciente pacientePrueba1 = new Paciente("Santiago", "Aragon", "santi@admin.medihub.com", passwordEncoder.encode("santy123"), 87654321L);
             pacientePrueba1.setActivo(false);
             pacienteRepository.save(pacientePrueba1);
             Paciente pacientePrueba2 = new Paciente("Thomas", "Coutoune", "thomy@mindhub.com", passwordEncoder.encode("bocayoteamo"), 12345678L);
             pacienteRepository.save(pacientePrueba2);
-
             Paciente pacientePrueba3 = new Paciente("Mario", "Illia", "marioillia@hotmail.com", passwordEncoder.encode("marito123"), 26867955L);
             pacienteRepository.save(pacientePrueba3);
             Paciente pacientePrueba4 = new Paciente("Alberto", "Kempes", "alberto.kempes@gmail.com", passwordEncoder.encode("kempes"), 31546872L);
@@ -72,16 +68,17 @@ public class ClinicalApplication {
             Profesional profesional3 = new Profesional("Guille", "Cornetti", ANESTESIOLOGO, servicio2, "GuilleCornetti@Medihub.com", passwordEncoder.encode("medihub123"));
             Profesional profesional4 = new Profesional("Guille", "Bergesio", NEUROLOGO, servicio4, "GuilleBergesio@Medihub.com", passwordEncoder.encode("medihub123"));
             Profesional profesional5 = new Profesional("Facu", "Araujo", NEUROLOGO, servicio4, "FacuAraujo@Medihub.com", passwordEncoder.encode("medihub123"));
-            Profesional profesional6 = new Profesional("Santi", "Aragon", OBSTETRA, servicio3, "Santi@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional6 = new Profesional("Santiago", "Aragon", OBSTETRA, servicio3, "Santi@Medihub.com", passwordEncoder.encode("medihub123"));
             Profesional profesional7 = new Profesional("Thomas", "Coutoune", CIRUJANO, servicio1, "Thomi@Medihub.com", passwordEncoder.encode("medihub123"));
             Profesional profesional8 = new Profesional("Lucio", "Fernandez", PEDIATRA, servicio7, "Lucio@Medihub.com", passwordEncoder.encode("medihub123"));
             Profesional profesional9 = new Profesional("Facundo", "Lorenzo", DENTISTA, servicio5, "Facundo@Medihub.com", passwordEncoder.encode("medihub123"));
             Profesional profesional10 = new Profesional("Pablo", "Figueroa", OFTALMOLOGO, servicio6, "Pablo@Medihub.com", passwordEncoder.encode("medihub123"));
             Profesional profesional11 = new Profesional("Flavio", "Ambroggio", NEUROLOGO, servicio7, "Flavio@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional12 = new Profesional("Analia", "Leon", CLINICO, servicio8, "Ani@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional13 = new Profesional("Ezequiel", "Priotto", CIRUJANO, servicio1, "Eze@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional14 = new Profesional("Ivo", "Pascal", CLINICO, servicio8, "Ivo@Medihub.com", passwordEncoder.encode("medihub123"));
+            Profesional profesional15 = new Profesional("Lucas","Zarate",ALERGISTA,servicio7,"Lucas@Medihub.com",passwordEncoder.encode("medihub123"));
 
-
-            servicio1.addProfesional(profesional1);
-            servicio3.addProfesional(profesional6);
             //GUARDO LOS DATOS
             servicioRepository.save(servicio1);
             servicioRepository.save(servicio2);
@@ -102,7 +99,10 @@ public class ClinicalApplication {
             profesionalRepository.save(profesional9);
             profesionalRepository.save(profesional10);
             profesionalRepository.save(profesional11);
-
+            profesionalRepository.save(profesional12);
+            profesionalRepository.save(profesional13);
+            profesionalRepository.save(profesional14);
+            profesionalRepository.save(profesional15);
             //CREANDO PRODUCTOS
 
             Producto producto1 = new Producto("Jeringa", TipoProducto.PRODUCTOS, 100, 105d, "https://propato.com.ar/wp-content/uploads/jeringa-thomey-60cc-neojet-11851-1.jpg", "Jeringa desechable estéril Tuberculina");
