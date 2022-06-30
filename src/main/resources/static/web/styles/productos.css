@@ -296,7 +296,7 @@ body li {
     justify-content: center;
     align-content: center;
     width: 100%;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     max-width: 1600px;
 }
 
@@ -304,6 +304,11 @@ body li {
     width: 90%;
     margin: 0 auto;
     padding: 20px 0;
+}
+
+#div-card {
+    height: 100vh;
+    overflow: scroll;
 }
 
 .contenedorCards {
@@ -1030,8 +1035,21 @@ footer {
 }
 
 header {
-    height: 80px;
-  }
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    background-image: url(../assets/farmacia2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.carritoChiquito {
+    height: 50vh;
+    overflow: scroll;
+
+}
+
 
 /* NAV */
 
@@ -1091,11 +1109,19 @@ header {
   }
   
   /*RESPONSIVE NAV*/
-  @media(max-width: 580px) {
+  @media(max-width: 1038px) {
     .logo {
-      position: fixed;
+      /* position: fixed; */
       top: 0;
       margin-top: 16px;
+      width: 40vw;
+    }
+    #imgLogo {
+        height: 2.5em;
+    }
+    .menu {
+        width: 20vw;
+        color: #000;
     }
   
     nav ul {
@@ -1120,6 +1146,11 @@ header {
   
     .menu-icon {
       display: block;
+      background-color: white;
+      color: black;
+      display: flex;
+      justify-content: start;
+      width: 20vw;
     }
   }
 

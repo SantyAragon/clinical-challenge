@@ -343,7 +343,7 @@ label.checkbox-inline {
 
 @media (max-width: 991px) {
     .ltn__right-sidebar {
-        margin-top: 100px;
+        margin-top: 20px;
     }
 }
 
