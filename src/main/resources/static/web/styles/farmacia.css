@@ -176,7 +176,7 @@ img {
 
 ul li,
 ol li {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
 }
 
 /* ----------------------------------------------------
@@ -190,14 +190,14 @@ textarea {
     background-color: var(--white);
     border: 2px solid;
     border-color: var(--border-color-9);
-    height: 65px;
+    /* height: 65px; */
     -webkit-box-shadow: none;
     box-shadow: none;
     padding-left: 20px;
     font-size: 16px;
     color: var(--ltn__paragraph-color);
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     border-radius: 0;
     padding-right: 40px;
 }
@@ -227,7 +227,7 @@ input[type="password"] {
 textarea {
     resize: vertical;
     padding: 15px 20px;
-    min-height: 150px;
+    min-height: 100px;
 }
 
 button {
@@ -564,6 +564,7 @@ label.checkbox-inline {
 /* ----------------------------------------------------
     Product Options
 ---------------------------------------------------- */
+
 .nice-select .option {
     margin-top: 0;
     white-space: normal;
@@ -1186,7 +1187,7 @@ label.checkbox-inline {
     Checkout Page
 ---------------------------------------------------- */
 .ltn__checkout-single-content {
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 .ltn__checkout-single-content h5 {
@@ -1195,7 +1196,7 @@ label.checkbox-inline {
 }
 
 .ltn__checkout-single-content-info {
-    padding: 30px;
+    padding: 15px;
     border: 1px solid var(--border-color-1);
 }
 
