@@ -108,13 +108,19 @@
                 </div>
                 Mi cuenta
               </a>
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="#" @click="verMisTurnos">
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-address-card mr-3 fa-fw"></i>
+                </div>
+                Mis Turnos
+              </a>
+              <a class="nav-link" href="#" @click="verProductosComprados">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-cubes mr-3 fa-fw"></i>
                 </div>
                 Productos comprados
               </a>
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="#" @click="verServiciosTomados">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-cubes mr-3 fa-fw"></i>
                 </div>
@@ -207,6 +213,7 @@
             </div>
           </div>
 
+          <!-- VER SERVICIOS -->
           <div id="contenedorParaTurnos" v-show="gVistaWeb == 1" class="container mt-5">
             <h3>Servicios disponibles</h3>
             <button @click="volverAtras" class="btn btn-success btn-lg-derecha btn-nuevo_turno mb-5" type="button">
@@ -236,6 +243,7 @@
             </table>
           </div>
 
+          <!-- VER PROFESIONALES -->
           <div v-show="gVistaWeb == 2" class="container mt-5">
             <h3>Profesionales disponibles</h3>
             <button @click="volverAtras" class="btn btn-success btn-lg-derecha btn-nuevo_turno mb-5" type="button">
@@ -265,6 +273,7 @@
             </table>
           </div>
 
+          <!-- CONFIRMACION DE TURNO -->
           <div v-show="gVistaWeb == 3" class="container mt-5">
             <h3>Confirmación de Turno</h3>
             <button @click="volverAtras" class="btn btn-success btn-lg-derecha btn-nuevo_turno mb-5" type="button">
@@ -312,6 +321,56 @@
             </table>
           </div>
 
+
+          <!-- PRODUCTOS COMPRADOS -->
+          <div v-show="gVistaWeb == 5" class="container mt-5">
+            <h3>Mis Productos Comprados</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Img</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Monto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="producto in paciente.productos">
+                  <td data-label="img" class="product-image">
+                      <img :src="producto.imagen">
+                  </td>
+                  <td data-label="fecha">{{formatFecha(producto.fecha)}}</td>
+                  <td data-label="servicio">{{producto.nombre}}</td>
+                  <td data-label="monto">{{formatMoney(producto.monto)}}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SERVICIOS TOMADOS -->
+          <div v-show="gVistaWeb == 6" class="container mt-5">
+            <h3>Mis Servicios</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Servicio</th>
+                  <th scope="col">Profesional</th>
+                  <th scope="col">Monto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="servicio in paciente.servicios">
+                  <td data-label="fecha">{{formatFecha(servicio.fecha)}}</td>
+                  <td data-label="servicio">{{servicio.servicio}}</td>
+                  <td data-label="servicio">{{servicio.profesional}}</td>
+                  <td data-label="monto">{{formatMoney(servicio.monto)}}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
 
         </main>
       </div>
@@ -366,7 +425,7 @@
   <!-- BOOTSTRAP -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-  </script>
+    </script>
 
   <!-- LINK FONTAWESOME ICONS -->
   <script src="https://kit.fontawesome.com/a9e21e8a67.js" crossorigin="anonymous"></script>
