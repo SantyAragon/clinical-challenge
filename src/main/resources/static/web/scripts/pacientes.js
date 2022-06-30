@@ -1,10 +1,13 @@
+let principal = document.getElementsByClassName("nochee")
+
 Vue.createApp({
   data() {
     return {
-        paciente: [],
-        intials:"",
-        email: "",
+      paciente: [],
+      intials:"",
+      email: "",
       contraseña: "",
+      switchNoche: 0,
     };
   },
 
@@ -40,7 +43,13 @@ Vue.createApp({
           });
       }
     },
-    
+    logout() {
+      axios
+        .post(
+          `/api/login`)
+        window.location.href = "/web/login.html"
+    },
+
     pedirTurno(){
         let div_sinTurnos = document.getElementById("div_sinTurnos"),
          div_conTurnos = document.getElementById("div_conTurnos"),
@@ -52,6 +61,17 @@ Vue.createApp({
         div_conTurnos.classList.add("none")
         contenedorParaTurnos.classList.add("block")
         contenedorParaTurnos.classList.remove("none")
+    },
+
+    modoNoche() {
+      if (this.switchNoche) {
+        principal[0].style.color = "#DBDBDB";
+        principal[0].style.backgroundColor = "#414141";
+      }
+      else {
+        principal[0].style.color = "black";
+        principal[0].style.backgroundColor = "white";
+      }
     }
   },
 

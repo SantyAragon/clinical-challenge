@@ -11706,3 +11706,7 @@ body {
   display: block;
 
 }
+
+.listItems, .cerrarSesion {
+  cursor: pointer;
+}
