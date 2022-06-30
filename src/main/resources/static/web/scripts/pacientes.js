@@ -70,6 +70,23 @@ const app = Vue.createApp({
   },
 
   methods: {
+    verMisTurnos(){
+      this.gVistaWeb = 0;
+    },
+
+    verProductosComprados(){
+      this.gVistaWeb = 5;
+    },
+    verServiciosTomados(){
+      this.gVistaWeb = 6;
+    },
+
+    formatFecha(fecha){
+      let date = new Date(fecha);
+      result = date.toLocaleString();
+      return result;
+    },
+
     openCalendar(profesional) {
 
       this.profesionalElegido = {};
