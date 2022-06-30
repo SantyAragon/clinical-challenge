@@ -42,23 +42,8 @@ const app = Vue.createApp({
           el: '#selectCalendar',
           bodyType: 'modal',
           disableWeekends: true,
-          selectedDate: new Date(2022, 06, 30), // today
-          // customWeekDays: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-          // customMonths: [
-          //   'Enero',
-          //   'Febrero',
-          //   'Marzo',
-          //   'Abril',
-          //   'Mayo',
-          //   'Junio',
-          //   'Julio',
-          //   'Agosto',
-          //   'Septiembre',
-          //   'Octubre',
-          //   'Noviembre',
-          //   'Diciembre'
-          // ]
-
+          minDate: new Date(2022, 5, 30),
+          selectedDate: new Date(2022, 5, 30),
         })
 
         this.myDatePicker.onClose(() => {
@@ -131,7 +116,7 @@ const app = Vue.createApp({
       let diff_in_millisenconds = fechaFin - fechaInicio;;
       let diff_in_days = diff_in_millisenconds / day_as_milliseconds;
 
-      if (diff_in_days < -0.5) {
+      if (diff_in_days < 0) {
         return false;
       } else {
         return true;
@@ -217,37 +202,6 @@ const app = Vue.createApp({
       } else {
         this.error = "Faltan datos para solicitar su turno"
       }
-      // let productoss = [];
-      // this.gCarrito.forEach(producto => {
-      //   // console.log(producto)
-      //   let aux = {
-      //     idProducto: parseInt(producto.id),
-      //     cantidad: parseInt(producto.cantidad)
-      //   }
-      //   productoss.push(aux)
-      //   console.log(aux)
-      // })
-      // console.log(productoss)
-
-      // let objt = {
-      //   servicios: [],
-      //   productos: productoss
-      // }
-      // console.log(objt)
-
-
-      // axios.post('/api/facturas/create', objt)
-      //   .then(response => {
-      //     console.log("equisde")
-      //     this.gCarrito = []
-
-      //     // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
-      //     this.productosEnStorage = this.gCarrito
-      //     localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
-      //   })
-      //   .catch(error => {
-      //     console.log(error.response)
-      //   })
 
     },
 
@@ -266,7 +220,7 @@ const app = Vue.createApp({
     },
     modoNoche() {
       if (this.switchNoche) {
-        Array.from(this.principal).forEach(element => element.style.color = "#DBDBDB");
+        Array.from(this.principal).forEach(element => element.style.color = "black");
         Array.from(this.principal).forEach(element => element.style.backgroundColor = "#414141");
       } else {
         Array.from(this.principal).forEach(element => element.style.color = "black");
