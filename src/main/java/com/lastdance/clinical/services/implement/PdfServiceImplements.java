@@ -112,7 +112,7 @@ public class PdfServiceImplements implements PdfService {
 
             });
 
-            PdfPCell subtotalServicios = new PdfPCell(new Phrase("Subtotal servicios:", fontTabla));
+            PdfPCell subtotalServicios = new PdfPCell(new Phrase("Total servicios:", fontTabla));
             subtotalServicios.setColspan(4);
             subtotalServicios.setPaddingTop(4);
             subtotalServicios.setBorderWidth(0);
@@ -185,7 +185,7 @@ public class PdfServiceImplements implements PdfService {
 
             });
 
-            PdfPCell subtotalProductos = new PdfPCell(new Phrase("Subtotal productos:", fontTabla));
+            PdfPCell subtotalProductos = new PdfPCell(new Phrase("Total productos:", fontTabla));
             subtotalProductos.setColspan(4);
             subtotalProductos.setPaddingTop(4);
             subtotalProductos.setBorderWidth(0);
