@@ -22,6 +22,7 @@
     <!-- LINK CSS -->
     <link rel="stylesheet" href="./styles/farmacia.css">
     <link rel="stylesheet" href="./styles/carrito.css">
+    <link rel="stylesheet" href="./styles/payments.css">
 
 
     <title>Clinica - Productos</title>
@@ -55,52 +56,120 @@
             </div>
         </div>
         <!-- LOADER -->
-        <nav class="d-flex gap-2 justify-content-center">
+        <nav>
             <div class="menu-icon">
-                <i class="fa fa-bars fa-2x"></i>
+                <i class="fa-solid fa-bars"></i>
             </div>
             <div class="logo">
-                <img src="./assets/logo-medihub.png" alt="">
+                <i class="fa-solid fa-dna"></i>MEDIHUB
             </div>
             <div class="menu">
+
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Sobre nosotros</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Especialistas</a></li>
-                    <li><a href="#">Planes</a></li>
-                    <li><a href="#">Testimonios</a></li>
-                    <li><a href="#">Contacto</a></li>
+                    <li><a class="smoothscroll" href="./index.html">Inicio</a></li>
+                    <li><a class="smoothscroll" href="./index.html#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a class="smoothscroll" href="./index.html#servicios">Servicios</a></li>
+                    <li><a class="smoothscroll" href="./index.html#productos">Productos</a></li>
+                    <li><a class="smoothscroll" href="./index.html#team">Especialistas</a></li>
+                    <li><a class="smoothscroll" href="./index.html#contacto">Contacto</a></li>
                 </ul>
             </div>
         </nav>
+        <header></header>
         <div class="container">
 
-            <div class="div-imagen text-left bg-overlay-white-30 bg-image ">
-                <div class="ltn__breadcrumb-inner">
-                    <h2 class="mt-3 page-title">CARRITO DE COMPRAS</h2>
-                    <div class="ltn__breadcrumb-list">
-                        <ul>
-                            <li><a href="index.html"><span class="ltn__secondary-color"><i
-                                            class="fas fa-home"></i></span>
-                                    Home</a></li>
-                            <li><a href="./productos.html"><span class="ltn__secondary-color"></i></span> Farmacia</a>
-                            </li>
-                            <li>Carrito de compras</li>
-                        </ul>
+            <div class="ltn__checkout-area mt-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ltn__checkout-inner">
+                                <div class="ltn__checkout-single-content mt-50">
+                                    <h4 class="title-2">Detalles de facturación</h4>
+                                    <div class="ltn__checkout-single-content-info">
+                                        <form action="#">
+                                            <h6>Información Personal</h6>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-name">
+                                                        <input type="text" name="ltn__name" placeholder="Nombre">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-name">
+                                                        <input type="text" name="ltn__lastname" placeholder="Apellido">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-email">
+                                                        <input type="email" name="ltn__email"
+                                                            placeholder="Correo electrónico">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-item input-item-phone">
+                                                        <input type="text" name="ltn__phone"
+                                                            placeholder="Número de teléfono">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h6>Dirección de envío</h6>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="input-item">
+                                                            <input type="text" placeholder="Calle">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-item">
+                                                            <input type="text" placeholder="N° de departamento">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4">
+                                                    <h6>Pueblo / Ciudad</h6>
+                                                    <div class="input-item">
+                                                        <input type="text" placeholder="Pueblo / Ciudad">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4">
+                                                    <h6>Código Postal</h6>
+                                                    <div class="input-item">
+                                                        <input type="text" placeholder="Código Postal">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4">
+                                                    <h6>Provincia </h6>
+                                                    <div class="input-item">
+                                                        <input type="text" placeholder="Provincia">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <h6 class="mt-3">Otras Notas (optional)</h6>
+                                    <div class="input-item input-item-textarea">
+                                        <textarea name="ltn__message"
+                                            placeholder="Notas sobre su pedido. Notas especiales para la entrega"></textarea>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="shopping-cart">
+            <div class="shopping-cart mb-2 mt-4">
 
-                <div class="column-labels">
+                <div class="column-labels mt-1">
                     <label class="product-image">Imagen</label>
                     <label class="product-details">Producto</label>
-                    <label class="product-price">Precio</label>
-                    <label class="product-quantity">Cantidad</label>
+                    <label class="product-price text-dark fs-5">Precio</label>
+                    <label class="product-quantity text-dark fs-5">Cantidad</label>
                     <label class="product-removal">Eliminar</label>
-                    <label class="product-line-price">Total</label>
+                    <label class="product-line-price text-dark fs-5">Total</label>
                 </div>
 
                 <div class="product d-flex align-items-center" v-for="carrito in gCarrito">
@@ -118,7 +187,7 @@
                     </div>
                     <div class="product-removal">
                         <button class="noselect" @click="removeItem(carrito)">
-                            <span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+                            <span class="text">Borrar</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
                                     width="24" height="24" viewBox="0 0 24 24">
                                     <path
                                         d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
@@ -130,220 +199,168 @@
                     <div class="product-line-price">{{formatMoney(carrito.precio * carrito.cantidad)}}</div>
                 </div>
 
-                <!-- <div class="totals">
-                <div class="totals-item">
-                    <label>Subtotal</label>
-                    <div class="totals-value" id="cart-subtotal">71.97</div>
-                </div>
-                <div class="totals-item">
-                    <label>Tax (5%)</label>
-                    <div class="totals-value" id="cart-tax">3.60</div>
-                </div>
-                <div class="totals-item">
-                    <label>Shipping</label>
-                    <div class="totals-value" id="cart-shipping">15.00</div>
-                </div>
-                <div class="totals-item totals-item-total">
-                    <label>Grand Total</label>
-                    <div class="totals-value" id="cart-total">90.57</div>
-                </div>
-            </div> -->
-
-                <!-- <button class="checkout">Checkout</button> -->
-
-                <div class="ltn__checkout-area mb-3 mt-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ltn__checkout-inner">
-                                    <div class="ltn__checkout-single-content mt-50">
-                                        <h4 class="title-2">Detalles de facturación</h4>
-                                        <div class="ltn__checkout-single-content-info">
-                                            <form action="#">
-                                                <h6>Información Personal</h6>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="input-item input-item-name">
-                                                            <input type="text" name="ltn__name" placeholder="Nombre">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="input-item input-item-name">
-                                                            <input type="text" name="ltn__lastname"
-                                                                placeholder="Apellido">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="input-item input-item-email">
-                                                            <input type="email" name="ltn__email"
-                                                                placeholder="Correo electrónico">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="input-item input-item-phone">
-                                                            <input type="text" name="ltn__phone"
-                                                                placeholder="Número de teléfono">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <h6>Dirección de envío</h6>
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="input-item">
-                                                                <input type="text" placeholder="Calle">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="input-item">
-                                                                <input type="text" placeholder="N° de departamento">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-4 col-md-4">
-                                                        <h6>Pueblo / Ciudad</h6>
-                                                        <div class="input-item">
-                                                            <input type="text" placeholder="Pueblo / Ciudad">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4">
-                                                        <h6>Código Postal</h6>
-                                                        <div class="input-item">
-                                                            <input type="text" placeholder="Código Postal">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4">
-                                                        <h6>Provincia </h6>
-                                                        <div class="input-item">
-                                                            <input type="text" placeholder="Provincia">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                <div class="row mt-5">
+                    <div class="col-lg-6">
+                        <div class="ltn__checkout-payment-method mt-50">
+                            <h4 class="title-2">Métodos de pago</h4>
+                            <div id="checkout_accordion_1">
+                                <div class="card">
+                                    <div class="d-flex gap-2">
+                                        <input class="form-check-input me-1" type="radio" id="efectivo" name="payment"
+                                            value="efectivo" v-model="medioDePago">
+                                        <label for="efectivo">
+                                            <h5> Efectivo</h5>
+                                        </label>
+                                    </div>
+                                    <div v-if="medioDePago=='efectivo'" class="card-body">
+                                        <p>Paga en efectivo en el momento de la entrega</p>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <input class="form-check-input me-1" type="radio" id="tarjeta"
+                                                name="payment" value="tarjeta" v-model="medioDePago">
+                                            <label for="tarjeta">
+                                                <h5>Tarjeta de crédito</h5>
+                                            </label>
                                         </div>
-                                        <h6 class="mt-3">Otras Notas (optional)</h6>
-                                        <div class="input-item input-item-textarea">
-                                            <textarea name="ltn__message"
-                                                placeholder="Notas sobre su pedido. Notas especiales para la entrega"></textarea>
+                                        <div v-if="medioDePago=='tarjeta'">
+                                            <i class="fa-brands fa-cc-mastercard fa-2x tarjetitas"></i>
+                                            <i class="fa-brands fa-cc-visa fa-2x tarjetitas"></i>
                                         </div>
-                                        </form>
+                                    </div>
+                                    <div v-if="medioDePago=='tarjeta'" class="card-body">
+                                        <p>Paga con una tarjeta de crédito VISA o MASTERCARD</p>
                                     </div>
                                 </div>
                             </div>
+                            <div class="d-flex gap-2">
+                                <input type="checkbox" name="" id="">
+                                <p>Aceptar términos y condiciones</p>
+                            </div>
+                            <div class="ltn__payment-note mt-30 mb-30">
+                            </div>
+                            <!-- Button trigger modal -->
+                            <button v-if="medioDePago=='efectivo'" type="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdropDebit"
+                                class="btn theme-btn-1 btn-effect-1 text-uppercase mt-2 mb-2" @click="">Realizar pedido
+                                de compra</button>
+
+
+                            <button v-if="medioDePago=='tarjeta'" type="button" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdropCredit"
+                                class="btn theme-btn-1 btn-effect-1 text-uppercase mt-2 mb-2" @click="">Realizar
+                                pago</button>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="ltn__checkout-payment-method mt-50">
-                                    <h4 class="title-2">Métodos de pago</h4>
-                                    <div id="checkout_accordion_1">
-                                        <div class="card">
-                                            <div class="d-flex gap-2">
-                                                <input class="form-check-input me-1" type="radio" id="efectivo"
-                                                    name="payment" value="efectivo" v-model="medioDePago">
-                                                <label for="efectivo">
-                                                    <h5> Efectivo</h5>
-                                                </label>
-                                            </div>
-                                            <div v-if="medioDePago=='efectivo'" class="card-body">
-                                                <p>Paga en efectivo en el momento de la entrega</p>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="d-flex gap-2">
-                                                <input class="form-check-input me-1" type="radio" id="tarjeta"
-                                                    name="payment" value="tarjeta" v-model="medioDePago">
-                                                <label for="tarjeta">
-                                                    <h5>Tarjeta de crédito</h5>
-                                                </label>
-                                            </div>
-                                            <div v-if="medioDePago=='tarjeta'" class="card-body">
-                                                <p>Paga con una tarjeta de crédito VISA o MASTERCARD</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="ltn__payment-note mt-30 mb-30">
-                                    </div>
-                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase mt-2 mb-2"
-                                        @click="">Realizar
-                                        Pedido</button>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="shoping-cart-total mt-4">
-                                    <h4>Total Compra</h4>
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>Subtotal</td>
-                                                <td>{{formatMoney(gTotalEnCarrito)}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Descuento obra social</td>
-                                                <td>$0</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cupon descuento</td>
-                                                <td>$0</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Total Orden</strong></td>
-                                                <td><strong>{{formatMoney(gTotalEnCarrito)}}</strong></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <!-- <div class="btn-wrapper text-right">
-                                        <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Proceder al checkout</a>
-                                    </div> -->
-                                </div>
-                                <!-- <div class="shoping-cart-total mt-50">
-                                    <h4 class="title-2">Total de carrito</h4>
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>-nombre prducto- <strong>cantidad</strong></td>
-                                                <td>precio</td>
-                                            </tr>                                                                        
-                                            <tr>
-                                                <td><strong>Orden Total</strong></td>
-                                                <td><strong>$633.00</strong></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> -->
-                            </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="shoping-cart-total mt-4">
+                            <h4>Total Compra</h4>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Subtotal</td>
+                                        <td>{{formatMoney(gTotalEnCarrito)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Descuento obra social</td>
+                                        <td>$0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cupon descuento</td>
+                                        <td>$0</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Total Orden</strong></td>
+                                        <td><strong>{{formatMoney(gTotalEnCarrito)}}</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- modal -->
+            <div class="modal fade" id="staticBackdropDebit" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Orden de compra</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary">Descargar</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdropCredit" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Pagar con tarjeta</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col1">
+                                    <div class="card">
+                                        <div class="front">
+                                            <div class="type">
+                                                <img class="bankid" />
+                                            </div>
+                                            <span class="chip"></span>
+                                            <span class="card_number">&#x25CF;&#x25CF;&#x25CF;&#x25CF;
+                                                &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF;
+                                                &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
+                                            <div class="date"><span class="date_value">MM / YYYY</span></div>
+                                            <span class="fullname">FULL NAME</span>
+                                        </div>
+                                        <div class="back">
+                                            <div class="magnetic"></div>
+                                            <div class="bar"></div>
+                                            <span class="seccode">&#x25CF;&#x25CF;&#x25CF;</span>
+                                            <span class="chip"></span><span class="disclaimer">This card is property of
+                                                Random Bank of Random corporation. <br> If found please return to Random
+                                                Bank of Random corporation - 21968 Paris, Verdi Street, 34 </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col2">
+                                    <form @submit.prevent="generarPago">
+                                        <label>Card Number</label>
+                                        <input required v-model="cardnumber" class="number" type="text" ng-model="ncard"
+                                            maxlength="19"
+                                            onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                        <label>Cardholder name</label>
+                                        <input required class="inputname" type="text" placeholder="" />
+                                        <label>Expiry date</label>
+                                        <input required class="expire" type="text" placeholder="MM / YYYY" />
+                                        <label>Security Number</label>
+                                        <input required v-model="securityCode" class="ccv" type="text" placeholder="CVC"
+                                            maxlength="3"
+                                            onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                        <button class="buy" type="submit"
+                                            :disabled="cardnumber!='null' && securityCode != 'null' && amount != 0">
+                                            <i class="material-icons"></i>
+                                            Pagar {{formatMoney(gTotalEnCarrito)}} $</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 
-            <!-- <div class="shoping-cart-total mt-50">
-                <h4>Total Compra</h4>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td>Subtotal</td>
-                            <td>${{gTotalEnCarrito}}</td>
-                        </tr>
-                        <tr>
-                            <td>Descuento obra social</td>
-                            <td>$0</td>
-                        </tr>
-                        <tr>
-                            <td>Cupon descuento</td>
-                            <td>$0</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Total Orden</strong></td>
-                            <td><strong>${{gTotalEnCarrito}}</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="btn-wrapper text-right">
-                    <a href="checkout.html" class="theme-btn-1 btn btn-effect-1">Proceder al checkout</a>
+                    </div>
                 </div>
-            </div> -->
-
+            </div>
         </div>
         <footer class="footer-container mt-5">
             <div class="me-3">
@@ -404,6 +421,7 @@
     <!-- SWEET ALERT -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- ARCHIVO JS -->
+    <script src="./scripts/payments.js"></script>
     <script src="./scripts/carrito.js"></script>
 </body>
 

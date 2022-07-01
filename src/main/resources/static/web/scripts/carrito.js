@@ -1,7 +1,7 @@
 const app = Vue.createApp({
     data() {
         return {
-
+            paciente: [],
             datosCards: [],
 
             gProductosEnStorage: [],
@@ -11,6 +11,12 @@ const app = Vue.createApp({
 
             gTotalEnCarrito: 0,
             medioDePago: "", // Precio total de la compra (sub-total)
+
+            cardnumber: "",
+            securityCode: "",
+            amount: 0,
+
+
         }
     },
 
@@ -60,6 +66,12 @@ const app = Vue.createApp({
             })
             .catch(error => console.log(error))
         // this.generarCompra()
+
+        axios.get("/api/pacientes/autenticado")
+            .then(response => {
+                this.paciente = response.data;
+                console.log(this.paciente)
+            })
     },
 
     methods: {
@@ -109,26 +121,21 @@ const app = Vue.createApp({
         },
 
         generarCompra() {
-            // console.log(this.gCarrito.forEach(producto => console.log(producto)))
 
             let productoss = [];
             this.gCarrito.forEach(producto => {
-                // console.log(producto)
+
                 let aux = {
                     idProducto: parseInt(producto.id),
                     cantidad: parseInt(producto.cantidad)
                 }
                 productoss.push(aux)
-                console.log(aux)
             })
-            console.log(productoss)
 
             let objt = {
                 servicios: [],
                 productos: productoss
             }
-            console.log(objt)
-
 
             axios.post('/api/facturas/create', objt)
                 .then(response => {
@@ -137,7 +144,42 @@ const app = Vue.createApp({
 
                     // SE ACTUALIZA EL LOCAL STORAGE CON EL ARRAY MODIFICADO SI FUESE EL CASO
                     this.productosEnStorage = this.gCarrito
-                    localStorage.setItem("carrito", JSON.stringify(this.gProductosEnStorage))
+                    localStorage.setItem("carrito", JSON.stringify(this.productosEnStorage))
+
+                    Swal.fire({
+                        title: 'Pago aprobado!',
+                        icon: 'success',
+                        html: '<p>Tu pago ha sido aprobado, por favor verifique su cuenta.</p>',
+                        confirmButtonText: 'Ir a tienda',
+                        showDenyButton: true,
+                        denyButtonText: `Descargar comprobante`,
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            window.location.href = "./pacientes.html"
+                        } else if (result.isDenied) {
+                            axios.post('/api/facturas/descargar', `id=${this.paciente.id}`, {
+                                    'responseType': 'blob'
+                                })
+                                .then(response => {
+                                    let url = window.URL.createObjectURL(new Blob([response.data]))
+                                    let link = document.createElement("a")
+                                    link.href = url;
+                                    link.setAttribute("download", `Comprobante_Compra_${new Date().toISOString().slice(0, 10)}.pdf`)
+                                    document.body.appendChild(link)
+                                    link.click()
+                                })
+
+                                .catch(error => {
+
+                                    Swal.fire('Download Failed', '', 'error')
+                                        .then(result => {
+                                            window.location.reload()
+                                        })
+                                })
+                        }
+                    })
+
                 })
                 .catch(error => {
                     console.log(error.response)
@@ -174,9 +216,68 @@ const app = Vue.createApp({
             //         {"idProducto":1,"cantidad":1},
             //         {"idProducto":3,"cantidad":2} ]
             //     }
+        },
+
+        generarPago() {
+
+            console.log({
+                numberCard: this.cardnumber.replace(/\s+/g, ''),
+                cvv: parseInt(this.securityCode),
+                amount: this.gTotalEnCarrito,
+                description: `Compra tienda Medihub`
+            });
+
+            Swal.fire({
+                title: 'Estas seguro?',
+                text: "Una vez confirmado el pago, no hay reembolso",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Confirmar pago!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    let config = {
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                        }
+                    }
+                    let paymentDTO = {
+                        numberCard: this.cardnumber.replace(/\s+/g, ''),
+                        cvv: parseInt(this.securityCode),
+                        amount: this.gTotalEnCarrito,
+                        description: `Compra tienda Medihub`
+                    }
+                    let path = "https://danobank.herokuapp.com/api/transactions/payment"
+                    axios.post(path, paymentDTO, config)
+
+                        .then(response => {
+                            this.generarCompra()
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                title: 'Error en la compra!',
+                                icon: 'error',
+                                html: `<p>Your payment has been rejected
+                                , ${error.response.data}</p>`,
+                                confirmButtonText: 'Reintentar',
+                                showCancelButton: true,
+                                cancelButtonText: "Cancelar"
+                            }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+
+                                } else {
+                                    window.location.href = './index.html'
+                                }
+                            })
+                        })
+                }
+            })
+
         }
-
-
 
 
     },

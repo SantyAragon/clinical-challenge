@@ -72,7 +72,7 @@
 .row_turno {
   display: flex;
   align-items: center;
-  background: #50f1bc;
+  background: #aae4f7;
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0px 16px 25px -10px rgba(83, 92, 181, 0.25);
@@ -169,6 +169,21 @@ table th {
   cursor: pointer;
 }
 
-.sb-sidenav-color {
-  background-color: #27debf;
+
+.product-image {
+  width: 20%;
+}
+
+.product-image img {
+  height: 100px;
+  width: 100px;
+  border-radius: 10%;
+}
+
+/* Make adjustments for tablet */
+@media screen and (max-width: 650px) {
+
+  .product-image img {
+    margin: 0 0 10px 10px;
+  }
 }

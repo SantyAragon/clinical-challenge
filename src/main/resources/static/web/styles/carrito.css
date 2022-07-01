@@ -89,8 +89,8 @@ label {
 
 /* Column headers */
 .column-labels label {
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
     border-bottom: 1px solid #eee;
 }
 
@@ -199,6 +199,10 @@ label {
         float: right;
         width: auto;
     }
+    .product-details {
+        display: none;
+    }
+
 
     .product-image img {
         margin: 0 0 10px 10px;
@@ -334,7 +338,7 @@ footer {
     height: 55px;
     flex-wrap: wrap;
     box-shadow: 0 8px 20px rgba(43, 43, 43, 0.2);
-    width: 100vw;
+    max-width: 100vw;
     background-color: #77C7C9;
     color: white;
 }
@@ -437,50 +441,139 @@ header {
 /* NAV */
 
 .logo {
-    /* position: fixed; */
+    position: fixed;
     float: left;
-    /* margin: 16px 36px; */
+    margin: 16px 36px;
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  nav {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;;
+  }
+  
+  nav ul {
+    list-style: none;
+    background: rgba(0,0,0,0);
+    overflow: hidden;
+    color: black;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+    transition: 1s;
+  }
+  
+  nav.black ul {
+    background: #000;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    padding: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+  }
+  
+  /*Menu icon CSS*/
+  .menu-icon {
+    width: 100%;
+    background: #000;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 15px 24px;
+    cursor: pointer;
+    color: black;
+    display: none;
+  }
+  
+  /*Responsive design CSS*/
+  @media(max-width: 580px) {
+    .logo {
+      position: fixed;
+      top: 0;
+      margin-top: 16px;
+    }
+    
+    nav ul {
+      max-height: 0px;
+      background: #000;
+    }
+    
+    nav.black ul {
+      background: #000;
+    }
+    
+    .showing {
+      max-height: 20em;
+    }
+  
+    nav ul li {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 24px 0px;
+      text-align: center;
+    }
+    
+    .menu-icon {
+      display: block;
+      color: #000;
+      background-color: white;
+    }
+  }
+  
+  /* .logo {
+    position: fixed;
+    float: left;
+    margin: 16px 36px;
     color: #fff;
     font-weight: bold;
     font-size: 24px;
-}
-
-
-nav {
-    position: relative;
+  }
+  
+  
+  nav {
+    position: fixed;
     width: 100vw;
     height: 80px;
     z-index: 1000;
-}
-
-nav ul {
+  }
+  
+  nav ul {
     list-style: none;
     background: rgba(0, 0, 0, 0);
     overflow: hidden;
     color: #fff;
     padding: 0;
-    /* text-align: center; */
+    text-align: center;
     margin: 0;
     transition: 1s;
-}
-
-nav.black ul {
+  }
+  
+  nav.black ul {
     background: rgba(0, 0, 0, 0.5);
-}
-
-nav ul li {
+  }
+  
+  nav ul li {
     display: inline-block;
-    padding: 10px;
-}
-
-nav ul li a {
+    padding: 20px;
+  }
+  
+  nav ul li a {
     text-decoration: none;
-    color: black;
+    color: #fff;
     font-size: 20px;
-}
-
-/*MENU ICON*/
-.menu-icon {
+  } */
+  
+  /*MENU ICON*/
+  /* .menu-icon {
     width: 100%;
     background: #000;
     text-align: right;
@@ -489,44 +582,44 @@ nav ul li a {
     cursor: pointer;
     color: #fff;
     display: none;
-}
-
-/*RESPONSIVE NAV*/
-@media(max-width: 580px) {
+  } */
+  
+  /*RESPONSIVE NAV*/
+  /* @media(max-width: 580px) {
     .logo {
-        position: fixed;
-        top: 0;
-        margin-top: 16px;
+      position: fixed;
+      top: 0;
+      margin-top: 16px;
     }
-
+  
     nav ul {
-        max-height: 0px;
-        background: #000;
+      max-height: 0px;
+      background: #000;
     }
-
+  
     nav.black ul {
-        background: #000;
+      background: #000;
     }
-
+  
     .showing {
-        max-height: 20em;
+      max-height: 20em;
     }
-
+  
     nav ul li {
-        box-sizing: border-box;
-        width: 100%;
-        padding: 24px 0px;
-        text-align: center;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 24px 0px;
+      text-align: center;
     }
-
+  
     .menu-icon {
-        display: block;
+      display: block;
     }
-}
-
-/* SCROLL UP */
-
-#return-to-top {
+  } */
+  
+  /* SCROLL UP */
+  
+  #return-to-top {
     cursor: pointer;
     position: fixed;
     bottom: 20px;
@@ -540,9 +633,9 @@ nav ul li a {
     border-radius: 35px;
     display: none;
     transition: all 0.3s ease;
-}
-
-#return-to-top i {
+  }
+  
+  #return-to-top i {
     color: #fff;
     margin: 0;
     position: relative;
@@ -550,16 +643,16 @@ nav ul li a {
     top: 13px;
     font-size: 19px;
     transition: all 0.3s ease;
-}
-
-#return-to-top:hover {
+  }
+  
+  #return-to-top:hover {
     background: rgba(0, 0, 0, 0.9);
-}
-
-#return-to-top:hover i {
+  }
+  
+  #return-to-top:hover i {
     color: #fff;
     top: 5px;
-}
+  }
 
 /* SCROLLBAR */
 
@@ -582,10 +675,15 @@ body::-webkit-scrollbar-thumb {
 
 .div-imagen {
     height: 30vh;
-    background-image: url(.assets/farmacia.jpg);
+    background-image: url(./assets/farmacia.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.tarjetitas{
+    color: #000;
+    margin: 0 5px;
 }
 
 /* From uiverse.io */

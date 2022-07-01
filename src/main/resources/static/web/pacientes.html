@@ -20,13 +20,13 @@
   <!-- LINK FAVICON -->
   <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon" />
 
-  
+
   <!-- LINK ANIMATE AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  
+
   <!-- JQUERY -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  
+
   <!-- CSS -->
   <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
   <link rel="stylesheet" href="./styles/admin.css">
@@ -65,7 +65,7 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
           <div class="py-2 px-3  bg-dark">
             <div class="media d-flex align-items-center">
-              <img src="./assets/logo-medihub.png" style="width:150px ;">
+              <img src="./assets/logo-medihub-blanco.png" style="width:150px ;">
             </div>
           </div>
           <div class="sb-sidenav-menu">
@@ -108,13 +108,19 @@
                 </div>
                 Mi cuenta
               </a>
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="#" @click="verMisTurnos">
+                <div class="sb-nav-link-icon">
+                  <i class="fas fa-address-card mr-3 fa-fw"></i>
+                </div>
+                Mis Turnos
+              </a>
+              <a class="nav-link" href="#" @click="verProductosComprados">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-cubes mr-3 fa-fw"></i>
                 </div>
                 Productos comprados
               </a>
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="#" @click="verServiciosTomados">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-cubes mr-3 fa-fw"></i>
                 </div>
@@ -126,7 +132,7 @@
           <div class="form-check form-switch d-flex justify-content-center align-items-start">
             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
               v-model="switchNoche" @change="modoNoche" />
-            <label class="form-check-label" for="flexSwitchCheckDefault">Modo Noche</label>
+            <label class="form-check-label" for="flexSwitchCheckDefault">Modo Nocturno</label>
           </div>
           <div class="bg-danger sb-sidenav-footer">
             <div class="text-white d-flex justify-content-center cerrarSesion small" @click="logOut">Cerrar sesión</div>
@@ -163,26 +169,28 @@
 
               <div class="div_listado_fichas container mt-5">
 
-                <div class="row row_turno mb-5" v-for="turno in turnos" v-show="getProximoTurno(turno.fecha)">
+                <div class="row row_turno mb-5 w-75" v-for="turno in turnos" v-show="getProximoTurno(turno.fecha)">
                   <!-- v-for turno in turnos -->
                   <div class="col-lg-9">
                     <div class="row" data-alt="">
                       <div class="col col-lg-12 mb-2">
-                        <span class="ribbon">Turno en {{getLessDay(turno.fecha)}} dias</span>
+                        <span class="ribbon">Proximo turno en {{getLessDay(turno.fecha)}} dias</span>
+                      </div>
+                      <div class="col col-lg-12 mb-2">
                         <i class="fa-solid fa-calendar-check"></i>
-                        <span>{{formatearFecha(turno.fecha)}}</span>
+                        <span class="fs-5 ms-2">{{formatearFecha(turno.fecha)}}</span>
                       </div>
                       <div class="col col-lg-12 mb-2">
                         <i class="fa-solid fa-circle-user"></i>
-                        <span>{{turno.profesional}}</span>
+                        <span class="fs-5 ms-2">{{turno.profesional}}</span>
                       </div>
                       <div class="col col-lg-12 text-sm-right mb-2">
                         <i class="fa-solid fa-stethoscope"></i>
-                        <span>{{turno.servicio}}</span>
+                        <span class="fs-5 ms-2">{{turno.servicio}}</span>
                       </div>
                       <div class="col col-lg-12 text-sm-right mb-2">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <span>La Plata - Buenos Aires</span>
+                        <span class="ms-2">La Plata - Buenos Aires</span>
                       </div>
                     </div>
                   </div>
@@ -190,12 +198,12 @@
                     <div class="row">
                       <div class="col text-center col-sm-12 mb-3">
                         <button class="btn btn-primary btn-boxed btn_reminder" type="button">
-                          <i class="fa-solid fa-file-circle-question"></i> Recordatorio (imprimir pdf del turno)
+                          <i class="fa-solid fa-file-circle-question"></i> Recordatorio
                         </button>
                       </div>
                       <div class="col text-center col-sm-12">
                         <button class="btn btn-danger btn-boxed btn_cancel" type="button">
-                          <i class="fa-solid fa-circle-xmark"></i> Cancelar turno (cancelar turno)
+                          <i class="fa-solid fa-circle-xmark"></i> Cancelar turno
                         </button>
                       </div>
                     </div>
@@ -205,6 +213,7 @@
             </div>
           </div>
 
+          <!-- VER SERVICIOS -->
           <div id="contenedorParaTurnos" v-show="gVistaWeb == 1" class="container mt-5">
             <h3>Servicios disponibles</h3>
             <button @click="volverAtras" class="btn btn-success btn-lg-derecha btn-nuevo_turno mb-5" type="button">
@@ -234,6 +243,7 @@
             </table>
           </div>
 
+          <!-- VER PROFESIONALES -->
           <div v-show="gVistaWeb == 2" class="container mt-5">
             <h3>Profesionales disponibles</h3>
             <button @click="volverAtras" class="btn btn-success btn-lg-derecha btn-nuevo_turno mb-5" type="button">
@@ -253,8 +263,8 @@
                   <td data-label="Id">{{profesional.id}}</td>
                   <td data-label="Profesional">{{profesional.nombre}} {{profesional.apellido}}</td>
                   <td data-label="Especialidad">{{profesional.especialidad}}</td>
-                  <td data-label="Solicitar Turno"><button class="btn btn-success datepicker" id="selectCalendar" @click="openCalendar(profesional)" type="button"
-                      >
+                  <td data-label="Solicitar Turno"><button class="btn btn-success datepicker" id="selectCalendar"
+                      @click="openCalendar(profesional)" type="button">
                       <i class="fa-solid fa-calendar-days"></i> Solicitar
                     </button></td>
                 </tr>
@@ -263,6 +273,7 @@
             </table>
           </div>
 
+          <!-- CONFIRMACION DE TURNO -->
           <div v-show="gVistaWeb == 3" class="container mt-5">
             <h3>Confirmación de Turno</h3>
             <button @click="volverAtras" class="btn btn-success btn-lg-derecha btn-nuevo_turno mb-5" type="button">
@@ -301,9 +312,8 @@
                       <option value="18">18:00hs</option>
                     </select>
                   </td>
-                  <td data-label="Solicitar Turno"><button class="btn btn-success" @click="confirmarTurno" type="button"
-                      >
-                      <i class="fa-solid fa-calendar-days"></i> Confirmar Turno
+                  <td data-label="Solicitar Turno"><button class="btn btn-success" @click="generarTurno" type="button">
+                      <i class="fa-solid fa-calendar-days"></i> Abonar Turno
                     </button></td>
                 </tr>
 
@@ -311,6 +321,56 @@
             </table>
           </div>
 
+
+          <!-- PRODUCTOS COMPRADOS -->
+          <div v-show="gVistaWeb == 5" class="container mt-5">
+            <h3>Mis Productos Comprados</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Img</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Monto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="producto in paciente.productos">
+                  <td data-label="img" class="product-image">
+                      <img :src="producto.imagen">
+                  </td>
+                  <td data-label="fecha">{{formatFecha(producto.fecha)}}</td>
+                  <td data-label="servicio">{{producto.nombre}}</td>
+                  <td data-label="monto">{{formatMoney(producto.monto)}}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SERVICIOS TOMADOS -->
+          <div v-show="gVistaWeb == 6" class="container mt-5">
+            <h3>Mis Servicios</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Servicio</th>
+                  <th scope="col">Profesional</th>
+                  <th scope="col">Monto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="servicio in paciente.servicios">
+                  <td data-label="fecha">{{formatFecha(servicio.fecha)}}</td>
+                  <td data-label="servicio">{{servicio.servicio}}</td>
+                  <td data-label="servicio">{{servicio.profesional}}</td>
+                  <td data-label="monto">{{formatMoney(servicio.monto)}}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
 
         </main>
       </div>
@@ -379,10 +439,10 @@
   <!-- FILE JS -->
   <script src="./scripts/pacientes.js"></script>
 
-  
+
   <!-- SWEET ALERT -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
+
   <!-- ANIMATE AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>

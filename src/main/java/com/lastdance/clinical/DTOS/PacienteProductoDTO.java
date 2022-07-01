@@ -13,6 +13,7 @@ public class PacienteProductoDTO {
     private int cantidad;
     private Double monto;
     private LocalDateTime fecha;
+    private String imagen;
 
     public PacienteProductoDTO() {
     }
@@ -24,6 +25,7 @@ public class PacienteProductoDTO {
         this.monto = pacienteProducto.getMonto();
         this.fecha = pacienteProducto.getFecha();
         this.nombre = pacienteProducto.getProducto().getNombre();
+        this.imagen = pacienteProducto.getProducto().getImagen();
     }
 
 
@@ -51,4 +53,7 @@ public class PacienteProductoDTO {
         return fecha;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
 }

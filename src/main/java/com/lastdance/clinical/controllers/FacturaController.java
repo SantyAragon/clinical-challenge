@@ -108,7 +108,7 @@ public class FacturaController {
     }
 
     @PostMapping("/facturas/descargar")
-    public ResponseEntity<Object> generatePdf(HttpServletResponse response, Authentication authentication) throws DocumentException, IOException {
+    public ResponseEntity<Object> generatePdf(HttpServletResponse response, @RequestParam Long id) throws DocumentException, IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-mm-dd:hh:mm");
         String currentDateTime = dateFormatter.format(new Date());
@@ -117,7 +117,8 @@ public class FacturaController {
         String headerValue = "attachment; filename=medihub-factura-" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
+//        Paciente paciente = pacienteService.traerPacientePorEmail(authentication.getName());
+        Paciente paciente = pacienteService.traerPaciente(id);
         Factura factura = paciente.getFacturas().stream().max(Comparator.comparing(Factura::getId)).orElse(null);
 
         assert factura != null;
