@@ -12,7 +12,7 @@ const app = Vue.createApp({
             gTotalEnCarrito: 0,
             medioDePago: "", // Precio total de la compra (sub-total)
 
-            cardnumber: "",
+            cardnumber:"",
             securityCode: "",
             amount: 0,
 
