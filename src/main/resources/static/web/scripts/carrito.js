@@ -1,7 +1,7 @@
 const app = Vue.createApp({
     data() {
         return {
-
+            paciente: [],
             datosCards: [],
 
             gProductosEnStorage: [],
@@ -66,6 +66,12 @@ const app = Vue.createApp({
             })
             .catch(error => console.log(error))
         // this.generarCompra()
+
+        axios.get("/api/pacientes/autenticado")
+            .then(response => {
+                this.paciente = response.data;
+                console.log(this.paciente)
+            })
     },
 
     methods: {
@@ -145,12 +151,32 @@ const app = Vue.createApp({
                         icon: 'success',
                         html: '<p>Tu pago ha sido aprobado, por favor verifique su cuenta.</p>',
                         confirmButtonText: 'Ir a tienda',
+                        showDenyButton: true,
+                        denyButtonText: `Descargar comprobante`,
                     }).then((result) => {
                         /* Read more about isConfirmed, isDenied below */
                         if (result.isConfirmed) {
                             window.location.href = "./pacientes.html"
-                        } else {
-                            window.location.href = './index.html'
+                        } else if (result.isDenied) {
+                            axios.post('/api/facturas/descargar', `id=${this.paciente.id}`, {
+                                    'responseType': 'blob'
+                                })
+                                .then(response => {
+                                    let url = window.URL.createObjectURL(new Blob([response.data]))
+                                    let link = document.createElement("a")
+                                    link.href = url;
+                                    link.setAttribute("download", `Comprobante_Compra_${new Date().toISOString().slice(0, 10)}.pdf`)
+                                    document.body.appendChild(link)
+                                    link.click()
+                                })
+
+                                .catch(error => {
+
+                                    Swal.fire('Download Failed', '', 'error')
+                                        .then(result => {
+                                            window.location.reload()
+                                        })
+                                })
                         }
                     })
 
