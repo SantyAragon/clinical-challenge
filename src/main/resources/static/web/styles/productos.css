@@ -1062,16 +1062,18 @@ header {
 /* NAV */
 
 .logo {
-    position: fixed;
+    position: absolute;
     float: left;
+    top: 20px;
     margin: 16px 36px;
     color: #fff;
+    color: black;
     font-weight: bold;
     font-size: 28px;
 }
 
 nav {
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 80px;
     z-index: 1000;
@@ -1220,4 +1222,27 @@ body::-webkit-scrollbar-thumb {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.boton-login {
+    display: flex;
+    justify-content: center;
+    float: right;
+    padding: 5px;
+    font-size: 1.5em;
+    margin-right: 35px;
+    width: 80px;
+    cursor: pointer;
+    border: 0px;
+    transition: all .25s ease;
+    background: #24cdb1;
+    color: #fff;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.carrito-li {
+    position: absolute;
+    padding-top: 0;
+    margin-top: 0;
 }

@@ -168,6 +168,7 @@ const app = Vue.createApp({
                                     link.setAttribute("download", `Comprobante_Compra_${new Date().toISOString().slice(0, 10)}.pdf`)
                                     document.body.appendChild(link)
                                     link.click()
+                                    setTimeout(window.location.href = "./pacientes.html", 5000)
                                 })
 
                                 .catch(error => {

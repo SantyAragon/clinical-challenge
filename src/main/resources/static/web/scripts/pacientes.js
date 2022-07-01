@@ -42,8 +42,8 @@ const app = Vue.createApp({
           el: '#selectCalendar',
           bodyType: 'modal',
           disableWeekends: true,
-          minDate: new Date(2022, 5, 30),
-          selectedDate: new Date(2022, 5, 30),
+          minDate: new Date(2022, 6, 1),
+          selectedDate: new Date(2022, 6, 1),
         })
 
         this.myDatePicker.onClose(() => {
@@ -70,18 +70,21 @@ const app = Vue.createApp({
   },
 
   methods: {
-    verMisTurnos(){
+    sortear(array) {
+      return array.sort((a, b) => a.id - b.id);
+    },
+    verMisTurnos() {
       this.gVistaWeb = 0;
     },
 
-    verProductosComprados(){
+    verProductosComprados() {
       this.gVistaWeb = 5;
     },
-    verServiciosTomados(){
+    verServiciosTomados() {
       this.gVistaWeb = 6;
     },
 
-    formatFecha(fecha){
+    formatFecha(fecha) {
       let date = new Date(fecha);
       result = date.toLocaleString();
       return result;

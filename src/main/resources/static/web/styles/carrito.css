@@ -199,6 +199,7 @@ label {
         float: right;
         width: auto;
     }
+
     .product-details {
         display: none;
     }
@@ -343,13 +344,13 @@ footer {
     color: white;
 }
 
-.iconos-redes{
+.iconos-redes {
     margin-right: 25px;
-  }
-  
-  .iconos-redes svg {
+}
+
+.iconos-redes svg {
     display: inline;
-  }
+}
 
 @media screen and (max-width: 450px) {
     footer {
@@ -441,49 +442,50 @@ header {
 /* NAV */
 
 .logo {
-    position: fixed;
+    position: absolute;
     float: left;
     margin: 16px 36px;
     color: black;
     font-weight: bold;
     font-size: 24px;
-  }
-  
-  nav {
-    position: fixed;
+}
+
+nav {
+    position: absolute;
     width: 100%;
     height: 80px;
-    z-index: 1000;;
-  }
-  
-  nav ul {
+    z-index: 1000;
+    ;
+}
+
+nav ul {
     list-style: none;
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     overflow: hidden;
     color: black;
     padding: 0;
     text-align: center;
     margin: 0;
     transition: 1s;
-  }
-  
-  nav.black ul {
+}
+
+nav.black ul {
     background: #000;
-  }
-  
-  nav ul li {
+}
+
+nav ul li {
     display: inline-block;
     padding: 20px;
-  }
-  
-  nav ul li a {
+}
+
+nav ul li a {
     text-decoration: none;
     color: black;
     font-size: 20px;
-  }
-  
-  /*Menu icon CSS*/
-  .menu-icon {
+}
+
+/*Menu icon CSS*/
+.menu-icon {
     width: 100%;
     background: #000;
     text-align: right;
@@ -492,44 +494,44 @@ header {
     cursor: pointer;
     color: black;
     display: none;
-  }
-  
-  /*Responsive design CSS*/
-  @media(max-width: 580px) {
+}
+
+/*Responsive design CSS*/
+@media(max-width: 580px) {
     .logo {
-      position: fixed;
-      top: 0;
-      margin-top: 16px;
+        position: fixed;
+        top: 0;
+        margin-top: 16px;
     }
-    
+
     nav ul {
-      max-height: 0px;
-      background: #000;
+        max-height: 0px;
+        background: #000;
     }
-    
+
     nav.black ul {
-      background: #000;
+        background: #000;
     }
-    
+
     .showing {
-      max-height: 20em;
+        max-height: 20em;
     }
-  
+
     nav ul li {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 24px 0px;
-      text-align: center;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 24px 0px;
+        text-align: center;
     }
-    
+
     .menu-icon {
-      display: block;
-      color: #000;
-      background-color: white;
+        display: block;
+        color: #000;
+        background-color: white;
     }
-  }
-  
-  /* .logo {
+}
+
+/* .logo {
     position: fixed;
     float: left;
     margin: 16px 36px;
@@ -571,9 +573,9 @@ header {
     color: #fff;
     font-size: 20px;
   } */
-  
-  /*MENU ICON*/
-  /* .menu-icon {
+
+/*MENU ICON*/
+/* .menu-icon {
     width: 100%;
     background: #000;
     text-align: right;
@@ -583,9 +585,9 @@ header {
     color: #fff;
     display: none;
   } */
-  
-  /*RESPONSIVE NAV*/
-  /* @media(max-width: 580px) {
+
+/*RESPONSIVE NAV*/
+/* @media(max-width: 580px) {
     .logo {
       position: fixed;
       top: 0;
@@ -616,10 +618,10 @@ header {
       display: block;
     }
   } */
-  
-  /* SCROLL UP */
-  
-  #return-to-top {
+
+/* SCROLL UP */
+
+#return-to-top {
     cursor: pointer;
     position: fixed;
     bottom: 20px;
@@ -633,9 +635,9 @@ header {
     border-radius: 35px;
     display: none;
     transition: all 0.3s ease;
-  }
-  
-  #return-to-top i {
+}
+
+#return-to-top i {
     color: #fff;
     margin: 0;
     position: relative;
@@ -643,16 +645,16 @@ header {
     top: 13px;
     font-size: 19px;
     transition: all 0.3s ease;
-  }
-  
-  #return-to-top:hover {
+}
+
+#return-to-top:hover {
     background: rgba(0, 0, 0, 0.9);
-  }
-  
-  #return-to-top:hover i {
+}
+
+#return-to-top:hover i {
     color: #fff;
     top: 5px;
-  }
+}
 
 /* SCROLLBAR */
 
@@ -681,7 +683,7 @@ body::-webkit-scrollbar-thumb {
     background-repeat: no-repeat;
 }
 
-.tarjetitas{
+.tarjetitas {
     color: #000;
     margin: 0 5px;
 }
