@@ -1102,6 +1102,14 @@ header {
     font-size: 20px;
   }
   
+  .menu {
+    max-height: 5rem;
+  }
+
+  .menu ul {
+    max-height: 5rem;
+  }
+
   /*MENU ICON*/
   .menu-icon {
     width: 100%;
