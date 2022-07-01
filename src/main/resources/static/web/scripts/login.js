@@ -187,7 +187,7 @@ const app = Vue.createApp({
             Swal.fire({
               position: 'top-end',
               icon: 'error',
-              title: error.response.data.message,
+              title: "Contraseña o Email Incorrectos",
               toast: true,
               showConfirmButton: false,
               timer: 1500
