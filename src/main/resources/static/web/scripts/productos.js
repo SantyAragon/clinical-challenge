@@ -113,7 +113,7 @@ const app = Vue.createApp({
           Swal.fire({
             title: 'Productos sumados',
             toast: true,
-            position: 'top-start',
+            position: 'top-end',
             icon: 'success'
           })
 
@@ -206,6 +206,13 @@ const app = Vue.createApp({
       if (!id_card.classList.contains('esFav')) {
         id_card.classList.add('esFav');
         this.gCarritoFavs.push(card);
+
+        Swal.fire({
+          title: 'Añadido a favorito!',
+          toast: true,
+          position: 'top-end',
+          icon: 'success'
+        })
       } else {
         id_card.classList.remove('esFav');
         this.gCarritoFavs = this.gCarritoFavs.filter(prod => prod.id != card.id);
