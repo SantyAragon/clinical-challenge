@@ -96,6 +96,31 @@ section {
   z-index: 2;
 }
 
+.icon-heart {
+  color: #00deb9c4;
+  animation-name: heart_beat;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes heart_beat {
+  from { 
+
+      transform: scale(0.5); 
+
+  }
+  50% {
+
+      transform: scale(1); 
+
+    }
+
+  to {
+      transform: scale(0.5); 
+      
+      }
+}
+
 
 /* LOADER */
 
