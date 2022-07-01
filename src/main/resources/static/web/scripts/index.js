@@ -9,34 +9,34 @@ const app = Vue.createApp({
   mounted() {
 
     //Menu toggle-button for small screens
-$(document).ready(function (){
-  $(".menu-icon").on("click", function() {
-    $("nav ul").toggleClass("showing");
-  });
-});
+    $(document).ready(function () {
+      $(".menu-icon").on("click", function () {
+        $("nav ul").toggleClass("showing");
+      });
+    });
 
-//Scrolling Effect for nav
-$(window).on("scroll", function() {
-  if($(window).scrollTop()) {
-    $('nav').addClass('black');
-  } else {
-    $('nav').removeClass('black');
-  }
-});
+    //Scrolling Effect for nav
+    $(window).on("scroll", function () {
+      if ($(window).scrollTop()) {
+        $('nav').addClass('black');
+      } else {
+        $('nav').removeClass('black');
+      }
+    });
 
-//smooth scrolling
-$('.smoothscroll').on('click',function (e) {
-  e.preventDefault();
+    //smooth scrolling
+    $('.smoothscroll').on('click', function (e) {
+      e.preventDefault();
 
-  var target = this.hash,
-  $target = $(target);
+      var target = this.hash,
+        $target = $(target);
 
-  $('html, body').stop().animate({
-      'scrollTop': $target.offset().top
-  }, 800, 'swing', function () {
-      window.location.hash = target;
-  });
-});
+      $('html, body').stop().animate({
+        'scrollTop': $target.offset().top
+      }, 800, 'swing', function () {
+        window.location.hash = target;
+      });
+    });
 
     //Ripples effect -> cambiar efecto
     $('.header-container').ripples({
@@ -46,16 +46,16 @@ $('.smoothscroll').on('click',function (e) {
 
     // ===== Scroll to Top ==== 
     $(window).scroll(function () {
-      if ($(this).scrollTop() >= 1080) {        // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(500);    // Fade in the arrow
+      if ($(this).scrollTop() >= 1080) { // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(500); // Fade in the arrow
       } else {
-        $('#return-to-top').fadeOut(500);   // Else fade out the arrow
+        $('#return-to-top').fadeOut(500); // Else fade out the arrow
       }
     });
 
-    $('#return-to-top').click(function () {      // When arrow is clicked
+    $('#return-to-top').click(function () { // When arrow is clicked
       $('body,html').animate({
-        scrollTop: 0                       // Scroll to top of body
+        scrollTop: 0 // Scroll to top of body
       }, 500);
     });
 
@@ -88,7 +88,10 @@ $('.smoothscroll').on('click',function (e) {
       $(this).tab('show')
     })
 
-      
+    $(".button").click(function () {
+      $(".active").removeClass("active");
+      $(this).addClass("active");
+    });
 
   },
 

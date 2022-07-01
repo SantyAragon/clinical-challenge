@@ -53,6 +53,12 @@ const app = Vue.createApp({
       }, 500);
     });
 
+    //Menu toggle-button for small screens
+    $(document).ready(function () {
+      $(".menu-icon").on("click", function () {
+        $("nav ul").toggleClass("showing");
+      });
+    });
 
   },
 
@@ -180,7 +186,7 @@ const app = Vue.createApp({
       this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio * prod.cantidad).reduce((a, b) => a + b, 0)
 
 
-      
+
       // this.gCarritoNotif = this.gCarritoNotif.filter(prod => prod.id != card.id)
       // this.gTotalEnCarrito = this.gCarritoNotif.map(prod => prod.precio).reduce((a, b) => a + b, 0); // Precio total
       this.gCantidadNotif = this.gCarritoNotif.length;
