@@ -250,7 +250,7 @@ public class PacienteController {
         MimeMessage mensaje = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mensaje);
 
-        String urlToken = "http://localhost:8080/web/login.html?token=" + paciente.getToken();
+        String urlToken = "https://clinica-medihub.herokuapp.com/web/login.html?token=" + paciente.getToken();
 
         content = content.replace("[paciente]", paciente.getFullName());
         content = content.replace("[urlToken]", urlToken);
@@ -274,7 +274,7 @@ public class PacienteController {
         MimeMessage mensaje = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mensaje);
 
-        String urlToken = "http://localhost:8080/web/recuperar-contraseña.html?token=" + paciente.getToken();
+        String urlToken = "https://clinica-medihub.herokuapp.com/web/recuperar-contraseña.html?token=" + paciente.getToken();
         content = content.replace("[email]", paciente.getEmail());
         content = content.replace("[paciente]", paciente.getFullName());
         content = content.replace("[urlToken]", urlToken);

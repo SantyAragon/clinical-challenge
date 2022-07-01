@@ -243,6 +243,16 @@ const app = Vue.createApp({
 
 
         })
+        .catch(error => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: error.response.data,
+            toast: true,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        })
 
     },
   },
