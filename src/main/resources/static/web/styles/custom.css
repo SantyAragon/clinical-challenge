@@ -282,40 +282,6 @@ nav ul li a {
 
 /* SCROLL UP */
 
-#return-to-top {
-  cursor: pointer;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.7);
-  width: 50px;
-  height: 50px;
-  display: block;
-  text-decoration: none;
-  border-radius: 35px;
-  display: none;
-  transition: all 0.3s ease;
-}
-
-#return-to-top i {
-  color: #fff;
-  margin: 0;
-  position: relative;
-  left: 16px;
-  top: 13px;
-  font-size: 19px;
-  transition: all 0.3s ease;
-}
-
-#return-to-top:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-#return-to-top:hover i {
-  color: #fff;
-  top: 5px;
-}
 
 /* SCROLLBAR */
 
@@ -1902,4 +1868,108 @@ a.button:hover span,
 a.button:focus span,
 a.button.active span {
   color: white;
+}
+
+@media screen and (max-width:1200px) {
+
+  .container-head .bienvenidos-p {
+    font-size: 2.5rem;
+  }
+
+  .contenedor-info-header{
+    max-width: 100vw;
+  }
+
+  .container-head-data{
+    max-width: 100vw;
+  }
+
+  .contenedor-cartas-header{
+    display: none;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+  
+    to {
+      width: 100%;
+    }
+  }
+
+  .container-head {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  nav{
+    max-width: 100vw;
+  }
+
+  .scroll-servicios{
+    display:flex;
+    flex-wrap: wrap;
+  }
+
+  .products-container{
+    max-width: 100vw
+  }
+
+  .chose-us-area{
+    max-width: 100vw;
+  }
+
+  #servicios{
+    max-width: 100vw !important;
+  }
+  .contenedor-de-servicios{
+    max-width: 100vw;
+  }
+
+  .valores{
+    max-width: 100vw;
+  }
+
+  .contenedor-de-servicios-responsive{
+    max-width: 100vw;
+  }
+
+  body{
+    overflow-x: hidden;
+  }
+
+  #sobre-nosotros {
+    height: 100%;
+    flex-wrap: wrap;
+  }
+  
+  #servicios {
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  #productos {
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  #contacto {
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
 }

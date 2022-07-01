@@ -44,20 +44,6 @@ const app = Vue.createApp({
       perturbance: 0.05,
     });
 
-    // ===== Scroll to Top ==== 
-    $(window).scroll(function () {
-      if ($(this).scrollTop() >= 1080) { // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(500); // Fade in the arrow
-      } else {
-        $('#return-to-top').fadeOut(500); // Else fade out the arrow
-      }
-    });
-
-    $('#return-to-top').click(function () { // When arrow is clicked
-      $('body,html').animate({
-        scrollTop: 0 // Scroll to top of body
-      }, 500);
-    });
 
     // toggle services
     $('.st-tabs.st-fade-tabs .st-tab-links a').on('click', function (e) {
