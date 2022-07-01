@@ -259,7 +259,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="profesional in servicioElegido.profesionales">
+                <tr v-if="servicioElegido.profesionales" v-for="profesional in sortear(servicioElegido.profesionales)">
                   <td data-label="Id">{{profesional.id}}</td>
                   <td data-label="Profesional">{{profesional.nombre}} {{profesional.apellido}}</td>
                   <td data-label="Especialidad">{{profesional.especialidad}}</td>
@@ -313,7 +313,7 @@
                     </select>
                   </td>
                   <td data-label="Solicitar Turno"><button class="btn btn-success" @click="generarTurno" type="button">
-                      <i class="fa-solid fa-calendar-days"></i> Abonar Turno
+                      <i class="fa-solid fa-calendar-days"></i> Confirmar Turno
                     </button></td>
                 </tr>
 
@@ -337,7 +337,7 @@
               <tbody>
                 <tr v-for="producto in paciente.productos">
                   <td data-label="img" class="product-image">
-                      <img :src="producto.imagen">
+                    <img :src="producto.imagen">
                   </td>
                   <td data-label="fecha">{{formatFecha(producto.fecha)}}</td>
                   <td data-label="servicio">{{producto.nombre}}</td>
@@ -425,7 +425,7 @@
   <!-- BOOTSTRAP -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+  </script>
 
   <!-- LINK FONTAWESOME ICONS -->
   <script src="https://kit.fontawesome.com/a9e21e8a67.js" crossorigin="anonymous"></script>

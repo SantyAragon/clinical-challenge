@@ -11,7 +11,8 @@
 body {
   width: 100vw;
   font-family: 'Rubik', sans-serif;
- overflow-x: hidden;  /*ARREGLAR ESTO*/
+  overflow-x: hidden;
+  /*ARREGLAR ESTO*/
 }
 
 header {
@@ -26,24 +27,16 @@ section {
   padding: 10px 0;
 }
 
-.sub-titulos{
+.sub-titulos {
   margin-bottom: 5rem;
   margin-top: 5rem;
 }
 
-#sobre-nosotros{
+#sobre-nosotros {
   height: 90vh;
 }
 
-#servicios{
-  height: 90vh;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
-
-#productos{
+#servicios {
   height: 90vh;
   display: flex;
   align-content: center;
@@ -51,8 +44,7 @@ section {
   align-items: center;
 }
 
-
-#contacto{
+#productos {
   height: 90vh;
   display: flex;
   align-content: center;
@@ -60,7 +52,16 @@ section {
   align-items: center;
 }
 
-.boton-login{
+
+#contacto {
+  height: 90vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton-login {
   display: flex;
   justify-content: center;
   float: right;
@@ -74,7 +75,7 @@ section {
   background: #24cdb1;
   color: #fff;
   border-radius: 10px;
-  margin-top:10px;
+  margin-top: 10px;
 }
 
 .tabs-contacto {
@@ -82,7 +83,7 @@ section {
   justify-content: space-evenly;
 }
 
-.info-contactanos{
+.info-contactanos {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -195,12 +196,13 @@ nav {
   position: fixed;
   width: 100%;
   height: 80px;
-  z-index: 1000;;
+  z-index: 1000;
+  ;
 }
 
 nav ul {
   list-style: none;
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
   overflow: hidden;
   color: #fff;
   padding: 0;
@@ -240,7 +242,7 @@ nav ul li a {
 
 /*Responsive design CSS*/
 @media(max-width: 1300px) {
-  .logo-blanco{
+  .logo-blanco {
     position: fixed;
     top: 0;
     margin-top: 10px;
@@ -248,20 +250,20 @@ nav ul li a {
 
 
   }
-  
+
   .logo {
     display: none;
   }
-  
+
   nav ul {
     max-height: 0px;
     background: #000;
   }
-  
+
   nav.black ul {
     background: #000;
   }
-  
+
   .showing {
     max-height: 30em;
   }
@@ -272,7 +274,7 @@ nav ul li a {
     padding: 24px 0px;
     text-align: center;
   }
-  
+
   .menu-icon {
     display: block;
   }
@@ -580,7 +582,7 @@ body::-webkit-scrollbar-thumb {
 
 /* tab servicios*/
 
-.contenedor-info-servicios{
+.contenedor-info-servicios {
   display: flex;
   align-items: center;
 }
@@ -1761,7 +1763,7 @@ section .section-title {
 
 
 
-footer{
+footer {
   border-top: solid 1px rgba(0, 0, 0, 0.171);
   max-width: 100vw;
 }
@@ -1778,7 +1780,7 @@ footer{
   color: white;
 }
 
-.iconos-redes{
+.iconos-redes {
   margin-right: 25px;
 }
 
@@ -1873,4 +1875,31 @@ button.activeLoading .loading {
 button .loading {
   opacity: 0;
   visibility: hidden
+}
+
+a.button:focus,
+a.button.active {
+  background: #00deb9a5;
+
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.38);
+  padding: 0.6rem;
+  color: white;
+}
+
+a.button.active:hover span {
+  color: white !important;
+}
+
+a.button:hover span {
+  color: #00deb9 !important;
+}
+
+a.text-info {
+  color: #00deb9 !important;
+}
+
+a.button:hover span,
+a.button:focus span,
+a.button.active span {
+  color: white;
 }
