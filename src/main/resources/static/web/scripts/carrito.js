@@ -115,26 +115,21 @@ const app = Vue.createApp({
         },
 
         generarCompra() {
-            // console.log(this.gCarrito.forEach(producto => console.log(producto)))
 
             let productoss = [];
             this.gCarrito.forEach(producto => {
-                // console.log(producto)
+
                 let aux = {
                     idProducto: parseInt(producto.id),
                     cantidad: parseInt(producto.cantidad)
                 }
                 productoss.push(aux)
-                console.log(aux)
             })
-            console.log(productoss)
 
             let objt = {
                 servicios: [],
                 productos: productoss
             }
-            console.log(objt)
-
 
             axios.post('/api/facturas/create', objt)
                 .then(response => {
@@ -211,6 +206,7 @@ const app = Vue.createApp({
                 text: "Una vez confirmado el pago, no hay reembolso",
                 icon: 'warning',
                 showCancelButton: true,
+                cancelButtonText: "Cancelar",
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Si, Confirmar pago!'
