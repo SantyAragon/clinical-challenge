@@ -161,11 +161,7 @@ const app = Vue.createApp({
 
     signIn() {
       if (this.loginEmail != "" && this.loginContraseña != "") {
-        axios.post('/api/login', `email=${this.loginEmail}&password=${this.loginContraseña}`, {
-            headers: {
-              'content-type': 'application/x-www-form-urlencoded'
-            }
-          })
+        axios.post('/api/login', `email=${this.loginEmail}&password=${this.loginContraseña}`)
           .then(response => {
             axios.get('/api/autenticado')
               .then(response => {
@@ -231,11 +227,7 @@ const app = Vue.createApp({
     },
 
     signUp() {
-      axios.post('/api/pacientes', `nombre=${this.registroNombre}&apellido=${this.registroApellido}&email=${this.registroEmail}&contraseña=${this.registroContraseña}&identificacion=${this.registroDni}`, {
-          headers: {
-            'content-type': 'application/x-www-form-urlencoded'
-          }
-        })
+      axios.post('/api/pacientes', `nombre=${this.registroNombre}&apellido=${this.registroApellido}&email=${this.registroEmail}&contraseña=${this.registroContraseña}&identificacion=${this.registroDni}`)
         .then(response => {
           console.log('registered');
           this.loginContraseña = this.registroContraseña;
